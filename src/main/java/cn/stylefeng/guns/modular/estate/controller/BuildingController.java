@@ -74,7 +74,7 @@ public class BuildingController extends BaseController {
     @RequestMapping("/addItem")
     @ResponseBody
     public ResponseData addItem(BuildingParam buildingParam) {
-        buildingParam.setProfileAddress(buildingParam.getProvid()+"-"+buildingParam.getCitysid()+"-"+buildingParam.getAreaid());
+        buildingParam.setProfileAddress(buildingParam.getProvidName()+"-"+buildingParam.getCitysidName()+"-"+buildingParam.getAreaidName());
         this.buildingService.add(buildingParam);
         return ResponseData.success();
     }

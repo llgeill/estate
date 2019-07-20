@@ -28,10 +28,10 @@ public class Building implements Serializable {
     private Long buildingId;
 
     /**
-     * 城区id
+     * 城区
      */
     @TableField("city_id")
-    private Long cityId;
+    private String cityId;
 
     /**
      * 拼音缩写
@@ -108,11 +108,11 @@ public class Building implements Serializable {
         this.buildingId = buildingId;
     }
 
-    public Long getCityId() {
+    public String getCityId() {
         return cityId;
     }
 
-    public void setCityId(Long cityId) {
+    public void setCityId(String cityId) {
         this.cityId = cityId;
     }
 

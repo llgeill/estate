@@ -4,18 +4,7 @@ layui.use(['table', 'admin', 'ax'], function () {
     var $ax = layui.ax;
     var admin = layui.admin;
 
-    /**
-     * 省市区三级联动
-     * @type {{s1: string, s2: string, s3: string, v1: null, v2: null, v3: null}}
-     */
-    var defaults = {
-        s1: 'provid',
-        s2: 'cityid',
-        s3: 'areaid',
-        v1: null,
-        v2: null,
-        v3: null
-    };
+
 
     /**
      * 城区管理
@@ -30,8 +19,8 @@ layui.use(['table', 'admin', 'ax'], function () {
     Building.initColumn = function () {
         return [[
             {type: 'checkbox'},
-            {field: 'buildingId', hide: true, title: '主键id'},
-            {field: 'cityId', sort: true, title: '城区id'},
+            // {field: 'buildingId', hide: true, title: '主键id'},
+            {field: 'cityId', sort: true, title: '城区'},
             {field: 'pinyinInitials', sort: true, title: '拼音缩写'},
             {field: 'propertyUse', sort: true, title: '物业用途'},
             {field: 'propertyType', sort: true, title: '物业类型'},

@@ -28,7 +28,7 @@ public class BuildingParam implements Serializable, BaseValidatingParam {
     /**
      * 城区id
      */
-    private Long cityId;
+    private String cityId;
 
     /**
      * 拼音缩写
@@ -58,6 +58,10 @@ public class BuildingParam implements Serializable, BaseValidatingParam {
     private String provid;
     private String citysid;
     private String areaid;
+
+    private String providName;
+    private String citysidName;
+    private String areaidName;
 
     /**
      * 详细地址

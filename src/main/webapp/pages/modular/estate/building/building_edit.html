@@ -1,12 +1,13 @@
 @layout("/common/_container.html",{bg:"bg-white",js:["/assets/modular/estate/building/building_edit.js","/assets/modular/estate/data.js","/assets/modular/estate/province.js"]}){
 <form id="buildingForm" lay-filter="buildingForm" class="layui-form model-form">
     <input name="buildingId" type="hidden"/>
-    <!--<div class="layui-form-item">-->
-        <!--<label class="layui-form-label">城区id<span style="color: red;">*</span></label>-->
-        <!--<div class="layui-input-block">-->
-            <!--<input id="cityId" name="cityId" placeholder="请输入城区id" type="text" class="layui-input" lay-verify="required" required/>-->
-        <!--</div>-->
-    <!--</div>-->
+    <div class="layui-form-item">
+        <label class="layui-form-label">城区<span style="color: red;">*</span></label>
+        <div class="layui-input-block">
+            <input id="cityId" name="cityId" placeholder="请输入城区" type="text" class="layui-input" lay-verify="required" required/>
+        </div>
+    </div>
+
     <div class="layui-form-item">
         <label class="layui-form-label">拼音缩写<span style="color: red;">*</span></label>
         <div class="layui-input-block">
@@ -61,7 +62,7 @@
             </select>
         </div>
         <div class="layui-input-inline">
-            <select name="cityid" id="cityid" lay-filter="cityid">
+            <select name="citysid" id="citysid" lay-filter="citysid">
                 <option value="广州" selected="selected">请选择市</option>
             </select>
         </div>
