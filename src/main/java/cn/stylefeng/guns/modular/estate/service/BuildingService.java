@@ -4,9 +4,11 @@ import cn.stylefeng.guns.core.common.page.LayuiPageInfo;
 import cn.stylefeng.guns.modular.estate.entity.Building;
 import cn.stylefeng.guns.modular.estate.model.params.BuildingParam;
 import cn.stylefeng.guns.modular.estate.model.result.BuildingResult;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -65,5 +67,13 @@ public interface BuildingService extends IService<Building> {
      * @Date 2019-07-11
      */
      LayuiPageInfo findPageBySpec(BuildingParam param);
+
+    /**
+     * 获取所有城区信息列表
+     *
+     * @author fengshuonan
+     * @Date 2018/12/23 5:16 PM
+     */
+    Page<Map<String, Object>> list(String temp);
 
 }

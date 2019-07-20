@@ -1,15 +1,26 @@
 package cn.stylefeng.guns.modular.estate.controller;
 
+import cn.hutool.core.bean.BeanUtil;
+import cn.stylefeng.guns.core.common.constant.factory.ConstantFactory;
+import cn.stylefeng.guns.core.common.page.LayuiPageFactory;
 import cn.stylefeng.guns.core.common.page.LayuiPageInfo;
 import cn.stylefeng.guns.modular.estate.entity.FollowInfo;
+import cn.stylefeng.guns.modular.estate.model.FollowInfoDto;
 import cn.stylefeng.guns.modular.estate.model.params.FollowInfoParam;
 import cn.stylefeng.guns.modular.estate.service.FollowInfoService;
+import cn.stylefeng.guns.modular.system.model.MenuDto;
+import cn.stylefeng.guns.modular.system.warpper.DeptIdWrapper;
+import cn.stylefeng.guns.modular.system.warpper.DeptWrapper;
 import cn.stylefeng.roses.core.base.controller.BaseController;
 import cn.stylefeng.roses.core.reqres.response.ResponseData;
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.Map;
 
 
 /**
@@ -109,8 +120,13 @@ public class FollowInfoController extends BaseController {
     @ResponseBody
     public ResponseData detail(FollowInfoParam followInfoParam) {
         FollowInfo detail = this.followInfoService.getById(followInfoParam.getFollowInfoId());
-        return ResponseData.success(detail);
+        FollowInfoDto followInfoDto = new FollowInfoDto();
+        BeanUtil.copyProperties(detail, followInfoDto);
+        followInfoDto.setPName(ConstantFactory.me().getDeptName(followInfoDto.getDeptId()));
+        return ResponseData.success(followInfoDto);
     }
+
+
 
     /**
      * 查询列表
@@ -121,7 +137,10 @@ public class FollowInfoController extends BaseController {
     @ResponseBody
     @RequestMapping("/list")
     public LayuiPageInfo list(FollowInfoParam followInfoParam) {
-        return this.followInfoService.findPageBySpec(followInfoParam);
+         Page<Map<String, Object>> list = this.followInfoService.list("");
+        Page<Map<String, Object>> wrap = new DeptIdWrapper(list).wrap();
+        return LayuiPageFactory.createPageInfo(wrap);
+        //return this.followInfoService.findPageBySpec(followInfoParam);
     }
 
 }

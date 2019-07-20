@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -65,6 +66,17 @@ public class FollowInfoServiceImpl extends ServiceImpl<FollowInfoMapper, FollowI
         return LayuiPageFactory.createPageInfo(page);
     }
 
+    /**
+     * 获取所有跟進信息列表
+     *
+     * @author fengshuonan
+     * @Date 2018/12/23 5:16 PM
+     */
+    public Page<Map<String, Object>> list(String temp) {
+        Page page = LayuiPageFactory.defaultPage();
+        return this.baseMapper.list(page);
+    }
+
     private Serializable getKey(FollowInfoParam param){
         return param.getFollowInfoId();
     }
@@ -82,5 +94,7 @@ public class FollowInfoServiceImpl extends ServiceImpl<FollowInfoMapper, FollowI
         ToolUtil.copyProperties(param, entity);
         return entity;
     }
+
+
 
 }

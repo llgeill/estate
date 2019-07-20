@@ -5,6 +5,19 @@ layui.use(['table', 'admin', 'ax'], function () {
     var admin = layui.admin;
 
     /**
+     * 省市区三级联动
+     * @type {{s1: string, s2: string, s3: string, v1: null, v2: null, v3: null}}
+     */
+    var defaults = {
+        s1: 'provid',
+        s2: 'cityid',
+        s3: 'areaid',
+        v1: null,
+        v2: null,
+        v3: null
+    };
+
+    /**
      * 城区管理
      */
     var Building = {

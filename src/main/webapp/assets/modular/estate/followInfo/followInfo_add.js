@@ -13,14 +13,25 @@ var FollowInfoInfoDlg = {
     }
 };
 
-layui.use(['form', 'admin', 'ax'], function () {
+layui.use(['form', 'admin', 'laydate', 'ax'], function () {
     var $ = layui.jquery;
     var $ax = layui.ax;
     var form = layui.form;
     var admin = layui.admin;
+    var laydate = layui.laydate;
 
     //让当前iframe弹层高度适应
     admin.iframeAuto();
+
+    // 渲染时间选择框
+    laydate.render({
+        elem: '#createTime'
+    });
+
+    // 渲染时间选择框
+    laydate.render({
+        elem: '#updateTime'
+    });
 
     // 点击上级角色时
     $('#pName').click(function () {

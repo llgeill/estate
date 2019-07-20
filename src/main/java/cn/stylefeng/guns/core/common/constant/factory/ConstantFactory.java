@@ -135,6 +135,11 @@ public class ConstantFactory implements IConstantFactory {
         }
     }
 
+    public  String []  getCity(String address) {
+       String [] strings=address.split("-");
+       return strings;
+    }
+
     @Override
     public String getMenuNames(String menuIds) {
         Long[] menus = Convert.toLongArray(menuIds);

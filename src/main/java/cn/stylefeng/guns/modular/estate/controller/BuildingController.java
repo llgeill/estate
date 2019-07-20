@@ -1,15 +1,20 @@
 package cn.stylefeng.guns.modular.estate.controller;
 
+import cn.stylefeng.guns.core.common.page.LayuiPageFactory;
 import cn.stylefeng.guns.core.common.page.LayuiPageInfo;
 import cn.stylefeng.guns.modular.estate.entity.Building;
 import cn.stylefeng.guns.modular.estate.model.params.BuildingParam;
 import cn.stylefeng.guns.modular.estate.service.BuildingService;
+import cn.stylefeng.guns.modular.system.warpper.DeptIdWrapper;
 import cn.stylefeng.roses.core.base.controller.BaseController;
 import cn.stylefeng.roses.core.reqres.response.ResponseData;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.Map;
 
 
 /**
@@ -69,6 +74,7 @@ public class BuildingController extends BaseController {
     @RequestMapping("/addItem")
     @ResponseBody
     public ResponseData addItem(BuildingParam buildingParam) {
+        buildingParam.setProfileAddress(buildingParam.getProvid()+"-"+buildingParam.getCitysid()+"-"+buildingParam.getAreaid());
         this.buildingService.add(buildingParam);
         return ResponseData.success();
     }
@@ -121,7 +127,10 @@ public class BuildingController extends BaseController {
     @ResponseBody
     @RequestMapping("/list")
     public LayuiPageInfo list(BuildingParam buildingParam) {
-        return this.buildingService.findPageBySpec(buildingParam);
+        Page<Map<String, Object>> list = this.buildingService.list("");
+        Page<Map<String, Object>> wrap = new DeptIdWrapper(list).wrap();
+        return LayuiPageFactory.createPageInfo(wrap);
+        //return this.buildingService.findPageBySpec(buildingParam);
     }
 
 }

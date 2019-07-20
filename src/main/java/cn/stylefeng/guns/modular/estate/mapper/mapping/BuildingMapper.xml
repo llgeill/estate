@@ -24,4 +24,10 @@
         building_id AS "buildingId", city_id AS "cityId", pinyin_initials AS "pinyinInitials", property_use AS "propertyUse", property_type AS "propertyType", building_time AS "buildingTime", profile_address AS "profileAddress", detailed_address AS "detailedAddress", sale_average_price AS "saleAveragePrice", manage_fee AS "manageFee", note AS "note", create_time AS "createTime", update_time AS "updateTime"
     </sql>
 
+    <select id="list" resultType="map">
+        select
+        <include refid="Base_Column_List"/>
+        from estate_building where 1 = 1
+    </select>
+
 </mapper>

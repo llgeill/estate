@@ -27,6 +27,22 @@ layui.use(['form', 'admin', 'ax'], function () {
     //让当前iframe弹层高度适应
     admin.iframeAuto();
 
+    // 渲染时间选择框
+    laydate.render({
+        elem: '#buildingTime'
+        ,type: 'year'
+    });
+
+    // 渲染时间选择框
+    laydate.render({
+        elem: '#createTime'
+    });
+
+    // 渲染时间选择框
+    laydate.render({
+        elem: '#updateTime'
+    });
+
     //获取详情信息，填充表单
     var ajax = new $ax(Feng.ctxPath + "/building/detail?buildingId=" + Feng.getUrlParam("buildingId"));
     var result = ajax.start();

@@ -55,6 +55,10 @@ public class BuildingParam implements Serializable, BaseValidatingParam {
      */
     private String profileAddress;
 
+    private String provid;
+    private String citysid;
+    private String areaid;
+
     /**
      * 详细地址
      */

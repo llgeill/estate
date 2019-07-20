@@ -18,4 +18,10 @@
         follow_info_id AS "followInfoId", house_resource_id AS "houseResourceId", staff_name AS "staffName", dept_id AS "deptId", content AS "content", create_time AS "createTime", update_time AS "updateTime"
     </sql>
 
+    <select id="list" resultType="map">
+        select
+        <include refid="Base_Column_List"/>
+        from follow_info where 1 = 1
+    </select>
+
 </mapper>
