@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.stylefeng.guns.modular.estate.mapper.BuildingMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.stylefeng.guns.modular.estate.entity.Building">
+        <id column="building_id" property="buildingId" />
+        <result column="city_id" property="cityId" />
+        <result column="pinyin_initials" property="pinyinInitials" />
+        <result column="property_use" property="propertyUse" />
+        <result column="property_type" property="propertyType" />
+        <result column="building_time" property="buildingTime" />
+        <result column="profile_address" property="profileAddress" />
+        <result column="detailed_address" property="detailedAddress" />
+        <result column="sale_average_price" property="saleAveragePrice" />
+        <result column="manage_fee" property="manageFee" />
+        <result column="note" property="note" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        building_id AS "buildingId", city_id AS "cityId", pinyin_initials AS "pinyinInitials", property_use AS "propertyUse", property_type AS "propertyType", building_time AS "buildingTime", profile_address AS "profileAddress", detailed_address AS "detailedAddress", sale_average_price AS "saleAveragePrice", manage_fee AS "manageFee", note AS "note", create_time AS "createTime", update_time AS "updateTime"
+    </sql>
+
+</mapper>

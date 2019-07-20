@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.stylefeng.guns.modular.estate.mapper.HouseResourceMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.stylefeng.guns.modular.estate.entity.HouseResource">
+        <id column="house_resource_id" property="houseResourceId" />
+        <result column="building_block_id" property="buildingBlockId" />
+        <result column="room_number" property="roomNumber" />
+        <result column="floor" property="floor" />
+        <result column="room_total" property="roomTotal" />
+        <result column="hall_total" property="hallTotal" />
+        <result column="toilet_total" property="toiletTotal" />
+        <result column="balcony_total" property="balconyTotal" />
+        <result column="purpose" property="purpose" />
+        <result column="house_resource_type" property="houseResourceType" />
+        <result column="area" property="area" />
+        <result column="practical_area" property="practicalArea" />
+        <result column="orientation" property="orientation" />
+        <result column="house_type" property="houseType" />
+        <result column="building_time" property="buildingTime" />
+        <result column="transaction" property="transaction" />
+        <result column="state" property="state" />
+        <result column="price" property="price" />
+        <result column="rental" property="rental" />
+        <result column="price_floor" property="priceFloor" />
+        <result column="rental_floor" property="rentalFloor" />
+        <result column="taxes" property="taxes" />
+        <result column="resource" property="resource" />
+        <result column="status_quo" property="statusQuo" />
+        <result column="decorate" property="decorate" />
+        <result column="match_state" property="matchState" />
+        <result column="furniture_state" property="furnitureState" />
+        <result column="household_electrical_state" property="householdElectricalState" />
+        <result column="property_right" property="propertyRight" />
+        <result column="certificates" property="certificates" />
+        <result column="payment" property="payment" />
+        <result column="pay_commission" property="payCommission" />
+        <result column="house_inspection" property="houseInspection" />
+        <result column="key_number" property="keyNumber" />
+        <result column="entrust" property="entrust" />
+        <result column="staff" property="staff" />
+        <result column="owner_name" property="ownerName" />
+        <result column="owner_phone" property="ownerPhone" />
+        <result column="contacts_content" property="contactsContent" />
+        <result column="manage_expense" property="manageExpense" />
+        <result column="remark" property="remark" />
+        <result column="nationality" property="nationality" />
+        <result column="belong_to_id" property="belongToId" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        house_resource_id AS "houseResourceId", building_block_id AS "buildingBlockId", room_number AS "roomNumber", floor AS "floor", room_total AS "roomTotal", hall_total AS "hallTotal", toilet_total AS "toiletTotal", balcony_total AS "balconyTotal", purpose AS "purpose", house_resource_type AS "houseResourceType", area AS "area", practical_area AS "practicalArea", orientation AS "orientation", house_type AS "houseType", building_time AS "buildingTime", transaction AS "transaction", state AS "state", price AS "price", rental AS "rental", price_floor AS "priceFloor", rental_floor AS "rentalFloor", taxes AS "taxes", resource AS "resource", status_quo AS "statusQuo", decorate AS "decorate", match_state AS "matchState", furniture_state AS "furnitureState", household_electrical_state AS "householdElectricalState", property_right AS "propertyRight", certificates AS "certificates", payment AS "payment", pay_commission AS "payCommission", house_inspection AS "houseInspection", key_number AS "keyNumber", entrust AS "entrust", staff AS "staff", owner_name AS "ownerName", owner_phone AS "ownerPhone", contacts_content AS "contactsContent", manage_expense AS "manageExpense", remark AS "remark", nationality AS "nationality", belong_to_id AS "belongToId", create_time AS "createTime", update_time AS "updateTime"
+    </sql>
+
+</mapper>

@@ -1,0 +1,81 @@
+@layout("/common/_container.html",{bg:"bg-white",js:["/assets/modular/estate/building/building_edit.js"]}){
+<form id="buildingForm" lay-filter="buildingForm" class="layui-form model-form">
+    <input name="buildingId" type="hidden"/>
+    <div class="layui-form-item">
+        <label class="layui-form-label">城区id<span style="color: red;">*</span></label>
+        <div class="layui-input-block">
+            <input id="cityId" name="cityId" placeholder="请输入城区id" type="text" class="layui-input" lay-verify="required" required/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">拼音缩写<span style="color: red;">*</span></label>
+        <div class="layui-input-block">
+            <input id="pinyinInitials" name="pinyinInitials" placeholder="请输入拼音缩写" type="text" class="layui-input" lay-verify="required" required/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">物业用途<span style="color: red;">*</span></label>
+        <div class="layui-input-block">
+            <input id="propertyUse" name="propertyUse" placeholder="请输入物业用途" type="text" class="layui-input" lay-verify="required" required/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">物业类型<span style="color: red;">*</span></label>
+        <div class="layui-input-block">
+            <input id="propertyType" name="propertyType" placeholder="请输入物业类型" type="text" class="layui-input" lay-verify="required" required/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">建房年代<span style="color: red;">*</span></label>
+        <div class="layui-input-block">
+            <input id="buildingTime" name="buildingTime" placeholder="请输入建房年代" type="text" class="layui-input" lay-verify="required" required/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">概要地址<span style="color: red;">*</span></label>
+        <div class="layui-input-block">
+            <input id="profileAddress" name="profileAddress" placeholder="请输入概要地址" type="text" class="layui-input" lay-verify="required" required/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">详细地址<span style="color: red;">*</span></label>
+        <div class="layui-input-block">
+            <input id="detailedAddress" name="detailedAddress" placeholder="请输入详细地址" type="text" class="layui-input" lay-verify="required" required/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">售均价<span style="color: red;">*</span></label>
+        <div class="layui-input-block">
+            <input id="saleAveragePrice" name="saleAveragePrice" placeholder="请输入售均价" type="text" class="layui-input" lay-verify="required" required/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">管理费<span style="color: red;">*</span></label>
+        <div class="layui-input-block">
+            <input id="manageFee" name="manageFee" placeholder="请输入管理费" type="text" class="layui-input" lay-verify="required" required/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">备注<span style="color: red;">*</span></label>
+        <div class="layui-input-block">
+            <input id="note" name="note" placeholder="请输入备注" type="text" class="layui-input" lay-verify="required" required/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">创建时间<span style="color: red;">*</span></label>
+        <div class="layui-input-block">
+            <input id="createTime" name="createTime" placeholder="请输入创建时间" type="text" class="layui-input" lay-verify="required" required/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">修改时间<span style="color: red;">*</span></label>
+        <div class="layui-input-block">
+            <input id="updateTime" name="updateTime" placeholder="请输入修改时间" type="text" class="layui-input" lay-verify="required" required/>
+        </div>
+    </div>
+    <div class="layui-form-item text-right">
+        <button class="layui-btn layui-btn-primary" type="button" ew-event="closeDialog">取消</button>
+        <button class="layui-btn" lay-filter="btnSubmit" lay-submit>保存</button>
+    </div>
+</form>
+@}
