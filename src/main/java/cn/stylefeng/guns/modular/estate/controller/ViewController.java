@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 @RequestMapping("/view")
-public class ViewController extends BaseController {
+public class    ViewController extends BaseController {
 
     private String PREFIX = "/modular/estate/view";
 

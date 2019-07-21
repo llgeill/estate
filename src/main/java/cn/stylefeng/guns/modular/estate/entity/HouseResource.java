@@ -660,6 +660,14 @@ public class HouseResource implements Serializable {
         this.updateTime = updateTime;
     }
 
+    public Long getBuildingId() {
+        return buildingId;
+    }
+
+    public void setBuildingId(Long buildingId) {
+        this.buildingId = buildingId;
+    }
+
     @Override
     public String toString() {
         return "HouseResource{" +

@@ -53,20 +53,59 @@ var HouseResourceInfoDlg = {
 
 
 
-layui.use(['form', 'admin', 'ax'], function () {
+
+layui.use(['form', 'admin', 'laydate', 'ax'], function () {
     var $ = layui.jquery;
     var $ax = layui.ax;
     var form = layui.form;
     var admin = layui.admin;
+    var laydate = layui.laydate;
+
+    //渲染城区
+    var ajax = new $ax(Feng.ctxPath + "/building/listData",function (data) {
+        var content="";
+        for(var i=0;i<data.length;i++){
+            if(i==0){
+                content+="<option value='"+data[i].buildingId+"' selected=\"\">"+data[i].cityId+"</option>"
+            }else{
+                content+="<option value='"+data[i].buildingId+"'>"+data[i].cityId+"</option>"
+            }
+        }
+        $("#buildingId").append(content);
+    });
+    ajax.start();
+    form.render();
+
+
+
 
     //让当前iframe弹层高度适应
     admin.iframeAuto();
+
+    // 渲染时间选择框
+    laydate.render({
+        elem: '#createTime',min: 0
+    });
+
+    // 渲染时间选择框
+    laydate.render({
+        elem: '#updateTime',min: 0
+
+    });
+
+
+
+
+    form.on('select(buildingId)', function(data){
+
+        console.log(data.value); //得到被选中的值
+
+    });
 
     //表单提交事件
     form.on('submit(btnSubmit)', function (data) {
         var ajax = new $ax(Feng.ctxPath + "/houseResource/addItem", function (data) {
             Feng.success("添加成功！");
-
             //传给上个页面，刷新table用
             admin.putTempData('formOk', true);
 

@@ -4,6 +4,7 @@ import cn.stylefeng.guns.core.common.page.LayuiPageFactory;
 import cn.stylefeng.guns.core.common.page.LayuiPageInfo;
 import cn.stylefeng.guns.modular.estate.entity.Building;
 import cn.stylefeng.guns.modular.estate.model.params.BuildingParam;
+import cn.stylefeng.guns.modular.estate.model.result.BuildingResult;
 import cn.stylefeng.guns.modular.estate.service.BuildingService;
 import cn.stylefeng.guns.modular.system.warpper.DeptIdWrapper;
 import cn.stylefeng.roses.core.base.controller.BaseController;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
 import java.util.Map;
 
 
@@ -131,6 +133,19 @@ public class BuildingController extends BaseController {
         Page<Map<String, Object>> wrap = new DeptIdWrapper(list).wrap();
         return LayuiPageFactory.createPageInfo(wrap);
         //return this.buildingService.findPageBySpec(buildingParam);
+    }
+
+    /**
+     * 获取数据列表
+     *
+     * @author 李利光
+     * @Date 2019-07-11
+     */
+    @ResponseBody
+    @RequestMapping("/listData")
+    public List<Building> listData(BuildingParam buildingParam) {
+        List<Building> ss=this.buildingService.list();
+        return ss;
     }
 
 }
