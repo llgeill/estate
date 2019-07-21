@@ -24,6 +24,21 @@ var BuildingInfoDlg = {
     }
 };
 
+
+
+/**
+ * 三級聯動
+ * @type {{s1: string, s2: string, s3: string, v1: null, v2: null, v3: null}}
+ */
+var defaults = {
+    s1: 'provid',
+    s2: 'citysid',
+    s3: 'areaid',
+    v1: null,
+    v2: null,
+    v3: null
+};
+
 layui.use(['form', 'admin', 'laydate', 'ax'], function () {
     var $ = layui.jquery;
     var $ax = layui.ax;
@@ -32,12 +47,8 @@ layui.use(['form', 'admin', 'laydate', 'ax'], function () {
     var laydate = layui.laydate;
 
 
-
-
-
     //让当前iframe弹层高度适应
     admin.iframeAuto();
-
 
     // 渲染时间选择框
     laydate.render({
@@ -57,7 +68,6 @@ layui.use(['form', 'admin', 'laydate', 'ax'], function () {
     });
     //表单提交事件
     form.on('submit(btnSubmit)', function (data) {
-
         for(var str in threeSelectData){
             if(threeSelectData[str].val==data.field.provid){
                 data.field.providName=str;

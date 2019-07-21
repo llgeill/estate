@@ -25,6 +25,11 @@ public class HouseResourceResult implements Serializable {
     private Long houseResourceId;
 
     /**
+     * 城区id
+     */
+    private Long buildingId;
+
+    /**
      * 栋座id
      */
     private Long buildingBlockId;

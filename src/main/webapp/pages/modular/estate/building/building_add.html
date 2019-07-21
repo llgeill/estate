@@ -1,42 +1,42 @@
 @layout("/common/_container.html",{bg:"bg-white",js:["/assets/modular/estate/building/building_add.js","/assets/modular/estate/data.js","/assets/modular/estate/province.js"]}){
 <form id="buildingForm" lay-filter="buildingForm" class="layui-form model-form">
     <input name="buildingId" type="hidden"/>
-    <!--<div class="layui-form-item">-->
-        <!--<label class="layui-form-label">城区<span style="color: red;">*</span></label>-->
-        <!--<div class="layui-input-block">-->
-            <!--<input id="cityId" name="cityId" placeholder="请输入城区" type="text" class="layui-input" lay-verify="required" required/>-->
-        <!--</div>-->
-    <!--</div>-->
     <div class="layui-form-item">
         <label class="layui-form-label">城区<span style="color: red;">*</span></label>
         <div class="layui-input-block">
-            <select id="cityId" name="cityId" placeholder="请输入所在城区" lay-filter="simpleSelect">
-                <!--<option value=""></option>-->
-                <option value="住宅小区"  selected="">合景天骏</option>
-                <option value="公寓">绿地城</option>
-                <option value="别墅">万科</option>
-                <option value="别墅">时代城</option>
-            </select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input type="text" placeholder="请选择" value="阅读" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="" class="layui-select-tips">请选择</dd><dd lay-value="0" class="layui-this">写作</dd><dd lay-value="1" class="">阅读</dd><dd lay-value="2" class="">游戏</dd><dd lay-value="3" class="">音乐</dd><dd lay-value="4" class="">旅行</dd></dl></div>
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">拼音缩写<span style="color: red;">*</span></label>
-        <div class="layui-input-block">
-            <select id="pinyinInitials" name="pinyinInitials" placeholder="请输入拼音缩写" lay-filter="simpleSelect">
-                <!--<option value=""></option>-->
-                <option value="hjtj"  selected="">hjtj</option>
-                <option value="ldc">ldc</option>
-                <option value="wk">wk</option>
-                <option value="sdc">sdc</option>
-            </select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input type="text" placeholder="请选择" value="阅读" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="" class="layui-select-tips">请选择</dd><dd lay-value="0" class="layui-this">写作</dd><dd lay-value="1" class="">阅读</dd><dd lay-value="2" class="">游戏</dd><dd lay-value="3" class="">音乐</dd><dd lay-value="4" class="">旅行</dd></dl></div>
+            <input id="cityId" name="cityId" placeholder="请输入城区" type="text" class="layui-input" lay-verify="required" required/>
         </div>
     </div>
     <!--<div class="layui-form-item">-->
-        <!--<label class="layui-form-label">拼音缩写<span style="color: red;">*</span></label>-->
+        <!--<label class="layui-form-label">城区<span style="color: red;">*</span></label>-->
         <!--<div class="layui-input-block">-->
-            <!--<input id="pinyinInitials" name="pinyinInitials" placeholder="请输入拼音缩写" type="text" class="layui-input" lay-verify="required" required/>-->
+            <!--<select id="cityId" name="cityId" placeholder="请输入所在城区" lay-filter="simpleSelect">-->
+                <!--&lt;!&ndash;<option value=""></option>&ndash;&gt;-->
+                <!--<option value="合景天骏"  selected="">合景天骏</option>-->
+                <!--<option value="绿地城">绿地城</option>-->
+                <!--<option value="万科">万科</option>-->
+                <!--<option value="时代城">时代天韵</option>-->
+            <!--</select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input type="text" placeholder="请选择" value="阅读" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="" class="layui-select-tips">请选择</dd><dd lay-value="0" class="layui-this">写作</dd><dd lay-value="1" class="">阅读</dd><dd lay-value="2" class="">游戏</dd><dd lay-value="3" class="">音乐</dd><dd lay-value="4" class="">旅行</dd></dl></div>-->
         <!--</div>-->
     <!--</div>-->
+    <!--<div class="layui-form-item">-->
+        <!--<label class="layui-form-label">拼音缩写<span style="color: red;">*</span></label>-->
+        <!--<div class="layui-input-block">-->
+            <!--<select id="pinyinInitials" name="pinyinInitials" placeholder="请输入拼音缩写" lay-filter="simpleSelect">-->
+                <!--&lt;!&ndash;<option value=""></option>&ndash;&gt;-->
+                <!--<option value="hjtj"  selected="">hjtj</option>-->
+                <!--<option value="ldc">ldc</option>-->
+                <!--<option value="wk">wk</option>-->
+                <!--<option value="sdc">sdc</option>-->
+            <!--</select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input type="text" placeholder="请选择" value="阅读" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="" class="layui-select-tips">请选择</dd><dd lay-value="0" class="layui-this">写作</dd><dd lay-value="1" class="">阅读</dd><dd lay-value="2" class="">游戏</dd><dd lay-value="3" class="">音乐</dd><dd lay-value="4" class="">旅行</dd></dl></div>-->
+        <!--</div>-->
+    <!--</div>-->
+    <div class="layui-form-item">
+        <label class="layui-form-label">拼音缩写<span style="color: red;">*</span></label>
+        <div class="layui-input-block">
+            <input id="pinyinInitials" name="pinyinInitials" placeholder="请输入拼音缩写" type="text" class="layui-input" lay-verify="required" required/>
+        </div>
+    </div>
     <div class="layui-form-item">
         <label class="layui-form-label">物业用途<span style="color: red;">*</span></label>
         <div class="layui-input-block">

@@ -73,16 +73,19 @@ layui.use(['form', 'admin', 'laydate', 'ax'], function () {
      * 省市区三级联动
      * @type {{s1: string, s2: string, s3: string, v1: null, v2: null, v3: null}}
      */
-    var defaults = {
+    var addDefault = {
         s1: 'provid',
-        s2: 'cityid',
+        s2: 'citysid',
         s3: 'areaid',
         v1: result.data.provid,
         v2: result.data.citysid,
         v3: result.data.areaid
     };
-    treeSelect(defaults);
+    treeSelect(addDefault);
+    console.log(addDefault);
     console.log(result.data);
+
+
     form.val('buildingForm', result.data);
 
     //表单提交事件

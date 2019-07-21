@@ -4,6 +4,7 @@
 var HouseResourceInfoDlg = {
     data: {
         buildingBlockId: "",
+        buildingId:"",
         roomNumber: "",
         floor: "",
         roomTotal: "",
@@ -49,6 +50,8 @@ var HouseResourceInfoDlg = {
         updateTime: ""
     }
 };
+
+
 
 layui.use(['form', 'admin', 'ax'], function () {
     var $ = layui.jquery;

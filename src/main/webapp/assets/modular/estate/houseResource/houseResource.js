@@ -18,6 +18,7 @@ layui.use(['table', 'admin', 'ax'], function () {
         return [[
             {type: 'checkbox'},
             {field: 'houseResourceId', hide: true, title: '主键id'},
+            {field: 'buildingId', sort: true, title: '城区id'},
             {field: 'buildingBlockId', sort: true, title: '栋座id'},
             {field: 'roomNumber', sort: true, title: '房号'},
             {field: 'floor', sort: true, title: '楼层'},

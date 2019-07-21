@@ -28,10 +28,18 @@ public class HouseResource implements Serializable {
     private Long houseResourceId;
 
     /**
+     * 城区id
+     */
+    @TableField("building_id")
+    private Long buildingId;
+
+    /**
      * 栋座id
      */
     @TableField("building_block_id")
     private Long buildingBlockId;
+
+
 
     /**
      * 房号

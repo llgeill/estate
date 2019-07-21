@@ -5,7 +5,6 @@ layui.use(['table', 'admin', 'ax'], function () {
     var admin = layui.admin;
 
 
-
     /**
      * 城区管理
      */
@@ -19,9 +18,9 @@ layui.use(['table', 'admin', 'ax'], function () {
     Building.initColumn = function () {
         return [[
             {type: 'checkbox'},
-            // {field: 'buildingId', hide: true, title: '主键id'},
+            {field: 'buildingId', hide: false, title: '主键id'},
             {field: 'cityId', sort: true, title: '城区'},
-            {field: 'pinyinInitials', sort: true, title: '拼音缩写'},
+            {field: 'pinyinInitials', hide: false, sort: true, title: '拼音缩写'},
             {field: 'propertyUse', sort: true, title: '物业用途'},
             {field: 'propertyType', sort: true, title: '物业类型'},
             {field: 'buildingTime', sort: true, title: '建房年代'},
@@ -115,7 +114,9 @@ layui.use(['table', 'admin', 'ax'], function () {
         page: true,
         height: "full-158",
         cellMinWidth: 100,
-        cols: Building.initColumn()
+        cols: Building.initColumn(),
+        toolbar:true,
+        defaultToolbar:['filter']
     });
 
     // 搜索按钮点击事件
@@ -144,4 +145,5 @@ layui.use(['table', 'admin', 'ax'], function () {
             Building.onDeleteItem(data);
         }
     });
+
 });

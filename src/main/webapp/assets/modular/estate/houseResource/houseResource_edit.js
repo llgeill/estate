@@ -4,6 +4,7 @@
 var HouseResourceInfoDlg = {
     data: {
         buildingBlockId: "",
+        buildingId:"",
         roomNumber: "",
         floor: "",
         roomTotal: "",
