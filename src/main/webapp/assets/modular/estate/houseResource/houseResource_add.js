@@ -61,20 +61,7 @@ layui.use(['form', 'admin', 'laydate', 'ax'], function () {
     var admin = layui.admin;
     var laydate = layui.laydate;
 
-    //渲染城区
-    var ajax = new $ax(Feng.ctxPath + "/building/listData",function (data) {
-        var content="";
-        for(var i=0;i<data.length;i++){
-            if(i==0){
-                content+="<option value='"+data[i].buildingId+"' selected=\"\">"+data[i].cityId+"</option>"
-            }else{
-                content+="<option value='"+data[i].buildingId+"'>"+data[i].cityId+"</option>"
-            }
-        }
-        $("#buildingId").append(content);
-    });
-    ajax.start();
-    form.render();
+
 
 
 
@@ -93,14 +80,55 @@ layui.use(['form', 'admin', 'laydate', 'ax'], function () {
 
     });
 
+    //渲染城区
+    var buildingIdHead="";
+    var ajax = new $ax(Feng.ctxPath + "/building/listData",function (data) {
+        var content="";
+        for(var i=0;i<data.length;i++){
+            if(i==0){
+                 getbulidingBlockList(data[i].buildingId);
+                content+="<option value='"+data[i].buildingId+"' selected=\"\">"+data[i].cityId+"</option>"
+            }else{
+                content+="<option value='"+data[i].buildingId+"'>"+data[i].cityId+"</option>"
+            }
+        }
+        $("#buildingId").append(content);
 
-
-
-    form.on('select(buildingId)', function(data){
-
-        console.log(data.value); //得到被选中的值
 
     });
+    ajax.start();
+    form.render();
+
+    //选中城区后
+    form.on('select(buildingId)', function(data){
+        getbulidingBlockList(data.value);
+    });
+
+    function getbulidingBlockList(vals){
+        //获取下拉框选值
+        var buildingId={
+            buildingId:vals
+        };
+        var ajax = new $ax(Feng.ctxPath + "/buildingBlock/bulidingBlockList",function (data){
+            if(data==null||data.length==0){
+                $("#buildingBlockId").empty();
+
+            }else{
+                var content="";
+                for(var i=0;i<data.length;i++){
+                    if(i==0){
+                        content+="<option value='"+data[i].buildingBlockId+"' selected=\"\">"+data[i].name+"</option>"
+                    }else{
+                        content+="<option value='"+data[i].buildingBlockId+"'>"+data[i].name+"</option>"
+                    }
+                }
+                $("#buildingBlockId").append(content);
+            }
+        });
+        ajax.set(buildingId);
+        ajax.start();
+        form.render();
+    }
 
     //表单提交事件
     form.on('submit(btnSubmit)', function (data) {
@@ -114,6 +142,7 @@ layui.use(['form', 'admin', 'laydate', 'ax'], function () {
         }, function (data) {
             Feng.error("添加失败！" + data.responseJSON.message)
         });
+
         ajax.set(data.field);
         ajax.start();
     });

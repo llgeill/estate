@@ -11,6 +11,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+
 
 /**
  * 楼盘控制器
@@ -122,6 +126,20 @@ public class BuildingBlockController extends BaseController {
     @RequestMapping("/list")
     public LayuiPageInfo list(BuildingBlockParam buildingBlockParam) {
         return this.buildingBlockService.findPageBySpec(buildingBlockParam);
+    }
+
+    /**
+     * 查询特定楼盘列表
+     *
+     * @author 李利光
+     * @Date 2019-07-11
+     */
+    @ResponseBody
+    @RequestMapping("/bulidingBlockList")
+    public Collection<BuildingBlock> bulidingBlockList(Long buildingId) {
+        Map map=new HashMap<>();
+        map.put("building_id",buildingId);
+        return this.buildingBlockService.listByMap(map);
     }
 
 }
