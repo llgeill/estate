@@ -319,7 +319,6 @@ public class SystemController extends BaseController {
     @RequestMapping(method = RequestMethod.POST, path = "/upload")
     @ResponseBody
     public ResponseData layuiUpload(@RequestPart("file") MultipartFile picture) {
-
         String pictureName = UUID.randomUUID().toString() + "." + ToolUtil.getFileSuffix(picture.getOriginalFilename());
         try {
             String fileSavePath = gunsProperties.getFileUploadPath();
@@ -327,7 +326,6 @@ public class SystemController extends BaseController {
         } catch (Exception e) {
             throw new ServiceException(BizExceptionEnum.UPLOAD_ERROR);
         }
-
         HashMap<String, Object> map = new HashMap<>();
         map.put("fileId", IdWorker.getIdStr());
         return ResponseData.success(0, "上传成功", map);

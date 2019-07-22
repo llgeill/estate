@@ -3,6 +3,7 @@ server:
   max-http-header-size: 10240
 
 guns:
+  fileUploadPath: F:\estate         #上传路径
   swagger-open: true                #是否开启swagger (true/false)
   kaptcha-open: false               #是否开启登录时验证码 (true/false)
   spring-session-open: false        #是否开启spring session,如果是多机环境需要开启(true/false)
@@ -18,6 +19,9 @@ spring:
   mvc:
     view:
       prefix: /pages
+    static-path-pattern: /**
+  resources:
+    static-locations: classpath:/META-INF/resources/,classpath:/resources/, classpath:/static/, classpath:/public/,file:${guns.fileUploadPath}
   devtools:
     restart:
       enabled: false
@@ -28,9 +32,12 @@ spring:
       max-request-size: 100MB
       max-file-size: 100MB
 
+
 mybatis-plus:
   typeAliasesPackage: cn.stylefeng.guns.modular.system.model
   mapper-locations: classpath:cn/stylefeng/guns/modular/**/mapping/*.xml
 
 log:
   path: guns-logs
+
+
