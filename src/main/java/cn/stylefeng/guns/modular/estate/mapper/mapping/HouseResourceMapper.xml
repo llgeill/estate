@@ -66,12 +66,28 @@
         <if test="roomNumber != null and roomNumber != ''">
             and room_number like CONCAT('%',#{roomNumber},'%')
         </if>
-        <!--<if test="deptId != null and deptId != 0">-->
-            <!--and (dept_id = #{deptId} or dept_id in ( select dept_id from sys_dept where pids like CONCAT('%$[', #{deptId}, '$]%') escape '$' ))-->
-        <!--</if>-->
-        <!--<if test="beginTime != null and beginTime != '' and endTime != null and endTime != ''">-->
-            <!--and (create_time between CONCAT(#{beginTime},' 00:00:00') and CONCAT(#{endTime},' 23:59:59'))-->
-        <!--</if>-->
+        <if test="priceStart != null and priceStart != ''">
+            and price &gt;= #{priceStart}
+        </if>
+        <if test="priceEnd != null and priceEnd != ''">
+            and price &lt;= #{priceEnd}
+        </if>
+        <if test="rentalStart != null and rentalStart != ''">
+            and rental &gt;= #{rentalStart}
+        </if>
+        <if test="rentalEnd != null and rentalEnd != ''">
+            and rental &lt;= #{rentalEnd}
+        </if>
+        <if test="transaction != null and transaction != ''">
+            and transaction = #{transaction}
+        </if>
+        <if test="roomTotalStart != null and roomTotalStart != ''">
+            and room_total &gt;= #{roomTotalStart}
+        </if>
+        <if test="roomTotalEnd != null and roomTotalEnd != ''">
+            and room_total &lt;= #{priceEnd}
+        </if>
+
     </select>
 
 </mapper>

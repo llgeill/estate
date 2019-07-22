@@ -68,6 +68,7 @@ public interface HouseResourceService extends IService<HouseResource> {
      */
      LayuiPageInfo findPageBySpec(HouseResourceParam param);
 
-     Page<Map<String, Object>> selectHouseResources(String roomNumber);
+     Page<Map<String, Object>> selectHouseResources(String roomNumber,Integer price_start,Integer price_end,Integer rental_start,Integer rental_end
+             ,String transaction,Integer roomTotalStart,Integer roomTotalEnd);
 
 }
