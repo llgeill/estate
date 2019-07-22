@@ -86,13 +86,13 @@ layui.use(['form', 'admin', 'laydate', 'ax'], function () {
         var content="";
         for(var i=0;i<data.length;i++){
             if(i==0){
-                 getbulidingBlockList(data[i].buildingId);
-                content+="<option value='"+data[i].buildingId+"' selected=\"\">"+data[i].cityId+"</option>"
-            }else{
-                content+="<option value='"+data[i].buildingId+"'>"+data[i].cityId+"</option>"
+                     getbulidingBlockList(data[i].buildingId);
+                    content+="<option value='"+data[i].buildingId+"' selected=\"\">"+data[i].cityId+"</option>"
+                }else{
+                    content+="<option value='"+data[i].buildingId+"'>"+data[i].cityId+"</option>"
+                }
             }
-        }
-        $("#buildingId").append(content);
+            $("#buildingId").append(content);
 
 
     });
