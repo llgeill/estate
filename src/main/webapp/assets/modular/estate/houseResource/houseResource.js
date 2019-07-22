@@ -53,6 +53,7 @@ layui.use(['table', 'admin', 'ax'], function () {
             {field: 'houseInspection', sort: true, title: '看房'},
             {field: 'keyNumber', sort: true, title: '钥匙号'},
             {field: 'entrust', sort: true, title: '委托方式'},
+            {field: 'staff_id', sort: true, title: '员工id'},
             {field: 'staff', sort: true, title: '员工'},
             {field: 'ownerName', sort: true, title: '业主姓名'},
             {field: 'ownerPhone', sort: true, title: '业主手机号'},

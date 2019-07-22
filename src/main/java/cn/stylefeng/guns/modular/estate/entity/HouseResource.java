@@ -240,6 +240,12 @@ public class HouseResource implements Serializable {
     private String entrust;
 
     /**
+     * 员工id
+     */
+    @TableField("staff_id")
+    private Long staffId;
+
+    /**
      * 员工
      */
     @TableField("staff")
@@ -666,6 +672,14 @@ public class HouseResource implements Serializable {
 
     public void setBuildingId(Long buildingId) {
         this.buildingId = buildingId;
+    }
+
+    public Long getStaffId() {
+        return staffId;
+    }
+
+    public void setStaffId(Long staffId) {
+        this.staffId = staffId;
     }
 
     @Override

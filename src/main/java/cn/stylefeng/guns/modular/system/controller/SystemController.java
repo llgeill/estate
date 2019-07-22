@@ -39,6 +39,7 @@ import cn.stylefeng.roses.kernel.model.exception.RequestEmptyException;
 import cn.stylefeng.roses.kernel.model.exception.ServiceException;
 import cn.stylefeng.roses.kernel.model.exception.enums.CoreExceptionEnum;
 import com.baomidou.mybatisplus.core.toolkit.IdWorker;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -174,6 +175,23 @@ public class SystemController extends BaseController {
         model.addAttribute("deptName", ConstantFactory.me().getDeptName(user.getDeptId()));
         LogObjectHolder.me().set(user);
         return "/modular/frame/user_info.html";
+    }
+
+    /**
+     * 获取用户数据
+     *
+     * @author fengshuonan
+     * @Date 2018/12/24 22:43
+     */
+    @RequestMapping("/user_info_data")
+    @ResponseBody
+    public Map userInfoData() {
+        Long userId = ShiroKit.getUserNotNull().getId();
+        User user = this.userService.getById(userId);
+        Map map=BeanUtil.beanToMap(user);
+        map.put("roleName", ConstantFactory.me().getRoleName(user.getRoleId()));
+        map.put("deptName", ConstantFactory.me().getDeptName(user.getDeptId()));
+        return map;
     }
 
     /**

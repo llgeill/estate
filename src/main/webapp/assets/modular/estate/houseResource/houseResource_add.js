@@ -38,6 +38,7 @@ var HouseResourceInfoDlg = {
         houseInspection: "",
         keyNumber: "",
         entrust: "",
+        staffId: "",
         staff: "",
         ownerName: "",
         ownerPhone: "",
@@ -51,6 +52,9 @@ var HouseResourceInfoDlg = {
     }
 };
 
+/**
+ * 初始化调用区域
+ */
 
 
 
@@ -61,10 +65,8 @@ layui.use(['form', 'admin', 'laydate', 'ax'], function () {
     var admin = layui.admin;
     var laydate = layui.laydate;
 
-
-
-
-
+    //初始化数据操作
+    initData();
 
     //让当前iframe弹层高度适应
     admin.iframeAuto();
@@ -80,30 +82,18 @@ layui.use(['form', 'admin', 'laydate', 'ax'], function () {
 
     });
 
-    //渲染城区
-    var buildingIdHead="";
-    var ajax = new $ax(Feng.ctxPath + "/building/listData",function (data) {
-        var content="";
-        for(var i=0;i<data.length;i++){
-            if(i==0){
-                     getbulidingBlockList(data[i].buildingId);
-                    content+="<option value='"+data[i].buildingId+"' selected=\"\">"+data[i].cityId+"</option>"
-                }else{
-                    content+="<option value='"+data[i].buildingId+"'>"+data[i].cityId+"</option>"
-                }
-            }
-            $("#buildingId").append(content);
+    //获取当前用户数据并且初始化数据
+    function getUserInfo(){
+        var ajax = new $ax(Feng.ctxPath + "/system/user_info_data",function (data){
+            console.log(data);
+            $("#staff").val(data.name);
+            $("#staffId").val(data.userId);
+        });
+        ajax.start();
+        form.render();
+    }
 
-
-    });
-    ajax.start();
-    form.render();
-
-    //选中城区后
-    form.on('select(buildingId)', function(data){
-        getbulidingBlockList(data.value);
-    });
-
+    //获取楼盘列表
     function getbulidingBlockList(vals){
         //获取下拉框选值
         var buildingId={
@@ -129,6 +119,100 @@ layui.use(['form', 'admin', 'laydate', 'ax'], function () {
         ajax.start();
         form.render();
     }
+    //获取城区信息并且初始化城区数据
+    function getbuilding(vals){
+        //获取下拉框选值
+        var buildingId={
+            buildingId:vals
+        };
+        var ajax = new $ax(Feng.ctxPath + "/building/detail",function (data){
+            var obj=data.data;
+            $("#buildingTime").val(obj.buildingTime);
+            $("#purpose").find("option[value='"+obj.purpose+"']").attr("selected", true);
+            $("#houseType").find("option[value='"+obj.houseType+"']").attr("selected", true);
+
+        });
+        ajax.set(buildingId);
+        ajax.start();
+        form.render();
+    }
+
+    //渲染城区
+    var ajax = new $ax(Feng.ctxPath + "/building/listData",function (data) {
+        var content="";
+        for(var i=0;i<data.length;i++){
+            if(i==0){
+                    //初始化调用操作
+                     getbulidingBlockList(data[i].buildingId);
+                     getbuilding(data[i].buildingId);
+
+                    content+="<option value='"+data[i].buildingId+"' selected=\"\">"+data[i].cityId+"</option>"
+                }else{
+                    content+="<option value='"+data[i].buildingId+"'>"+data[i].cityId+"</option>"
+                }
+            }
+            $("#buildingId").append(content);
+    });
+    ajax.start();
+    form.render();
+    //智能添加楼层
+    $("#roomNumber").on("input",function(e){
+        //获取input输入的值
+        var val=e.delegateTarget.value;
+        if(val!=null&&!isNaN(val)){
+            $("#floor").val(parseInt(val.split(0,1)));
+        }else{
+            $("#floor").val();
+        }
+    });
+
+    //选中交易后
+    form.on('select(transaction)', function(data){
+        console.log(data.value);
+        if(data.value!=null&&data.value=="出租"){
+            $("#price").attr("disabled","disabled");
+            $("#priceFloor").attr("disabled","disabled");
+            $("#rental").removeAttr("disabled");
+            $("#rentalFloor").removeAttr("disabled");
+        }else if(data.value!=null&&data.value=="出售"){
+            $("#rental").attr("disabled","disabled");
+            $("#rentalFloor").attr("disabled","disabled");
+            $("#price").removeAttr("disabled");
+            $("#priceFloor").removeAttr("disabled");
+        }else if(data.value!=null&&data.value=="租售"){
+            $("#rental").removeAttr("disabled");
+            $("#rentalFloor").removeAttr("disabled");
+            $("#price").removeAttr("disabled");
+            $("#priceFloor").removeAttr("disabled");
+        }
+        form.render();
+    });
+
+
+
+    //选中城区后
+    form.on('select(buildingId)', function(data){
+        getbulidingBlockList(data.value);
+        //赋予部分初始化值
+        getbuilding(data.value);
+    });
+
+
+    //初始化数据
+    function initData(){
+        getUserInfo();
+    }
+
+    //自定义验证规则
+    form.verify({
+        roomNumber: function(value){
+            console.log(value);
+            if(value<0){
+                return '当前值不允许为负数';
+            }
+
+        }
+    });
 
     //表单提交事件
     form.on('submit(btnSubmit)', function (data) {
@@ -146,4 +230,8 @@ layui.use(['form', 'admin', 'laydate', 'ax'], function () {
         ajax.set(data.field);
         ajax.start();
     });
+
 });
+
+
+

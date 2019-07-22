@@ -39,6 +39,7 @@ var HouseResourceInfoDlg = {
         keyNumber: "",
         entrust: "",
         staff: "",
+        staffId: "",
         ownerName: "",
         ownerPhone: "",
         contactsContent: "",

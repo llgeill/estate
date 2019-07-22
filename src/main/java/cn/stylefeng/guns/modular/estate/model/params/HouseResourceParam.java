@@ -206,6 +206,11 @@ public class HouseResourceParam implements Serializable, BaseValidatingParam {
     private String staff;
 
     /**
+     * 员工id
+     */
+    private Long staffId;
+
+    /**
      * 业主姓名
      */
     private String ownerName;

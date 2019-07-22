@@ -205,6 +205,11 @@ public class HouseResourceResult implements Serializable {
     private String staff;
 
     /**
+     * 员工
+     */
+    private Long staff_id;
+
+    /**
      * 业主姓名
      */
     private String ownerName;
