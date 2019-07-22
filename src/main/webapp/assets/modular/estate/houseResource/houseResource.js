@@ -53,7 +53,7 @@ layui.use(['table', 'admin', 'ax'], function () {
             {field: 'houseInspection', sort: true, title: '看房'},
             {field: 'keyNumber', sort: true, title: '钥匙号'},
             {field: 'entrust', sort: true, title: '委托方式'},
-            {field: 'staff_id', sort: true, title: '员工id'},
+            // {field: 'staff_id', hide: true, sort: true, title: '员工id'},
             {field: 'staff', sort: true, title: '员工'},
             {field: 'ownerName', sort: true, title: '业主姓名'},
             {field: 'ownerPhone', sort: true, title: '业主手机号'},
@@ -61,7 +61,7 @@ layui.use(['table', 'admin', 'ax'], function () {
             {field: 'manageExpense', sort: true, title: '管理费'},
             {field: 'remark', sort: true, title: '备注'},
             {field: 'nationality', sort: true, title: '国籍'},
-            {field: 'belongToId', sort: true, title: '属主用户id'},
+            // {field: 'belongToId', sort: true, title: '属主用户id'},
             {field: 'createTime', sort: true, title: '创建时间'},
             {field: 'updateTime', sort: true, title: '修改时间'},
             {align: 'center', toolbar: '#tableBar', title: '操作'}
@@ -74,6 +74,7 @@ layui.use(['table', 'admin', 'ax'], function () {
     HouseResource.search = function () {
         var queryData = {};
         queryData['condition'] = $("#condition").val();
+        console.log($("#condition").val());
         table.reload(HouseResource.tableId, {where: queryData});
     };
 

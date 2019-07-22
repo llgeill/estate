@@ -326,10 +326,13 @@ public class SystemController extends BaseController {
         } catch (Exception e) {
             throw new ServiceException(BizExceptionEnum.UPLOAD_ERROR);
         }
+
         HashMap<String, Object> map = new HashMap<>();
         map.put("fileId", IdWorker.getIdStr());
         return ResponseData.success(0, "上传成功", map);
     }
+
+
 
 
 }

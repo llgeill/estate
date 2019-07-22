@@ -8,7 +8,7 @@ layui.use(['table','upload', 'admin', 'ax'], function () {
     //多图片上传
     upload.render({
         elem: '#test2'
-        ,url: '/system/upload/'
+        ,url: '/view/upload/'
         ,multiple: true
         ,before: function(obj){
             // //预读本地文件示例，不支持ie8

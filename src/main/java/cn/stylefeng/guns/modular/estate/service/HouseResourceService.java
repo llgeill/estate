@@ -4,9 +4,11 @@ import cn.stylefeng.guns.core.common.page.LayuiPageInfo;
 import cn.stylefeng.guns.modular.estate.entity.HouseResource;
 import cn.stylefeng.guns.modular.estate.model.params.HouseResourceParam;
 import cn.stylefeng.guns.modular.estate.model.result.HouseResourceResult;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -65,5 +67,7 @@ public interface HouseResourceService extends IService<HouseResource> {
      * @Date 2019-07-11
      */
      LayuiPageInfo findPageBySpec(HouseResourceParam param);
+
+     Page<Map<String, Object>> selectHouseResources(String roomNumber);
 
 }

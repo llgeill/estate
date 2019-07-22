@@ -1,15 +1,25 @@
 package cn.stylefeng.guns.modular.estate.controller;
 
+import cn.stylefeng.guns.core.common.annotion.Permission;
+import cn.stylefeng.guns.core.common.page.LayuiPageFactory;
 import cn.stylefeng.guns.core.common.page.LayuiPageInfo;
+import cn.stylefeng.guns.core.shiro.ShiroKit;
 import cn.stylefeng.guns.modular.estate.entity.HouseResource;
 import cn.stylefeng.guns.modular.estate.model.params.HouseResourceParam;
 import cn.stylefeng.guns.modular.estate.service.HouseResourceService;
+import cn.stylefeng.guns.modular.system.warpper.UserWrapper;
 import cn.stylefeng.roses.core.base.controller.BaseController;
+import cn.stylefeng.roses.core.datascope.DataScope;
 import cn.stylefeng.roses.core.reqres.response.ResponseData;
+import cn.stylefeng.roses.core.util.ToolUtil;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.Map;
 
 
 /**
@@ -120,9 +130,46 @@ public class HouseResourceController extends BaseController {
      */
     @ResponseBody
     @RequestMapping("/list")
-    public LayuiPageInfo list(HouseResourceParam houseResourceParam) {
-        return this.houseResourceService.findPageBySpec(houseResourceParam);
+    public LayuiPageInfo list(@RequestParam(required = false) String condition) {
+        Page<Map<String, Object>> users = houseResourceService.selectHouseResources(condition);
+        return LayuiPageFactory.createPageInfo(users);
     }
+
+    /**
+     * 查询管理员列表
+     *
+     * @author fengshuonan
+     * @Date 2018/12/24 22:43
+     */
+//    @RequestMapping("/list")
+//    @Permission
+//    @ResponseBody
+//    public Object list(@RequestParam(required = false) String name,
+//                       @RequestParam(required = false) String timeLimit,
+//                       @RequestParam(required = false) Long deptId) {
+
+//        //拼接查询条件
+//        String beginTime = "";
+//        String endTime = "";
+//
+//        if (ToolUtil.isNotEmpty(timeLimit)) {
+//            String[] split = timeLimit.split(" - ");
+//            beginTime = split[0];
+//            endTime = split[1];
+//        }
+//
+//        if (ShiroKit.isAdmin()) {
+//            Page<Map<String, Object>> users = userService.selectUsers(null, name, beginTime, endTime, deptId);
+//            Page wrapped = new UserWrapper(users).wrap();
+//            return LayuiPageFactory.createPageInfo(wrapped);
+//        } else {
+//            DataScope dataScope = new DataScope(ShiroKit.getDeptDataScope());
+//            Page<Map<String, Object>> users = userService.selectUsers(dataScope, name, beginTime, endTime, deptId);
+//            Page wrapped = new UserWrapper(users).wrap();
+//            return LayuiPageFactory.createPageInfo(wrapped);
+//        }
+//    }
+
 
 }
 

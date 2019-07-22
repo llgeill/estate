@@ -7,6 +7,7 @@
         <id column="house_resource_id" property="houseResourceId" />
         <result column="building_block_id" property="buildingBlockId" />
         <result column="room_number" property="roomNumber" />
+        <result column="building_id" property="buildingId" />
         <result column="floor" property="floor" />
         <result column="room_total" property="roomTotal" />
         <result column="hall_total" property="hallTotal" />
@@ -54,7 +55,23 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        house_resource_id AS "houseResourceId", building_block_id AS "buildingBlockId", room_number AS "roomNumber", floor AS "floor", room_total AS "roomTotal", hall_total AS "hallTotal", toilet_total AS "toiletTotal", balcony_total AS "balconyTotal", purpose AS "purpose", house_resource_type AS "houseResourceType", area AS "area", practical_area AS "practicalArea", orientation AS "orientation", house_type AS "houseType", building_time AS "buildingTime", transaction AS "transaction", state AS "state", price AS "price", rental AS "rental", price_floor AS "priceFloor", rental_floor AS "rentalFloor", taxes AS "taxes", resource AS "resource", status_quo AS "statusQuo", decorate AS "decorate", match_state AS "matchState", furniture_state AS "furnitureState", household_electrical_state AS "householdElectricalState", property_right AS "propertyRight", certificates AS "certificates", payment AS "payment", pay_commission AS "payCommission", house_inspection AS "houseInspection", key_number AS "keyNumber", entrust AS "entrust", staff AS "staff", owner_name AS "ownerName", owner_phone AS "ownerPhone", contacts_content AS "contactsContent", manage_expense AS "manageExpense", remark AS "remark", nationality AS "nationality", belong_to_id AS "belongToId", create_time AS "createTime", update_time AS "updateTime"
+        house_resource_id AS "houseResourceId", building_block_id AS "buildingBlockId", building_id AS "buildingId", room_number AS "roomNumber", floor AS "floor", room_total AS "roomTotal", hall_total AS "hallTotal", toilet_total AS "toiletTotal", balcony_total AS "balconyTotal", purpose AS "purpose", house_resource_type AS "houseResourceType", area AS "area", practical_area AS "practicalArea", orientation AS "orientation", house_type AS "houseType", building_time AS "buildingTime", transaction AS "transaction", state AS "state", price AS "price", rental AS "rental", price_floor AS "priceFloor", rental_floor AS "rentalFloor", taxes AS "taxes", resource AS "resource", status_quo AS "statusQuo", decorate AS "decorate", match_state AS "matchState", furniture_state AS "furnitureState", household_electrical_state AS "householdElectricalState", property_right AS "propertyRight", certificates AS "certificates", payment AS "payment", pay_commission AS "payCommission", house_inspection AS "houseInspection", key_number AS "keyNumber", entrust AS "entrust", staff AS "staff", owner_name AS "ownerName", owner_phone AS "ownerPhone", contacts_content AS "contactsContent", manage_expense AS "manageExpense", remark AS "remark", nationality AS "nationality", belong_to_id AS "belongToId", create_time AS "createTime", update_time AS "updateTime"
     </sql>
+
+    <select id="selectHouseResources" resultType="map">
+        select
+        <include refid="Base_Column_List"/>
+        from estate_house_resource
+        where 1= 1
+        <if test="roomNumber != null and roomNumber != ''">
+            and room_number like CONCAT('%',#{roomNumber},'%')
+        </if>
+        <!--<if test="deptId != null and deptId != 0">-->
+            <!--and (dept_id = #{deptId} or dept_id in ( select dept_id from sys_dept where pids like CONCAT('%$[', #{deptId}, '$]%') escape '$' ))-->
+        <!--</if>-->
+        <!--<if test="beginTime != null and beginTime != '' and endTime != null and endTime != ''">-->
+            <!--and (create_time between CONCAT(#{beginTime},' 00:00:00') and CONCAT(#{endTime},' 23:59:59'))-->
+        <!--</if>-->
+    </select>
 
 </mapper>

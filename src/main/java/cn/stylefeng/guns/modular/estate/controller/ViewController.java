@@ -1,15 +1,28 @@
 package cn.stylefeng.guns.modular.estate.controller;
 
+import cn.stylefeng.guns.config.properties.GunsProperties;
+import cn.stylefeng.guns.core.common.exception.BizExceptionEnum;
 import cn.stylefeng.guns.core.common.page.LayuiPageInfo;
 import cn.stylefeng.guns.modular.estate.entity.View;
 import cn.stylefeng.guns.modular.estate.model.params.ViewParam;
 import cn.stylefeng.guns.modular.estate.service.ViewService;
 import cn.stylefeng.roses.core.base.controller.BaseController;
 import cn.stylefeng.roses.core.reqres.response.ResponseData;
+import cn.stylefeng.roses.core.util.ToolUtil;
+import cn.stylefeng.roses.kernel.model.exception.ServiceException;
+import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.UUID;
 
 
 /**
@@ -21,6 +34,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping("/view")
 public class    ViewController extends BaseController {
+
+    @Autowired
+    private GunsProperties gunsProperties;
 
     private String PREFIX = "/modular/estate/view";
 
@@ -122,6 +138,34 @@ public class    ViewController extends BaseController {
     @RequestMapping("/list")
     public LayuiPageInfo list(ViewParam viewParam) {
         return this.viewService.findPageBySpec(viewParam);
+    }
+
+    /**
+     * layui上传组件 通用文件上传接口
+     *
+     * @author fengshuonan
+     * @Date 2019-2-23 10:48:29
+     */
+    @RequestMapping(method = RequestMethod.POST, path = "/upload")
+    @ResponseBody
+    public ResponseData layuiUpload(@RequestPart("file") MultipartFile picture) {
+        String pictureName = UUID.randomUUID().toString() + "." + ToolUtil.getFileSuffix(picture.getOriginalFilename());
+        String fileSavePath="";
+        try {
+             fileSavePath = gunsProperties.getFileUploadPath();
+            picture.transferTo(new File(fileSavePath + pictureName));
+        } catch (Exception e) {
+            throw new ServiceException(BizExceptionEnum.UPLOAD_ERROR);
+        }
+        ViewParam viewParam=new ViewParam();
+        viewParam.setCreateTime(new Date());
+        viewParam.setResourceId(0);
+        viewParam.setViewPath(pictureName);
+        viewParam.setViewType(ToolUtil.getFileSuffix(picture.getOriginalFilename()));
+        this.viewService.add(viewParam);
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("fileId", IdWorker.getIdStr());
+        return ResponseData.success(0, "上传成功", map);
     }
 
 }

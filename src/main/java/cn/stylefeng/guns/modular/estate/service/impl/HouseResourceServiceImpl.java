@@ -7,6 +7,7 @@ import cn.stylefeng.guns.modular.estate.mapper.HouseResourceMapper;
 import cn.stylefeng.guns.modular.estate.model.params.HouseResourceParam;
 import cn.stylefeng.guns.modular.estate.model.result.HouseResourceResult;
 import  cn.stylefeng.guns.modular.estate.service.HouseResourceService;
+import cn.stylefeng.roses.core.datascope.DataScope;
 import cn.stylefeng.roses.core.util.ToolUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -63,6 +65,18 @@ public class HouseResourceServiceImpl extends ServiceImpl<HouseResourceMapper, H
         QueryWrapper<HouseResource> objectQueryWrapper = new QueryWrapper<>();
         IPage page = this.page(pageContext, objectQueryWrapper);
         return LayuiPageFactory.createPageInfo(page);
+    }
+
+    /**
+     * 根据条件查询房源列表
+     *
+     * @author fengshuonan
+     * @Date 2018/12/24 22:45
+     */
+    @Override
+    public Page<Map<String, Object>> selectHouseResources( String roomNumber) {
+        Page page = LayuiPageFactory.defaultPage();
+        return this.baseMapper.selectHouseResources(page, roomNumber);
     }
 
     private Serializable getKey(HouseResourceParam param){

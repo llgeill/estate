@@ -73,7 +73,9 @@ layui.use(['form', 'admin', 'laydate', 'ax'], function () {
 
     // 渲染时间选择框
     laydate.render({
-        elem: '#createTime',min: 0
+        elem: '#createTime',
+        min: 0,
+        value: new Date()
     });
 
     // 渲染时间选择框
@@ -159,8 +161,8 @@ layui.use(['form', 'admin', 'laydate', 'ax'], function () {
     $("#roomNumber").on("input",function(e){
         //获取input输入的值
         var val=e.delegateTarget.value;
-        if(val!=null&&!isNaN(val)){
-            $("#floor").val(parseInt(val.split(0,1)));
+        if(val!=null){
+            $("#floor").val(parseInt(val.substring(0,1)));
         }else{
             $("#floor").val();
         }
