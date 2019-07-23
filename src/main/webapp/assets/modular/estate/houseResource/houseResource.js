@@ -1,8 +1,14 @@
-layui.use(['table', 'admin', 'ax'], function () {
+/**
+ * 折叠
+ * @param data
+ */
+
+layui.use(['table', 'admin', 'ax','laydate'], function () {
     var $ = layui.$;
     var table = layui.table;
     var $ax = layui.ax;
     var admin = layui.admin;
+    var laydate = layui.laydate;
 
     /**
      * 房源信息管理
@@ -67,6 +73,13 @@ layui.use(['table', 'admin', 'ax'], function () {
             {align: 'center', toolbar: '#tableBar', title: '操作'}
         ]];
     };
+
+    //日期时间范围
+    laydate.render({
+        elem: '#entrustBetweenTime'
+        ,range: true
+    });
+
 
     /**
      * 点击查询按钮
@@ -141,6 +154,7 @@ layui.use(['table', 'admin', 'ax'], function () {
         Feng.confirm("是否删除?", operation);
     };
 
+
     // 渲染表格
     var tableResult = table.render({
         elem: '#' + HouseResource.tableId,
@@ -165,6 +179,24 @@ layui.use(['table', 'admin', 'ax'], function () {
     $('#btnExp').click(function () {
         HouseResource.exportExcel();
     });
+    // 导出excel
+    $('#foldAll').click(function () {
+        if($("#showAndHideDiv").attr("shval")==1){
+            $("#showAndHideDiv").hide();
+            $("#foldAll").html('<i class="layui-icon"></i>展开</button>');
+            $("#showAndHideDiv").attr("shval",2);
+        }else{
+            $("#showAndHideDiv").show();
+            $("#foldAll").html('<i class="layui-icon"></i>折叠</button>');
+            $("#showAndHideDiv").attr("shval",1);
+        }
+        return false;
+    });
+
+
+
+
+
 
     // 工具条点击事件
     table.on('tool(' + HouseResource.tableId + ')', function (obj) {
