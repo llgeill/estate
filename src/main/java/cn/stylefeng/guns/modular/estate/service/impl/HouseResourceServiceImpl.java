@@ -74,9 +74,11 @@ public class HouseResourceServiceImpl extends ServiceImpl<HouseResourceMapper, H
      * @Date 2018/12/24 22:45
      */
     @Override
-    public Page<Map<String, Object>> selectHouseResources( String roomNumber,Integer price_start,Integer price_end,Integer rental_start,Integer rental_end,String transaction) {
+    public Page<Map<String, Object>> selectHouseResources( String roomNumber,Integer price_start,Integer price_end,Integer rental_start,Integer rental_end
+            ,String transaction,Integer roomTotalStart,Integer roomTotalEnd,String orientation,Integer entrustDateScope,String state,Integer floor) {
         Page page = LayuiPageFactory.defaultPage();
-        return this.baseMapper.selectHouseResources(page, roomNumber,price_start,price_end,rental_start,rental_end,transaction);
+        return this.baseMapper.selectHouseResources(page, roomNumber,price_start,price_end,rental_start,rental_end,transaction,roomTotalStart,
+                roomTotalEnd,orientation,entrustDateScope,state,floor);
     }
 
     private Serializable getKey(HouseResourceParam param){

@@ -30,7 +30,7 @@ public interface Const {
     /**
      * 默认管理系统的名称
      */
-    String DEFAULT_SYSTEM_NAME = "Guns管理系统";
+    String DEFAULT_SYSTEM_NAME = "康敏管理系统";
 
     /**
      * 默认欢迎界面的提示

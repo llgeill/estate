@@ -85,8 +85,25 @@
             and room_total &gt;= #{roomTotalStart}
         </if>
         <if test="roomTotalEnd != null and roomTotalEnd != ''">
-            and room_total &lt;= #{priceEnd}
+            and room_total &lt;= #{roomTotalEnd}
         </if>
+        <if test="roomNumber != null and roomNumber != ''">
+            and room_number like CONCAT('%',#{roomNumber},'%')
+        </if>
+        <if test="orientation != null and orientation != ''">
+            and orientation like CONCAT('%',#{orientation},'%')
+        </if>
+        <if test="entrustDateScope != null and entrustDateScope != ''">
+            and (create_time between (select DATE_SUB(curdate(), interval #{entrustDateScope} DAY)) and (select DATE_SUB(curdate(), interval 0 DAY)))
+        </if>
+        <if test="state != null and state != ''">
+            and state like CONCAT('%',#{state},'%')
+        </if>
+        <if test="floor != null and floor != ''">
+            and floor= #{floor}
+        </if>
+
+
 
     </select>
 

@@ -131,8 +131,8 @@ public class HouseResourceController extends BaseController {
     @ResponseBody
     @RequestMapping("/list")
     public LayuiPageInfo list(@RequestParam(required = false) String condition) {
-        Page<Map<String, Object>> users = houseResourceService.selectHouseResources(condition,null,null,1200,1300,
-                "出售",1,2);
+        Page<Map<String, Object>> users = houseResourceService.selectHouseResources(condition,null,null,1200,1600,
+                "出租",null,3,null,1,"",5);
         return LayuiPageFactory.createPageInfo(users);
     }
 

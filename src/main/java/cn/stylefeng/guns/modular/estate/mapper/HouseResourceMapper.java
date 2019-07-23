@@ -31,7 +31,9 @@ public interface HouseResourceMapper extends BaseMapper<HouseResource> {
             , @Param("roomTotalStart") Integer roomTotalStart
             , @Param("roomTotalEnd") Integer roomTotalEnd
             , @Param("orientation") String orientation
-
+            , @Param("entrustDateScope") Integer entrustDateScope
+            , @Param("state") String state
+            , @Param("floor") Integer floor
     );
 
 }
