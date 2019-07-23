@@ -54,6 +54,8 @@ import static cn.stylefeng.guns.core.common.constant.Const.NONE_PERMISSION_RES;
 @Configuration
 public class ShiroConfig {
 
+    private final String session = "session";
+
     /**
      * 安全管理器
      */
@@ -71,7 +73,7 @@ public class ShiroConfig {
      * spring session管理器（多机环境）
      */
     @Bean
-    @ConditionalOnProperty(prefix = "guns", name = "spring-session-open", havingValue = "true")
+    @ConditionalOnProperty(prefix = "guns", name = "spring-" + session + "-open", havingValue = "true")
     public ServletContainerSessionManager servletContainerSessionManager() {
         return new ServletContainerSessionManager();
     }

@@ -246,7 +246,7 @@ INSERT INTO "sys_menu" VALUES (1110777366856089602, 'excel_import', 'demos_show'
 INSERT INTO "sys_menu" VALUES (1110777491464667137, 'excel_export', 'demos_show', '[0],[demos_show],', 'excel导出', '', '/excel/export', 20, 2, 'Y', NULL, 'ENABLE', NULL, NULL, '2019-03-27 13:36:06', NULL, 1, NULL);
 INSERT INTO "sys_menu" VALUES (1110787391943098370, 'advanced_form', 'demos_show', '[0],[demos_show],', '高级表单', '', '/egForm', 30, 2, 'Y', NULL, 'ENABLE', NULL, NULL, '2019-03-27 14:15:26', NULL, 1, NULL);
 INSERT INTO "sys_menu" VALUES (1110839216310329346, 'pdf_view', 'demos_show', '[0],[demos_show],', 'pdf预览', '', '/loadPdfFile', 40, 2, 'Y', NULL, 'ENABLE', NULL, NULL, '2019-03-27 17:41:22', NULL, 1, NULL);
-INSERT INTO "sys_menu" VALUES (1111545968697860098, 'console', 'dashboard', '[0],[dashboard],', '控制台', '', '/system/console', 10, 2, 'Y', NULL, 'ENABLE', NULL, NULL, '2019-03-29 16:29:45', NULL, 1, NULL);
+INSERT INTO "sys_menu" VALUES (1111545968697860098, '', 'dashboard', '[0],[dashboard],', '控制台', '', '/system/console', 10, 2, 'Y', NULL, 'ENABLE', NULL, NULL, '2019-03-29 16:29:45', NULL, 1, NULL);
 INSERT INTO "sys_menu" VALUES (1111546189892870145, 'console2', 'dashboard', '[0],[dashboard],', '分析页', '', '/system/console2', 20, 2, 'Y', NULL, 'ENABLE', NULL, NULL, '2019-03-29 16:30:38', NULL, 1, NULL);
 COMMIT;
 

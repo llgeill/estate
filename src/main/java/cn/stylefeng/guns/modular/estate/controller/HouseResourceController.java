@@ -49,6 +49,17 @@ public class HouseResourceController extends BaseController {
     }
 
     /**
+     * 跳转到Master主页面
+     *
+     * @author 李利光
+     * @Date 2019-07-11
+     */
+    @RequestMapping("/master")
+    public String indexMaster() {
+        return PREFIX + "/houseResource_master.html";
+    }
+
+    /**
      * 新增页面
      *
      * @author 李利光
