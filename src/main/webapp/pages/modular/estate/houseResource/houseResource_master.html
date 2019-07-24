@@ -9,50 +9,77 @@
         <div class="layui-col-sm12 layui-col-md12 layui-col-lg12">
             <div class="layui-card">
                 <div class="layui-card-body">
-                    <form class="layui-form layui-form-pane" action="">
-
-                        <div class="layui-col-sm12 layui-col-md12 layui-col-lg12" >
-                            <div class="layui-col-sm2 layui-col-md2 layui-col-lg2" >
+                    <form class="layui-form layui-form-pane" lay-filter="houseResource"  action="">
+                        <div class="layui-col-sm12 layui-col-md12 layui-col-lg12">
+                            <div class="layui-col-sm2 layui-col-md2 layui-col-lg2">
                                 <div class="layui-form-item">
                                     <label class="layui-form-label">房型</label>
                                     <div class="layui-input-block">
-                                        <select name="interest" lay-filter="aihao">
-                                            <option value=""  selected="">全部</option>
+                                        <select name="roomTotal" id="roomTotal" lay-filter="roomTotal">
+                                            <option value="" selected="">全部</option>
                                             <option value="1-1">1房</option>
-                                            <option value="2-2" >2房</option>
+                                            <option value="2-2">2房</option>
                                             <option value="3-3">3房</option>
                                             <option value="4-4">4房</option>
-                                            <option value="1-2" >1-2房</option>
-                                            <option value="1-2" >1-3房</option>
-                                            <option value="1-2" >1-4房</option>
-                                            <option value="1-2" >2-3房</option>
-                                            <option value="1-2" >2-4房</option>
-                                            <option value="1-2" >3-4房</option>
+                                            <option value="1-2">1-2房</option>
+                                            <option value="1-2">1-3房</option>
+                                            <option value="1-2">1-4房</option>
+                                            <option value="1-2">2-3房</option>
+                                            <option value="1-2">2-4房</option>
+                                            <option value="1-2">3-4房</option>
                                             <option value="4-">4房以上</option>
-                                        </select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input type="text" placeholder="请选择" value="阅读" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="" class="layui-select-tips">请选择</dd><dd lay-value="0" class="">写作</dd><dd lay-value="1" class="layui-this">阅读</dd><dd lay-value="2" class="">游戏</dd><dd lay-value="3" class="">音乐</dd><dd lay-value="4" class="">旅行</dd></dl></div>
+                                        </select>
+                                        <div class="layui-unselect layui-form-select">
+                                            <div class="layui-select-title"><input type="text" placeholder="请选择"
+                                                                                   value="阅读" readonly=""
+                                                                                   class="layui-input layui-unselect"><i
+                                                    class="layui-edge"></i></div>
+                                            <dl class="layui-anim layui-anim-upbit">
+                                                <dd lay-value="" class="layui-select-tips">请选择</dd>
+                                                <dd lay-value="0" class="">写作</dd>
+                                                <dd lay-value="1" class="layui-this">阅读</dd>
+                                                <dd lay-value="2" class="">游戏</dd>
+                                                <dd lay-value="3" class="">音乐</dd>
+                                                <dd lay-value="4" class="">旅行</dd>
+                                            </dl>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="layui-col-sm2 layui-col-md2 layui-col-lg2" >
+                            <div class="layui-col-sm2 layui-col-md2 layui-col-lg2">
                                 <div class="layui-form-item">
                                     <label class="layui-form-label">交易</label>
                                     <div class="layui-input-block">
-                                        <select name="interest" lay-filter="aihao">
+                                        <select name="transaction" id="transaction" lay-filter="transaction">
                                             <option value="" selected="">全部</option>
-                                            <option value="出租" >出租</option>
-                                            <option value="出售" >出售</option>
+                                            <option value="出租">出租</option>
+                                            <option value="出售">出售</option>
                                             <option value="租售">租售</option>
-                                        </select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input type="text" placeholder="请选择" value="阅读" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="" class="layui-select-tips">请选择</dd><dd lay-value="0" class="">写作</dd><dd lay-value="1" class="layui-this">阅读</dd><dd lay-value="2" class="">游戏</dd><dd lay-value="3" class="">音乐</dd><dd lay-value="4" class="">旅行</dd></dl></div>
+                                        </select>
+                                        <div class="layui-unselect layui-form-select">
+                                            <div class="layui-select-title"><input type="text" placeholder="请选择"
+                                                                                   value="阅读" readonly=""
+                                                                                   class="layui-input layui-unselect"><i
+                                                    class="layui-edge"></i></div>
+                                            <dl class="layui-anim layui-anim-upbit">
+                                                <dd lay-value="" class="layui-select-tips">请选择</dd>
+                                                <dd lay-value="0" class="">写作</dd>
+                                                <dd lay-value="1" class="layui-this">阅读</dd>
+                                                <dd lay-value="2" class="">游戏</dd>
+                                                <dd lay-value="3" class="">音乐</dd>
+                                                <dd lay-value="4" class="">旅行</dd>
+                                            </dl>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="layui-col-sm2 layui-col-md2 layui-col-lg2" >
+                            <div class="layui-col-sm2 layui-col-md2 layui-col-lg2">
                                 <div class="layui-form-item">
                                     <label class="layui-form-label">状态</label>
                                     <div class="layui-input-block">
-                                        <select name="interest" lay-filter="aihao">
-                                            <option value=""  selected="">全部</option>
-                                            <option value="出售" >有效</option>
+                                        <select name="state" id="state" lay-filter="aihao">
+                                            <option value="" selected="">全部</option>
+                                            <option value="出售">有效</option>
                                             <option value="出租">预定</option>
                                             <option value="租售">已售</option>
                                             <option value="出租">我售</option>
@@ -60,24 +87,43 @@
                                             <option value="出租">我租</option>
                                             <option value="租售">收租</option>
                                             <option value="租售">租购</option>
-                                        </select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input type="text" placeholder="请选择" value="阅读" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="" class="layui-select-tips">请选择</dd><dd lay-value="0" class="">写作</dd><dd lay-value="1" class="layui-this">阅读</dd><dd lay-value="2" class="">游戏</dd><dd lay-value="3" class="">音乐</dd><dd lay-value="4" class="">旅行</dd></dl></div>
+                                        </select>
+                                        <div class="layui-unselect layui-form-select">
+                                            <div class="layui-select-title"><input type="text" placeholder="请选择"
+                                                                                   value="阅读" readonly=""
+                                                                                   class="layui-input layui-unselect"><i
+                                                    class="layui-edge"></i></div>
+                                            <dl class="layui-anim layui-anim-upbit">
+                                                <dd lay-value="" class="layui-select-tips">请选择</dd>
+                                                <dd lay-value="0" class="">写作</dd>
+                                                <dd lay-value="1" class="layui-this">阅读</dd>
+                                                <dd lay-value="2" class="">游戏</dd>
+                                                <dd lay-value="3" class="">音乐</dd>
+                                                <dd lay-value="4" class="">旅行</dd>
+                                            </dl>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="layui-col-sm3 layui-col-md3 layui-col-lg3" >
-                                <div class="layui-form-item" >
+                            <div class="layui-col-sm3 layui-col-md3 layui-col-lg3">
+                                <div class="layui-form-item">
                                     <label class="layui-form-label">智能搜索</label>
                                     <div class="layui-input-block">
-                                        <input id="condition" class="layui-input"  type="text" placeholder="栋座名称/房号/栋座名称-房号"/>
+                                        <input id="condition" class="layui-input" type="text"
+                                               placeholder="栋座名称/房号/栋座名称-房号"/>
                                     </div>
                                 </div>
                             </div>
-                            <div class="layui-col-sm3 layui-col-md3 layui-col-lg3"  >
-                                <div class="layui-form-item" >
-                                    <button id="btnSearch" class="layui-btn icon-btn"><i class="layui-icon">&#xe615;</i>搜索</button>
-                                    <button id="btnAdd" class="layui-btn icon-btn"><i class="layui-icon">&#xe654;</i>添加</button>
-                                    <button id="btnExp" class="layui-btn icon-btn"><i class="layui-icon">&#xe67d;</i>导出</button>
-                                    <button id="foldAll" class="layui-btn icon-btn"><i class="layui-icon"></i>展开</button>
+                            <div class="layui-col-sm3 layui-col-md3 layui-col-lg3">
+                                <div class="layui-form-item">
+                                    <button id="btnSearch" class="layui-btn icon-btn"><i class="layui-icon">&#xe615;</i>搜索
+                                    </button>
+                                    <button id="btnAdd" class="layui-btn icon-btn"><i class="layui-icon">&#xe654;</i>添加
+                                    </button>
+                                    <button id="btnExp" class="layui-btn icon-btn"><i class="layui-icon">&#xe67d;</i>导出
+                                    </button>
+                                    <button id="foldAll" class="layui-btn icon-btn"><i class="layui-icon"></i>展开
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -87,10 +133,31 @@
                                     <div class="layui-form-item" pane="">
                                         <label class="layui-form-label">租价</label>
                                         <div class="layui-input-block">
-                                            <input type="radio" name="rental" value="0-1200" title="1200元以下" ><div class="layui-unselect layui-form-radio layui-form-radioed"><i class="layui-anim layui-icon"></i><div>1200元以下</div></div>
-                                            <input type="radio" name="rental" value="1200-1800" title="1200-1800元" ><div class="layui-unselect layui-form-radio layui-form-radioed"><i class="layui-anim layui-icon"></i><div>1200-1800元</div></div>
-                                            <input type="radio" name="rental" value="1800-2500" title="1800-2500元"><div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i><div>1800-2500元</div></div>
-                                            <input type="radio" name="rental" value="2500-" title="2500元以上"><div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i><div>2500元以上</div></div>
+                                            <input type="radio" name="rental" value="" title="全部" checked>
+                                            <div class="layui-unselect layui-form-radio layui-form-radioed"><i
+                                                    class="layui-anim layui-icon"></i>
+                                                <div>全部</div>
+                                            </div>
+                                            <input type="radio" name="rental" value="0-1200" title="1200元以下">
+                                            <div class="layui-unselect layui-form-radio layui-form-radioed"><i
+                                                    class="layui-anim layui-icon"></i>
+                                                <div>1200元以下</div>
+                                            </div>
+                                            <input type="radio" name="rental" value="1200-1800" title="1200-1800元">
+                                            <div class="layui-unselect layui-form-radio layui-form-radioed"><i
+                                                    class="layui-anim layui-icon"></i>
+                                                <div>1200-1800元</div>
+                                            </div>
+                                            <input type="radio" name="rental" value="1800-2500" title="1800-2500元">
+                                            <div class="layui-unselect layui-form-radio"><i
+                                                    class="layui-anim layui-icon"></i>
+                                                <div>1800-2500元</div>
+                                            </div>
+                                            <input type="radio" name="rental" value="2500-" title="2500元以上">
+                                            <div class="layui-unselect layui-form-radio"><i
+                                                    class="layui-anim layui-icon"></i>
+                                                <div>2500元以上</div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -98,10 +165,31 @@
                                     <div class="layui-form-item" pane="">
                                         <label class="layui-form-label">售价</label>
                                         <div class="layui-input-block">
-                                            <input type="radio" name="price" value="0-50" title="50万以下" ><div class="layui-unselect layui-form-radio layui-form-radioed"><i class="layui-anim layui-icon"></i><div>50万以下</div></div>
-                                            <input type="radio" name="price" value="50-100" title="50-100万" ><div class="layui-unselect layui-form-radio layui-form-radioed"><i class="layui-anim layui-icon"></i><div>50-100万</div></div>
-                                            <input type="radio" name="price" value="100-200" title="100-200万"><div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i><div>100-200万</div></div>
-                                            <input type="radio" name="price" value="300-" title="300万以上"><div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i><div>200万以上</div></div>
+                                            <input type="radio" name="price" value="" title="全部" checked>
+                                            <div class="layui-unselect layui-form-radio layui-form-radioed"><i
+                                                    class="layui-anim layui-icon"></i>
+                                                <div>全部</div>
+                                            </div>
+                                            <input type="radio" name="price" value="0-50" title="50万以下">
+                                            <div class="layui-unselect layui-form-radio layui-form-radioed"><i
+                                                    class="layui-anim layui-icon"></i>
+                                                <div>50万以下</div>
+                                            </div>
+                                            <input type="radio" name="price" value="50-100" title="50-100万">
+                                            <div class="layui-unselect layui-form-radio layui-form-radioed"><i
+                                                    class="layui-anim layui-icon"></i>
+                                                <div>50-100万</div>
+                                            </div>
+                                            <input type="radio" name="price" value="100-200" title="100-200万">
+                                            <div class="layui-unselect layui-form-radio"><i
+                                                    class="layui-anim layui-icon"></i>
+                                                <div>100-200万</div>
+                                            </div>
+                                            <input type="radio" name="price" value="300-" title="300万以上">
+                                            <div class="layui-unselect layui-form-radio"><i
+                                                    class="layui-anim layui-icon"></i>
+                                                <div>200万以上</div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -112,42 +200,93 @@
                                     <div class="layui-form-item" pane="">
                                         <label class="layui-form-label">面积</label>
                                         <div class="layui-input-block">
-                                            <input type="radio" name="area" value="0-50" title="50平方以下" ><div class="layui-unselect layui-form-radio layui-form-radioed"><i class="layui-anim layui-icon"></i><div>50平方以下</div></div>
-                                            <input type="radio" name="area" value="50-80" title="50-80平方" ><div class="layui-unselect layui-form-radio layui-form-radioed"><i class="layui-anim layui-icon"></i><div>50-80平方</div></div>
-                                            <input type="radio" name="area" value="80-120" title="80-120平方" ><div class="layui-unselect layui-form-radio layui-form-radioed"><i class="layui-anim layui-icon"></i><div>80-120平方</div></div>
-                                            <input type="radio" name="area" value="120-" title="120平方以上" ><div class="layui-unselect layui-form-radio layui-form-radioed"><i class="layui-anim layui-icon"></i><div>120平方以上</div></div>
+                                            <input type="radio" name="area" value="" title="全部" checked>
+                                            <div class="layui-unselect layui-form-radio layui-form-radioed"><i
+                                                    class="layui-anim layui-icon"></i>
+                                                <div>全部</div>
+                                            </div>
+                                            <input type="radio" name="area" value="0-50" title="50万以下">
+                                            <div class="layui-unselect layui-form-radio layui-form-radioed"><i
+                                                    class="layui-anim layui-icon"></i>
+                                                <div>50万以下</div>
+                                            </div>
+                                            <input type="radio" name="area" value="50-80" title="50-80平方">
+                                            <div class="layui-unselect layui-form-radio layui-form-radioed"><i
+                                                    class="layui-anim layui-icon"></i>
+                                                <div>50-80平方</div>
+                                            </div>
+                                            <input type="radio" name="area" value="80-120" title="80-120平方">
+                                            <div class="layui-unselect layui-form-radio layui-form-radioed"><i
+                                                    class="layui-anim layui-icon"></i>
+                                                <div>80-120平方</div>
+                                            </div>
+                                            <input type="radio" name="area" value="120-" title="120平方以上">
+                                            <div class="layui-unselect layui-form-radio layui-form-radioed"><i
+                                                    class="layui-anim layui-icon"></i>
+                                                <div>120平方以上</div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="layui-col-sm3 layui-col-md3 layui-col-lg3">
-                                    <div class="layui-form-item" >
+                                    <div class="layui-form-item">
                                         <label class="layui-form-label">房屋类型</label>
                                         <div class="layui-input-block">
-                                            <select id="houseType" name="houseType" placeholder="请输入房屋类型"  lay-filter="simpleSelect">
-                                                <!--<option value=""></option>-->
-                                                <option value="多层"  selected="">多层</option>
+                                            <select id="houseType" name="houseType" placeholder="请输入房屋类型"
+                                                    lay-filter="simpleSelect">
+                                                <option value="" selected="">全部</option>
+                                                <option value="多层">多层</option>
                                                 <option value="小高层">小高层</option>
                                                 <option value="高层">高层</option>
-                                            </select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input type="text" placeholder="请选择" value="阅读" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="" class="layui-select-tips">请选择</dd><dd lay-value="0" class="layui-this">写作</dd><dd lay-value="1" class="">阅读</dd><dd lay-value="2" class="">游戏</dd><dd lay-value="3" class="">音乐</dd><dd lay-value="4" class="">旅行</dd></dl></div>
+                                            </select>
+                                            <div class="layui-unselect layui-form-select">
+                                                <div class="layui-select-title"><input type="text" placeholder="请选择"
+                                                                                       value="阅读" readonly=""
+                                                                                       class="layui-input layui-unselect"><i
+                                                        class="layui-edge"></i></div>
+                                                <dl class="layui-anim layui-anim-upbit">
+                                                    <dd lay-value="" class="layui-select-tips">请选择</dd>
+                                                    <dd lay-value="0" class="layui-this">写作</dd>
+                                                    <dd lay-value="1" class="">阅读</dd>
+                                                    <dd lay-value="2" class="">游戏</dd>
+                                                    <dd lay-value="3" class="">音乐</dd>
+                                                    <dd lay-value="4" class="">旅行</dd>
+                                                </dl>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="layui-col-sm3 layui-col-md3 layui-col-lg3">
-                                    <div class="layui-form-item" >
+                                    <div class="layui-form-item">
                                         <label class="layui-form-label">朝向</label>
                                         <div class="layui-input-block">
-                                            <select id="orientation" name="orientation" placeholder="请输入朝向"  lay-filter="simpleSelect">
-                                                <!--<option value=""></option>-->
-                                                <option value="东"  selected="">东</option>
+                                            <select id="orientation" name="orientation" placeholder="请输入朝向"
+                                                    lay-filter="simpleSelect">
+                                                <option value="" selected="">全部</option>
+                                                <option value="东">东</option>
                                                 <option value="南">南</option>
                                                 <option value="西">西</option>
                                                 <option value="北">北</option>
-                                                <option value="西南" >西南</option>
+                                                <option value="西南">西南</option>
                                                 <option value="西北">西北</option>
                                                 <option value="东南">东南</option>
                                                 <option value="东北">东北</option>
                                                 <option value="南北">南北</option>
-                                            </select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input type="text" placeholder="请选择" value="阅读" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="" class="layui-select-tips">请选择</dd><dd lay-value="0" class="layui-this">写作</dd><dd lay-value="1" class="">阅读</dd><dd lay-value="2" class="">游戏</dd><dd lay-value="3" class="">音乐</dd><dd lay-value="4" class="">旅行</dd></dl></div>
+                                            </select>
+                                            <div class="layui-unselect layui-form-select">
+                                                <div class="layui-select-title"><input type="text" placeholder="请选择"
+                                                                                       value="阅读" readonly=""
+                                                                                       class="layui-input layui-unselect"><i
+                                                        class="layui-edge"></i></div>
+                                                <dl class="layui-anim layui-anim-upbit">
+                                                    <dd lay-value="" class="layui-select-tips">请选择</dd>
+                                                    <dd lay-value="0" class="layui-this">写作</dd>
+                                                    <dd lay-value="1" class="">阅读</dd>
+                                                    <dd lay-value="2" class="">游戏</dd>
+                                                    <dd lay-value="3" class="">音乐</dd>
+                                                    <dd lay-value="4" class="">旅行</dd>
+                                                </dl>
+                                            </div>
 
                                         </div>
                                     </div>
@@ -155,58 +294,149 @@
 
                             </div>
 
-                            <div class="layui-form-item">
-                                <label class="layui-form-label">委托时间</label>
-                                <div class="layui-input-block">
-                                    <input id="entrustBetweenTime" name="entrustBetweenTime" placeholder="请输入时间段，例如2019-02-06 - 2019-03-20" type="text" class="layui-input" autocomplete="off" lay-key="2">
+                            <div class="layui-col-sm12 layui-col-md12 layui-col-lg12">
+                                <div class="layui-col-sm3 layui-col-md3 layui-col-lg3">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">委托时间</label>
+                                        <div class="layui-input-block">
+                                            <input id="entrustBetweenTime" name="entrustBetweenTime" value=" "
+                                                   placeholder="请输入时间，例如2019-02-06 - 2019-03-20" type="text"
+                                                   class="layui-input" autocomplete="off" lay-key="2">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="layui-col-sm3 layui-col-md3 layui-col-lg3">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">房源类型</label>
+                                        <div class="layui-input-block">
+                                            <select id="purpose" name="purpose" placeholder="请输入用途"
+                                                    lay-filter="simpleSelect">
+                                                <option value="" selected="">全部</option>
+                                                <option value="住宅小区">住宅小区</option>
+                                                <option value="商业用房">商业用房</option>
+                                                <option value="教育用房">教育用房</option>
+                                                <option value="教育用房">其他</option>
+                                            </select>
+                                            <div class="layui-unselect layui-form-select">
+                                                <div class="layui-select-title"><input type="text" placeholder="请选择"
+                                                                                       value="阅读" readonly=""
+                                                                                       class="layui-input layui-unselect"><i
+                                                        class="layui-edge"></i></div>
+                                                <dl class="layui-anim layui-anim-upbit">
+                                                    <dd lay-value="" class="layui-select-tips">请选择</dd>
+                                                    <dd lay-value="0" class="layui-this">写作</dd>
+                                                    <dd lay-value="1" class="">阅读</dd>
+                                                    <dd lay-value="2" class="">游戏</dd>
+                                                    <dd lay-value="3" class="">音乐</dd>
+                                                    <dd lay-value="4" class="">旅行</dd>
+                                                </dl>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="layui-col-sm2 layui-col-md2 layui-col-lg2">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">厅卫</label>
+                                        <div class="layui-input-block">
+                                            <select id="hallToilet" name="hallToilet" placeholder="请输入用途"
+                                                    lay-filter="simpleSelect">
+                                                <option value="" selected="">全部</option>
+                                                <option value="厅">厅</option>
+                                                <option value="卫">卫</option>
+                                            </select>
+                                            <div class="layui-unselect layui-form-select">
+                                                <div class="layui-select-title"><input type="text" placeholder="请选择"
+                                                                                       value="阅读" readonly=""
+                                                                                       class="layui-input layui-unselect"><i
+                                                        class="layui-edge"></i></div>
+                                                <dl class="layui-anim layui-anim-upbit">
+                                                    <dd lay-value="" class="layui-select-tips">请选择</dd>
+                                                    <dd lay-value="0" class="layui-this">写作</dd>
+                                                    <dd lay-value="1" class="">阅读</dd>
+                                                    <dd lay-value="2" class="">游戏</dd>
+                                                    <dd lay-value="3" class="">音乐</dd>
+                                                    <dd lay-value="4" class="">旅行</dd>
+                                                </dl>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="layui-col-sm2 layui-col-md2 layui-col-lg2">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">数量</label>
+                                        <div class="layui-input-block">
+                                            <select id="hallToiletTotal" name="hallToiletTotal" placeholder="请输入用途"
+                                                    lay-filter="simpleSelect">
+                                                <option value="" selected="">全部</option>
+                                                <option value=1>1</option>
+                                                <option value=2>2</option>
+                                                <option value=3>3</option>
+                                                <option value=4>4</option>
+                                            </select>
+                                            <div class="layui-unselect layui-form-select">
+                                                <div class="layui-select-title"><input type="text" placeholder="请选择"
+                                                                                       value="阅读" readonly=""
+                                                                                       class="layui-input layui-unselect"><i
+                                                        class="layui-edge"></i></div>
+                                                <dl class="layui-anim layui-anim-upbit">
+                                                    <dd lay-value="" class="layui-select-tips">请选择</dd>
+                                                    <dd lay-value="0" class="layui-this">写作</dd>
+                                                    <dd lay-value="1" class="">阅读</dd>
+                                                    <dd lay-value="2" class="">游戏</dd>
+                                                    <dd lay-value="3" class="">音乐</dd>
+                                                    <dd lay-value="4" class="">旅行</dd>
+                                                </dl>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="layui-col-sm2 layui-col-md2 layui-col-lg2">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">推介加密</label>
+                                        <div class="layui-input-block">
+                                            <select id="houseResourceType" name="houseResourceType" placeholder="请输入用途"
+                                                    lay-filter="simpleSelect">
+                                                <option value="" selected="">全部</option>
+                                                <option value="推介房">推介房</option>
+                                                <option value="加密房">加密房</option>
+                                            </select>
+                                            <div class="layui-unselect layui-form-select">
+                                                <div class="layui-select-title"><input type="text" placeholder="请选择"
+                                                                                       value="阅读" readonly=""
+                                                                                       class="layui-input layui-unselect"><i
+                                                        class="layui-edge"></i></div>
+                                                <dl class="layui-anim layui-anim-upbit">
+                                                    <dd lay-value="" class="layui-select-tips">请选择</dd>
+                                                    <dd lay-value="0" class="layui-this">写作</dd>
+                                                    <dd lay-value="1" class="">阅读</dd>
+                                                    <dd lay-value="2" class="">游戏</dd>
+                                                    <dd lay-value="3" class="">音乐</dd>
+                                                    <dd lay-value="4" class="">旅行</dd>
+                                                </dl>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+
                         </div>
 
 
                     </form>
-                    <div class="layui-form toolbar">
-                        <div class="layui-col-sm4 layui-col-md4 layui-col-lg4" >
-                            <!--<div class="layui-form-item">-->
-                                <!--<label class="layui-form-label">长输入框</label>-->
-                                <!--<div class="layui-input-block">-->
-                                    <!--<input type="text" name="title" autocomplete="off" placeholder="请输入标题" class="layui-input">-->
-                                <!--</div>-->
-                            <!--</div>-->
-                            <!--<div class="layui-form-item">-->
 
-                                    <!--<input id="condition" class="layui-input" type="text" placeholder="栋座名称/房号/栋座名称-房号"/>-->
-
-                            <!--</div>-->
-                        </div>
-                    </div>
-                    <!--<div class="layui-form toolbar">-->
-                        <!--<div class="layui-col-sm7 layui-col-md7 layui-col-lg7">-->
-                            <!--<div class="layui-form-item">-->
-                                <!--<div class="layui-inline">-->
-                                    <!--<button id="btnSearch" class="layui-btn icon-btn"><i class="layui-icon">&#xe615;</i>搜索</button>-->
-                                    <!--<button id="btnAdd" class="layui-btn icon-btn"><i class="layui-icon">&#xe654;</i>添加</button>-->
-                                    <!--<button id="btnExp" class="layui-btn icon-btn"><i class="layui-icon">&#xe67d;</i>导出</button>-->
-                                    <!--<button id="btnHighSearch" class="layui-btn icon-btn"><i class="layui-icon">&#xe67d;</i>更多</button>-->
-                                <!--</div>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</div>-->
-
-                    <table class="layui-table" id="houseResourceTable" lay-filter="houseResourceTable"></table>
-
-                    <a class="layui-btn layui-btn-primary" href="javascript:;" id="tab">tab层</a>
-
-                    <div class="layui-tab layui-tab-card" style="margin-top: 28px;">
+                    <table class="layui-table" id="houseResourceTable" lay-filter="houseResourceTable">
+                    </table>
+                    <div class="layui-tab layui-tab-card"  id="testLUBOO" >
                         <ul class="layui-tab-title">
                             <li class="layui-this"><i class="layui-icon">&#xe68e;</i> 详细属性</li>
                             <li><i class="layui-icon">&#xe66e;</i> 跟进情况</li>
                             <li><i class="layui-icon">&#xe60d;</i> 房源照片</li>
-                            <li>商品管理</li>
-                            <li>订单管理</li>
+                            <li><i class="layui-icon">&#xe6b2;</i> 添加跟进信息</li>
+
                         </ul>
                         <div class="layui-tab-content" style="height: 100%;">
-                            <div class="layui-tab-item layui-show ">
+                            <div class="layui-tab-item layui-show">
 
                                 <table  class="layui-table"  lay-skin="nob" >
 
@@ -225,7 +455,7 @@
                                 </table>
 
                             </div>
-                            <div class="layui-tab-item">
+                            <div class="layui-tab-item" style="overflow: scroll; height: 300px; ">
                                 <ul class="layui-timeline">
                                     <li class="layui-timeline-item">
                                         <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
@@ -270,37 +500,46 @@
                                     </li>
                                 </ul>
                             </div>
-                            <div class="layui-tab-item">
-                                <h2>Eight images</h2>
-                                <div class="carousel">
-                                    <figure>
-                                        <img src="/assets/common/images/1.jpg" alt="">
-                                        <img src="/assets/common/images/1.jpg" alt="">
-                                        <img src="/assets/common/images/1.jpg" alt="">
-                                        <img src="/assets/common/images/1.jpg" alt="">
-                                        <img src="/assets/common/images/1.jpg" alt="">
-                                        <img src="/assets/common/images/1.jpg" alt="">
-                                        <img src="/assets/common/images/1.jpg" alt="">
-                                        <img src="/assets/common/images/1.jpg" alt="">
-                                        <!--<img src="/assets/common/images/2.jpg" alt="">-->
-                                        <!--<img src="/assets/common/images/3.jpg" alt="">-->
-                                        <!--<img src="/assets/common/images/4.jpg" alt="">-->
-                                        <!--<img src="/assets/common/images/5.jpg" alt="">-->
-                                        <!--<img src="/assets/common/images/6.jpg" alt="">-->
-                                        <!--<img src="/assets/common/images/7.jpg" alt="">-->
-                                        <!--<img src="/assets/common/images/8.jpg" alt="">-->
-                                    </figure>
-                                    <nav>
-                                        <button class="nav prev">Prev</button>
-                                        <button class="nav next">Next</button>
-                                    </nav>
+                            <div class="layui-tab-item"  style="height: 350px">
+                                <div class="layui-carousel" id="test2" >
+                                    <div carousel-item>
+                                        <div><img src="http://localhost/702f1ece-4295-4e76-a5fe-3bcc5669a4d2.jpg"/></div>
+                                        <div><img src="http://localhost/702f1ece-4295-4e76-a5fe-3bcc5669a4d2.jpg"/></div>
+                                        <div><img src="http://localhost/702f1ece-4295-4e76-a5fe-3bcc5669a4d2.jpg"/></div>
+                                        <div><img src="http://localhost/702f1ece-4295-4e76-a5fe-3bcc5669a4d2.jpg"/></div>
+                                        <div><img src="http://localhost/702f1ece-4295-4e76-a5fe-3bcc5669a4d2.jpg"/></div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="layui-tab-item"><img class="layui-img" src="/assets/common/images/1.jpg"   alt=""></div>
+                            <div class="layui-tab-item">
+                                <div class="layui-form-item layui-form-text">
+                                    <label class="layui-form-label" style="font-weight: normal;text-align: center;width: 140px;">
+                                        <span>业务员：李利光</span><br> +<span>业务员：李利光</span><br>
+                                        <span>业务员：李利光</span><br>
+                                    </label>
+                                    <div class="layui-input-block">
+                                        <textarea placeholder="请输入内容" class="layui-textarea" style="width: 91%"></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="layui-form-item">
+                                    <div class="layui-input-block" style=" margin-left: 155px;">
+                                        <button class="layui-btn" lay-submit="" lay-filter="demo1">立即添加</button>
+                                        <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="layui-tab-item">5</div>
                             <div class="layui-tab-item">6</div>
                         </div>
                     </div>
+                    <!--<style>-->
+                        <!--.layui-layer-tab .layui-layer-title{-->
+                            <!--overflow: hidden;-->
+                        <!--}-->
+
+                    <!--</style>-->
+
 
                 </div>
             </div>
@@ -335,13 +574,15 @@
 
             for (var i = 0; i < n; i++) {
                 images[i].style.padding = gap + 'px';
-            }for (i = 1; i < n; i++) {
+            }
+            for (i = 1; i < n; i++) {
                 images[i].style.transformOrigin = '50% 50% ' + -apothem + 'px';
                 images[i].style.transform = 'rotateY(' + i * theta + 'rad)';
             }
             if (bfc) for (i = 0; i < n; i++) {
                 images[i].style.backfaceVisibility = 'hidden';
-            }rotateCarousel(currImage);
+            }
+            rotateCarousel(currImage);
         }
 
         function setupNavigation() {
@@ -367,6 +608,7 @@
             figure.style.transform = 'rotateY(' + imageIndex * -theta + 'rad)';
         }
     }
+
     var carousels = document.querySelectorAll('.carousel');
 
     for (var i = 0; i < carousels.length; i++) {

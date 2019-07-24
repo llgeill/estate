@@ -14,12 +14,14 @@ import cn.stylefeng.guns.modular.system.warpper.DeptWrapper;
 import cn.stylefeng.roses.core.base.controller.BaseController;
 import cn.stylefeng.roses.core.reqres.response.ResponseData;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
 import java.util.Map;
 
 
@@ -137,12 +139,30 @@ public class FollowInfoController extends BaseController {
     @ResponseBody
     @RequestMapping("/list")
     public LayuiPageInfo list(FollowInfoParam followInfoParam) {
+        QueryWrapper<FollowInfo> queryWrapper = new QueryWrapper<>();
+        queryWrapper
+                .eq("house_resource_id",followInfoParam.getHouseResourceId());
+        this.followInfoService.list();
          Page<Map<String, Object>> list = this.followInfoService.list("");
         Page<Map<String, Object>> wrap = new DeptIdWrapper(list).wrap();
         return LayuiPageFactory.createPageInfo(wrap);
         //return this.followInfoService.findPageBySpec(followInfoParam);
     }
 
+    /**
+     * 查询相应房源跟进信息
+     *
+     * @author 李利光
+     * @Date 2019-07-11
+     */
+    @ResponseBody
+    @RequestMapping("/followInfoList")
+    public List<FollowInfo> followInfoList(FollowInfoParam followInfoParam) {
+        QueryWrapper<FollowInfo> queryWrapper = new QueryWrapper<>();
+        queryWrapper
+                .eq("house_resource_id",followInfoParam.getHouseResourceId());
+        return this.followInfoService.list(queryWrapper);
+    }
 }
 
 

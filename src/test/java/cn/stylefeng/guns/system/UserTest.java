@@ -42,4 +42,10 @@ public class UserTest extends BaseJunit {
         Map<Object,Object> maps = (Map) bindings.get("threeSelectData");
     }
 
+    @Test
+    public void ss(){
+        String one="12-";
+        String s[]=one.split("-");
+    }
+
 }

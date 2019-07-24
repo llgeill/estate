@@ -139,4 +139,17 @@ public interface IConstantFactory {
      */
     List<Long> getParentDeptIds(Long deptId);
 
+    /**
+     * 获取城区名字
+     * @param cityId
+     * @return
+     */
+    String getBuildingName(Long cityId);
+
+    /**
+     * 获取楼盘名称
+     * @param buildingBlockId
+     * @return
+     */
+    String getBuildingBlockName(Long buildingBlockId);
 }

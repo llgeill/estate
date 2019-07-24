@@ -52,14 +52,27 @@ var HouseResourceInfoDlg = {
     }
 };
 
-layui.use(['form', 'admin', 'ax'], function () {
+layui.use(['form', 'admin','laydate', 'ax'], function () {
     var $ = layui.jquery;
     var $ax = layui.ax;
     var form = layui.form;
     var admin = layui.admin;
+    var laydate = layui.laydate;
 
     //让当前iframe弹层高度适应
     admin.iframeAuto();
+
+    // 渲染时间选择框
+    laydate.render({
+        elem: '#createTime',
+        min: 0,
+        value: new Date()
+    });
+
+    // 渲染时间选择框
+    laydate.render({
+        elem: '#updateTime',min: 0
+    });
 
     //获取楼盘列表
     function getbulidingBlockList(vals){

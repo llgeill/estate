@@ -3,13 +3,16 @@ package cn.stylefeng.guns.modular.estate.controller;
 import cn.stylefeng.guns.config.properties.GunsProperties;
 import cn.stylefeng.guns.core.common.exception.BizExceptionEnum;
 import cn.stylefeng.guns.core.common.page.LayuiPageInfo;
+import cn.stylefeng.guns.modular.estate.entity.FollowInfo;
 import cn.stylefeng.guns.modular.estate.entity.View;
+import cn.stylefeng.guns.modular.estate.model.params.FollowInfoParam;
 import cn.stylefeng.guns.modular.estate.model.params.ViewParam;
 import cn.stylefeng.guns.modular.estate.service.ViewService;
 import cn.stylefeng.roses.core.base.controller.BaseController;
 import cn.stylefeng.roses.core.reqres.response.ResponseData;
 import cn.stylefeng.roses.core.util.ToolUtil;
 import cn.stylefeng.roses.kernel.model.exception.ServiceException;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,6 +25,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.UUID;
 
 
@@ -159,13 +163,28 @@ public class    ViewController extends BaseController {
         }
         ViewParam viewParam=new ViewParam();
         viewParam.setCreateTime(new Date());
-        viewParam.setResourceId(0);
+        viewParam.setResourceId(null);
         viewParam.setViewPath(pictureName);
         viewParam.setViewType(ToolUtil.getFileSuffix(picture.getOriginalFilename()));
         this.viewService.add(viewParam);
         HashMap<String, Object> map = new HashMap<>();
         map.put("fileId", IdWorker.getIdStr());
         return ResponseData.success(0, "上传成功", map);
+    }
+
+    /**
+     * 查询相应多媒体信息
+     *
+     * @author 李利光
+     * @Date 2019-07-11
+     */
+    @ResponseBody
+    @RequestMapping("/viewList")
+    public List<View> viewList(ViewParam viewParam) {
+        QueryWrapper<View> queryWrapper = new QueryWrapper<>();
+        queryWrapper
+                .eq("resource_id",viewParam.getResourceId());
+        return this.viewService.list(queryWrapper);
     }
 
 }

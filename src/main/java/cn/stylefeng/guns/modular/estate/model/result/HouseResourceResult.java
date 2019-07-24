@@ -77,12 +77,12 @@ public class HouseResourceResult implements Serializable {
     /**
      * 面积
      */
-    private String area;
+    private Double area;
 
     /**
      * 实用面积
      */
-    private String practicalArea;
+    private Double practicalArea;
 
     /**
      * 朝向
@@ -112,22 +112,22 @@ public class HouseResourceResult implements Serializable {
     /**
      * 售价
      */
-    private String price;
+    private Double price;
 
     /**
      * 租价
      */
-    private String rental;
+    private Double rental;
 
     /**
      * 出售底价
      */
-    private String priceFloor;
+    private Double priceFloor;
 
     /**
      * 租价底价
      */
-    private String rentalFloor;
+    private Double rentalFloor;
 
     /**
      * 包税费

@@ -27,7 +27,7 @@ public class ViewResult implements Serializable {
     /**
      * 来源id
      */
-    private Integer resourceId;
+    private Long resourceId;
 
     /**
      * 视图路径

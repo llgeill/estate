@@ -22,6 +22,12 @@ import cn.stylefeng.guns.core.common.constant.cache.CacheKey;
 import cn.stylefeng.guns.core.common.constant.state.ManagerStatus;
 import cn.stylefeng.guns.core.common.constant.state.MenuStatus;
 import cn.stylefeng.guns.core.log.LogObjectHolder;
+import cn.stylefeng.guns.modular.estate.controller.BuildingBlockController;
+import cn.stylefeng.guns.modular.estate.entity.Building;
+import cn.stylefeng.guns.modular.estate.entity.BuildingBlock;
+import cn.stylefeng.guns.modular.estate.mapper.BuildingBlockMapper;
+import cn.stylefeng.guns.modular.estate.mapper.BuildingMapper;
+import cn.stylefeng.guns.modular.estate.mapper.CityMapper;
 import cn.stylefeng.guns.modular.system.entity.*;
 import cn.stylefeng.guns.modular.system.mapper.*;
 import cn.stylefeng.roses.core.util.SpringContextHolder;
@@ -51,6 +57,8 @@ public class ConstantFactory implements IConstantFactory {
     private UserMapper userMapper = SpringContextHolder.getBean(UserMapper.class);
     private MenuMapper menuMapper = SpringContextHolder.getBean(MenuMapper.class);
     private NoticeMapper noticeMapper = SpringContextHolder.getBean(NoticeMapper.class);
+    private BuildingMapper buildingMapper = SpringContextHolder.getBean(BuildingMapper.class);
+    private BuildingBlockMapper buildingBlockMapper = SpringContextHolder.getBean(BuildingBlockMapper.class);
 
     public static IConstantFactory me() {
         return SpringContextHolder.getBean("constantFactory");
@@ -335,5 +343,14 @@ public class ConstantFactory implements IConstantFactory {
         return parentDeptIds;
     }
 
+    public String getBuildingName(Long cityId){
+        Building building=buildingMapper.selectById(cityId);
+        return building.getCityId();
+    }
+
+    public String getBuildingBlockName(Long buildingBlockId){
+        BuildingBlock buildingBlock=buildingBlockMapper.selectById(buildingBlockId);
+        return buildingBlock.getName();
+    }
 
 }

@@ -4,6 +4,7 @@ import cn.stylefeng.guns.core.common.page.LayuiPageFactory;
 import cn.stylefeng.guns.core.common.page.LayuiPageInfo;
 import cn.stylefeng.guns.modular.estate.entity.HouseResource;
 import cn.stylefeng.guns.modular.estate.mapper.HouseResourceMapper;
+import cn.stylefeng.guns.modular.estate.model.HouseResourceSearchDto;
 import cn.stylefeng.guns.modular.estate.model.params.HouseResourceParam;
 import cn.stylefeng.guns.modular.estate.model.result.HouseResourceResult;
 import  cn.stylefeng.guns.modular.estate.service.HouseResourceService;
@@ -74,11 +75,9 @@ public class HouseResourceServiceImpl extends ServiceImpl<HouseResourceMapper, H
      * @Date 2018/12/24 22:45
      */
     @Override
-    public Page<Map<String, Object>> selectHouseResources( String roomNumber,Integer price_start,Integer price_end,Integer rental_start,Integer rental_end
-            ,String transaction,Integer roomTotalStart,Integer roomTotalEnd,String orientation,Integer entrustDateScope,String state,Integer floor) {
+    public Page<Map<String, Object>> selectHouseResources(HouseResourceSearchDto houseResourceSearchDto) {
         Page page = LayuiPageFactory.defaultPage();
-        return this.baseMapper.selectHouseResources(page, roomNumber,price_start,price_end,rental_start,rental_end,transaction,roomTotalStart,
-                roomTotalEnd,orientation,entrustDateScope,state,floor);
+        return this.baseMapper.selectHouseResources(page,houseResourceSearchDto);
     }
 
     private Serializable getKey(HouseResourceParam param){

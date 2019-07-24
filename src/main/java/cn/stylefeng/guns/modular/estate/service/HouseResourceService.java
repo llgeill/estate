@@ -2,6 +2,7 @@ package cn.stylefeng.guns.modular.estate.service;
 
 import cn.stylefeng.guns.core.common.page.LayuiPageInfo;
 import cn.stylefeng.guns.modular.estate.entity.HouseResource;
+import cn.stylefeng.guns.modular.estate.model.HouseResourceSearchDto;
 import cn.stylefeng.guns.modular.estate.model.params.HouseResourceParam;
 import cn.stylefeng.guns.modular.estate.model.result.HouseResourceResult;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -68,8 +69,6 @@ public interface HouseResourceService extends IService<HouseResource> {
      */
      LayuiPageInfo findPageBySpec(HouseResourceParam param);
 
-     Page<Map<String, Object>> selectHouseResources(String roomNumber,Integer price_start,Integer price_end,Integer rental_start,Integer rental_end
-             ,String transaction,Integer roomTotalStart,Integer roomTotalEnd,String orientation,Integer entrustDateScope,String state
-     ,Integer floor);
+     Page<Map<String, Object>> selectHouseResources(HouseResourceSearchDto houseResourceSearchDto);
 
 }

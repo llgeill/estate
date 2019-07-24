@@ -31,7 +31,7 @@ public class View implements Serializable {
      * 来源id
      */
     @TableField("resource_id")
-    private Integer resourceId;
+    private Long resourceId;
 
     /**
      * 视图路径
@@ -66,11 +66,11 @@ public class View implements Serializable {
         this.viewId = viewId;
     }
 
-    public Integer getResourceId() {
+    public Long getResourceId() {
         return resourceId;
     }
 
-    public void setResourceId(Integer resourceId) {
+    public void setResourceId(Long resourceId) {
         this.resourceId = resourceId;
     }
 

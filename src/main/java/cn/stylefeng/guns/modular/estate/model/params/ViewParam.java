@@ -28,7 +28,7 @@ public class ViewParam implements Serializable, BaseValidatingParam {
     /**
      * 来源id
      */
-    private Integer resourceId;
+    private Long resourceId;
 
     /**
      * 视图路径

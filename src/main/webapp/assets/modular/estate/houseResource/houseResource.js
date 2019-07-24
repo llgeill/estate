@@ -3,12 +3,13 @@
  * @param data
  */
 
-layui.use(['table', 'admin', 'ax','laydate'], function () {
+layui.use(['table','form', 'admin', 'ax','laydate'], function () {
     var $ = layui.$;
     var table = layui.table;
     var $ax = layui.ax;
     var admin = layui.admin;
     var laydate = layui.laydate;
+    var form =layui.form;
 
     /**
      * 房源信息管理
@@ -23,53 +24,53 @@ layui.use(['table', 'admin', 'ax','laydate'], function () {
     HouseResource.initColumn = function () {
         return [[
             {type: 'checkbox'},
-            {field: 'houseResourceId', hide: true, title: '主键id'},
-            {field: 'buildingId', sort: true, title: '城区id'},
-            {field: 'buildingBlockId', sort: true, title: '栋座id'},
+            // {field: 'houseResourceId', hide: true, title: '主键id'},
+            {field: 'buildingName', sort: true, title: '城区'},
+            {field: 'buildingBlockName', sort: true, title: '栋座'},
             {field: 'roomNumber', sort: true, title: '房号'},
             {field: 'floor', sort: true, title: '楼层'},
             {field: 'roomTotal', sort: true, title: '房'},
             {field: 'hallTotal', sort: true, title: '厅'},
             {field: 'toiletTotal', sort: true, title: '卫'},
-            {field: 'balconyTotal', sort: true, title: '阳台'},
-            {field: 'purpose', sort: true, title: '用途'},
-            {field: 'houseResourceType', sort: true, title: '房源类型'},
+            {field: 'balconyTotal' , sort: true, title: '阳台'},
+            // {field: 'purpose',hide: true, sort: true, title: '用途'},
+            // {field: 'houseResourceType',hide: true, sort: true, title: '房源类型'},
             {field: 'area', sort: true, title: '面积'},
-            {field: 'practicalArea', sort: true, title: '实用面积'},
-            {field: 'orientation', sort: true, title: '朝向'},
-            {field: 'houseType', sort: true, title: '房屋类型'},
-            {field: 'buildingTime', sort: true, title: '建房年代'},
-            {field: 'transaction', sort: true, title: '交易'},
-            {field: 'state', sort: true, title: '状态'},
-            {field: 'price', sort: true, title: '售价'},
-            {field: 'rental', sort: true, title: '租价'},
-            {field: 'priceFloor', sort: true, title: '出售底价'},
-            {field: 'rentalFloor', sort: true, title: '租价底价'},
-            {field: 'taxes', sort: true, title: '包税费'},
-            {field: 'resource', sort: true, title: '来源'},
-            {field: 'statusQuo', sort: true, title: '现状'},
-            {field: 'decorate', sort: true, title: '装修情况'},
-            {field: 'matchState', sort: true, title: '配套情况'},
-            {field: 'furnitureState', sort: true, title: '家具情况'},
-            {field: 'householdElectricalState', sort: true, title: '家电情况'},
-            {field: 'propertyRight', sort: true, title: '产权'},
-            {field: 'certificates', sort: true, title: '证件'},
-            {field: 'payment', sort: true, title: '付款'},
-            {field: 'payCommission', sort: true, title: '付佣'},
-            {field: 'houseInspection', sort: true, title: '看房'},
-            {field: 'keyNumber', sort: true, title: '钥匙号'},
-            {field: 'entrust', sort: true, title: '委托方式'},
+            // {field: 'practicalArea',hide: true, sort: true, title: '实用面积'},
+            // {field: 'orientation', sort: true, title: '朝向'},
+            // {field: 'houseType', hide: true,sort: true, title: '房屋类型'},
+            // {field: 'buildingTime',hide: true, sort: true, title: '建房年代'},
+            // {field: 'transaction',hide: true, sort: true, title: '交易'},
+            // {field: 'state',hide: true, sort: true, title: '状态'},
+            // {field: 'price', hide: true,sort: true, title: '售价'},
+            // {field: 'rental',hide: true, sort: true, title: '租价'},
+            // {field: 'priceFloor', hide: true,sort: true, title: '出售底价'},
+            // {field: 'rentalFloor', hide: true,sort: true, title: '租价底价'},
+            // {field: 'taxes', hide: true,sort: true, title: '包税费'},
+            // {field: 'resource',hide: true, sort: true, title: '来源'},
+            // {field: 'statusQuo',hide: true, sort: true, title: '现状'},
+            // {field: 'decorate',hide: true, sort: true, title: '装修情况'},
+            // {field: 'matchState',hide: true, sort: true, title: '配套情况'},
+            // {field: 'furnitureState',hide: true, sort: true, title: '家具情况'},
+            // {field: 'householdElectricalState',hide: true, sort: true, title: '家电情况'},
+            // {field: 'propertyRight', hide: true,sort: true, title: '产权'},
+            // {field: 'certificates',hide: true, sort: true, title: '证件'},
+            // {field: 'payment',hide: true, sort: true, title: '付款'},
+            // {field: 'payCommission',hide: true, sort: true, title: '付佣'},
+            // {field: 'houseInspection',hide: true, sort: true, title: '看房'},
+            // {field: 'keyNumber',hide: true, sort: true, title: '钥匙号'},
+            // {field: 'entrust',hide: true, sort: true, title: '委托方式'},
             // {field: 'staff_id', hide: true, sort: true, title: '员工id'},
             {field: 'staff', sort: true, title: '员工'},
-            {field: 'ownerName', sort: true, title: '业主姓名'},
-            {field: 'ownerPhone', sort: true, title: '业主手机号'},
-            {field: 'contactsContent', sort: true, title: '联系人内容'},
-            {field: 'manageExpense', sort: true, title: '管理费'},
-            {field: 'remark', sort: true, title: '备注'},
-            {field: 'nationality', sort: true, title: '国籍'},
-            // {field: 'belongToId', sort: true, title: '属主用户id'},
-            {field: 'createTime', sort: true, title: '创建时间'},
-            {field: 'updateTime', sort: true, title: '修改时间'},
+            // {field: 'ownerName', hide: true,sort: true, title: '业主姓名'},
+            // {field: 'ownerPhone',hide: true, sort: true, title: '业主手机号'},
+            // {field: 'contactsContent',hide: true, sort: true, title: '联系人内容'},
+            // {field: 'manageExpense',hide: true, sort: true, title: '管理费'},
+            // {field: 'remark',hide: true, sort: true, title: '备注'},
+            // {field: 'nationality',hide: true, sort: true, title: '国籍'},
+           // {field: 'belongToId', sort: true, title: '属主用户id'},
+            {field: 'createTime', sort: true, title: '委托时间'},
+            //{field: 'updateTime', hide: true,sort: true, title: '修改时间'},
             {align: 'center', toolbar: '#tableBar', title: '操作'}
         ]];
     };
@@ -78,6 +79,9 @@ layui.use(['table', 'admin', 'ax','laydate'], function () {
     laydate.render({
         elem: '#entrustBetweenTime'
         ,range: true
+        ,change: function(value, date, endDate){
+           getAllSearchValue(value);
+        }
     });
 
 
@@ -98,10 +102,12 @@ layui.use(['table', 'admin', 'ax','laydate'], function () {
         admin.putTempData('formOk', false);
         top.layui.admin.open({
             type: 2,
+            area: ['700px', '450px'],
             title: '添加房源信息',
             content: Feng.ctxPath + '/houseResource/add',
             end: function () {
-                admin.getTempData('formOk') && table.reload(HouseResource.tableId);
+                // admin.getTempData('formOk') &&
+                table.reload(HouseResource.tableId);
             }
         });
     };
@@ -162,7 +168,10 @@ layui.use(['table', 'admin', 'ax','laydate'], function () {
         page: true,
         height: "full-158",
         cellMinWidth: 100,
-        cols: HouseResource.initColumn()
+        height: 472,
+        cols: HouseResource.initColumn(),
+        // toolbar:true,
+        // defaultToolbar:['filter']
     });
 
     // 搜索按钮点击事件
@@ -179,7 +188,7 @@ layui.use(['table', 'admin', 'ax','laydate'], function () {
     $('#btnExp').click(function () {
         HouseResource.exportExcel();
     });
-    // 导出excel
+    // 展开与折叠
     $('#foldAll').click(function () {
         if($("#showAndHideDiv").attr("shval")==1){
             $("#showAndHideDiv").hide();
@@ -193,11 +202,6 @@ layui.use(['table', 'admin', 'ax','laydate'], function () {
         return false;
     });
 
-
-
-
-
-
     // 工具条点击事件
     table.on('tool(' + HouseResource.tableId + ')', function (obj) {
         var data = obj.data;
@@ -209,4 +213,154 @@ layui.use(['table', 'admin', 'ax','laydate'], function () {
             HouseResource.onDeleteItem(data);
         }
     });
+
+    //下拉事件
+    form.on('select()', function(data){
+        getAllSearchValue();
+        form.render();
+    });
+
+    //选中交易后
+    form.on('radio()', function(data){
+        getAllSearchValue();
+        form.render();
+    });
+
+    function getAllSearchValue(date) {
+        var queryData = {};
+        queryData['condition'] = $("#condition").val();
+        queryData['roomTotal'] = $("#roomTotal").val();
+        queryData['transaction'] = $("#transaction").val();
+        queryData['state'] = $("#state").val();
+        queryData['rental'] = $("input[name='rental']:checked").val();
+        queryData['price'] = $("input[name='price']:checked").val();
+        queryData['area'] = $("input[name='area']:checked").val();
+        queryData['houseType'] = $("#houseType").val();
+        queryData['orientation'] = $("#orientation").val();
+        if(date!=null){
+            queryData['entrustBetweenTime'] = date;
+        }else{
+            queryData['entrustBetweenTime'] = $("#entrustBetweenTime").val();
+        }
+        queryData['purpose'] = $("#purpose").val();
+        queryData['hallToilet'] = $("#hallToilet").val();
+        queryData['hallToiletTotal'] = $("#hallToiletTotal").val();
+        queryData['houseResourceType'] = $("#houseResourceType").val();
+        table.reload(HouseResource.tableId, {where: queryData});
+    }
+
+    function setAllSearchValueNull() {
+            $("#roomTotal").val("");
+            $("#transaction").val("");
+            $("#state").val("");
+            $("input[name='rental']:checked").val("");
+            $("input[name='price']:checked").val("");
+            $("input[name='area']:checked").val("");
+            $("#houseType").val("");
+            $("#orientation").val("");
+            $("#entrustBetweenTime").val("");
+            $("#purpose").val("");
+            $("#hallToilet").val("");
+            $("#hallToiletTotal").val("");
+            $("#houseResourceType").val("");
+    }
+
+    //监听行单击事件（单击事件为：rowDouble）
+    table.on('row(houseResourceTable)', function(obj){
+        //詳細信息
+        var data = obj.data;
+        //跟进信息
+        var ajax = new $ax(Feng.ctxPath + "/followInfo/followInfoList", function (data) {
+            layer.alert(JSON.stringify(data), {
+                title: '当前行数据：'
+            });
+        }, function (data) {
+            Feng.error("删除失败!" + data.responseJSON.message + "!");
+        });
+        ajax.set("houseResourceId", data.houseResourceId);
+        ajax.start();
+        //多媒体信息
+        var ajaxX = new $ax(Feng.ctxPath + "/view/viewList", function (data) {
+            layer.alert(JSON.stringify(data), {
+                title: '当前行数据：'
+            });
+        }, function (data) {
+            Feng.error("删除失败!" + data.responseJSON.message + "!");
+        });
+        ajaxX.set("resourceId", data.houseResourceId);
+        ajaxX.start();
+        //
+
+        //
+        // layer.alert(JSON.stringify(data), {
+        //     title: '当前行数据：'
+        // });
+
+        //标注选中样式
+        obj.tr.addClass('layui-table-click').siblings().removeClass('layui-table-click');
+    });
+});
+
+
+layui.use(['element', 'layer'], function(){
+    var element = layui.element
+        ,layer = layui.layer;
+
+    element.on('tab(docDemoTabBrief)', function(data){
+        layer.msg('切到到了'+ data.index + '：' + this.innerHTML);
+    });
+});
+layui.use('element', function(){
+    var element = layui.element;
+});
+layui.use('laydate', function(){
+    var laydate = layui.laydate;
+
+    //执行一个laydate实例
+    laydate.render({
+        elem: '#dateRange',
+        range: true
+    });
+    laydate.render({
+        elem: '#test6'
+        ,range: true
+    });
+});
+layui.use('carousel', function() {
+    var carousel = layui.carousel;
+    var ins = carousel.render({
+        elem: '#test1',
+        width: '100%', //设置容器宽度
+        height: '100%',
+        arrow: 'always', //始终显示箭头
+        //,anim: 'updown' //切换动画方式
+        autoplay: false
+    });
+    //重置轮播
+    ins.reload({
+        elem: '#test1',
+        width: '100%', //设置容器宽度
+        height: '100%',
+        arrow: 'always', //始终显示箭头
+        //,anim: 'updown' //切换动画方式
+        autoplay: false
+    });
+
+    var ins2 = carousel.render({
+        elem: '#test2',
+        width: '100%', //设置容器宽度
+        height: '100%',
+        arrow: 'always', //始终显示箭头
+        //,anim: 'updown' //切换动画方式
+        autoplay: false
+    });
+    ins2.reload({
+        elem: '#test2',
+        width: '100%', //设置容器宽度
+        height: '100%',
+        arrow: 'always', //始终显示箭头
+        //,anim: 'updown' //切换动画方式
+        autoplay: false
+    });
+
 });

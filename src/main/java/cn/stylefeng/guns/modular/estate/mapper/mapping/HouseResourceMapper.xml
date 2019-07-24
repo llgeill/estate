@@ -58,53 +58,71 @@
         house_resource_id AS "houseResourceId", building_block_id AS "buildingBlockId", building_id AS "buildingId", room_number AS "roomNumber", floor AS "floor", room_total AS "roomTotal", hall_total AS "hallTotal", toilet_total AS "toiletTotal", balcony_total AS "balconyTotal", purpose AS "purpose", house_resource_type AS "houseResourceType", area AS "area", practical_area AS "practicalArea", orientation AS "orientation", house_type AS "houseType", building_time AS "buildingTime", transaction AS "transaction", state AS "state", price AS "price", rental AS "rental", price_floor AS "priceFloor", rental_floor AS "rentalFloor", taxes AS "taxes", resource AS "resource", status_quo AS "statusQuo", decorate AS "decorate", match_state AS "matchState", furniture_state AS "furnitureState", household_electrical_state AS "householdElectricalState", property_right AS "propertyRight", certificates AS "certificates", payment AS "payment", pay_commission AS "payCommission", house_inspection AS "houseInspection", key_number AS "keyNumber", entrust AS "entrust", staff AS "staff", owner_name AS "ownerName", owner_phone AS "ownerPhone", contacts_content AS "contactsContent", manage_expense AS "manageExpense", remark AS "remark", nationality AS "nationality", belong_to_id AS "belongToId", create_time AS "createTime", update_time AS "updateTime"
     </sql>
 
-    <select id="selectHouseResources" resultType="map">
+    <select id="selectHouseResources"  resultType="map">
         select
         <include refid="Base_Column_List"/>
         from estate_house_resource
         where 1= 1
-        <if test="roomNumber != null and roomNumber != ''">
-            and room_number like CONCAT('%',#{roomNumber},'%')
+        <if test="hrsDto.roomTotalStart != null and hrsDto.roomTotalStart != ''">
+            and room_total &gt;= #{hrsDto.roomTotalStart}
         </if>
-        <if test="priceStart != null and priceStart != ''">
-            and price &gt;= #{priceStart}
+        <if test="hrsDto.roomTotalEnd != null and hrsDto.roomTotalEnd != ''">
+            and room_total &lt;= #{hrsDto.roomTotalEnd}
         </if>
-        <if test="priceEnd != null and priceEnd != ''">
-            and price &lt;= #{priceEnd}
+        <if test="hrsDto.transaction != null and hrsDto.transaction != ''">
+            and transaction = #{hrsDto.transaction}
         </if>
-        <if test="rentalStart != null and rentalStart != ''">
-            and rental &gt;= #{rentalStart}
+        <if test="hrsDto.state != null and hrsDto.state != ''">
+            and state like CONCAT('%',#{hrsDto.state},'%')
         </if>
-        <if test="rentalEnd != null and rentalEnd != ''">
-            and rental &lt;= #{rentalEnd}
+        <if test="hrsDto.roomNumber != null and hrsDto.roomNumber != ''">
+            and room_number = #{hrsDto.roomNumber}
         </if>
-        <if test="transaction != null and transaction != ''">
-            and transaction = #{transaction}
+        <if test="hrsDto.buildingBlock != null and hrsDto.buildingBlock != ''">
+            and building_block_id = #{hrsDto.buildingBlock}
         </if>
-        <if test="roomTotalStart != null and roomTotalStart != ''">
-            and room_total &gt;= #{roomTotalStart}
+        <if test="hrsDto.priceStart != null and hrsDto.priceStart != ''">
+            and price &gt;= #{hrsDto.priceStart}
         </if>
-        <if test="roomTotalEnd != null and roomTotalEnd != ''">
-            and room_total &lt;= #{roomTotalEnd}
+        <if test="hrsDto.priceEnd != null and hrsDto.priceEnd != ''">
+            and price &lt;= #{hrsDto.priceEnd}
         </if>
-        <if test="roomNumber != null and roomNumber != ''">
-            and room_number like CONCAT('%',#{roomNumber},'%')
+        <if test="hrsDto.rentalStart != null and hrsDto.rentalStart != ''">
+            and rental &gt;= #{hrsDto.rentalStart}
         </if>
-        <if test="orientation != null and orientation != ''">
-            and orientation like CONCAT('%',#{orientation},'%')
+        <if test="hrsDto.rentalEnd != null and hrsDto.rentalEnd != ''">
+            and rental &lt;= #{hrsDto.rentalEnd}
         </if>
-        <if test="entrustDateScope != null and entrustDateScope != ''">
-            and (create_time between (select DATE_SUB(curdate(), interval #{entrustDateScope} DAY)) and (select DATE_SUB(curdate(), interval 0 DAY)))
+        <if test="hrsDto.areaStart != null and hrsDto.areaStart != ''">
+            and area &gt;= #{hrsDto.areaStart}
         </if>
-        <if test="state != null and state != ''">
-            and state like CONCAT('%',#{state},'%')
+        <if test="hrsDto.areaEnd != null and hrsDto.areaEnd != ''">
+            and area &lt;= #{hrsDto.areaEnd}
         </if>
-        <if test="floor != null and floor != ''">
-            and floor= #{floor}
+        <if test="hrsDto.houseType != null and hrsDto.houseType != ''">
+            and house_type= #{hrsDto.houseType}
         </if>
-
-
-
+        <if test="hrsDto.orientation != null and hrsDto.orientation != ''">
+            and orientation = #{hrsDto.orientation}
+        </if>
+        <if test="hrsDto.entrustDateScope != null and hrsDto.entrustDateScope != ''">
+        and (create_time between (select DATE_SUB(curdate(), interval #{hrsDto.entrustDateScope} DAY)) and (select DATE_SUB(curdate(), interval 0 DAY)))
+        </if>
+        <if test="hrsDto.beginTime != null and hrsDto.beginTime != '' and hrsDto.endTime != null and hrsDto.endTime != ''">
+            and (create_time between CONCAT(#{hrsDto.beginTime},' 00:00:00') and CONCAT(#{hrsDto.endTime},' 23:59:59'))
+        </if>
+        <if test="hrsDto.purpose != null and hrsDto.purpose != ''">
+            and purpose = #{hrsDto.purpose}
+        </if>
+        <if test="hrsDto.hallTotal != null and hrsDto.hallTotal != ''">
+            and hall_total = #{hrsDto.hallTotal}
+        </if>
+        <if test="hrsDto.toiletTotal != null and hrsDto.toiletTotal != ''">
+            and toilet_total = #{hrsDto.toiletTotal}
+        </if>
+        <if test="hrsDto.houseResourceType != null and hrsDto.houseResourceType != ''">
+            and house_resource_type = #{hrsDto.houseResourceType}
+        </if>
     </select>
 
 </mapper>

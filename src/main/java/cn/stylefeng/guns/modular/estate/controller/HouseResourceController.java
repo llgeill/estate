@@ -5,8 +5,10 @@ import cn.stylefeng.guns.core.common.page.LayuiPageFactory;
 import cn.stylefeng.guns.core.common.page.LayuiPageInfo;
 import cn.stylefeng.guns.core.shiro.ShiroKit;
 import cn.stylefeng.guns.modular.estate.entity.HouseResource;
+import cn.stylefeng.guns.modular.estate.model.HouseResourceSearchDto;
 import cn.stylefeng.guns.modular.estate.model.params.HouseResourceParam;
 import cn.stylefeng.guns.modular.estate.service.HouseResourceService;
+import cn.stylefeng.guns.modular.system.warpper.HouseResourceWrapper;
 import cn.stylefeng.guns.modular.system.warpper.UserWrapper;
 import cn.stylefeng.roses.core.base.controller.BaseController;
 import cn.stylefeng.roses.core.datascope.DataScope;
@@ -15,6 +17,7 @@ import cn.stylefeng.roses.core.util.ToolUtil;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -141,10 +144,72 @@ public class HouseResourceController extends BaseController {
      */
     @ResponseBody
     @RequestMapping("/list")
-    public LayuiPageInfo list(@RequestParam(required = false) String condition) {
-        Page<Map<String, Object>> users = houseResourceService.selectHouseResources(condition,null,null,1200,1600,
-                "出租",null,3,null,2,"",5);
-        return LayuiPageFactory.createPageInfo(users);
+    public LayuiPageInfo list( HouseResourceSearchDto houseResourceSearchDto) {
+        //查询条件
+        if (ToolUtil.isNotEmpty(houseResourceSearchDto.getCondition())) {
+            String[] split = houseResourceSearchDto.getCondition().split("-");
+            if(split.length>1){
+                houseResourceSearchDto.setBuildingBlock(split[0]);
+                houseResourceSearchDto.setRoomNumber(split[1]);
+            }else{
+                houseResourceSearchDto.setBuildingBlock(split[0]);
+                houseResourceSearchDto.setRoomNumber(split[0]);
+            }
+        }
+        //房型
+        if (ToolUtil.isNotEmpty(houseResourceSearchDto.getRoomTotal())) {
+            String[] split = houseResourceSearchDto.getRoomTotal().split("-");
+            houseResourceSearchDto.setRoomTotalStart(Integer.parseInt(split[0]));
+            if(split.length>1){
+                houseResourceSearchDto.setRoomTotalEnd(Integer.parseInt(split[1]));
+            }
+        }
+        //租价
+        if (ToolUtil.isNotEmpty(houseResourceSearchDto.getRental())) {
+            String[] split = houseResourceSearchDto.getRental().split("-");
+            houseResourceSearchDto.setRentalStart(Double.parseDouble(split[0]));
+            if(split.length>1){
+                houseResourceSearchDto.setRentalEnd(Double.parseDouble(split[1]));
+            }
+        }
+        //售价
+        if (ToolUtil.isNotEmpty(houseResourceSearchDto.getPrice())) {
+            String[] split = houseResourceSearchDto.getPrice().split("-");
+            houseResourceSearchDto.setPriceStart(Double.parseDouble(split[0]));
+            if(split.length>1){
+                houseResourceSearchDto.setPriceEnd(Double.parseDouble(split[1]));
+            }
+        }
+        //面积
+        if (ToolUtil.isNotEmpty(houseResourceSearchDto.getArea())) {
+            String[] split = houseResourceSearchDto.getArea().split("-");
+            houseResourceSearchDto.setAreaStart(Double.parseDouble(split[0]));
+            if(split.length>1){
+                houseResourceSearchDto.setAreaEnd(Double.parseDouble(split[1]));
+            }
+        }
+        //智能搜索
+        if (ToolUtil.isNotEmpty(houseResourceSearchDto.getCondition())) {
+            String[] split = houseResourceSearchDto.getCondition().split("-");
+            if(split.length>1){
+                houseResourceSearchDto.setBuildingBlock(split[0]);
+                houseResourceSearchDto.setRoomNumber(split[1]);
+                houseResourceSearchDto.setCondition(null);
+            }
+        }
+        //委托范围
+        if (ToolUtil.isNotEmpty(houseResourceSearchDto.getEntrustBetweenTime())) {
+            String[] split = houseResourceSearchDto.getEntrustBetweenTime().split(" - ");
+            if(split.length>1){
+                houseResourceSearchDto.setBeginTime(split[0]);
+                houseResourceSearchDto.setEndTime(split[1]);
+            }
+        }
+        Page<Map<String, Object>> users = houseResourceService.selectHouseResources(houseResourceSearchDto);
+        Page wrapped = new HouseResourceWrapper(users).wrap();
+
+        return LayuiPageFactory.createPageInfo(wrapped);
+//        return LayuiPageFactory.createPageInfo(users);
     }
 
     /**

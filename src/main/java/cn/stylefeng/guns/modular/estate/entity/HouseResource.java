@@ -93,13 +93,13 @@ public class HouseResource implements Serializable {
      * 面积
      */
     @TableField("area")
-    private String area;
+    private Double area;
 
     /**
      * 实用面积
      */
     @TableField("practical_area")
-    private String practicalArea;
+    private Double practicalArea;
 
     /**
      * 朝向
@@ -135,25 +135,25 @@ public class HouseResource implements Serializable {
      * 售价
      */
     @TableField("price")
-    private String price;
+    private Double price;
 
     /**
      * 租价
      */
     @TableField("rental")
-    private String rental;
+    private Double rental;
 
     /**
      * 出售底价
      */
     @TableField("price_floor")
-    private String priceFloor;
+    private Double priceFloor;
 
     /**
      * 租价底价
      */
     @TableField("rental_floor")
-    private String rentalFloor;
+    private Double rentalFloor;
 
     /**
      * 包税费
@@ -386,19 +386,19 @@ public class HouseResource implements Serializable {
         this.houseResourceType = houseResourceType;
     }
 
-    public String getArea() {
+    public Double getArea() {
         return area;
     }
 
-    public void setArea(String area) {
+    public void setArea(Double area) {
         this.area = area;
     }
 
-    public String getPracticalArea() {
+    public Double getPracticalArea() {
         return practicalArea;
     }
 
-    public void setPracticalArea(String practicalArea) {
+    public void setPracticalArea(Double practicalArea) {
         this.practicalArea = practicalArea;
     }
 
@@ -442,35 +442,35 @@ public class HouseResource implements Serializable {
         this.state = state;
     }
 
-    public String getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
-    public String getRental() {
+    public Double getRental() {
         return rental;
     }
 
-    public void setRental(String rental) {
+    public void setRental(Double rental) {
         this.rental = rental;
     }
 
-    public String getPriceFloor() {
+    public Double getPriceFloor() {
         return priceFloor;
     }
 
-    public void setPriceFloor(String priceFloor) {
+    public void setPriceFloor(Double priceFloor) {
         this.priceFloor = priceFloor;
     }
 
-    public String getRentalFloor() {
+    public Double getRentalFloor() {
         return rentalFloor;
     }
 
-    public void setRentalFloor(String rentalFloor) {
+    public void setRentalFloor(Double rentalFloor) {
         this.rentalFloor = rentalFloor;
     }
 
