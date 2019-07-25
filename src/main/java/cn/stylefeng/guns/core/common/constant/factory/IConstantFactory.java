@@ -152,4 +152,11 @@ public interface IConstantFactory {
      * @return
      */
     String getBuildingBlockName(Long buildingBlockId);
+
+    /**
+     * 通过用户id获取部门名称
+     * @param userId
+     * @return
+     */
+    String getDeptNameByUserId(Long userId);
 }

@@ -17,6 +17,7 @@ package cn.stylefeng.guns.modular.system.warpper;
 
 import cn.stylefeng.guns.core.common.constant.factory.ConstantFactory;
 import cn.stylefeng.guns.core.util.DecimalUtil;
+import cn.stylefeng.guns.modular.system.entity.User;
 import cn.stylefeng.roses.core.base.warpper.BaseControllerWrapper;
 import cn.stylefeng.roses.kernel.model.page.PageResult;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -52,6 +53,7 @@ public class HouseResourceWrapper extends BaseControllerWrapper {
     protected void wrapTheMap(Map<String, Object> map) {
         map.put("buildingBlockName", ConstantFactory.me().getBuildingBlockName((Long) map.get("buildingBlockId")));
         map.put("buildingName", ConstantFactory.me().getBuildingName((Long) map.get("buildingId")));
+        map.put("deptName",ConstantFactory.me().getDeptNameByUserId((Long)map.get("staffId")));
     }
 
 }

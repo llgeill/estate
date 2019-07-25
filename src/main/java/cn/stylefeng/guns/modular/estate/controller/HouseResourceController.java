@@ -206,8 +206,8 @@ public class HouseResourceController extends BaseController {
             }
         }
         Page<Map<String, Object>> users = houseResourceService.selectHouseResources(houseResourceSearchDto);
-        Page wrapped = new HouseResourceWrapper(users).wrap();
 
+        Page wrapped = new HouseResourceWrapper(users).wrap();
         return LayuiPageFactory.createPageInfo(wrapped);
 //        return LayuiPageFactory.createPageInfo(users);
     }

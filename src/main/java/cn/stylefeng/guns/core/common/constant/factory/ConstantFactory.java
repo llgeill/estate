@@ -353,4 +353,14 @@ public class ConstantFactory implements IConstantFactory {
         return buildingBlock.getName();
     }
 
+    @Override
+    public String getDeptNameByUserId(Long userId) {
+        User user = userMapper.selectById(userId);
+        if (user != null) {
+            return getDeptName(user.getDeptId());
+        } else {
+            return "--";
+        }
+    }
+
 }

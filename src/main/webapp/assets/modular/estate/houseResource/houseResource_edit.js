@@ -118,6 +118,28 @@ layui.use(['form', 'admin','laydate', 'ax'], function () {
         form.render();
     }
 
+    //选中交易后
+    form.on('select(transaction)', function(data){
+        console.log(data.value);
+        if(data.value!=null&&data.value=="出租"){
+            $("#price").attr("disabled","disabled");
+            $("#priceFloor").attr("disabled","disabled");
+            $("#rental").removeAttr("disabled");
+            $("#rentalFloor").removeAttr("disabled");
+        }else if(data.value!=null&&data.value=="出售"){
+            $("#rental").attr("disabled","disabled");
+            $("#rentalFloor").attr("disabled","disabled");
+            $("#price").removeAttr("disabled");
+            $("#priceFloor").removeAttr("disabled");
+        }else if(data.value!=null&&data.value=="租售"){
+            $("#rental").removeAttr("disabled");
+            $("#rentalFloor").removeAttr("disabled");
+            $("#price").removeAttr("disabled");
+            $("#priceFloor").removeAttr("disabled");
+        }
+        form.render();
+    });
+
     //渲染城区
     var ajax = new $ax(Feng.ctxPath + "/building/listData",function (data) {
         var content="";
