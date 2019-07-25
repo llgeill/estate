@@ -3,6 +3,8 @@
  * @param data
  */
 var ins2;
+//行數據
+var globalData=null;
 
 layui.use(['table','form', 'admin', 'ax','laydate'], function () {
     var $ = layui.$;
@@ -17,6 +19,20 @@ layui.use(['table','form', 'admin', 'ax','laydate'], function () {
      */
     var HouseResource = {
         tableId: "houseResourceTable"
+    };
+
+    /**
+     * 跟进信息管理
+     */
+    var FollowInfo = {
+        tableId: "followInfoTable"
+    };
+
+    /**
+     * 城区管理
+     */
+    var Building = {
+        tableId: "buildingTable"
     };
 
     /**
@@ -96,6 +112,8 @@ layui.use(['table','form', 'admin', 'ax','laydate'], function () {
         table.reload(HouseResource.tableId, {where: queryData});
     };
 
+
+
     /**
      * 弹出添加对话框
      */
@@ -103,7 +121,7 @@ layui.use(['table','form', 'admin', 'ax','laydate'], function () {
         admin.putTempData('formOk', false);
         top.layui.admin.open({
             type: 2,
-            area: ['700px', '450px'],
+            area: ['950px', '900px'],
             title: '添加房源信息',
             content: Feng.ctxPath + '/houseResource/add',
             end: function () {
@@ -269,6 +287,7 @@ layui.use(['table','form', 'admin', 'ax','laydate'], function () {
     //监听行单击事件（单击事件为：rowDouble）
     table.on('row(houseResourceTable)', function(obj){
         //詳細信息
+        globalData=obj.data;
         var data = obj.data;
         //填充信息
         var houseResourceInfo=
@@ -370,40 +389,72 @@ layui.use(['table','form', 'admin', 'ax','laydate'], function () {
         ajaxX.set("resourceId", data.houseResourceId);
         ajaxX.start();
 
-
-
-
-
         //标注选中样式
         obj.tr.addClass('layui-table-click').siblings().removeClass('layui-table-click');
+
+
+
     });
+
+    // 添加跟进点击事件
+    $('#btnInfo').click(function () {
+        FollowInfo.openAddDlg();
+    });
+
+    /**
+     * 弹出添加对话框
+     */
+    FollowInfo.openAddDlg = function () {
+        admin.putTempData('formOk', false);
+        top.layui.admin.open({
+            type: 2,
+            title: '添加跟进信息',
+            area: ['400px', '500px'],
+            content: Feng.ctxPath + '/followInfo/add',
+            end: function () {
+                admin.getTempData('formOk') && table.reload(FollowInfo.tableId);
+            }
+        });
+    };
+
+    // 添加跟进点击事件
+    $('#btnBuilding').click(function () {
+        if(globalData==null)return;
+        console.log(globalData.buildingId);
+        Building.openEditDlg(globalData);
+    });
+
+    /**
+     * 点击编辑
+     *
+     * @param data 点击按钮时候的行数据
+     */
+    Building.openEditDlg = function (data) {
+        admin.putTempData('formOk', false);
+        top.layui.admin.open({
+            type: 2,
+            title: '修改城区',
+            area: ['745px', '900px'],
+            content: Feng.ctxPath + '/building/edit?buildingId=' + data.buildingId,
+            end: function () {
+                admin.getTempData('formOk') && table.reload(Building.tableId);
+            }
+        });
+    };
 });
 
 
 layui.use(['element', 'layer'], function(){
-    var element = layui.element
-        ,layer = layui.layer;
-
-    element.on('tab(docDemoTabBrief)', function(data){
-        layer.msg('切到到了'+ data.index + '：' + this.innerHTML);
-    });
-});
-layui.use('element', function(){
+    var layer = layui.layer;
     var element = layui.element;
-});
-layui.use('laydate', function(){
-    var laydate = layui.laydate;
 
-    //执行一个laydate实例
-    laydate.render({
-        elem: '#dateRange',
-        range: true
-    });
-    laydate.render({
-        elem: '#test6'
-        ,range: true
+    element.on('tab(testLUBOO)', function(data){
+
+        // layer.msg('切到到了'+ data.index + '：' + this.innerHTML);
     });
 });
+
+
 layui.use('carousel', function() {
     var carousel = layui.carousel;
     var ins = carousel.render({

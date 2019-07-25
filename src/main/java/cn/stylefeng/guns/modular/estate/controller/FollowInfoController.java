@@ -4,11 +4,14 @@ import cn.hutool.core.bean.BeanUtil;
 import cn.stylefeng.guns.core.common.constant.factory.ConstantFactory;
 import cn.stylefeng.guns.core.common.page.LayuiPageFactory;
 import cn.stylefeng.guns.core.common.page.LayuiPageInfo;
+import cn.stylefeng.guns.core.shiro.ShiroKit;
 import cn.stylefeng.guns.modular.estate.entity.FollowInfo;
 import cn.stylefeng.guns.modular.estate.model.FollowInfoDto;
 import cn.stylefeng.guns.modular.estate.model.params.FollowInfoParam;
 import cn.stylefeng.guns.modular.estate.service.FollowInfoService;
+import cn.stylefeng.guns.modular.system.entity.User;
 import cn.stylefeng.guns.modular.system.model.MenuDto;
+import cn.stylefeng.guns.modular.system.service.UserService;
 import cn.stylefeng.guns.modular.system.warpper.DeptIdWrapper;
 import cn.stylefeng.guns.modular.system.warpper.DeptWrapper;
 import cn.stylefeng.roses.core.base.controller.BaseController;
@@ -18,6 +21,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -34,6 +38,9 @@ import java.util.Map;
 @Controller
 @RequestMapping("/followInfo")
 public class FollowInfoController extends BaseController {
+
+    @Autowired
+    private UserService userService;
 
     private String PREFIX = "/modular/estate/followInfo";
 
@@ -58,7 +65,12 @@ public class FollowInfoController extends BaseController {
      * @Date 2019-07-11
      */
     @RequestMapping("/add")
-    public String add() {
+    public String add(Model model) {
+        Long userId = ShiroKit.getUserNotNull().getId();
+        User user = this.userService.getById(userId);
+        model.addAllAttributes(BeanUtil.beanToMap(user));
+        model.addAttribute("roleName", ConstantFactory.me().getRoleName(user.getRoleId()));
+        model.addAttribute("deptName", ConstantFactory.me().getDeptName(user.getDeptId()));
         return PREFIX + "/followInfo_add.html";
     }
 

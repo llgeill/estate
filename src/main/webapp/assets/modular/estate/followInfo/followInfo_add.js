@@ -25,7 +25,8 @@ layui.use(['form', 'admin', 'laydate', 'ax'], function () {
 
     // 渲染时间选择框
     laydate.render({
-        elem: '#createTime'
+        elem: '#createTime',
+        value: new Date()
     });
 
     // 渲染时间选择框

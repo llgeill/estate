@@ -3,7 +3,6 @@
 <div class="layui-body-header">
     <span class="layui-body-header-title">房源信息管理</span>
 </div>
-
 <div class="layui-fluid">
     <div class="layui-row layui-col-space15">
         <div class="layui-col-sm12 layui-col-md12 layui-col-lg12">
@@ -432,31 +431,24 @@
 
                                 <div class="grid-demo grid-demo-bg1" id="leftInfo">
 
-                                    <div class="layui-card layui-tab-card" style=" width: 95%">
-                                        <div class="layui-card-header" style="background-color: #f2f2f2;height:41px;">
-                                            <p  style="font-size: 17px;">
-                                                <span style="padding-right: 10px">合景天峻</span>
-                                                <span style="padding-right: 20px">2房一厅</span>
-                                                <span style="padding-right: 20px">租1500/月</span></p>
-                                        </div>
+                                    <div class="layui-card layui-tab-card" style=" width: 95%;height: 362px">
 
-                                    <div class="layui-card-body">
-                                        <p style="font-size: 15px;padding-bottom: 10px">  <span>林海宏 </span> <span> 18925623775</span> </p>
-                                        <textarea style=""  name="" id="" cols="46" rows="14" placeholder="   自用投资皆可以（此处地方为备注信息）"></textarea>
-                                        <p style="padding-top: 7px"> <span>合景分行 </span> <span> 李利光</span> <span>[2019-02-06委托]</span></p>
-                                    </div>
                                     </div>
                                 </div>
                         </div>
 
                         <div class="layui-col-xs9 layui-col-sm9 layui-col-md9">
                             <div class="grid-demo grid-demo-bg1">
-                                <div class="layui-tab layui-tab-card"  id="testLUBOO" >
+                                <div class="layui-tab layui-tab-card"  id="testLUBOO" lay-filter="testLUBOO" >
                                     <ul class="layui-tab-title">
                                         <li class="layui-this"><i class="layui-icon">&#xe68e;</i> 详细属性</li>
                                         <li><i class="layui-icon">&#xe66e;</i> 跟进情况</li>
                                         <li><i class="layui-icon">&#xe60d;</i> 房源照片</li>
-                                        <li><i class="layui-icon">&#xe6b2;</i> 添加跟进信息</li>
+                                        <button id="btnInfo" class="layui-btn layui-btn-primary"><i class="layui-icon">&#xe642;</i>添加跟进</button>
+                                        <button id="btnBuilding" class="layui-btn layui-btn-primary"><i class="layui-icon">&#xe615;</i>楼盘字典</button>
+
+
+
                                     </ul>
                                     <div class="layui-tab-content" style="height: 100%;">
                                         <div class="layui-tab-item layui-show" style="overflow: scroll; height: 300px; " id="houseResourceDetail">
