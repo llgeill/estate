@@ -1,3 +1,5 @@
+//备注
+var remarkData="";
 /**
  * 详情对话框
  */
@@ -175,30 +177,68 @@ layui.use(['table','form', 'admin', 'laydate', 'ax'], function () {
         console.log(data.value);
         if(data.value!=null&&data.value=="出租"){
             $("#price").attr("disabled","disabled");
+            $("#price").addClass("layui-disabled");
+            $("#price").css({"background-color": "#d6d4d4"});
             $("#priceFloor").attr("disabled","disabled");
+            $("#priceFloor").addClass("layui-disabled");
+            $("#priceFloor").css({"background-color": "#d6d4d4"});
             $("#rental").removeAttr("disabled");
+            $("#rental").removeClass("layui-disabled");
+            $("#rental").removeAttr("style","");
             $("#rentalFloor").removeAttr("disabled");
+            $("#rentalFloor").removeClass("layui-disabled");
+            $("#rentalFloor").removeAttr("style","");
         }else if(data.value!=null&&data.value=="出售"){
             $("#rental").attr("disabled","disabled");
+            $("#rental").addClass("layui-disabled");
+            $("#rental").css({"background-color": "#d6d4d4"});
             $("#rentalFloor").attr("disabled","disabled");
+            $("#rentalFloor").addClass("layui-disabled");
+            $("#rentalFloor").css({"background-color": "#d6d4d4"});
             $("#price").removeAttr("disabled");
+            $("#price").removeClass("layui-disabled");
+            $("#price").removeAttr("style","");
             $("#priceFloor").removeAttr("disabled");
+            $("#priceFloor").removeClass("layui-disabled");
+            $("#priceFloor").removeAttr("style","");
         }else if(data.value!=null&&data.value=="租售"){
             $("#rental").removeAttr("disabled");
+            $("#rental").removeClass("layui-disabled");
+            $("#rental").removeAttr("style","");
             $("#rentalFloor").removeAttr("disabled");
+            $("#rentalFloor").removeClass("layui-disabled");
+            $("#rentalFloor").removeAttr("style","");
             $("#price").removeAttr("disabled");
+            $("#price").removeClass("layui-disabled");
+            $("#price").removeAttr("style","");
             $("#priceFloor").removeAttr("disabled");
+            $("#priceFloor").removeClass("layui-disabled");
+            $("#priceFloor").removeAttr("style","");
         }
         form.render();
     });
-
-
-
     //选中城区后
     form.on('select(buildingId)', function(data){
         getbulidingBlockList(data.value);
         //赋予部分初始化值
         getbuilding(data.value);
+    });
+    //选中钥匙
+    form.on('select(houseInspection)', function(data){
+       if(data.value!=null&&data.value=='有匙'){
+           $('#keyNumber').removeAttr("disabled");
+           $("#keyNumber").removeClass("layui-disabled");
+           $("#keyNumber").removeAttr("style","");
+       }else{
+           $("#keyNumber").attr("disabled","disabled");
+           $("#keyNumber").addClass("layui-disabled");
+           $("#keyNumber").css({"background-color": "#d6d4d4"});
+       }
+    });
+
+    form.on('select(infoAll)', function(data){
+        remarkData+=data.value+"  ";
+        $("#remark").val(remarkData);
     });
 
 
@@ -206,7 +246,6 @@ layui.use(['table','form', 'admin', 'laydate', 'ax'], function () {
     function initData(){
         getUserInfo();
     }
-
     //自定义验证规则
     form.verify({
         roomNumber: function(value){
@@ -217,8 +256,6 @@ layui.use(['table','form', 'admin', 'laydate', 'ax'], function () {
 
         }
     });
-
-
     //表单提交事件
     form.on('submit(btnSubmit)', function (data) {
         var ajax = new $ax(Feng.ctxPath + "/houseResource/addItem", function (data) {

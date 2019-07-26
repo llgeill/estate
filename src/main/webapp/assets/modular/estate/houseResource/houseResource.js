@@ -6,6 +6,7 @@ var ins2;
 //行數據
 var globalData=null;
 
+
 layui.use(['table','form', 'admin', 'ax','laydate'], function () {
     var $ = layui.$;
     var table = layui.table;
@@ -13,6 +14,10 @@ layui.use(['table','form', 'admin', 'ax','laydate'], function () {
     var admin = layui.admin;
     var laydate = layui.laydate;
     var form =layui.form;
+
+    $("#headFold").click();
+   // document.getElementById("headFold").click();
+
 
     /**
      * 房源信息管理
@@ -121,7 +126,7 @@ layui.use(['table','form', 'admin', 'ax','laydate'], function () {
         admin.putTempData('formOk', false);
         top.layui.admin.open({
             type: 2,
-            area: ['950px', '900px'],
+            area: ['950px', '700px'],
             title: '添加房源信息',
             content: Feng.ctxPath + '/houseResource/add',
             end: function () {
@@ -288,6 +293,7 @@ layui.use(['table','form', 'admin', 'ax','laydate'], function () {
     table.on('row(houseResourceTable)', function(obj){
         //詳細信息
         globalData=obj.data;
+        console.log(globalData);
         var data = obj.data;
         //填充信息
         var houseResourceInfo=
@@ -301,12 +307,21 @@ layui.use(['table','form', 'admin', 'ax','laydate'], function () {
         '                                        <td>'+data.orientation+'</td>\n' +
         '                                        <td>'+data.houseType+'</td>\n' +
         '                                    </tr>\n' +
-        '                                    <tr>\n' +
-        '                                        <td>'+data.rental+'元/月</td>\n' +
-        '                                        <td>'+data.buildingTime+'年</td>\n' +
+        '                                    <tr>\n';
+
+        if(data.rental!=null&&data.rental!=""){
+            houseResourceInfo+='<td>'+data.rental+'元/月</td>\n'
+        }else{
+            houseResourceInfo+='<td>'+"不出租"+'</td>\n'
+        }
+        if(data.price!=null&&data.price!=""){
+            houseResourceInfo+='<td>'+data.price+'万</td>\n'
+        }else{
+            houseResourceInfo+='<td>'+"不出售"+'</td>\n'
+        }
+        houseResourceInfo+= '<td>'+data.buildingTime+'年</td>\n' +
         '                                        <td>'+data.resource+'</td>\n' +
         '                                        <td>'+data.statusQuo+'</td>\n' +
-        '                                        <td>'+data.decorate+'</td>\n' +
         '                                    </tr>\n' +
             '                                    <tr>\n' +
             '                                        <td>'+data.matchState+'</td>\n' +
@@ -318,14 +333,21 @@ layui.use(['table','form', 'admin', 'ax','laydate'], function () {
             '                                    <tr>\n' +
             '                                        <td>'+data.payment+'</td>\n' +
             '                                        <td>'+data.payCommission+'</td>\n' +
-            '                                        <td>'+data.houseInspection+'</td>\n' +
-            '                                        <td>'+data.keyNumber+'</td>\n' +
-            '                                        <td>'+data.entrust+'</td>\n' +
-            '                                    </tr>\n' +
-        '                                    </tbody>\n' +
-        '                                </table>\n'
+            '                                        <td>'+data.houseInspection+'</td>\n';
+            if(data.keyNumber!=null&&data.keyNumber!=""){
+                houseResourceInfo+= '<td>'+data.keyNumber+'</td>\n'
+            }else{
+                houseResourceInfo+= '<td>'+"无钥匙号"+'</td>\n'
+
+            }
+            houseResourceInfo+='<td>'+data.entrust+'</td>\n' +
+            '</tr>\n' +
+                '<tr><td>'+data.decorate+'</td></tr>'+
+        '</tbody>\n' +
+        '</table>\n'
         $("#houseResourceDetail").html(houseResourceInfo);
 
+            //添加左边信息
         var leftInfo='' +
             '<div class="layui-card layui-tab-card" style=" width: 95%">\n' +
             '<div class="layui-card-header" style="background-color: #f2f2f2;height:41px;">\n' +
