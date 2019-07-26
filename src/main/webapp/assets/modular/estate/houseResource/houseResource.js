@@ -6,16 +6,17 @@ var ins2;
 //行數據
 var globalData=null;
 
+var viewer = new Viewer(document.getElementById('viewInfo'));
 
 
-
-layui.use(['table','form', 'admin', 'ax','laydate'], function () {
+layui.use(['table','form','upload', 'admin', 'ax','laydate'], function () {
     var $ = layui.$;
     var table = layui.table;
     var $ax = layui.ax;
     var admin = layui.admin;
     var laydate = layui.laydate;
     var form =layui.form;
+    var upload = layui.upload;
 
    // document.getElementById("headFold").click();
 
@@ -379,7 +380,7 @@ layui.use(['table','form', 'admin', 'ax','laydate'], function () {
                     var temp='<li class="layui-timeline-item">\n' +
                         '<i class="layui-icon layui-timeline-axis">&#xe63f;</i>\n' +
                         ' <div class="layui-timeline-content layui-text">\n' +
-                        '<h3 class="layui-timeline-title">'+data[i].createTime+'&nbsp&nbsp'+data[i].staff+'</h3>\n' +
+                        '<h3 class="layui-timeline-title">'+data[i].createTime+'&nbsp&nbsp'+data[i].staffName+'</h3>\n' +
                         '<p>'+data[i].content+'</p>' +
                         '</div>\n' +
                         '</li>\n' ;
@@ -395,31 +396,55 @@ layui.use(['table','form', 'admin', 'ax','laydate'], function () {
         });
         ajax.set("houseResourceId", data.houseResourceId);
         ajax.start();
+        viewInfo(data.houseResourceId);
+        //标注选中样式
+        obj.tr.addClass('layui-table-click').siblings().removeClass('layui-table-click');
+    });
+    //多媒体信息
+    function viewInfo(houseResourceId) {
         //多媒体信息
         var ajaxX = new $ax(Feng.ctxPath + "/view/viewList", function (data) {
-            var content="";
+            var content=" <div class=\"layui-inline\" style=\"width: 160px\"  >\n" +
+                "                                                    <i  id=\"addImage\" class=\"layui-icon layui-icon-add-1\" style=\"font-size:150px;line-height: 150px;color: #e6e6e6;\"></i>\n" +
+                "                                                </div>";
             if(data!=null&&data.length>0){
                 for(var i=0;i<data.length;i++){
                     var temp='<img width="160px" height="140px" class="layui-upload-img" src=http://localhost/'+data[i].viewPath+' ">\n';
                     content+=temp;
                 }
                 $("#viewInfo").html(content);
-
+                viewer.update();
             }else {
-                $("#viewInfo").html('');
+                $("#viewInfo").html(content);
             }
-            var viewer = new Viewer(document.getElementById('viewInfo'));
-            viewer.update();
-            // $('#viewInfo').viewer();
-            // ins2.reload("test2");
+            picupload("#addImage");
+
         }, function (data) {
             Feng.error("删除失败!" + data.responseJSON.message + "!");
         });
-        ajaxX.set("resourceId", data.houseResourceId);
+        ajaxX.set("resourceId", houseResourceId);
         ajaxX.start();
-        //标注选中样式
-        obj.tr.addClass('layui-table-click').siblings().removeClass('layui-table-click');
-    });
+    }
+
+    function picupload(id) {
+        //图片上传
+        upload.render({
+            elem: id
+            ,url: '/view/upload/'
+            ,multiple: true
+            ,before: function(obj){
+                if(globalData!=null){
+                    this.data={'resourceId':globalData.houseResourceId};
+                }else{
+                    return;
+                }
+            }
+            ,done: function(res){
+                viewInfo(globalData.houseResourceId);
+            }
+        });
+
+    }
 
     // 添加跟进点击事件
     $('#btnInfo').click(function () {
@@ -435,7 +460,7 @@ layui.use(['table','form', 'admin', 'ax','laydate'], function () {
             type: 2,
             title: '添加跟进信息',
             area: ['400px', '500px'],
-            content: Feng.ctxPath + '/followInfo/add',
+            content: Feng.ctxPath + '/followInfo/add?houseResourceId='+globalData.houseResourceId,
             end: function () {
                 admin.getTempData('formOk') && table.reload(FollowInfo.tableId);
             }

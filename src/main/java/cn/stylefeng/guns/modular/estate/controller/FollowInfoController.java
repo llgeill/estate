@@ -65,12 +65,13 @@ public class FollowInfoController extends BaseController {
      * @Date 2019-07-11
      */
     @RequestMapping("/add")
-    public String add(Model model) {
+    public String add(Model model,Long houseResourceId) {
         Long userId = ShiroKit.getUserNotNull().getId();
         User user = this.userService.getById(userId);
         model.addAllAttributes(BeanUtil.beanToMap(user));
         model.addAttribute("roleName", ConstantFactory.me().getRoleName(user.getRoleId()));
         model.addAttribute("deptName", ConstantFactory.me().getDeptName(user.getDeptId()));
+        model.addAttribute("houseResourceId",houseResourceId);
         return PREFIX + "/followInfo_add.html";
     }
 
@@ -172,7 +173,8 @@ public class FollowInfoController extends BaseController {
     public List<FollowInfo> followInfoList(FollowInfoParam followInfoParam) {
         QueryWrapper<FollowInfo> queryWrapper = new QueryWrapper<>();
         queryWrapper
-                .eq("house_resource_id",followInfoParam.getHouseResourceId());
+                .eq("house_resource_id",followInfoParam.getHouseResourceId()).orderByDesc("create_time")
+                ;
         return this.followInfoService.list(queryWrapper);
     }
 }

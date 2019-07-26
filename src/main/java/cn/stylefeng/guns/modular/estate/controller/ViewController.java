@@ -152,7 +152,7 @@ public class    ViewController extends BaseController {
      */
     @RequestMapping(method = RequestMethod.POST, path = "/upload")
     @ResponseBody
-    public ResponseData layuiUpload(@RequestPart("file") MultipartFile picture) {
+    public ResponseData layuiUpload(@RequestPart("file") MultipartFile picture,Long resourceId) {
         String pictureName = UUID.randomUUID().toString() + "." + ToolUtil.getFileSuffix(picture.getOriginalFilename());
         String fileSavePath="";
         try {
@@ -163,7 +163,7 @@ public class    ViewController extends BaseController {
         }
         ViewParam viewParam=new ViewParam();
         viewParam.setCreateTime(new Date());
-        viewParam.setResourceId(null);
+        viewParam.setResourceId(resourceId);
         viewParam.setViewPath(pictureName);
         viewParam.setViewType(ToolUtil.getFileSuffix(picture.getOriginalFilename()));
         this.viewService.add(viewParam);
