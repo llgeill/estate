@@ -1,9 +1,10 @@
-@layout("/common/_container.html",{js:["/assets/modular/estate/houseResource/houseResource.js"]}){
+@layout("/common/_container.html",{js:["/assets/modular/estate/jqueryView/viewer.min.js","/assets/modular/estate/houseResource/houseResource.js"]}){
 
 <div class="layui-body-header">
     <span class="layui-body-header-title">房源信息管理</span>
 </div>
 <div class="layui-fluid">
+
     <div class="layui-row layui-col-space15">
         <div class="layui-col-sm12 layui-col-md12 layui-col-lg12">
             <div class="layui-card">
@@ -466,80 +467,13 @@
                                                 </li>
                                             </ul>
                                         </div>
-                                        <div class="layui-tab-item"  style="overflow: scroll; height: 300px; ">
-                                            <div class="layui-carousel" style=" overflow: scroll; height: 300px; " id="test2" >
-                                                <div carousel-item id="viewInfo">
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="layui-tab-item">
-
-                                            <div class="layui-inline">
-
-                                                <form class="layui-form layui-form-pane" action="">
-                                                    <div class="layui-form-item">
-                                                        <div class="layui-inline">
-                                                            <label class="layui-form-label">代理人</label>
-                                                            <div class="layui-input-block">
-                                                                <input type="text" name="title" required value="林寻" lay-verify="required"   autocomplete="off" class="layui-input">
-                                                            </div>
-                                                        </div>
-                                                        <div class="layui-inline">
-                                                            <label class="layui-form-label">所属部门</label>
-                                                            <div class="layui-input-block">
-                                                                <select name="partment" lay-verify="required">
-                                                                    <option value="合景天峻">合景天峻</option>
-                                                                    <option value="绿地城">绿地城</option>
-                                                                    <option value="万科城">万科城</option>
-                                                                    <option value="时代天韵">时代天韵</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-
-                                                    <div class="layui-form-item">
-                                                        <div class="layui-inline">
-
-                                                            <label class="layui-form-label">电话</label>
-                                                            <div class="layui-input-block">
-                                                                <input type="text" name="title" required  lay-verify="required"   autocomplete="off" class="layui-input">
-                                                            </div>
-                                                        </div>
-                                                        <div class="layui-inline">
-
-                                                            <label class="layui-form-label">日期</label>
-                                                            <div class="layui-input-block">
-                                                                <input type="text" class="layui-input" id="fallowDate" >
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-
-                                                </form>
-
-                                            </div>
-                                            <div class="layui-inline" style="width:80%">
-                                                <div class="layui-form-item layui-form-text">
-                                                    <label class="layui-form-label">添加内容</label>
-                                                    <div class="layui-input-block">
-                                        <textarea name="desc" placeholder="请输入内容" class="layui-textarea">
-
-                                        </textarea>
-                                                    </div>
-                                                </div>
-                                                <div class="layui-form-item">
-                                                    <div class="layui-input-block">
-                                                        <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
-                                                        <button type="reset" class="layui-btn layui-btn-primary">重置</button>
-                                                    </div>
-                                                </div>
+                                        <div class="layui-tab-item"  style="overflow: scroll; height: 300px; " >
+                                            <div class="layui-row" id="viewInfo">
                                             </div>
                                         </div>
 
-                                        <div class="layui-tab-item">5</div>
-                                        <div class="layui-tab-item">6</div>
+
+
                                     </div>
                                 </div>
 
@@ -633,4 +567,5 @@
     <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="edit">修改</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delete">删除</a>
 </script>
+
 @}

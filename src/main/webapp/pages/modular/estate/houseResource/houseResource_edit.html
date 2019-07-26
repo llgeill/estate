@@ -1,556 +1,571 @@
 @layout("/common/_container.html",{bg:"bg-white",js:["/assets/modular/estate/houseResource/houseResource_edit.js"]}){
 <form id="houseResourceForm" lay-filter="houseResourceForm" class="layui-form model-form">
     <input name="houseResourceId" type="hidden"/>
-    <!--<div class="layui-form-item">-->
-    <!--<label class="layui-form-label">城区<span style="color: red;">*</span></label>-->
-    <!--<div class="layui-input-block">-->
-    <!--<input id="buildingId" name="buildingId" placeholder="请输入城区" type="text" class="layui-input" lay-verify="required" required/>-->
-    <!--</div>-->
-    <!--</div>-->
-    <div class="layui-form-item">
-        <label class="layui-form-label">城区<span style="color: red;">*</span></label>
-        <div class="layui-input-block">
-            <select id="buildingId" name="buildingId" placeholder="请输入城区" lay-filter="buildingId">
-                <!--<option value=""></option>-->
-            </select>
+    <div class="layui-row">
+        <div class="layui-col-xs3 layui-col-sm3 layui-col-md3" >
+            <div class="layui-form-item">
+                <label class="layui-form-label">城区<span style="color: red;">*</span></label>
+                <div class="layui-input-block">
+                    <select id="buildingId" name="buildingId" placeholder="请输入城区" lay-filter="buildingId">
+                        <!--<option value=""></option>-->
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-xs3 layui-col-sm3 layui-col-md3" >
+            <div class="layui-form-item">
+                <label class="layui-form-label">栋座<span style="color: red;">*</span></label>
+                <div class="layui-input-block">
+                    <select id="buildingBlockId" name="buildingBlockId" placeholder="请输入栋座id" lay-filter="buildingBlockId">
+                        <!--<option value=""></option>-->
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-xs3 layui-col-sm3 layui-col-md3" >
+            <div class="layui-form-item">
+                <label class="layui-form-label">房号<span style="color: red;">*</span></label>
+                <div class="layui-input-block">
+                    <input id="roomNumber" name="roomNumber" placeholder="请输入房号" type="number" class="layui-input" lay-verify="required|roomNumber"/>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-xs3 layui-col-sm3 layui-col-md3" >
+            <div class="layui-form-item">
+                <label class="layui-form-label">楼层<span style="color: red;">*</span></label>
+                <div class="layui-input-block">
+                    <input id="floor" name="floor" placeholder="请输入楼层" type="number" class="layui-input" lay-verify="required|roomNumber" required/>
+                </div>
+            </div>
         </div>
     </div>
-    <!--<div class="layui-form-item">-->
-    <!--<label class="layui-form-label">栋座id<span style="color: red;">*</span></label>-->
-    <!--<div class="layui-input-block">-->
-    <!--<input id="buildingBlockId" name="buildingBlockId" placeholder="请输入栋座id" type="text" class="layui-input" lay-verify="required" required/>-->
-    <!--</div>-->
-    <!--</div>-->
-    <div class="layui-form-item">
-        <label class="layui-form-label">栋座id<span style="color: red;">*</span></label>
-        <div class="layui-input-block">
-            <select id="buildingBlockId" name="buildingBlockId" placeholder="请输入栋座id" lay-filter="buildingBlockId">
-                <!--<option value=""></option>-->
-            </select>
+    <div class="layui-row">
+        <div class="layui-col-xs2 layui-col-sm2 layui-col-md2" >
+            <div class="layui-form-item">
+                <label class="layui-form-label">房<span style="color: red;">*</span></label>
+                <div class="layui-input-block">
+                    <input id="roomTotal" name="roomTotal" value=2 placeholder="请输入房" type="number" class="layui-input" lay-verify="required|roomNumber" required/>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-xs2 layui-col-sm2 layui-col-md2">
+            <div class="layui-form-item">
+                <label class="layui-form-label"  >厅<span style="color: red;">*</span></label>
+                <div class="layui-input-block">
+                    <input id="hallTotal" name="hallTotal" value=1 placeholder="请输入厅" type="number" class="layui-input" lay-verify="required|roomNumber" required/>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-xs2 layui-col-sm2 layui-col-md2" >
+            <div class="layui-form-item">
+                <label class="layui-form-label" >卫<span style="color: red;">*</span></label>
+                <div class="layui-input-block">
+                    <input id="toiletTotal" name="toiletTotal" value=1 placeholder="请输入卫" type="number" class="layui-input" lay-verify="required|roomNumber" required/>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-xs2 layui-col-sm2 layui-col-md2" >
+            <div class="layui-form-item">
+                <label class="layui-form-label">阳台<span style="color: red;">*</span></label>
+                <div class="layui-input-block">
+                    <input id="balconyTotal" name="balconyTotal" value=1 placeholder="请输入阳台" type="number" class="layui-input" lay-verify="required|roomNumber" required/>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-xs4 layui-col-sm4 layui-col-md4" >
+            <div class="layui-form-item">
+                <label class="layui-form-label">房源类型<span style="color: red;">*</span></label>
+                <div class="layui-input-block">
+                    <input type="radio" name="houseResourceType"  value="加密房" title="加密房" checked=""><div class="layui-unselect layui-form-radio layui-form-radioed"><i class="layui-anim layui-icon"></i><div>加密房</div></div>
+                    <input type="radio" name="houseResourceType"  value="推介房" title="推介房"><div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i><div>推介房</div></div>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">房号<span style="color: red;">*</span></label>
-        <div class="layui-input-block">
-            <input id="roomNumber" name="roomNumber" placeholder="请输入房号" type="number" class="layui-input" lay-verify="required|roomNumber"/>
+    <div class="layui-row">
+
+        <div class="layui-col-xs3 layui-col-sm3 layui-col-md3" >
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">面积<span style="color: red;">*</span></label>
+                <div class="layui-input-block">
+                    <input id="area" name="area" placeholder="面积" type="text" class="layui-input" lay-verify="required" required/>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-xs3 layui-col-sm3 layui-col-md3" >
+            <div class="layui-form-item">
+                <label class="layui-form-label">实用面积<span style="color: red;">*</span></label>
+                <div class="layui-input-block">
+                    <input id="practicalArea" name="practicalArea" placeholder="实用面积" type="text" class="layui-input" lay-verify="required" required/>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-xs3 layui-col-sm3 layui-col-md3" >
+            <div class="layui-form-item">
+                <label class="layui-form-label">朝向<span style="color: red;">*</span></label>
+                <div class="layui-input-block">
+                    <select id="orientation" name="orientation" placeholder="请输入朝向"  lay-filter="simpleSelect">
+                        <!--<option value=""></option>-->
+                        <option value="东"  selected="">东</option>
+                        <option value="南">南</option>
+                        <option value="西">西</option>
+                        <option value="北">北</option>
+                        <option value="西南" >西南</option>
+                        <option value="西北">西北</option>
+                        <option value="东南">东南</option>
+                        <option value="东北">东北</option>
+                        <option value="南北">南北</option>
+                    </select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input type="text" placeholder="请选择" value="阅读" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="" class="layui-select-tips">请选择</dd><dd lay-value="0" class="layui-this">写作</dd><dd lay-value="1" class="">阅读</dd><dd lay-value="2" class="">游戏</dd><dd lay-value="3" class="">音乐</dd><dd lay-value="4" class="">旅行</dd></dl></div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-xs3 layui-col-sm3 layui-col-md3" >
+            <div class="layui-form-item">
+                <label class="layui-form-label">用途<span style="color: red;">*</span></label>
+                <div class="layui-input-block">
+                    <select id="purpose" name="purpose" placeholder="请输入用途" lay-filter="simpleSelect">
+                        <!--<option value=""></option>-->
+                        <option value="住宅小区"  selected="">住宅小区</option>
+                        <option value="商业用房">商业用房</option>
+                        <option value="教育用房">教育用房</option>
+                        <option value="教育用房">其他</option>
+                    </select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input type="text" placeholder="请选择" value="阅读" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="" class="layui-select-tips">请选择</dd><dd lay-value="0" class="layui-this">写作</dd><dd lay-value="1" class="">阅读</dd><dd lay-value="2" class="">游戏</dd><dd lay-value="3" class="">音乐</dd><dd lay-value="4" class="">旅行</dd></dl></div>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">楼层<span style="color: red;">*</span></label>
-        <div class="layui-input-block">
-            <input id="floor" name="floor" placeholder="请输入楼层" type="number" class="layui-input" lay-verify="required|roomNumber" required/>
+    <div class="layui-row">
+
+        <div class="layui-col-xs3 layui-col-sm3 layui-col-md3" >
+            <div class="layui-form-item">
+                <label class="layui-form-label">房屋类型<span style="color: red;">*</span></label>
+                <div class="layui-input-block">
+                    <select id="houseType" name="houseType" placeholder="请输入房屋类型"  lay-filter="simpleSelect">
+                        <!--<option value=""></option>-->
+                        <option value="多层"  selected="">多层</option>
+                        <option value="小高层">小高层</option>
+                        <option value="高层">高层</option>
+                    </select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input type="text" placeholder="请选择" value="阅读" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="" class="layui-select-tips">请选择</dd><dd lay-value="0" class="layui-this">写作</dd><dd lay-value="1" class="">阅读</dd><dd lay-value="2" class="">游戏</dd><dd lay-value="3" class="">音乐</dd><dd lay-value="4" class="">旅行</dd></dl></div>
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">房<span style="color: red;">*</span></label>
-        <div class="layui-input-block">
-            <input id="roomTotal" name="roomTotal" value=2 placeholder="请输入房" type="number" class="layui-input" lay-verify="required|roomNumber" required/>
+        <div class="layui-col-xs3 layui-col-sm3 layui-col-md3" >
+            <div class="layui-form-item">
+                <label class="layui-form-label">建房年代<span style="color: red;">*</span></label>
+                <div class="layui-input-block">
+                    <input id="buildingTime" name="buildingTime" placeholder="请输入建房年代" type="text" class="layui-input" lay-verify="required" required/>
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">厅<span style="color: red;">*</span></label>
-        <div class="layui-input-block">
-            <input id="hallTotal" name="hallTotal" value=1 placeholder="请输入厅" type="number" class="layui-input" lay-verify="required|roomNumber" required/>
+        <div class="layui-col-xs3 layui-col-sm3 layui-col-md3" >
+            <div class="layui-form-item">
+                <label class="layui-form-label">状态<span style="color: red;">*</span></label>
+                <div class="layui-input-block">
+                    <select id="state" name="state" placeholder="请输入状态" lay-filter="simpleSelect">
+                        <!--<option value=""></option>-->
+                        <option value="出售"  selected="">有效</option>
+                        <option value="出租">预定</option>
+                        <option value="租售">已售</option>
+                        <option value="出租">我售</option>
+                        <option value="租售">已租</option>
+                        <option value="出租">我租</option>
+                        <option value="租售">收租</option>
+                        <option value="租售">租购</option>
+                    </select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input type="text" placeholder="请选择" value="阅读" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="" class="layui-select-tips">请选择</dd><dd lay-value="0" class="layui-this">写作</dd><dd lay-value="1" class="">阅读</dd><dd lay-value="2" class="">游戏</dd><dd lay-value="3" class="">音乐</dd><dd lay-value="4" class="">旅行</dd></dl></div>
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">卫<span style="color: red;">*</span></label>
-        <div class="layui-input-block">
-            <input id="toiletTotal" name="toiletTotal" value=1 placeholder="请输入卫" type="number" class="layui-input" lay-verify="required|roomNumber" required/>
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">阳台<span style="color: red;">*</span></label>
-        <div class="layui-input-block">
-            <input id="balconyTotal" name="balconyTotal" value=1 placeholder="请输入阳台" type="number" class="layui-input" lay-verify="required|roomNumber" required/>
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">用途<span style="color: red;">*</span></label>
-        <div class="layui-input-block">
-            <select id="purpose" name="purpose" placeholder="请输入用途" lay-filter="simpleSelect">
-                <!--<option value=""></option>-->
-                <option value="住宅小区"  selected="">住宅小区</option>
-                <option value="商业用房">商业用房</option>
-                <option value="教育用房">教育用房</option>
-                <option value="教育用房">其他</option>
-            </select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input type="text" placeholder="请选择" value="阅读" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="" class="layui-select-tips">请选择</dd><dd lay-value="0" class="layui-this">写作</dd><dd lay-value="1" class="">阅读</dd><dd lay-value="2" class="">游戏</dd><dd lay-value="3" class="">音乐</dd><dd lay-value="4" class="">旅行</dd></dl></div>
-        </div>
-    </div>
-    <!--<div class="layui-form-item">-->
-    <!--<label class="layui-form-label">用途<span style="color: red;">*</span></label>-->
-    <!--<div class="layui-input-block">-->
-    <!--<input id="purpose" name="purpose" placeholder="请输入用途" type="text" class="layui-input" lay-verify="required" required/>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--<div class="layui-form-item">-->
-    <!--<label class="layui-form-label">房源类型<span style="color: red;">*</span></label>-->
-    <!--<div class="layui-input-block">-->
-    <!--<input id="houseResourceType" name="houseResourceType" placeholder="请输入房源类型" type="text" class="layui-input" lay-verify="required" required/>-->
-    <!--</div>-->
-    <!--</div>-->
-    <div class="layui-form-item">
-        <label class="layui-form-label">房源类型<span style="color: red;">*</span></label>
-        <div class="layui-input-block">
-            <input type="radio" name="houseResourceType"  value="加密房" title="加密房" checked=""><div class="layui-unselect layui-form-radio layui-form-radioed"><i class="layui-anim layui-icon"></i><div>加密房</div></div>
-            <input type="radio" name="houseResourceType"  value="推介房" title="推介房"><div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i><div>推介房</div></div>
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">面积<span style="color: red;">*</span></label>
-        <div class="layui-input-block">
-            <input id="area" name="area" placeholder="请输入面积" type="text" class="layui-input" lay-verify="required" required/>
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">实用面积<span style="color: red;">*</span></label>
-        <div class="layui-input-block">
-            <input id="practicalArea" name="practicalArea" placeholder="请输入实用面积" type="text" class="layui-input" lay-verify="required" required/>
-        </div>
-    </div>
-    <!--<div class="layui-form-item">-->
-    <!--<label class="layui-form-label">朝向<span style="color: red;">*</span></label>-->
-    <!--<div class="layui-input-block">-->
-    <!--<input id="orientation" name="orientation" placeholder="请输入朝向" type="text" class="layui-input" lay-verify="required" required/>-->
-    <!--</div>-->
-    <!--</div>-->
-    <div class="layui-form-item">
-        <label class="layui-form-label">朝向<span style="color: red;">*</span></label>
-        <div class="layui-input-block">
-            <select id="orientation" name="orientation" placeholder="请输入朝向"  lay-filter="simpleSelect">
-                <!--<option value=""></option>-->
-                <option value="东"  selected="">东</option>
-                <option value="南">南</option>
-                <option value="西">西</option>
-                <option value="北">北</option>
-                <option value="西南" >西南</option>
-                <option value="西北">西北</option>
-                <option value="东南">东南</option>
-                <option value="东北">东北</option>
-                <option value="南北">南北</option>
-            </select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input type="text" placeholder="请选择" value="阅读" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="" class="layui-select-tips">请选择</dd><dd lay-value="0" class="layui-this">写作</dd><dd lay-value="1" class="">阅读</dd><dd lay-value="2" class="">游戏</dd><dd lay-value="3" class="">音乐</dd><dd lay-value="4" class="">旅行</dd></dl></div>
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">房屋类型<span style="color: red;">*</span></label>
-        <div class="layui-input-block">
-            <select id="houseType" name="houseType" placeholder="请输入房屋类型"  lay-filter="simpleSelect">
-                <!--<option value=""></option>-->
-                <option value="多层"  selected="">多层</option>
-                <option value="小高层">小高层</option>
-                <option value="高层">高层</option>
-            </select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input type="text" placeholder="请选择" value="阅读" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="" class="layui-select-tips">请选择</dd><dd lay-value="0" class="layui-this">写作</dd><dd lay-value="1" class="">阅读</dd><dd lay-value="2" class="">游戏</dd><dd lay-value="3" class="">音乐</dd><dd lay-value="4" class="">旅行</dd></dl></div>
-        </div>
-    </div>
-    <!--<div class="layui-form-item">-->
-    <!--<label class="layui-form-label">房屋类型<span style="color: red;">*</span></label>-->
-    <!--<div class="layui-input-block">-->
-    <!--<input id="houseType" name="houseType" placeholder="请输入房屋类型" type="text" class="layui-input" lay-verify="required" required/>-->
-    <!--</div>-->
-    <!--</div>-->
-    <div class="layui-form-item">
-        <label class="layui-form-label">建房年代<span style="color: red;">*</span></label>
-        <div class="layui-input-block">
-            <input id="buildingTime" name="buildingTime" placeholder="请输入建房年代" type="text" class="layui-input" lay-verify="required" required/>
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">交易<span style="color: red;">*</span></label>
-        <div class="layui-input-block">
-            <select id="transaction" name="transaction" placeholder="请输入交易" lay-filter="transaction">
-                <!--<option value=""></option>-->
-                <option value="出租" selected="">出租</option>
-                <option value="出售" >出售</option>
-                <option value="租售">租售</option>
-            </select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input type="text" placeholder="请选择" value="阅读" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="" class="layui-select-tips">请选择</dd><dd lay-value="0" class="layui-this">写作</dd><dd lay-value="1" class="">阅读</dd><dd lay-value="2" class="">游戏</dd><dd lay-value="3" class="">音乐</dd><dd lay-value="4" class="">旅行</dd></dl></div>
-        </div>
-    </div>
-    <!--<div class="layui-form-item">-->
-    <!--<label class="layui-form-label">交易<span style="color: red;">*</span></label>-->
-    <!--<div class="layui-input-block">-->
-    <!--<input id="transaction" name="transaction" placeholder="请输入交易" type="text" class="layui-input" lay-verify="required" required/>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--<div class="layui-form-item">-->
-    <!--<label class="layui-form-label">状态<span style="color: red;">*</span></label>-->
-    <!--<div class="layui-input-block">-->
-    <!--<input id="state" name="state" placeholder="请输入状态" type="text" class="layui-input" lay-verify="required" required/>-->
-    <!--</div>-->
-    <!--</div>-->
-    <div class="layui-form-item">
-        <label class="layui-form-label">状态<span style="color: red;">*</span></label>
-        <div class="layui-input-block">
-            <select id="state" name="state" placeholder="请输入状态" lay-filter="simpleSelect">
-                <!--<option value=""></option>-->
-                <option value="出售"  selected="">有效</option>
-                <option value="出租">预定</option>
-                <option value="租售">已售</option>
-                <option value="出租">我售</option>
-                <option value="租售">已租</option>
-                <option value="出租">我租</option>
-                <option value="租售">收租</option>
-                <option value="租售">租购</option>
-            </select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input type="text" placeholder="请选择" value="阅读" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="" class="layui-select-tips">请选择</dd><dd lay-value="0" class="layui-this">写作</dd><dd lay-value="1" class="">阅读</dd><dd lay-value="2" class="">游戏</dd><dd lay-value="3" class="">音乐</dd><dd lay-value="4" class="">旅行</dd></dl></div>
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">售价<span style="color: red;">*</span></label>
-        <div class="layui-input-block">
-            <input id="price" name="price" disabled="disabled" placeholder="请输入售价" type="text" class="layui-input"  />
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">出售底价<span style="color: red;">*</span></label>
-        <div class="layui-input-block">
-            <input id="priceFloor" name="priceFloor" disabled="disabled" placeholder="请输入出售底价" type="text" class="layui-input"  />
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">租价<span style="color: red;">*</span></label>
-        <div class="layui-input-block">
-            <input id="rental" name="rental" placeholder="请输入租价" type="text" class="layui-input"  />
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">租价底价<span style="color: red;">*</span></label>
-        <div class="layui-input-block">
-            <input id="rentalFloor" name="rentalFloor" placeholder="请输入租价底价" type="text" class="layui-input" />
+        <div class="layui-col-xs3 layui-col-sm3 layui-col-md3" >
+            <div class="layui-form-item">
+                <label class="layui-form-label">交易<span style="color: red;">*</span></label>
+                <div class="layui-input-block">
+                    <select id="transaction" name="transaction" placeholder="请输入交易" lay-filter="transaction">
+                        <!--<option value=""></option>-->
+                        <option value="出租" selected="">出租</option>
+                        <option value="出售" >出售</option>
+                        <option value="租售">租售</option>
+                    </select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input type="text" placeholder="请选择" value="阅读" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="" class="layui-select-tips">请选择</dd><dd lay-value="0" class="layui-this">写作</dd><dd lay-value="1" class="">阅读</dd><dd lay-value="2" class="">游戏</dd><dd lay-value="3" class="">音乐</dd><dd lay-value="4" class="">旅行</dd></dl></div>
+                </div>
+            </div>
         </div>
     </div>
 
+    <hr  style="
+    margin-left: 110px;
+    margin-bottom: 25px;
+">
 
-    <!--<div class="layui-form-item">-->
-    <!--<label class="layui-form-label">包税费<span style="color: red;">*</span></label>-->
-    <!--<div class="layui-input-block">-->
-    <!--<input id="taxes" name="taxes" placeholder="请输入包税费" type="text" class="layui-input" lay-verify="required" required/>-->
-    <!--</div>-->
-    <!--</div>-->
-    <div class="layui-form-item">
-        <label class="layui-form-label">包税费<span style="color: red;">*</span></label>
-        <div class="layui-input-block">
-            <select  id="taxes" name="taxes" placeholder="请输入包税费"  lay-filter="simpleSelect">
-                <!--<option value=""></option>-->
-                <option value="各付"  selected="">各付</option>
-                <option value="实得">实得</option>
-                <option value="净得">净得</option>
-                <option value="包税">包税</option>
+    <div class="layui-row">
 
-            </select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input type="text" placeholder="请选择" value="阅读" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="" class="layui-select-tips">请选择</dd><dd lay-value="0" class="layui-this">写作</dd><dd lay-value="1" class="">阅读</dd><dd lay-value="2" class="">游戏</dd><dd lay-value="3" class="">音乐</dd><dd lay-value="4" class="">旅行</dd></dl></div>
+        <div class="layui-col-xs3 layui-col-sm3 layui-col-md3" >
+            <div class="layui-form-item">
+                <label class="layui-form-label">售价<span style="color: red;">*</span></label>
+                <div class="layui-input-block">
+                    <input id="price" name="price" disabled="disabled" placeholder="请输入售价" type="text" style="background-color: #d6d4d4" class="layui-input layui-disabled"  />
+                </div>
+            </div>
         </div>
-    </div>
-    <!--<div class="layui-form-item">-->
-    <!--<label class="layui-form-label">来源<span style="color: red;">*</span></label>-->
-    <!--<div class="layui-input-block">-->
-    <!--<input id="resource" name="resource" placeholder="请输入来源" type="text" class="layui-input" lay-verify="required" required/>-->
-    <!--</div>-->
-    <!--</div>-->
-    <div class="layui-form-item">
-        <label class="layui-form-label">来源<span style="color: red;">*</span></label>
-        <div class="layui-input-block">
-            <select  id="resource" name="resource" placeholder="请输入来源" lay-filter="simpleSelect">
-                <!--<option value=""></option>-->
-                <option value="来电"  selected="">来电</option>
-                <option value="来访">来访</option>
-                <option value="中介">中介</option>
-                <option value="朋友">朋友</option>
-                <option value="广告">广告</option>
-                <option value="网络">网络</option>
-                <option value="扫街">扫街</option>
-            </select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input type="text" placeholder="请选择" value="阅读" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="" class="layui-select-tips">请选择</dd><dd lay-value="0" class="layui-this">写作</dd><dd lay-value="1" class="">阅读</dd><dd lay-value="2" class="">游戏</dd><dd lay-value="3" class="">音乐</dd><dd lay-value="4" class="">旅行</dd></dl></div>
+        <div class="layui-col-xs3 layui-col-sm3 layui-col-md3" >
+            <div class="layui-form-item">
+                <label class="layui-form-label">出售底价<span style="color: red;">*</span></label>
+                <div class="layui-input-block">
+                    <input id="priceFloor" name="priceFloor" disabled="disabled" placeholder="请输入出售底价" style="background-color: #d6d4d4" type="text" class="layui-input layui-disabled"  />
+                </div>
+            </div>
         </div>
-    </div>
-    <!--<div class="layui-form-item">-->
-    <!--<label class="layui-form-label">现状<span style="color: red;">*</span></label>-->
-    <!--<div class="layui-input-block">-->
-    <!--<input id="statusQuo" name="statusQuo" placeholder="请输入现状" type="text" class="layui-input" lay-verify="required" required/>-->
-    <!--</div>-->
-    <!--</div>-->
-    <div class="layui-form-item">
-        <label class="layui-form-label">现状<span style="color: red;">*</span></label>
-        <div class="layui-input-block">
-            <select   id="statusQuo" name="statusQuo" placeholder="请输入现状"lay-filter="simpleSelect">
-                <!--<option value=""></option>-->
-                <option value="空房"  selected="">空房</option>
-                <option value="业主住">业主住</option>
-                <option value="租客住">租客住</option>
-            </select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input type="text" placeholder="请选择" value="阅读" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="" class="layui-select-tips">请选择</dd><dd lay-value="0" class="layui-this">写作</dd><dd lay-value="1" class="">阅读</dd><dd lay-value="2" class="">游戏</dd><dd lay-value="3" class="">音乐</dd><dd lay-value="4" class="">旅行</dd></dl></div>
+        <div class="layui-col-xs3 layui-col-sm3 layui-col-md3" >
+            <div class="layui-form-item">
+                <label class="layui-form-label">租价<span style="color: red;">*</span></label>
+                <div class="layui-input-block">
+                    <input id="rental" name="rental" placeholder="请输入租价" type="text" class="layui-input"  />
+                </div>
+            </div>
         </div>
-    </div>
-    <!--<div class="layui-form-item">-->
-    <!--<label class="layui-form-label">装修情况<span style="color: red;">*</span></label>-->
-    <!--<div class="layui-input-block">-->
-    <!--<input id="decorate" name="decorate" placeholder="请输入装修情况" type="text" class="layui-input" lay-verify="required" required/>-->
-    <!--</div>-->
-    <!--</div>-->
-    <div class="layui-form-item">
-        <label class="layui-form-label">装修情况<span style="color: red;">*</span></label>
-        <div class="layui-input-block">
-            <select   id="decorate" name="decorate" placeholder="请输入装修情况" lay-filter="simpleSelect">
-                <!--<option value=""></option>-->
-                <option value="毛坯"  selected="">毛坯</option>
-                <option value="清水">清水</option>
-                <option value="简装">简装</option>
-                <option value="中装">中装</option>
-                <option value="精装">精装</option>
-                <option value="豪装">豪装</option>
-            </select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input type="text" placeholder="请选择" value="阅读" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="" class="layui-select-tips">请选择</dd><dd lay-value="0" class="layui-this">写作</dd><dd lay-value="1" class="">阅读</dd><dd lay-value="2" class="">游戏</dd><dd lay-value="3" class="">音乐</dd><dd lay-value="4" class="">旅行</dd></dl></div>
-        </div>
-    </div>
-    <!--<div class="layui-form-item">-->
-    <!--<label class="layui-form-label">配套情况<span style="color: red;">*</span></label>-->
-    <!--<div class="layui-input-block">-->
-    <!--<input id="matchState" name="matchState" placeholder="请输入配套情况" type="text" class="layui-input" lay-verify="required" required/>-->
-    <!--</div>-->
-    <!--</div>-->
-    <div class="layui-form-item">
-        <label class="layui-form-label">配套情况<span style="color: red;">*</span></label>
-        <div class="layui-input-block">
-            <select   id="matchState" name="matchState" placeholder="请输入配套情况" lay-filter="simpleSelect">
-                <!--<option value=""></option>-->
-                <option value="地板"  selected="">地板</option>
-                <option value="木地板">木地板</option>
-                <option value="地毯">地毯</option>
-                <option value="地胶">地胶</option>
-                <option value="水泥地">水泥地</option>
-            </select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input type="text" placeholder="请选择" value="阅读" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="" class="layui-select-tips">请选择</dd><dd lay-value="0" class="layui-this">写作</dd><dd lay-value="1" class="">阅读</dd><dd lay-value="2" class="">游戏</dd><dd lay-value="3" class="">音乐</dd><dd lay-value="4" class="">旅行</dd></dl></div>
-        </div>
-    </div>
-    <!--<div class="layui-form-item">-->
-    <!--<label class="layui-form-label">家具情况<span style="color: red;">*</span></label>-->
-    <!--<div class="layui-input-block">-->
-    <!--<input id="furnitureState" name="furnitureState" placeholder="请输入家具情况" type="text" class="layui-input" lay-verify="required" required/>-->
-    <!--</div>-->
-    <!--</div>-->
-    <div class="layui-form-item">
-        <label class="layui-form-label">家具情况<span style="color: red;">*</span></label>
-        <div class="layui-input-block">
-            <select    id="furnitureState" name="furnitureState" placeholder="请输入家具情况"  lay-filter="simpleSelect">
-                <!--<option value=""></option>-->
-                <option value="配套" selected="">配套</option>
-                <option value="少量">少量</option>
-                <option value="部分">部分</option>
-                <option value="全齐">全齐</option>
-                <option value="全新">全新</option>
-                <option value="无" >无</option>
+        <div class="layui-col-xs3 layui-col-sm3 layui-col-md3" >
+            <div class="layui-form-item">
+                <label class="layui-form-label">租价底价<span style="color: red;">*</span></label>
+                <div class="layui-input-block">
+                    <input id="rentalFloor" name="rentalFloor" placeholder="请输入租价底价" type="text" class="layui-input" />
+                </div>
+            </div>
 
-            </select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input type="text" placeholder="请选择" value="阅读" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="" class="layui-select-tips">请选择</dd><dd lay-value="0" class="layui-this">写作</dd><dd lay-value="1" class="">阅读</dd><dd lay-value="2" class="">游戏</dd><dd lay-value="3" class="">音乐</dd><dd lay-value="4" class="">旅行</dd></dl></div>
         </div>
     </div>
-    <!--<div class="layui-form-item">-->
-    <!--<label class="layui-form-label">家电情况<span style="color: red;">*</span></label>-->
-    <!--<div class="layui-input-block">-->
-    <!--<input id="householdElectricalState" name="householdElectricalState" placeholder="请输入家电情况" type="text" class="layui-input" lay-verify="required" required/>-->
-    <!--</div>-->
-    <!--</div>-->
-    <div class="layui-form-item">
-        <label class="layui-form-label">家电情况<span style="color: red;">*</span></label>
-        <div class="layui-input-block">
-            <select    id="householdElectricalState" name="householdElectricalState" placeholder="请输入家电情况" lay-filter="simpleSelect">
-                <!--<option value=""></option>-->
-                <option value="配套" selected="">配套</option>
-                <option value="无">无</option>
-                <option value="少量">少量</option>
-                <option value="部分">部分</option>
-                <option value="全齐">全齐</option>
-                <option value="全新">全新</option>
-            </select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input type="text" placeholder="请选择" value="阅读" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="" class="layui-select-tips">请选择</dd><dd lay-value="0" class="layui-this">写作</dd><dd lay-value="1" class="">阅读</dd><dd lay-value="2" class="">游戏</dd><dd lay-value="3" class="">音乐</dd><dd lay-value="4" class="">旅行</dd></dl></div>
-        </div>
-    </div>
-    <!--<div class="layui-form-item">-->
-    <!--<label class="layui-form-label">产权<span style="color: red;">*</span></label>-->
-    <!--<div class="layui-input-block">-->
-    <!--<input id="propertyRight" name="propertyRight" placeholder="请输入产权" type="text" class="layui-input" lay-verify="required" required/>-->
-    <!--</div>-->
-    <!--</div>-->
-    <div class="layui-form-item">
-        <label class="layui-form-label">产权<span style="color: red;">*</span></label>
-        <div class="layui-input-block">
-            <select    id="propertyRight" name="propertyRight" placeholder="请输入产权" lay-filter="simpleSelect">
-                <!--<option value=""></option>-->
-                <option value="商品房" selected="">商品房</option>
-                <option value="房改房">房改房</option>
-                <option value="经济适用房">经济适用房</option>
-                <option value="集体房">集体房</option>
-                <option value="军产房">军产房</option>
-            </select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input type="text" placeholder="请选择" value="阅读" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="" class="layui-select-tips">请选择</dd><dd lay-value="0" class="layui-this">写作</dd><dd lay-value="1" class="">阅读</dd><dd lay-value="2" class="">游戏</dd><dd lay-value="3" class="">音乐</dd><dd lay-value="4" class="">旅行</dd></dl></div>
-        </div>
-    </div>
-    <!--<div class="layui-form-item">-->
-    <!--<label class="layui-form-label">证件<span style="color: red;">*</span></label>-->
-    <!--<div class="layui-input-block">-->
-    <!--<input id="certificates" name="certificates" placeholder="请输入证件" type="text" class="layui-input" lay-verify="required" required/>-->
-    <!--</div>-->
-    <!--</div>-->
-    <div class="layui-form-item">
-        <label class="layui-form-label">证件<span style="color: red;">*</span></label>
-        <div class="layui-input-block">
-            <select    id="certificates" name="certificates" placeholder="请输入证件" lay-filter="simpleSelect">
-                <!--<option value=""></option>-->
-                <option value="房地产证" selected="">房地产证</option>
-            </select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input type="text" placeholder="请选择" value="阅读" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="" class="layui-select-tips">请选择</dd><dd lay-value="0" class="layui-this">写作</dd><dd lay-value="1" class="">阅读</dd><dd lay-value="2" class="">游戏</dd><dd lay-value="3" class="">音乐</dd><dd lay-value="4" class="">旅行</dd></dl></div>
-        </div>
-    </div>
-    <!--<div class="layui-form-item">-->
-    <!--<label class="layui-form-label">付款<span style="color: red;">*</span></label>-->
-    <!--<div class="layui-input-block">-->
-    <!--<input id="payment" name="payment" placeholder="请输入付款" type="text" class="layui-input" lay-verify="required" required/>-->
-    <!--</div>-->
-    <!--</div>-->
-    <div class="layui-form-item">
-        <label class="layui-form-label">付款<span style="color: red;">*</span></label>
-        <div class="layui-input-block">
-            <select     id="payment" name="payment" placeholder="请输入付款"  lay-filter="simpleSelect">
-                <!--<option value=""></option>-->
-                <option value="一次付清" selected="">一次付清</option>
-            </select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input type="text" placeholder="请选择" value="阅读" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="" class="layui-select-tips">请选择</dd><dd lay-value="0" class="layui-this">写作</dd><dd lay-value="1" class="">阅读</dd><dd lay-value="2" class="">游戏</dd><dd lay-value="3" class="">音乐</dd><dd lay-value="4" class="">旅行</dd></dl></div>
-        </div>
-    </div>
-    <!--<div class="layui-form-item">-->
-    <!--<label class="layui-form-label">付佣<span style="color: red;">*</span></label>-->
-    <!--<div class="layui-input-block">-->
-    <!--<input id="payCommission" name="payCommission" placeholder="请输入付佣" type="text" class="layui-input" lay-verify="required" required/>-->
-    <!--</div>-->
-    <!--</div>-->
-    <div class="layui-form-item">
-        <label class="layui-form-label">付佣<span style="color: red;">*</span></label>
-        <div class="layui-input-block">
-            <select  id="payCommission" name="payCommission" placeholder="请输入付佣"  lay-filter="simpleSelect">
-                <!--<option value=""></option>-->
-                <option value="商议" selected="">商议</option>
-            </select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input type="text" placeholder="请选择" value="阅读" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="" class="layui-select-tips">请选择</dd><dd lay-value="0" class="layui-this">写作</dd><dd lay-value="1" class="">阅读</dd><dd lay-value="2" class="">游戏</dd><dd lay-value="3" class="">音乐</dd><dd lay-value="4" class="">旅行</dd></dl></div>
-        </div>
-    </div>
+    <div class="layui-row">
 
-    <!--<div class="layui-form-item">-->
-    <!--<label class="layui-form-label">看房<span style="color: red;">*</span></label>-->
-    <!--<div class="layui-input-block">-->
-    <!--<input id="houseInspection" name="houseInspection" placeholder="请输入看房" type="text" class="layui-input" lay-verify="required" required/>-->
-    <!--</div>-->
-    <!--</div>-->
-    <div class="layui-form-item">
-        <label class="layui-form-label">看房<span style="color: red;">*</span></label>
-        <div class="layui-input-block">
-            <select  id="houseInspection" name="houseInspection" placeholder="请输入看房"   lay-filter="simpleSelect">
-                <!--<option value=""></option>-->
-                <option value="预约" selected="">预约</option>
-                <option value="有匙" selected="">有匙</option>
-                <option value="无匙" selected="">无匙</option>
-                <option value="直接" selected="">直接</option>
-            </select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input type="text" placeholder="请选择" value="阅读" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="" class="layui-select-tips">请选择</dd><dd lay-value="0" class="layui-this">写作</dd><dd lay-value="1" class="">阅读</dd><dd lay-value="2" class="">游戏</dd><dd lay-value="3" class="">音乐</dd><dd lay-value="4" class="">旅行</dd></dl></div>
+        <div class="layui-col-xs3 layui-col-sm3 layui-col-md3" >
+            <div class="layui-form-item">
+                <label class="layui-form-label">包税费<span style="color: red;">*</span></label>
+                <div class="layui-input-block">
+                    <select  id="taxes" name="taxes" placeholder="请输入包税费"  lay-filter="simpleSelect">
+                        <!--<option value=""></option>-->
+                        <option value="各付"  selected="">各付</option>
+                        <option value="实得">实得</option>
+                        <option value="净得">净得</option>
+                        <option value="包税">包税</option>
+
+                    </select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input type="text" placeholder="请选择" value="阅读" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="" class="layui-select-tips">请选择</dd><dd lay-value="0" class="layui-this">写作</dd><dd lay-value="1" class="">阅读</dd><dd lay-value="2" class="">游戏</dd><dd lay-value="3" class="">音乐</dd><dd lay-value="4" class="">旅行</dd></dl></div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-xs3 layui-col-sm3 layui-col-md3" >
+            <div class="layui-form-item">
+                <label class="layui-form-label">来源<span style="color: red;">*</span></label>
+                <div class="layui-input-block">
+                    <select  id="resource" name="resource" placeholder="请输入来源" lay-filter="simpleSelect">
+                        <!--<option value=""></option>-->
+                        <option value="来电"  selected="">来电</option>
+                        <option value="来访">来访</option>
+                        <option value="中介">中介</option>
+                        <option value="朋友">朋友</option>
+                        <option value="广告">广告</option>
+                        <option value="网络">网络</option>
+                        <option value="扫街">扫街</option>
+                    </select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input type="text" placeholder="请选择" value="阅读" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="" class="layui-select-tips">请选择</dd><dd lay-value="0" class="layui-this">写作</dd><dd lay-value="1" class="">阅读</dd><dd lay-value="2" class="">游戏</dd><dd lay-value="3" class="">音乐</dd><dd lay-value="4" class="">旅行</dd></dl></div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-xs3 layui-col-sm3 layui-col-md3" >
+            <div class="layui-form-item">
+                <label class="layui-form-label">现状<span style="color: red;">*</span></label>
+                <div class="layui-input-block">
+                    <select   id="statusQuo" name="statusQuo" placeholder="请输入现状"lay-filter="simpleSelect">
+                        <!--<option value=""></option>-->
+                        <option value="空房"  selected="">空房</option>
+                        <option value="业主住">业主住</option>
+                        <option value="租客住">租客住</option>
+                    </select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input type="text" placeholder="请选择" value="阅读" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="" class="layui-select-tips">请选择</dd><dd lay-value="0" class="layui-this">写作</dd><dd lay-value="1" class="">阅读</dd><dd lay-value="2" class="">游戏</dd><dd lay-value="3" class="">音乐</dd><dd lay-value="4" class="">旅行</dd></dl></div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-xs3 layui-col-sm3 layui-col-md3" >
+            <div class="layui-form-item">
+                <label class="layui-form-label">装修情况<span style="color: red;">*</span></label>
+                <div class="layui-input-block">
+                    <select   id="decorate" name="decorate" placeholder="请输入装修情况" lay-filter="simpleSelect">
+                        <!--<option value=""></option>-->
+                        <option value="毛坯"  selected="">毛坯</option>
+                        <option value="清水">清水</option>
+                        <option value="简装">简装</option>
+                        <option value="中装">中装</option>
+                        <option value="精装">精装</option>
+                        <option value="豪装">豪装</option>
+                    </select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input type="text" placeholder="请选择" value="阅读" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="" class="layui-select-tips">请选择</dd><dd lay-value="0" class="layui-this">写作</dd><dd lay-value="1" class="">阅读</dd><dd lay-value="2" class="">游戏</dd><dd lay-value="3" class="">音乐</dd><dd lay-value="4" class="">旅行</dd></dl></div>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">钥匙号<span style="color: red;">*</span></label>
-        <div class="layui-input-block">
-            <input id="keyNumber" name="keyNumber" placeholder="请输入钥匙号" type="text" class="layui-input" lay-verify="required" required/>
+    <div class="layui-row">
+
+        <div class="layui-col-xs3 layui-col-sm3 layui-col-md3" >
+            <div class="layui-form-item">
+                <label class="layui-form-label">配套情况<span style="color: red;">*</span></label>
+                <div class="layui-input-block">
+                    <select   id="matchState" name="matchState" placeholder="请输入配套情况" lay-filter="simpleSelect">
+                        <!--<option value=""></option>-->
+                        <option value="地板"  selected="">地板</option>
+                        <option value="木地板">木地板</option>
+                        <option value="地毯">地毯</option>
+                        <option value="地胶">地胶</option>
+                        <option value="水泥地">水泥地</option>
+                    </select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input type="text" placeholder="请选择" value="阅读" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="" class="layui-select-tips">请选择</dd><dd lay-value="0" class="layui-this">写作</dd><dd lay-value="1" class="">阅读</dd><dd lay-value="2" class="">游戏</dd><dd lay-value="3" class="">音乐</dd><dd lay-value="4" class="">旅行</dd></dl></div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-xs3 layui-col-sm3 layui-col-md3" >
+            <div class="layui-form-item">
+                <label class="layui-form-label">家具情况<span style="color: red;">*</span></label>
+                <div class="layui-input-block">
+                    <select    id="furnitureState" name="furnitureState" placeholder="请输入家具情况"  lay-filter="simpleSelect">
+                        <!--<option value=""></option>-->
+                        <option value="配套" selected="">配套</option>
+                        <option value="少量">少量</option>
+                        <option value="部分">部分</option>
+                        <option value="全齐">全齐</option>
+                        <option value="全新">全新</option>
+                        <option value="无" >无</option>
+
+                    </select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input type="text" placeholder="请选择" value="阅读" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="" class="layui-select-tips">请选择</dd><dd lay-value="0" class="layui-this">写作</dd><dd lay-value="1" class="">阅读</dd><dd lay-value="2" class="">游戏</dd><dd lay-value="3" class="">音乐</dd><dd lay-value="4" class="">旅行</dd></dl></div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-xs3 layui-col-sm3 layui-col-md3" >
+            <div class="layui-form-item">
+                <label class="layui-form-label">家电情况<span style="color: red;">*</span></label>
+                <div class="layui-input-block">
+                    <select    id="householdElectricalState" name="householdElectricalState" placeholder="请输入家电情况" lay-filter="simpleSelect">
+                        <!--<option value=""></option>-->
+                        <option value="配套" selected="">配套</option>
+                        <option value="无">无</option>
+                        <option value="少量">少量</option>
+                        <option value="部分">部分</option>
+                        <option value="全齐">全齐</option>
+                        <option value="全新">全新</option>
+                    </select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input type="text" placeholder="请选择" value="阅读" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="" class="layui-select-tips">请选择</dd><dd lay-value="0" class="layui-this">写作</dd><dd lay-value="1" class="">阅读</dd><dd lay-value="2" class="">游戏</dd><dd lay-value="3" class="">音乐</dd><dd lay-value="4" class="">旅行</dd></dl></div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-xs3 layui-col-sm3 layui-col-md3" >
+            <div class="layui-form-item">
+                <label class="layui-form-label">产权<span style="color: red;">*</span></label>
+                <div class="layui-input-block">
+                    <select    id="propertyRight" name="propertyRight" placeholder="请输入产权" lay-filter="simpleSelect">
+                        <!--<option value=""></option>-->
+                        <option value="商品房" selected="">商品房</option>
+                        <option value="房改房">房改房</option>
+                        <option value="经济适用房">经济适用房</option>
+                        <option value="集体房">集体房</option>
+                        <option value="军产房">军产房</option>
+                    </select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input type="text" placeholder="请选择" value="阅读" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="" class="layui-select-tips">请选择</dd><dd lay-value="0" class="layui-this">写作</dd><dd lay-value="1" class="">阅读</dd><dd lay-value="2" class="">游戏</dd><dd lay-value="3" class="">音乐</dd><dd lay-value="4" class="">旅行</dd></dl></div>
+                </div>
+            </div>
         </div>
     </div>
-    <!--<div class="layui-form-item">-->
-    <!--<label class="layui-form-label">委托方式<span style="color: red;">*</span></label>-->
-    <!--<div class="layui-input-block">-->
-    <!--<input id="entrust" name="entrust" placeholder="请输入委托方式" type="text" class="layui-input" lay-verify="required" required/>-->
-    <!--</div>-->
-    <!--</div>-->
-    <div class="layui-form-item">
-        <label class="layui-form-label">委托方式<span style="color: red;">*</span></label>
-        <div class="layui-input-block">
-            <select  id="entrust" name="entrust" placeholder="请输入委托方式" lay-filter="simpleSelect">
-                <!--<option value=""></option>-->
-                <option value="各付"  selected="">独家</option>
-                <option value="多加">多加</option>
-                <option value="未委托">未委托</option>
-            </select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input type="text" placeholder="请选择" value="阅读" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="" class="layui-select-tips">请选择</dd><dd lay-value="0" class="layui-this">写作</dd><dd lay-value="1" class="">阅读</dd><dd lay-value="2" class="">游戏</dd><dd lay-value="3" class="">音乐</dd><dd lay-value="4" class="">旅行</dd></dl></div>
+    <div class="layui-row">
+
+        <div class="layui-col-xs3 layui-col-sm3 layui-col-md3" >
+            <div class="layui-form-item">
+                <label class="layui-form-label">证件<span style="color: red;">*</span></label>
+                <div class="layui-input-block">
+                    <select    id="certificates" name="certificates" placeholder="请输入证件" lay-filter="simpleSelect">
+                        <!--<option value=""></option>-->
+                        <option value="房地产证" selected="">房地产证</option>
+                    </select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input type="text" placeholder="请选择" value="阅读" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="" class="layui-select-tips">请选择</dd><dd lay-value="0" class="layui-this">写作</dd><dd lay-value="1" class="">阅读</dd><dd lay-value="2" class="">游戏</dd><dd lay-value="3" class="">音乐</dd><dd lay-value="4" class="">旅行</dd></dl></div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-xs3 layui-col-sm3 layui-col-md3" >
+            <div class="layui-form-item">
+                <label class="layui-form-label">付款<span style="color: red;">*</span></label>
+                <div class="layui-input-block">
+                    <select     id="payment" name="payment" placeholder="请输入付款"  lay-filter="simpleSelect">
+                        <!--<option value=""></option>-->
+                        <option value="一次付清" selected="">一次付清</option>
+                    </select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input type="text" placeholder="请选择" value="阅读" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="" class="layui-select-tips">请选择</dd><dd lay-value="0" class="layui-this">写作</dd><dd lay-value="1" class="">阅读</dd><dd lay-value="2" class="">游戏</dd><dd lay-value="3" class="">音乐</dd><dd lay-value="4" class="">旅行</dd></dl></div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-xs3 layui-col-sm3 layui-col-md3" >
+            <div class="layui-form-item">
+                <label class="layui-form-label">付佣<span style="color: red;">*</span></label>
+                <div class="layui-input-block">
+                    <select  id="payCommission" name="payCommission" placeholder="请输入付佣"  lay-filter="simpleSelect">
+                        <!--<option value=""></option>-->
+                        <option value="商议" selected="">商议</option>
+                    </select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input type="text" placeholder="请选择" value="阅读" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="" class="layui-select-tips">请选择</dd><dd lay-value="0" class="layui-this">写作</dd><dd lay-value="1" class="">阅读</dd><dd lay-value="2" class="">游戏</dd><dd lay-value="3" class="">音乐</dd><dd lay-value="4" class="">旅行</dd></dl></div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-xs3 layui-col-sm3 layui-col-md3" >
+            <div class="layui-form-item">
+                <label class="layui-form-label">管理费<span style="color: red;">*</span></label>
+                <div class="layui-input-block">
+                    <input id="manageExpense" name="manageExpense" placeholder="请输入管理费" type="text" class="layui-input" lay-verify="required" required/>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">员工<span style="color: red;">*</span></label>
-        <div class="layui-input-block">
-            <input id="staff" name="staff" placeholder="请输入员工" type="text" class="layui-input" lay-verify="required" required/>
-            <input id="staffId" name="staffId" type="hidden"/>
+    <div class="layui-row">
+        <div class="layui-col-xs3 layui-col-sm3 layui-col-md3" >
+            <div class="layui-form-item">
+                <label class="layui-form-label">看房<span style="color: red;">*</span></label>
+                <div class="layui-input-block">
+                    <select  id="houseInspection" name="houseInspection" placeholder="请输入看房"   lay-filter="houseInspection">
+                        <!--<option value=""></option>-->
+                        <option value="预约" selected="">预约</option>
+                        <option value="有匙" >有匙</option>
+                        <option value="无匙" >无匙</option>
+                        <option value="直接" >直接</option>
+                    </select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input type="text" placeholder="请选择" value="阅读" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="" class="layui-select-tips">请选择</dd><dd lay-value="0" class="layui-this">写作</dd><dd lay-value="1" class="">阅读</dd><dd lay-value="2" class="">游戏</dd><dd lay-value="3" class="">音乐</dd><dd lay-value="4" class="">旅行</dd></dl></div>
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">业主姓名<span style="color: red;">*</span></label>
-        <div class="layui-input-block">
-            <input id="ownerName" name="ownerName" placeholder="请输入业主姓名" type="text" class="layui-input" lay-verify="required" required/>
+        <div class="layui-col-xs3 layui-col-sm3 layui-col-md3" >
+            <div class="layui-form-item">
+                <label class="layui-form-label">钥匙号<span style="color: red;">*</span></label>
+                <div class="layui-input-block ">
+                    <input id="keyNumber" disabled="disabled" name="keyNumber" placeholder="请输入钥匙号" type="text" style="background-color: #d6d4d4" class="layui-input layui-disabled" />
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">业主手机号<span style="color: red;">*</span></label>
-        <div class="layui-input-block">
-            <input id="ownerPhone" name="ownerPhone" placeholder="请输入业主手机号" type="text" class="layui-input" lay-verify="required" required/>
+        <div class="layui-col-xs3 layui-col-sm3 layui-col-md3" >
+            <div class="layui-form-item">
+                <label class="layui-form-label">委托方式<span style="color: red;">*</span></label>
+                <div class="layui-input-block">
+                    <select  id="entrust" name="entrust" placeholder="请输入委托方式" lay-filter="simpleSelect">
+                        <!--<option value=""></option>-->
+                        <option value="各付"  selected="">独家</option>
+                        <option value="多加">多加</option>
+                        <option value="未委托">未委托</option>
+                    </select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input type="text" placeholder="请选择" value="阅读" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="" class="layui-select-tips">请选择</dd><dd lay-value="0" class="layui-this">写作</dd><dd lay-value="1" class="">阅读</dd><dd lay-value="2" class="">游戏</dd><dd lay-value="3" class="">音乐</dd><dd lay-value="4" class="">旅行</dd></dl></div>
+                </div>
+            </div>
         </div>
-    </div>
-    <!--<div class="layui-form-item">-->
-    <!--<label class="layui-form-label">联系人内容<span style="color: red;">*</span></label>-->
-    <!--<div class="layui-input-block">-->
-    <!--<input id="contactsContent" name="contactsContent" placeholder="请输入联系人内容" type="text" class="layui-input" lay-verify="required" required/>-->
-    <!--</div>-->
-    <!--</div>-->
-    <div class="layui-form-item">
-        <label class="layui-form-label">联系人内容<span style="color: red;">*</span></label>
-        <div class="layui-input-block">
-            <textarea   id="contactsContent" name="contactsContent" placeholder="请输入联系人内容"   class="layui-textarea"></textarea>
+        <div class="layui-col-xs3 layui-col-sm3 layui-col-md3" >
+            <div class="layui-form-item">
+                <label class="layui-form-label">委托时间<span style="color: red;">*</span></label>
+                <div class="layui-input-block">
+                    <input id="createTime" name="createTime" placeholder="请输入创建时间" type="text" class="layui-input" lay-verify="required" required/>
+                </div>
+            </div>
         </div>
-        <!--<div class="layui-form-mid layui-word-aux" style="margin-left: 110px;">客户、邀评人默认被分享</div>-->
+
     </div>
 
-    <div class="layui-form-item">
-        <label class="layui-form-label">管理费<span style="color: red;">*</span></label>
-        <div class="layui-input-block">
-            <input id="manageExpense" name="manageExpense" placeholder="请输入管理费" type="text" class="layui-input" lay-verify="required" required/>
+    <hr  style="
+    margin-left: 110px;
+    margin-bottom: 25px;
+">
+
+    <div class="layui-row">
+        <div class="layui-col-xs3 layui-col-sm3 layui-col-md3" >
+            <div class="layui-form-item">
+                <label class="layui-form-label">业主姓名<span style="color: red;">*</span></label>
+                <div class="layui-input-block">
+                    <input id="ownerName" name="ownerName" placeholder="请输入姓名" type="text" class="layui-input" lay-verify="required" required/>
+                </div>
+            </div>
         </div>
-    </div>
-    <!--<div class="layui-form-item">-->
-    <!--<label class="layui-form-label">备注<span style="color: red;">*</span></label>-->
-    <!--<div class="layui-input-block">-->
-    <!--<input id="remark" name="remark" placeholder="请输入备注" type="text" class="layui-input" lay-verify="required" required/>-->
-    <!--</div>-->
-    <!--</div>-->
-    <div class="layui-form-item">
-        <label class="layui-form-label">备注<span style="color: red;">*</span></label>
-        <div class="layui-input-block">
-            <textarea  id="remark" name="remark" placeholder="请输入备注"  class="layui-textarea"></textarea>
+        <div class="layui-col-xs3 layui-col-sm3 layui-col-md3" >
+            <div class="layui-form-item">
+                <label class="layui-form-label">业主手机号<span style="color: red;">*</span></label>
+                <div class="layui-input-block">
+                    <input id="ownerPhone" name="ownerPhone" placeholder="请输入手机号" type="text" class="layui-input" lay-verify="required" required/>
+                </div>
+            </div>
         </div>
-        <!--<div class="layui-form-mid layui-word-aux" style="margin-left: 110px;">客户、邀评人默认被分享</div>-->
-    </div>
-    <!--<div class="layui-form-item">-->
-    <!--<label class="layui-form-label">国籍<span style="color: red;">*</span></label>-->
-    <!--<div class="layui-input-block">-->
-    <!--<input id="nationality" name="nationality" placeholder="请输入国籍" type="text" class="layui-input" lay-verify="required" required/>-->
-    <!--</div>-->
-    <!--</div>-->
-    <div class="layui-form-item">
-        <label class="layui-form-label">国籍<span style="color: red;">*</span></label>
-        <div class="layui-input-block">
-            <select id="nationality" name="nationality" placeholder="请输入国籍" lay-filter="simpleSelect">
-                <!--<option value=""></option>-->
-                <option value="中国"  selected="">中国</option>
-                <option value="外籍">外籍</option>
-            </select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input type="text" placeholder="请选择" value="阅读" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="" class="layui-select-tips">请选择</dd><dd lay-value="0" class="layui-this">写作</dd><dd lay-value="1" class="">阅读</dd><dd lay-value="2" class="">游戏</dd><dd lay-value="3" class="">音乐</dd><dd lay-value="4" class="">旅行</dd></dl></div>
+        <div class="layui-col-xs3 layui-col-sm3 layui-col-md3" >
+
+            <div class="layui-input-block">
+                <select id="infoOne"   name="infoOne" placeholder="请输入委托方式" lay-filter="infoAll">
+                    <option value="电话">电话</option>
+                    <option value="电视">电视</option>
+                    <option value="空调">空调</option>
+                    <option value="电风扇">电风扇</option>
+                    <option value="洗衣机">洗衣机</option>
+                    <option value="热水器">热水器</option>
+                    <option value="煤气炉">煤气炉</option>
+                    <option value="抽油烟机">抽油烟机</option>
+                    <option value="冰箱">冰箱</option>
+                </select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input type="text" placeholder="请选择" value="阅读" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="" class="layui-select-tips">请选择</dd><dd lay-value="0" class="layui-this">写作</dd><dd lay-value="1" class="">阅读</dd><dd lay-value="2" class="">游戏</dd><dd lay-value="3" class="">音乐</dd><dd lay-value="4" class="">旅行</dd></dl></div>
+            </div>
         </div>
-    </div>
-    <!--<div class="layui-form-item">-->
-    <!--<label class="layui-form-label">属主用户id<span style="color: red;">*</span></label>-->
-    <!--<div class="layui-input-block">-->
-    <!--<input id="belongToId" name="belongToId" placeholder="请输入属主用户id" type="text" class="layui-input" lay-verify="required" required/>-->
-    <!--</div>-->
-    <!--</div>-->
-    <div class="layui-form-item">
-        <label class="layui-form-label">创建时间<span style="color: red;">*</span></label>
-        <div class="layui-input-block">
-            <input id="createTime" name="createTime" placeholder="请输入创建时间" type="text" class="layui-input" lay-verify="required" required/>
+        <div class="layui-col-xs3 layui-col-sm3 layui-col-md3" >
+            <div class="layui-input-block">
+                <select  id="infoTwo" name="infoTwo" placeholder="请输入委托方式" lay-filter="infoAll">
+                    <option value="床">床</option>
+                    <option value="衣柜">衣柜</option>
+                    <option value="地柜">地柜</option>
+                    <option value="沙发">沙发</option>
+                    <option value="茶几">茶几</option>
+                    <option value="书桌">书桌</option>
+                    <option value="宽带">宽带</option>
+                    <option value="电梯">电梯</option>
+                    <option value="停车位">停车位</option>
+                </select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input type="text" placeholder="请选择" value="阅读" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="" class="layui-select-tips">请选择</dd><dd lay-value="0" class="layui-this">写作</dd><dd lay-value="1" class="">阅读</dd><dd lay-value="2" class="">游戏</dd><dd lay-value="3" class="">音乐</dd><dd lay-value="4" class="">旅行</dd></dl></div>
+            </div>
         </div>
+
+
+
     </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">修改时间<span style="color: red;">*</span></label>
-        <div class="layui-input-block">
-            <input id="updateTime" name="updateTime" placeholder="请输入修改时间" type="text" class="layui-input" lay-verify="required" required/>
+    <div class="layui-row">
+        <div class="layui-col-xs6 layui-col-sm6 layui-col-md6" >
+            <div class="layui-form-item">
+                <label class="layui-form-label">联系人内容<span style="color: red;">*</span></label>
+                <div class="layui-input-block">
+                    <textarea   id="contactsContent" name="contactsContent" placeholder="请输入联系人内容"   class="layui-textarea"></textarea>
+                </div>
+                <!--<div class="layui-form-mid layui-word-aux" style="margin-left: 110px;">客户、邀评人默认被分享</div>-->
+            </div>
+        </div>
+
+        <div class="layui-col-xs6 layui-col-sm6 layui-col-md6" >
+            <div class="layui-form-item">
+                <label class="layui-form-label">备注<span style="color: red;">*</span></label>
+                <div class="layui-input-block">
+                    <textarea  id="remark" name="remark" placeholder="请输入备注"  class="layui-textarea"></textarea>
+                </div>
+                <!--<div class="layui-form-mid layui-word-aux" style="margin-left: 110px;">客户、邀评人默认被分享</div>-->
+            </div>
+        </div>
+
+    </div>
+    <div class="layui-row">
+        <div class="layui-col-xs6 layui-col-sm6 layui-col-md6" >
+            <div class="layui-form-item">
+                <label class="layui-form-label">国籍<span style="color: red;">*</span></label>
+                <div class="layui-input-block">
+                    <select id="nationality" name="nationality" placeholder="请输入国籍" lay-filter="simpleSelect">
+                        <!--<option value=""></option>-->
+                        <option value="中国"  selected="">中国</option>
+                        <option value="外籍">外籍</option>
+                    </select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input type="text" placeholder="请选择" value="阅读" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="" class="layui-select-tips">请选择</dd><dd lay-value="0" class="layui-this">写作</dd><dd lay-value="1" class="">阅读</dd><dd lay-value="2" class="">游戏</dd><dd lay-value="3" class="">音乐</dd><dd lay-value="4" class="">旅行</dd></dl></div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-xs6 layui-col-sm6 layui-col-md6" >
+            <div class="layui-form-item">
+                <label class="layui-form-label">员工<span style="color: red;">*</span></label>
+                <div class="layui-input-block">
+                    <input id="staff" name="staff" placeholder="请输入员工" type="text" class="layui-input" lay-verify="required" required/>
+                    <input id="staffId" name="staffId" type="hidden"/>
+                </div>
+            </div>
         </div>
     </div>
     <div class="layui-form-item text-right">
         <button class="layui-btn layui-btn-primary" type="button" ew-event="closeDialog">取消</button>
         <button class="layui-btn" lay-filter="btnSubmit" lay-submit>保存</button>
     </div>
+
+
+
+
+
+
+
+
 </form>
 @}

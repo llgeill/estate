@@ -7,6 +7,8 @@ var ins2;
 var globalData=null;
 
 
+
+
 layui.use(['table','form', 'admin', 'ax','laydate'], function () {
     var $ = layui.$;
     var table = layui.table;
@@ -15,8 +17,8 @@ layui.use(['table','form', 'admin', 'ax','laydate'], function () {
     var laydate = layui.laydate;
     var form =layui.form;
 
-    $("#headFold").click();
    // document.getElementById("headFold").click();
+
 
 
     /**
@@ -157,6 +159,7 @@ layui.use(['table','form', 'admin', 'ax','laydate'], function () {
         admin.putTempData('formOk', false);
         top.layui.admin.open({
             type: 2,
+            area: ['950px', '700px'],
             title: '修改房源信息',
             content: Feng.ctxPath + '/houseResource/edit?houseResourceId=' + data.houseResourceId,
             end: function () {
@@ -397,25 +400,25 @@ layui.use(['table','form', 'admin', 'ax','laydate'], function () {
             var content="";
             if(data!=null&&data.length>0){
                 for(var i=0;i<data.length;i++){
-                    var temp='<div><img src=http://localhost/'+data[i].viewPath+'/></div>\n';
+                    var temp='<img width="160px" height="140px" class="layui-upload-img" src=http://localhost/'+data[i].viewPath+' ">\n';
                     content+=temp;
                 }
                 $("#viewInfo").html(content);
+
             }else {
                 $("#viewInfo").html('');
             }
-            ins2.reload("test2");
+            var viewer = new Viewer(document.getElementById('viewInfo'));
+            viewer.update();
+            // $('#viewInfo').viewer();
+            // ins2.reload("test2");
         }, function (data) {
             Feng.error("删除失败!" + data.responseJSON.message + "!");
         });
         ajaxX.set("resourceId", data.houseResourceId);
         ajaxX.start();
-
         //标注选中样式
         obj.tr.addClass('layui-table-click').siblings().removeClass('layui-table-click');
-
-
-
     });
 
     // 添加跟进点击事件
@@ -477,41 +480,41 @@ layui.use(['element', 'layer'], function(){
 });
 
 
-layui.use('carousel', function() {
-    var carousel = layui.carousel;
-    var ins = carousel.render({
-        elem: '#test1',
-        width: '100%', //设置容器宽度
-        height: '100%',
-        arrow: 'always', //始终显示箭头
-        //,anim: 'updown' //切换动画方式
-        autoplay: false
-    });
-    //重置轮播
-    ins.reload({
-        elem: '#test1',
-        width: '100%', //设置容器宽度
-        height: '100%',
-        arrow: 'always', //始终显示箭头
-        //,anim: 'updown' //切换动画方式
-        autoplay: false
-    });
-
-    ins2 = carousel.render({
-        elem: '#test2',
-        width: '100%', //设置容器宽度
-        height: '100%',
-        arrow: 'always', //始终显示箭头
-        //,anim: 'updown' //切换动画方式
-        autoplay: false
-    });
-    ins2.reload({
-        elem: '#test2',
-        width: '100%', //设置容器宽度
-        height: '100%',
-        arrow: 'always', //始终显示箭头
-        //,anim: 'updown' //切换动画方式
-        autoplay: false
-    });
-
-});
+// layui.use('carousel', function() {
+//     var carousel = layui.carousel;
+//     var ins = carousel.render({
+//         elem: '#test1',
+//         width: '100%', //设置容器宽度
+//         height: '100%',
+//         arrow: 'always', //始终显示箭头
+//         //,anim: 'updown' //切换动画方式
+//         autoplay: false
+//     });
+//     //重置轮播
+//     ins.reload({
+//         elem: '#test1',
+//         width: '100%', //设置容器宽度
+//         height: '100%',
+//         arrow: 'always', //始终显示箭头
+//         //,anim: 'updown' //切换动画方式
+//         autoplay: false
+//     });
+//
+//     // ins2 = carousel.render({
+//     //     elem: '#test2',
+//     //     width: '100%', //设置容器宽度
+//     //     height: '100%',
+//     //     arrow: 'always', //始终显示箭头
+//     //     //,anim: 'updown' //切换动画方式
+//     //     autoplay: false
+//     // });
+//     // ins2.reload({
+//     //     elem: '#test2',
+//     //     width: '100%', //设置容器宽度
+//     //     height: '100%',
+//     //     arrow: 'always', //始终显示箭头
+//     //     //,anim: 'updown' //切换动画方式
+//     //     autoplay: false
+//     // });
+//
+// });
