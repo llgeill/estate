@@ -63,6 +63,7 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate'], function () {
                     }
                 }
             },
+            {field: 'state', sort: true, title: '状态'},
             {field: 'buildingBlockName', sort: true, title: '栋座'},
             {field: 'roomNumber', sort: true, title: '房号'},
             {field: 'floor', sort: true, title: '楼层'},
@@ -80,7 +81,7 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate'], function () {
             // {field: 'transaction',hide: true, sort: true, title: '交易'},
 
 
-            // {field: 'state', sort: true, title: '状态'},
+
 
             // {field: 'price', hide: true,sort: true, title: '售价'},
             // {field: 'rental',hide: true, sort: true, title: '租价'},
@@ -490,6 +491,7 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate'], function () {
             elem: id
             ,url: '/view/upload/'
             ,multiple: true
+            ,accept: 'jpg'
             ,before: function(obj){
                 if(globalData!=null){
                     this.data={'resourceId':globalData.houseResourceId};
