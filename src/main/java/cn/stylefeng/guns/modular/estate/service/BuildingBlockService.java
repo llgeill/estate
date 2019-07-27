@@ -4,9 +4,11 @@ import cn.stylefeng.guns.core.common.page.LayuiPageInfo;
 import cn.stylefeng.guns.modular.estate.entity.BuildingBlock;
 import cn.stylefeng.guns.modular.estate.model.params.BuildingBlockParam;
 import cn.stylefeng.guns.modular.estate.model.result.BuildingBlockResult;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -65,5 +67,7 @@ public interface BuildingBlockService extends IService<BuildingBlock> {
      * @Date 2019-07-11
      */
      LayuiPageInfo findPageBySpec(BuildingBlockParam param);
+
+    Page<Map<String, Object>> list(String temp);
 
 }

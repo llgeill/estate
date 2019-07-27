@@ -17,4 +17,10 @@
         building_block_id AS "buildingBlockId", building_id AS "buildingId", name AS "name", layer_total AS "layerTotal", area_total AS "areaTotal", elevator_total AS "elevatorTotal"
     </sql>
 
+    <select id="list" resultType="map">
+        select
+        <include refid="Base_Column_List"/>
+        from estate_building_block where 1 = 1
+    </select>
+
 </mapper>

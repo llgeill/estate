@@ -18,7 +18,8 @@ layui.use(['table', 'admin', 'ax'], function () {
         return [[
             {type: 'checkbox'},
             {field: 'buildingBlockId', hide: true, title: '主键id'},
-            {field: 'buildingId', sort: true, title: '城区名称'},
+            // {field: 'buildingId', sort: true, title: '城区名称'},
+            {field: 'buildingName', sort: true, title: '城区名称'},
             {field: 'name', sort: true, title: '名称'},
             {field: 'layerTotal', sort: true, title: '总层数'},
             {field: 'areaTotal', sort: true, title: '总面积'},

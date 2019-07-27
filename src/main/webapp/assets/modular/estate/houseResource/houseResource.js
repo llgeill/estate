@@ -67,15 +67,20 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate'], function () {
             {field: 'buildingBlockName', sort: true, title: '栋座'},
             {field: 'roomNumber', sort: true, title: '房号'},
             {field: 'floor', sort: true, title: '楼层'},
-            {field: 'roomTotal', sort: true, title: '房'},
-            {field: 'hallTotal', sort: true, title: '厅'},
-            {field: 'toiletTotal', sort: true, title: '卫'},
-            {field: 'balconyTotal' , sort: true, title: '阳台'},
+            // {field: 'roomTotal', sort: true, title: '房'},
+            {
+                field: 'roomTotal', sort: true, title: '房型', templet: function (d) {
+                    return d.roomTotal+"-"+d.hallTotal+"-"+d.toiletTotal+"-"+d.balconyTotal;
+                }
+            },
+            // {field: 'hallTotal', sort: true, title: '厅'},
+            // {field: 'toiletTotal', sort: true, title: '卫'},
+            // {field: 'balconyTotal' , sort: true, title: '阳台'},
             // {field: 'purpose',hide: true, sort: true, title: '用途'},
             // {field: 'houseResourceType',hide: true, sort: true, title: '房源类型'},
             {field: 'area', sort: true, title: '面积'},
             // {field: 'practicalArea',hide: true, sort: true, title: '实用面积'},
-            // {field: 'orientation', sort: true, title: '朝向'},
+            {field: 'orientation', sort: true, title: '朝向'},
             // {field: 'houseType', hide: true,sort: true, title: '房屋类型'},
             // {field: 'buildingTime',hide: true, sort: true, title: '建房年代'},
             // {field: 'transaction',hide: true, sort: true, title: '交易'},
@@ -112,7 +117,7 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate'], function () {
            // {field: 'belongToId', sort: true, title: '属主用户id'},
             {field: 'createTime', sort: true, title: '委托时间'},
             //{field: 'updateTime', hide: true,sort: true, title: '修改时间'},
-            {align: 'center', toolbar: '#tableBar', title: '操作'}
+            {align: 'center', toolbar: '#tableBar', title: '操作',fixed: 'right', width:150}
         ]];
     };
 
@@ -221,7 +226,6 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate'], function () {
                 page: true,
                 height: "full-158",
                 limit:90,
-                cellMinWidth: 50,
                 cols: HouseResource.initColumn(),
             });
         }else{
@@ -235,7 +239,6 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate'], function () {
                 page: true,
                 limit:90,
                 height: "full-158",
-                cellMinWidth: 50,
                  height: 472,
                 cols: HouseResource.initColumn(),
             });

@@ -52,6 +52,7 @@ layui.use(['table', 'admin', 'ax'], function () {
         top.layui.admin.open({
             type: 2,
             title: '添加城区',
+            area:['745px', '900px'],
             content: Feng.ctxPath + '/building/add',
             end: function () {
                 admin.getTempData('formOk') && table.reload(Building.tableId);
@@ -81,6 +82,7 @@ layui.use(['table', 'admin', 'ax'], function () {
         top.layui.admin.open({
             type: 2,
             title: '修改城区',
+            area:['745px', '900px'],
             content: Feng.ctxPath + '/building/edit?buildingId=' + data.buildingId,
             end: function () {
                 admin.getTempData('formOk') && table.reload(Building.tableId);
@@ -116,7 +118,7 @@ layui.use(['table', 'admin', 'ax'], function () {
         cellMinWidth: 100,
         cols: Building.initColumn(),
         toolbar:true,
-        defaultToolbar:['filter']
+        // defaultToolbar:['filter']
     });
 
     // 搜索按钮点击事件

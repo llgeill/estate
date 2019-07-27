@@ -61,6 +61,8 @@ layui.use(['form', 'admin', 'laydate', 'ax'], function () {
         elem: '#createTime',min: 0
     });
 
+    form.render();
+
     // 渲染时间选择框
     laydate.render({
         elem: '#updateTime',min: 0

@@ -6,6 +6,7 @@ import cn.stylefeng.guns.modular.estate.entity.Building;
 import cn.stylefeng.guns.modular.estate.model.params.BuildingParam;
 import cn.stylefeng.guns.modular.estate.model.result.BuildingResult;
 import cn.stylefeng.guns.modular.estate.service.BuildingService;
+import cn.stylefeng.guns.modular.system.warpper.BuildingBlockWrapper;
 import cn.stylefeng.guns.modular.system.warpper.DeptIdWrapper;
 import cn.stylefeng.roses.core.base.controller.BaseController;
 import cn.stylefeng.roses.core.reqres.response.ResponseData;
@@ -130,7 +131,7 @@ public class BuildingController extends BaseController {
     @RequestMapping("/list")
     public LayuiPageInfo list(BuildingParam buildingParam) {
         Page<Map<String, Object>> list = this.buildingService.list("");
-        Page<Map<String, Object>> wrap = new DeptIdWrapper(list).wrap();
+        Page<Map<String, Object>> wrap = new BuildingBlockWrapper(list).wrap();
         return LayuiPageFactory.createPageInfo(wrap);
         //return this.buildingService.findPageBySpec(buildingParam);
     }

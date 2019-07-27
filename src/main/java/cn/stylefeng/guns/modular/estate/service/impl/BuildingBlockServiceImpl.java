@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -81,6 +82,17 @@ public class BuildingBlockServiceImpl extends ServiceImpl<BuildingBlockMapper, B
         BuildingBlock entity = new BuildingBlock();
         ToolUtil.copyProperties(param, entity);
         return entity;
+    }
+
+    /**
+     * 获取所有城区信息列表
+     *
+     * @author fengshuonan
+     * @Date 2018/12/23 5:16 PM
+     */
+    public Page<Map<String, Object>> list(String temp) {
+        Page page = LayuiPageFactory.defaultPage();
+        return this.baseMapper.list(page);
     }
 
 }

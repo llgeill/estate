@@ -1,18 +1,26 @@
 package cn.stylefeng.guns.modular.estate.controller;
 
+import cn.stylefeng.guns.core.common.page.LayuiPageFactory;
 import cn.stylefeng.guns.core.common.page.LayuiPageInfo;
+import cn.stylefeng.guns.modular.estate.entity.Building;
 import cn.stylefeng.guns.modular.estate.entity.BuildingBlock;
 import cn.stylefeng.guns.modular.estate.model.params.BuildingBlockParam;
 import cn.stylefeng.guns.modular.estate.service.BuildingBlockService;
+import cn.stylefeng.guns.modular.estate.service.BuildingService;
+import cn.stylefeng.guns.modular.system.warpper.BuildingBlockWrapper;
+import cn.stylefeng.guns.modular.system.warpper.DeptIdWrapper;
 import cn.stylefeng.roses.core.base.controller.BaseController;
 import cn.stylefeng.roses.core.reqres.response.ResponseData;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -30,6 +38,8 @@ public class BuildingBlockController extends BaseController {
 
     @Autowired
     private BuildingBlockService buildingBlockService;
+    @Autowired
+    private BuildingService buildingService;
 
     /**
      * 跳转到主页面
@@ -49,7 +59,9 @@ public class BuildingBlockController extends BaseController {
      * @Date 2019-07-11
      */
     @RequestMapping("/add")
-    public String add() {
+    public String add(Model model) {
+        List<Building> buildings=this.buildingService.list();
+        model.addAttribute("buildings",buildings);
         return PREFIX + "/buildingBlock_add.html";
     }
 
@@ -60,7 +72,9 @@ public class BuildingBlockController extends BaseController {
      * @Date 2019-07-11
      */
     @RequestMapping("/edit")
-    public String edit() {
+    public String edit(Model model) {
+        List<Building> buildings=this.buildingService.list();
+        model.addAttribute("buildings",buildings);
         return PREFIX + "/buildingBlock_edit.html";
     }
 
@@ -125,7 +139,9 @@ public class BuildingBlockController extends BaseController {
     @ResponseBody
     @RequestMapping("/list")
     public LayuiPageInfo list(BuildingBlockParam buildingBlockParam) {
-        return this.buildingBlockService.findPageBySpec(buildingBlockParam);
+        Page<Map<String, Object>> list = this.buildingBlockService.list("");
+        Page<Map<String, Object>> wrap = new BuildingBlockWrapper(list).wrap();
+        return LayuiPageFactory.createPageInfo(wrap);
     }
 
     /**
