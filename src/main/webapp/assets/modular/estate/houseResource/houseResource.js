@@ -411,24 +411,28 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate'], function () {
         leftInfo+=
             '<div class="layui-card layui-tab-card" style="width: 95%;height: 362px">\n' +
             '<div class="layui-card-header" style="background-color: #f2f2f2;height:41px;">\n' +
-            '<p  style="font-size: 16px;font-weight: bold"> \n' +
-            '<span style="padding-right: 10px">'+data.buildingName+'</span> \n' +
-            '<span style="padding-right: 20px">'+data.roomTotal+'房'+data.hallTotal+'厅'+data.toiletTotal+'卫</span>\n';
+            '<p  style="font-size: 16px;font-weight: bold;overflow: hidden;\n' +
+            'text-overflow: ellipsis;\n' +
+            'white-space: nowrap;"> \n' +
+            '&nbsp'+data.buildingName+' \n' +
+            '&nbsp'+data.roomTotal+'房'+data.hallTotal+'厅'+data.toiletTotal+'卫\n';
         if(data.rental!=null&&data.rental!=""){
-            leftInfo+='<span style="padding-right: 20px">租'+data.rental+'/月</span>\n' ;
+            leftInfo+='&nbsp租'+data.rental+'月';
         }
         if(data.price!=null&&data.price!=""){
-            leftInfo+='<span style="padding-right: 20px">售'+data.price+'万</span>\n';
+            leftInfo+='&nbsp售'+data.price+'万';
         }
         leftInfo+='</p></div>';
         leftInfo+='<div class="layui-card-header layui-tab-card" style="margin-top:15px;height: 10%;border-style: none">\n' +
-            '                                            <p style="font-size: 15px;padding-bottom: 10px;">  <span style="padding-right: 10px">'+data.ownerName+'</span> <span>'+data.ownerPhone+'</span> </p>\n' +
+            '                                            <p style="font-size: 15px;padding-bottom: 10px;  overflow: hidden;\n' +
+            '    text-overflow: ellipsis;\n' +
+            '    white-space: nowrap;">&nbsp'+data.ownerName+'&nbsp'+data.ownerPhone+'</p>\n' +
             '                                        </div>\n' +
             '                                        <div class="layui-card-header layui-tab-card" style="margin-top:20px;height: 50%;border-style:none none ;">\n' +
-            '                                            <p style="font-size: 15px;padding-bottom: 10px;"> <span style="padding-right: 10px">'+data.remark+'</span>  </p>\n' +
+            '                                            <p style="font-size: 15px;padding-bottom: 10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">&nbsp'+data.remark+'</p>\n' +
             '                                        </div>\n' +
             '                                        <div class="layui-card-header " style="margin-top:20px;height: 10%">\n' +
-            '                                            <p style="padding-top: 7px;"> <span style="padding-right: 10px">'+data.deptName+' </span> <span>'+data.staff+'</span> <span>['+data.createTime+'委托]</span></p>\n' +
+            '                                            <p style="padding-top: 7px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">&nbsp'+data.deptName+' &nbsp'+data.staff+'&nbsp['+data.createTime+'委托]</p>\n' +
             '                                        </div>';
         return  leftInfo
     }
