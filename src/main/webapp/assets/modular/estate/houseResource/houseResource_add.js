@@ -78,6 +78,7 @@ layui.use(['table','form', 'admin', 'laydate', 'ax'], function () {
     laydate.render({
         elem: '#createTime',
         min: 0,
+        type: 'datetime',
         value: new Date()
     });
 

@@ -6,6 +6,7 @@ import org.apache.ibatis.type.Alias;
 @Data
 @Alias("houseResourceSearchDto")
 public class HouseResourceSearchDto {
+    private Long HouseResourceId;
     private String condition;
     private String buildingBlock;
     private String roomTotalCondition;

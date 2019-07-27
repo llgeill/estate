@@ -26,7 +26,9 @@ layui.use(['form', 'admin', 'laydate', 'ax'], function () {
     // 渲染时间选择框
     laydate.render({
         elem: '#createTime',
+        type: 'datetime',
         value: new Date()
+
     });
 
     // 渲染时间选择框
@@ -52,6 +54,32 @@ layui.use(['form', 'admin', 'laydate', 'ax'], function () {
         });
     });
 
+    function followInfo(houseResourceId) {
+        //跟进信息
+        var ajax = new $ax(Feng.ctxPath + "/followInfo/followInfoList", function (data) {
+            var content="";
+            if(data!=null&&data.length>0){
+                for(var i=0;i<data.length;i++){
+                    var temp='<li class="layui-timeline-item">\n' +
+                        '<i class="layui-icon layui-timeline-axis">&#xe63f;</i>\n' +
+                        ' <div class="layui-timeline-content layui-text">\n' +
+                        '<h3 class="layui-timeline-title">'+data[i].createTime+'&nbsp&nbsp'+data[i].staffName+'</h3>\n' +
+                        '<p>'+data[i].content+'</p>' +
+                        '</div>\n' +
+                        '</li>\n' ;
+                    content+=temp;
+                }
+                $("#followInfoDetail").html(content);
+            }else {
+                $("#followInfoDetail").html('');
+            }
+
+        }, function (data) {
+            Feng.error("删除失败!" + data.responseJSON.message + "!");
+        });
+        ajax.set("houseResourceId",houseResourceId);
+        ajax.start();
+    }
 
     //表单提交事件
     form.on('submit(btnSubmit)', function (data) {

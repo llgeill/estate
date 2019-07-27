@@ -1,4 +1,4 @@
-@layout("/common/_container.html",{js:["/assets/modular/estate/jqueryView/viewer.min.js","/assets/modular/estate/houseResource/houseResource.js"]}){
+@layout("/common/_container.html",{js:["/assets/modular/estate/jqueryView/mouseRight.min.js","/assets/modular/estate/jqueryView/viewer.min.js","/assets/modular/estate/houseResource/houseResource.js"]}){
 
 <div class="layui-body-header">
     <span class="layui-body-header-title">房源信息管理</span>
@@ -82,9 +82,7 @@
                                             <option value="出售">有效</option>
                                             <option value="出租">预定</option>
                                             <option value="租售">已售</option>
-                                            <option value="出租">我售</option>
                                             <option value="租售">已租</option>
-                                            <option value="出租">我租</option>
                                             <option value="租售">收租</option>
                                             <option value="租售">租购</option>
                                         </select>
@@ -118,11 +116,11 @@
                                 <div class="layui-form-item">
                                     <button id="btnSearch" class="layui-btn icon-btn"><i class="layui-icon">&#xe615;</i>搜索
                                     </button>
-                                    <button id="btnAdd" class="layui-btn icon-btn"><i class="layui-icon">&#xe654;</i>添加
+                                    <button id="btnAdd" class="layui-btn icon-btn" style="margin-left: 0px;"><i class="layui-icon">&#xe654;</i>添加
                                     </button>
-                                    <button id="btnExp" class="layui-btn icon-btn"><i class="layui-icon">&#xe67d;</i>导出
+                                    <button id="btnExp" class="layui-btn icon-btn" style="margin-left: 0px;"><i class="layui-icon">&#xe67d;</i>导出
                                     </button>
-                                    <button id="foldAll" class="layui-btn icon-btn"><i class="layui-icon"></i>展开
+                                    <button id="foldAll" class="layui-btn icon-btn" style="margin-left: 0px;"><i class="layui-icon"></i>展开
                                     </button>
                                 </div>
                             </div>
@@ -425,9 +423,9 @@
 
                     </form>
 
-                    <table class="layui-table" id="houseResourceTable" lay-filter="houseResourceTable">
+                    <table class="layui-table"  id="houseResourceTable" lay-filter="houseResourceTable">
                     </table>
-                    <div class="layui-row">
+                    <div class="layui-row" id="bottomInfo" >
                         <div class="layui-col-xs3 layui-col-sm3 layui-col-md3" >
 
                                 <div class="grid-demo grid-demo-bg1" id="leftInfo">
@@ -435,6 +433,16 @@
                                     <div class="layui-card layui-tab-card" style=" width: 95%;height: 362px">
                                         <div class="layui-card-header" style="background-color: #f2f2f2;height:41px;">
                                         </div>
+                                        <div class="layui-card layui-tab-card" style="margin-top:20px;height: 10%;border-style: none">
+
+                                        </div>
+                                        <div class="layui-card layui-tab-card" style="margin-top:20px;height: 50%;border-style:none none ;">
+
+                                        </div>
+                                        <div class="layui-card " style="margin-top:15px;height: 10%">
+
+                                        </div>
+
                                     </div>
                                 </div>
                         </div>
@@ -447,11 +455,7 @@
                                         <li><i class="layui-icon">&#xe66e;</i> 跟进情况</li>
                                         <li><i class="layui-icon">&#xe60d;</i> 房源图片</li>
                                         <button id="btnInfo" class="layui-btn layui-btn-primary"><i class="layui-icon">&#xe642;</i>添加跟进</button>
-                                        <button id="btnView" class="layui-btn layui-btn-primary"><i class="layui-icon">&#xe642;</i>添加图片</button>
                                         <button id="btnBuilding" class="layui-btn layui-btn-primary"><i class="layui-icon">&#xe615;</i>楼盘字典</button>
-
-
-
                                     </ul>
                                     <div class="layui-tab-content" style="height: 100%;">
                                         <div class="layui-tab-item layui-show" style="overflow: scroll; height: 300px; " id="houseResourceDetail">
@@ -472,7 +476,13 @@
                                                 <div class="layui-inline" style="width: 160px"  >
                                                     <i  id="addImage" class="layui-icon layui-icon-add-1" style="font-size:150px;line-height: 150px;color: #e6e6e6;"></i>
                                                 </div>
-                                                <img/>
+                                                <p>
+                                                    <img width="160" height="150" style="z-index: -1"/>
+                                                    <button>ss</button>
+                                                </p>
+
+
+
 
                                             </div>
                                         </div>
@@ -572,5 +582,6 @@
     <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="edit">修改</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delete">删除</a>
 </script>
+
 
 @}

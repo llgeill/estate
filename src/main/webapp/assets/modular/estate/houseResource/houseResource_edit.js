@@ -1,3 +1,5 @@
+//备注
+var remarkData="";
 /**
  * 详情对话框
  */
@@ -65,15 +67,24 @@ layui.use(['form', 'admin','laydate', 'ax'], function () {
     // 渲染时间选择框
     laydate.render({
         elem: '#createTime',
-        min: 0,
-        value: new Date()
+        type: 'datetime',
+        min: 0
     });
 
     // 渲染时间选择框
     laydate.render({
         elem: '#updateTime',min: 0
     });
-
+    //智能添加楼层
+    $("#roomNumber").on("input",function(e){
+        //获取input输入的值
+        var val=e.delegateTarget.value;
+        if(val!=null){
+            $("#floor").val(parseInt(val.substring(0,1)));
+        }else{
+            $("#floor").val();
+        }
+    });
     //获取楼盘列表
     function getbulidingBlockList(vals){
         //获取下拉框选值
@@ -117,27 +128,70 @@ layui.use(['form', 'admin','laydate', 'ax'], function () {
         ajax.start();
         form.render();
     }
-
     //选中交易后
-    form.on('select(transaction)', function(data){
-        console.log(data.value);
-        if(data.value!=null&&data.value=="出租"){
+    form.on('select(transaction)', function (data) {
+        transactionInfo(data.value);
+    });
+    //选中交易后的数据处理
+    function transactionInfo(data){
+        if(data!=null&&data=="出租"){
             $("#price").attr("disabled","disabled");
+            $("#price").addClass("layui-disabled");
+            $("#price").css({"background-color": "#d6d4d4"});
             $("#priceFloor").attr("disabled","disabled");
+            $("#priceFloor").addClass("layui-disabled");
+            $("#priceFloor").css({"background-color": "#d6d4d4"});
             $("#rental").removeAttr("disabled");
+            $("#rental").removeClass("layui-disabled");
+            $("#rental").removeAttr("style","");
             $("#rentalFloor").removeAttr("disabled");
-        }else if(data.value!=null&&data.value=="出售"){
+            $("#rentalFloor").removeClass("layui-disabled");
+            $("#rentalFloor").removeAttr("style","");
+        }else if(data!=null&&data=="出售"){
             $("#rental").attr("disabled","disabled");
+            $("#rental").addClass("layui-disabled");
+            $("#rental").css({"background-color": "#d6d4d4"});
             $("#rentalFloor").attr("disabled","disabled");
+            $("#rentalFloor").addClass("layui-disabled");
+            $("#rentalFloor").css({"background-color": "#d6d4d4"});
             $("#price").removeAttr("disabled");
+            $("#price").removeClass("layui-disabled");
+            $("#price").removeAttr("style","");
             $("#priceFloor").removeAttr("disabled");
-        }else if(data.value!=null&&data.value=="租售"){
+            $("#priceFloor").removeClass("layui-disabled");
+            $("#priceFloor").removeAttr("style","");
+        }else if(data!=null&&data=="租售"){
             $("#rental").removeAttr("disabled");
+            $("#rental").removeClass("layui-disabled");
+            $("#rental").removeAttr("style","");
             $("#rentalFloor").removeAttr("disabled");
+            $("#rentalFloor").removeClass("layui-disabled");
+            $("#rentalFloor").removeAttr("style","");
             $("#price").removeAttr("disabled");
+            $("#price").removeClass("layui-disabled");
+            $("#price").removeAttr("style","");
             $("#priceFloor").removeAttr("disabled");
+            $("#priceFloor").removeClass("layui-disabled");
+            $("#priceFloor").removeAttr("style","");
         }
         form.render();
+    }
+    //添加备注信息
+    form.on('select(infoAll)', function(data){
+         remarkData+=data.value+"  ";
+         $("#remark").val(remarkData);
+    });
+    //选中钥匙
+    form.on('select(houseInspection)', function(data){
+        if(data.value!=null&&data.value=='有匙'){
+            $('#keyNumber').removeAttr("disabled");
+            $("#keyNumber").removeClass("layui-disabled");
+            $("#keyNumber").removeAttr("style","");
+        }else{
+            $("#keyNumber").attr("disabled","disabled");
+            $("#keyNumber").addClass("layui-disabled");
+            $("#keyNumber").css({"background-color": "#d6d4d4"});
+        }
     });
 
     //渲染城区
@@ -164,6 +218,9 @@ layui.use(['form', 'admin','laydate', 'ax'], function () {
     var result = ajax.start();
     console.log(result.data);
     form.val('houseResourceForm', result.data);
+    remarkData= $("#remark").val();
+    transactionInfo(result.data.transaction);
+
 
 
     //表单提交事件

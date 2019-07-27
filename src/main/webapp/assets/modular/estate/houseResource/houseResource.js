@@ -5,8 +5,10 @@
 var ins2;
 //行數據
 var globalData=null;
-
+//记录是否收缩bottomInfo
+var flag=true;
 var viewer = new Viewer(document.getElementById('viewInfo'));
+
 
 
 layui.use(['table','form','upload', 'admin', 'ax','laydate'], function () {
@@ -18,8 +20,6 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate'], function () {
     var form =layui.form;
     var upload = layui.upload;
 
-   // document.getElementById("headFold").click();
-
 
 
     /**
@@ -28,6 +28,7 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate'], function () {
     var HouseResource = {
         tableId: "houseResourceTable"
     };
+
 
     /**
      * 跟进信息管理
@@ -51,6 +52,17 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate'], function () {
             {type: 'checkbox'},
             // {field: 'houseResourceId', hide: true, title: '主键id'},
             {field: 'buildingName', sort: true, title: '城区'},
+            {
+                field: 'transaction', sort: true, title: '交易', templet: function (d) {
+                    if (d.transaction == '出租') {
+                        return "<span style='color: red;font-weight: bold''>出租</span>";
+                    }else if(d.transaction == '出售'){
+                        return "<span style='color: green;font-weight: bold''>出售</span>";
+                    }else{
+                        return "<span style='color: deepskyblue;font-weight: bold'>"+d.transaction+"</span>"
+                    }
+                }
+            },
             {field: 'buildingBlockName', sort: true, title: '栋座'},
             {field: 'roomNumber', sort: true, title: '房号'},
             {field: 'floor', sort: true, title: '楼层'},
@@ -66,7 +78,10 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate'], function () {
             // {field: 'houseType', hide: true,sort: true, title: '房屋类型'},
             // {field: 'buildingTime',hide: true, sort: true, title: '建房年代'},
             // {field: 'transaction',hide: true, sort: true, title: '交易'},
-            // {field: 'state',hide: true, sort: true, title: '状态'},
+
+
+            // {field: 'state', sort: true, title: '状态'},
+
             // {field: 'price', hide: true,sort: true, title: '售价'},
             // {field: 'rental',hide: true, sort: true, title: '租价'},
             // {field: 'priceFloor', hide: true,sort: true, title: '出售底价'},
@@ -164,7 +179,9 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate'], function () {
             title: '修改房源信息',
             content: Feng.ctxPath + '/houseResource/edit?houseResourceId=' + data.houseResourceId,
             end: function () {
+                leftInfo();
                 admin.getTempData('formOk') && table.reload(HouseResource.tableId);
+
             }
         });
     };
@@ -190,17 +207,41 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate'], function () {
 
 
     // 渲染表格
-    var tableResult = table.render({
-        elem: '#' + HouseResource.tableId,
-        url: Feng.ctxPath + '/houseResource/list',
-        page: true,
-        height: "full-158",
-        cellMinWidth: 100,
-        height: 472,
-        cols: HouseResource.initColumn(),
-        // toolbar:true,
-        // defaultToolbar:['filter']
-    });
+    var tableResult = initTable(-1);
+
+
+    function initTable(height){
+        if(height==-1){
+            $('#bottomInfo').hide();
+            flag=true;
+            return table.render({
+                elem: '#' + HouseResource.tableId,
+                url: Feng.ctxPath + '/houseResource/list',
+                page: true,
+                height: "full-158",
+                limit:90,
+                cellMinWidth: 50,
+                cols: HouseResource.initColumn(),
+            });
+        }else{
+            if(!flag)return;
+            $('#bottomInfo').show();
+            flag=false;
+
+            return table.render({
+                elem: '#' + HouseResource.tableId,
+                url: Feng.ctxPath + '/houseResource/list',
+                page: true,
+                limit:90,
+                height: "full-158",
+                cellMinWidth: 50,
+                 height: 472,
+                cols: HouseResource.initColumn(),
+            });
+        }
+
+    }
+
 
     // 搜索按钮点击事件
     $('#btnSearch').click(function () {
@@ -247,13 +288,11 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate'], function () {
         getAllSearchValue();
         form.render();
     });
-
     //选中交易后
     form.on('radio()', function(data){
         getAllSearchValue();
         form.render();
     });
-
     function getAllSearchValue(date) {
         var queryData = {};
         queryData['condition'] = $("#condition").val();
@@ -277,41 +316,37 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate'], function () {
         table.reload(HouseResource.tableId, {where: queryData});
     }
 
-    function setAllSearchValueNull() {
-            $("#roomTotal").val("");
-            $("#transaction").val("");
-            $("#state").val("");
-            $("input[name='rental']:checked").val("");
-            $("input[name='price']:checked").val("");
-            $("input[name='area']:checked").val("");
-            $("#houseType").val("");
-            $("#orientation").val("");
-            $("#entrustBetweenTime").val("");
-            $("#purpose").val("");
-            $("#hallToilet").val("");
-            $("#hallToiletTotal").val("");
-            $("#houseResourceType").val("");
-    }
 
     //监听行单击事件（单击事件为：rowDouble）
     table.on('row(houseResourceTable)', function(obj){
+        tableResult = initTable(472);
         //詳細信息
         globalData=obj.data;
         console.log(globalData);
         var data = obj.data;
+        houseResourceInfo(data);
+        leftInfo(data);
+        followInfo(data.houseResourceId);
+        viewInfo(data.houseResourceId);
+
+        //标注选中样式
+        obj.tr.addClass('layui-table-click').siblings().removeClass('layui-table-click');
+    });
+    //填充详细信息
+    function houseResourceInfo(data) {
         //填充信息
         var houseResourceInfo=
             '<table  class="layui-table"  lay-skin="nob" >\n' +
-        '\n' +
-        '                                    <tbody>\n' +
-        '                                    <tr>\n' +
-        '                                        <td>'+data.roomTotal+'房</td>\n' +
-        '                                        <td>'+data.purpose+'</td>\n' +
-        '                                        <td>'+data.area+'m²</td>\n' +
-        '                                        <td>'+data.orientation+'</td>\n' +
-        '                                        <td>'+data.houseType+'</td>\n' +
-        '                                    </tr>\n' +
-        '                                    <tr>\n';
+            '\n' +
+            '                                    <tbody>\n' +
+            '                                    <tr>\n' +
+            '                                        <td>'+data.roomTotal+'房</td>\n' +
+            '                                        <td>'+data.purpose+'</td>\n' +
+            '                                        <td>'+data.area+'m²</td>\n' +
+            '                                        <td>'+data.orientation+'</td>\n' +
+            '                                        <td>'+data.houseType+'</td>\n' +
+            '                                    </tr>\n' +
+            '                                    <tr>\n';
 
         if(data.rental!=null&&data.rental!=""){
             houseResourceInfo+='<td>'+data.rental+'元/月</td>\n'
@@ -324,9 +359,9 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate'], function () {
             houseResourceInfo+='<td>'+"不出售"+'</td>\n'
         }
         houseResourceInfo+= '<td>'+data.buildingTime+'年</td>\n' +
-        '                                        <td>'+data.resource+'</td>\n' +
-        '                                        <td>'+data.statusQuo+'</td>\n' +
-        '                                    </tr>\n' +
+            '                                        <td>'+data.resource+'</td>\n' +
+            '                                        <td>'+data.statusQuo+'</td>\n' +
+            '                                    </tr>\n' +
             '                                    <tr>\n' +
             '                                        <td>'+data.matchState+'</td>\n' +
             '                                        <td>'+data.furnitureState+'</td>\n' +
@@ -338,26 +373,46 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate'], function () {
             '                                        <td>'+data.payment+'</td>\n' +
             '                                        <td>'+data.payCommission+'</td>\n' +
             '                                        <td>'+data.houseInspection+'</td>\n';
-            if(data.keyNumber!=null&&data.keyNumber!=""){
-                houseResourceInfo+= '<td>'+data.keyNumber+'</td>\n'
-            }else{
-                houseResourceInfo+= '<td>'+"无钥匙号"+'</td>\n'
+        if(data.keyNumber!=null&&data.keyNumber!=""){
+            houseResourceInfo+= '<td>'+data.keyNumber+'</td>\n'
+        }else{
+            houseResourceInfo+= '<td>'+"无钥匙号"+'</td>\n'
 
-            }
-            houseResourceInfo+='<td>'+data.entrust+'</td>\n' +
+        }
+        houseResourceInfo+='<td>'+data.entrust+'</td>\n' +
             '</tr>\n' +
-                '<tr><td>'+data.decorate+'</td></tr>'+
-        '</tbody>\n' +
-        '</table>\n'
+            '<tr><td>'+data.decorate+'</td></tr>'+
+            '</tbody>\n' +
+            '</table>\n'
         $("#houseResourceDetail").html(houseResourceInfo);
+    }
+    //填充左边信息
+    function leftInfo(data) {
+        //多媒体信息
+        if(data==null){
+            var ajaxX = new $ax(Feng.ctxPath + "/houseResource/detail" ,function (data) {
+                //添加左边信息
+                $("#leftInfo").html(leftInfoData(data.data));
+            }, function (data) {
+                Feng.error("删除失败!" + data.responseJSON.message + "!");
+            });
+            ajaxX.set("houseResourceId", globalData.houseResourceId);
+            ajaxX.start();
+        }else {
+            $("#leftInfo").html(leftInfoData(data));
+        }
 
-            //添加左边信息
-        var leftInfo='' +
-            '<div class="layui-card layui-tab-card" style=" width: 95%">\n' +
+
+    }
+
+    function leftInfoData(data) {
+        var leftInfo='';
+        leftInfo+=
+            '<div class="layui-card layui-tab-card" style="width: 95%;height: 362px">\n' +
             '<div class="layui-card-header" style="background-color: #f2f2f2;height:41px;">\n' +
-            '<p  style="font-size: 17px;"> \n' +
+            '<p  style="font-size: 16px;font-weight: bold"> \n' +
             '<span style="padding-right: 10px">'+data.buildingName+'</span> \n' +
-            '<span style="padding-right: 20px">'+data.roomTotal+'房'+data.hallTotal+'厅'+data.toiletTotal+'</span>\n';
+            '<span style="padding-right: 20px">'+data.roomTotal+'房'+data.hallTotal+'厅'+data.toiletTotal+'卫</span>\n';
         if(data.rental!=null&&data.rental!=""){
             leftInfo+='<span style="padding-right: 20px">租'+data.rental+'/月</span>\n' ;
         }
@@ -365,13 +420,19 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate'], function () {
             leftInfo+='<span style="padding-right: 20px">售'+data.price+'万</span>\n';
         }
         leftInfo+='</p></div>';
-        leftInfo+='<div class="layui-card-body">\n' +
-            '<p style="font-size: 15px;padding-bottom: 10px">  <span>'+data.ownerName+'</span> <span>'+data.ownerPhone+'</span> </p>\n' +
-            '<textarea style=""  name="" id="" cols="46" rows="14" placeholder="   自用投资皆可以（此处地方为备注信息）"></textarea>\n' +
-            '<p style="padding-top: 7px"> <span>'+data.deptName+' </span> <span>'+data.staff+'</span> <span>['+data.createTime+'委托]</span></p>\n' +
-            '</div>\n' +
-            '</div>';
-        $("#leftInfo").html(leftInfo);
+        leftInfo+='<div class="layui-card-header layui-tab-card" style="margin-top:15px;height: 10%;border-style: none">\n' +
+            '                                            <p style="font-size: 15px;padding-bottom: 10px;">  <span style="padding-right: 10px">'+data.ownerName+'</span> <span>'+data.ownerPhone+'</span> </p>\n' +
+            '                                        </div>\n' +
+            '                                        <div class="layui-card-header layui-tab-card" style="margin-top:20px;height: 50%;border-style:none none ;">\n' +
+            '                                            <p style="font-size: 15px;padding-bottom: 10px;"> <span style="padding-right: 10px">'+data.remark+'</span>  </p>\n' +
+            '                                        </div>\n' +
+            '                                        <div class="layui-card-header " style="margin-top:20px;height: 10%">\n' +
+            '                                            <p style="padding-top: 7px;"> <span style="padding-right: 10px">'+data.deptName+' </span> <span>'+data.staff+'</span> <span>['+data.createTime+'委托]</span></p>\n' +
+            '                                        </div>';
+        return  leftInfo
+    }
+    //填充跟进信息
+    function followInfo(houseResourceId) {
         //跟进信息
         var ajax = new $ax(Feng.ctxPath + "/followInfo/followInfoList", function (data) {
             var content="";
@@ -394,13 +455,10 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate'], function () {
         }, function (data) {
             Feng.error("删除失败!" + data.responseJSON.message + "!");
         });
-        ajax.set("houseResourceId", data.houseResourceId);
+        ajax.set("houseResourceId",houseResourceId);
         ajax.start();
-        viewInfo(data.houseResourceId);
-        //标注选中样式
-        obj.tr.addClass('layui-table-click').siblings().removeClass('layui-table-click');
-    });
-    //多媒体信息
+    }
+    //填充多媒体信息
     function viewInfo(houseResourceId) {
         //多媒体信息
         var ajaxX = new $ax(Feng.ctxPath + "/view/viewList", function (data) {
@@ -409,7 +467,7 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate'], function () {
                 "                                                </div>";
             if(data!=null&&data.length>0){
                 for(var i=0;i<data.length;i++){
-                    var temp='<img width="160px" height="140px" class="layui-upload-img" src=http://localhost/'+data[i].viewPath+' ">\n';
+                    var temp='<img width="160px" height="140px" id='+data[i].viewId+' class="layui-upload-img" src=http://localhost/'+data[i].viewPath+' ">\n';
                     content+=temp;
                 }
                 $("#viewInfo").html(content);
@@ -425,7 +483,7 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate'], function () {
         ajaxX.set("resourceId", houseResourceId);
         ajaxX.start();
     }
-
+    //填充图片
     function picupload(id) {
         //图片上传
         upload.render({
@@ -445,7 +503,6 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate'], function () {
         });
 
     }
-
     // 添加跟进点击事件
     $('#btnInfo').click(function () {
         FollowInfo.openAddDlg();
@@ -462,7 +519,7 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate'], function () {
             area: ['400px', '500px'],
             content: Feng.ctxPath + '/followInfo/add?houseResourceId='+globalData.houseResourceId,
             end: function () {
-                admin.getTempData('formOk') && table.reload(FollowInfo.tableId);
+                followInfo(globalData.houseResourceId);
             }
         });
     };
@@ -504,42 +561,3 @@ layui.use(['element', 'layer'], function(){
     });
 });
 
-
-// layui.use('carousel', function() {
-//     var carousel = layui.carousel;
-//     var ins = carousel.render({
-//         elem: '#test1',
-//         width: '100%', //设置容器宽度
-//         height: '100%',
-//         arrow: 'always', //始终显示箭头
-//         //,anim: 'updown' //切换动画方式
-//         autoplay: false
-//     });
-//     //重置轮播
-//     ins.reload({
-//         elem: '#test1',
-//         width: '100%', //设置容器宽度
-//         height: '100%',
-//         arrow: 'always', //始终显示箭头
-//         //,anim: 'updown' //切换动画方式
-//         autoplay: false
-//     });
-//
-//     // ins2 = carousel.render({
-//     //     elem: '#test2',
-//     //     width: '100%', //设置容器宽度
-//     //     height: '100%',
-//     //     arrow: 'always', //始终显示箭头
-//     //     //,anim: 'updown' //切换动画方式
-//     //     autoplay: false
-//     // });
-//     // ins2.reload({
-//     //     elem: '#test2',
-//     //     width: '100%', //设置容器宽度
-//     //     height: '100%',
-//     //     arrow: 'always', //始终显示箭头
-//     //     //,anim: 'updown' //切换动画方式
-//     //     autoplay: false
-//     // });
-//
-// });

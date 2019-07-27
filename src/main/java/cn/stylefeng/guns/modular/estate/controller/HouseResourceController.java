@@ -1,13 +1,22 @@
 package cn.stylefeng.guns.modular.estate.controller;
 
+import cn.hutool.core.bean.BeanUtil;
+import cn.stylefeng.guns.core.common.annotion.BussinessLog;
 import cn.stylefeng.guns.core.common.annotion.Permission;
+import cn.stylefeng.guns.core.common.constant.dictmap.HouseResourceDict;
+import cn.stylefeng.guns.core.common.constant.factory.ConstantFactory;
 import cn.stylefeng.guns.core.common.page.LayuiPageFactory;
 import cn.stylefeng.guns.core.common.page.LayuiPageInfo;
 import cn.stylefeng.guns.core.shiro.ShiroKit;
+import cn.stylefeng.guns.core.util.Contrast;
 import cn.stylefeng.guns.modular.estate.entity.HouseResource;
 import cn.stylefeng.guns.modular.estate.model.HouseResourceSearchDto;
+import cn.stylefeng.guns.modular.estate.model.params.FollowInfoParam;
 import cn.stylefeng.guns.modular.estate.model.params.HouseResourceParam;
+import cn.stylefeng.guns.modular.estate.service.FollowInfoService;
 import cn.stylefeng.guns.modular.estate.service.HouseResourceService;
+import cn.stylefeng.guns.modular.system.entity.User;
+import cn.stylefeng.guns.modular.system.service.UserService;
 import cn.stylefeng.guns.modular.system.warpper.HouseResourceWrapper;
 import cn.stylefeng.guns.modular.system.warpper.UserWrapper;
 import cn.stylefeng.roses.core.base.controller.BaseController;
@@ -39,6 +48,10 @@ public class HouseResourceController extends BaseController {
 
     @Autowired
     private HouseResourceService houseResourceService;
+    @Autowired
+    private FollowInfoService followInfoService;
+    @Autowired
+    private UserService userService;
 
     /**
      * 跳转到主页面
@@ -103,9 +116,36 @@ public class HouseResourceController extends BaseController {
      * @author 李利光
      * @Date 2019-07-11
      */
+
     @RequestMapping("/editItem")
     @ResponseBody
     public ResponseData editItem(HouseResourceParam houseResourceParam) {
+        HouseResource detail = this.houseResourceService.getById(houseResourceParam.getHouseResourceId());
+        Map map=BeanUtil.beanToMap(detail);
+        map.put("buildingBlockName", ConstantFactory.me().getBuildingBlockName((Long) map.get("buildingBlockId")));
+        map.put("buildingName", ConstantFactory.me().getBuildingName((Long) map.get("buildingId")));
+        map.put("deptName",ConstantFactory.me().getDeptNameByUserId((Long)map.get("staffId")));
+        map.put("buildingNameNumber", ConstantFactory.me().getBuildingBlockName((Long) map.get("buildingBlockId"))+" "+houseResourceParam.getRoomNumber());
+        map.remove("createTime");
+        String msg="房源信息变动：";
+        try {
+             msg+= Contrast.contrastObj(HouseResourceDict.class, "buildingNameNumber", houseResourceParam, map);
+             msg=msg.replaceAll("null=","");
+             if(!msg.equals(("房源信息变动："+ConstantFactory.me().getBuildingBlockName((Long) map.get("buildingBlockId"))+" "+houseResourceParam.getRoomNumber()) +"—>")){
+                 Long userId = ShiroKit.getUserNotNull().getId();
+                 User user = this.userService.getById(userId);
+                 FollowInfoParam followInfoParam=new FollowInfoParam();
+                 followInfoParam.setHouseResourceId(houseResourceParam.getHouseResourceId());
+                 followInfoParam.setContent(msg);
+                 followInfoParam.setDeptId(user.getDeptId());
+                 followInfoParam.setStaffName(user.getName());
+                 this.followInfoService.add(followInfoParam);
+             }
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        }
         this.houseResourceService.update(houseResourceParam);
         return ResponseData.success();
     }
@@ -133,7 +173,11 @@ public class HouseResourceController extends BaseController {
     @ResponseBody
     public ResponseData detail(HouseResourceParam houseResourceParam) {
         HouseResource detail = this.houseResourceService.getById(houseResourceParam.getHouseResourceId());
-        return ResponseData.success(detail);
+        Map map=BeanUtil.beanToMap(detail);
+        map.put("buildingBlockName", ConstantFactory.me().getBuildingBlockName((Long) map.get("buildingBlockId")));
+        map.put("buildingName", ConstantFactory.me().getBuildingName((Long) map.get("buildingId")));
+        map.put("deptName",ConstantFactory.me().getDeptNameByUserId((Long)map.get("staffId")));
+        return ResponseData.success(map);
     }
 
     /**

@@ -6,6 +6,8 @@ import java.util.Date;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
 
 /**
@@ -297,12 +299,14 @@ public class HouseResource implements Serializable {
      * 创建时间
      */
     @TableField(value = "create_time", fill = FieldFill.INSERT)
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date createTime;
 
     /**
      * 修改时间
      */
     @TableField(value = "update_time", fill = FieldFill.UPDATE)
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date updateTime;
 
 
