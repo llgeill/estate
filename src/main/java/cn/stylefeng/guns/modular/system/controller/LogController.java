@@ -95,7 +95,7 @@ public class LogController extends BaseController {
      * @Date 2018/12/23 5:34 PM
      */
     @RequestMapping("/detail/{id}")
-    @Permission(Const.ADMIN_NAME)
+    @Permission({Const.ADMIN_NAME,Const.BOSS_NAME})
     @ResponseBody
     public Object detail(@PathVariable Long id) {
         OperationLog operationLog = operationLogService.getById(id);
@@ -111,7 +111,7 @@ public class LogController extends BaseController {
      */
     @BussinessLog(value = "清空业务日志")
     @RequestMapping("/delLog")
-    @Permission(Const.ADMIN_NAME)
+    @Permission({Const.ADMIN_NAME,Const.BOSS_NAME})
     @ResponseBody
     public Object delLog() {
         SqlRunner.db().delete("delete from sys_operation_log");

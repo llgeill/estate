@@ -88,7 +88,7 @@ public class LoginLogController extends BaseController {
      */
     @BussinessLog("清空登录日志")
     @RequestMapping("/delLoginLog")
-    @Permission(Const.ADMIN_NAME)
+    @Permission({Const.ADMIN_NAME,Const.BOSS_NAME})
     @ResponseBody
     public Object delLog() {
         SqlRunner.db().delete("delete from sys_login_log");
