@@ -222,19 +222,19 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate'], function () {
     //     cols: HouseResource.initColumn(),
     // });
     // 渲染表格
-    var tableResult = initTable(-1);
+    var tableResult = initTable(-1,15);
 
 
-    function initTable(height){
+    function initTable(height,limit){
         if(height==-1){
             $('#bottomInfo').hide();
             flag=true;
             return table.render({
                 elem: '#' + HouseResource.tableId,
                 url: Feng.ctxPath + '/houseResource/list',
-                page: false,
+                page: true,
                 height: "full-158",
-                limit:90,
+                limit:limit,
                 cols: HouseResource.initColumn(),
             });
         }else{
@@ -245,8 +245,8 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate'], function () {
             return table.render({
                 elem: '#' + HouseResource.tableId,
                 url: Feng.ctxPath + '/houseResource/list',
-                page: false,
-                limit:90,
+                page: true,
+                limit:limit,
                 height: "full-158",
                 height: 472,
                 cols: HouseResource.initColumn(),
@@ -334,7 +334,7 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate'], function () {
 
     //监听行单击事件（单击事件为：rowDouble）
     table.on('row(houseResourceTable)', function(obj){
-        tableResult = initTable(472);
+        tableResult = initTable(472,10);
         //詳細信息
         globalData=obj.data;
         console.log(globalData);
@@ -426,8 +426,8 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate'], function () {
         var leftInfo='';
         leftInfo+=
             '<div class="layui-card  layui-tab-card" style="width: 95%;height: 362px">\n' +
-            '<div class="layui-card-header " style="background-color: #f2f2f2;height:41px;">\n' +
-            '<p   style="font-size: 15px;font-weight: bold;overflow: hidden;\n' +
+            '<div class="layui-card-header " style="background-color: #009688;height:41px;">\n' +
+            '<p   style="color:white;font-size: 15px;font-weight: bold;overflow: hidden;\n' +
             'text-overflow: ellipsis;\n' +
             'white-space: nowrap;"> \n' +
             '&nbsp'+data.buildingName+' \n' +
