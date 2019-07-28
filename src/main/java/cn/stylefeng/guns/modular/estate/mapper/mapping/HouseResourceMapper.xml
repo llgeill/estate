@@ -79,7 +79,7 @@
             and room_number = #{hrsDto.roomNumber}
         </if>
         <if test="hrsDto.buildingBlock != null and hrsDto.buildingBlock != ''">
-            and building_block_id = #{hrsDto.buildingBlock}
+             and building_block_id = #{hrsDto.buildingBlockId}
         </if>
         <if test="hrsDto.priceStart != null and hrsDto.priceStart != ''">
             and price &gt;= #{hrsDto.priceStart}
@@ -122,6 +122,9 @@
         </if>
         <if test="hrsDto.houseResourceType != null and hrsDto.houseResourceType != ''">
             and house_resource_type = #{hrsDto.houseResourceType}
+        </if>
+        <if test="hrsDto.staffId != null and hrsDto.staffId != ''">
+            and staff_id = #{hrsDto.staffId}
         </if>
     </select>
 

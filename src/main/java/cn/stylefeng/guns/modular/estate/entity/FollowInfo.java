@@ -5,6 +5,8 @@ import java.util.Date;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.io.Serializable;
 
 /**
@@ -30,6 +32,12 @@ public class FollowInfo implements Serializable {
      */
     @TableField("house_resource_id")
     private Long houseResourceId;
+
+    /**
+     * 员工id
+     */
+    @TableField("staff_id")
+    private Long staffId;
 
     /**
      * 员工姓名
@@ -116,6 +124,14 @@ public class FollowInfo implements Serializable {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public Long getStaffId() {
+        return staffId;
+    }
+
+    public void setStaffId(Long staffId) {
+        this.staffId = staffId;
     }
 
     @Override

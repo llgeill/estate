@@ -19,6 +19,8 @@ layui.use(['layer', 'form', 'table', 'ztree', 'laydate', 'admin', 'ax'], functio
         }
     };
 
+
+
     /**
      * 初始化表格的列
      */
@@ -35,8 +37,31 @@ layui.use(['layer', 'form', 'table', 'ztree', 'laydate', 'admin', 'ax'], functio
             {field: 'phone', sort: true, title: '电话'},
             {field: 'createTime', sort: true, title: '创建时间'},
             {field: 'status', sort: true, templet: '#statusTpl', title: '状态'},
-            {align: 'center', toolbar: '#tableBar', title: '操作', minWidth: 280}
+            {align: 'center', toolbar: '#tableBar', title: '操作', minWidth: 320}
         ]];
+    };
+
+    // table.on('row(userTable)', function(obj){
+    //     //詳細信息
+    //     MgrUser.openFollowInfo(obj.data.userId);
+    //     //标注选中样式
+    //     obj.tr.addClass('layui-table-click').siblings().removeClass('layui-table-click');
+    // });
+
+    /**
+     * 弹出用户跟進對話框
+     */
+    MgrUser.openFollowInfo = function (data) {
+        admin.putTempData('formOk', false);
+        top.layui.admin.open({
+            type: 2,
+            title: '用户跟进信息',
+            area: ['400px', '400px'],
+            content: Feng.ctxPath + '/mgr/followInfoUserList?userId='+data.userId,
+            end: function () {
+                admin.getTempData('formOk') && table.reload(MgrUser.tableId);
+            }
+        });
     };
 
     /**
@@ -72,6 +97,8 @@ layui.use(['layer', 'form', 'table', 'ztree', 'laydate', 'admin', 'ax'], functio
             }
         });
     };
+
+
 
     /**
      * 导出excel按钮
@@ -220,6 +247,7 @@ layui.use(['layer', 'form', 'table', 'ztree', 'laydate', 'admin', 'ax'], functio
         MgrUser.exportExcel();
     });
 
+
     // 工具条点击事件
     table.on('tool(' + MgrUser.tableId + ')', function (obj) {
         var data = obj.data;
@@ -233,6 +261,8 @@ layui.use(['layer', 'form', 'table', 'ztree', 'laydate', 'admin', 'ax'], functio
             MgrUser.roleAssign(data);
         } else if (layEvent === 'reset') {
             MgrUser.resetPassword(data);
+        } else if(layEvent === 'followInfo'){
+            MgrUser.openFollowInfo(data);
         }
     });
 

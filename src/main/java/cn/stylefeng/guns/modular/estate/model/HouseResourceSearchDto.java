@@ -9,6 +9,7 @@ public class HouseResourceSearchDto {
     private Long HouseResourceId;
     private String condition;
     private String buildingBlock;
+    private Long buildingBlockId;
     private String roomTotalCondition;
     private String roomNumber;
     private String roomTotal;
@@ -42,6 +43,8 @@ public class HouseResourceSearchDto {
     private String toiletTotal;
     private String houseResourceType;
     private Integer  entrustDateScope;
+
+    private Long staffId;
 
 
  

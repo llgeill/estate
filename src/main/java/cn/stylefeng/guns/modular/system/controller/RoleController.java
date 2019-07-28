@@ -159,7 +159,7 @@ public class RoleController extends BaseController {
      */
     @RequestMapping(value = "/edit")
     @BussinessLog(value = "修改角色", key = "name", dict = RoleDict.class)
-    @Permission(Const.ADMIN_NAME)
+    @Permission({Const.BOSS_NAME,Const.ADMIN_NAME})
     @ResponseBody
     public ResponseData edit(RoleDto roleDto) {
         this.roleService.editRole(roleDto);
@@ -215,7 +215,7 @@ public class RoleController extends BaseController {
      */
     @RequestMapping("/setAuthority")
     @BussinessLog(value = "配置权限", key = "roleId,ids", dict = RoleDict.class)
-    @Permission(Const.ADMIN_NAME)
+    @Permission({Const.BOSS_NAME,Const.ADMIN_NAME})
     @ResponseBody
     public ResponseData setAuthority(@RequestParam("roleId") Long roleId, @RequestParam("ids") String ids) {
         if (ToolUtil.isOneEmpty(roleId)) {

@@ -29,6 +29,13 @@ public class FollowInfoResult implements Serializable {
      */
     private Integer houseResourceId;
 
+
+    /**
+     *员工id
+     */
+    private Long staffId;
+
+
     /**
      * 员工姓名
      */

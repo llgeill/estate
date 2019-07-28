@@ -27,6 +27,8 @@ import cn.stylefeng.guns.core.common.exception.BizExceptionEnum;
 import cn.stylefeng.guns.core.common.page.LayuiPageFactory;
 import cn.stylefeng.guns.core.log.LogObjectHolder;
 import cn.stylefeng.guns.core.shiro.ShiroKit;
+import cn.stylefeng.guns.modular.estate.entity.FollowInfo;
+import cn.stylefeng.guns.modular.estate.service.FollowInfoService;
 import cn.stylefeng.guns.modular.system.entity.User;
 import cn.stylefeng.guns.modular.system.factory.UserFactory;
 import cn.stylefeng.guns.modular.system.model.UserDto;
@@ -38,6 +40,8 @@ import cn.stylefeng.roses.core.reqres.response.ResponseData;
 import cn.stylefeng.roses.core.util.ToolUtil;
 import cn.stylefeng.roses.kernel.model.exception.RequestEmptyException;
 import cn.stylefeng.roses.kernel.model.exception.ServiceException;
+import com.alibaba.fastjson.JSON;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -49,6 +53,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.validation.Valid;
 import java.io.File;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -69,6 +74,9 @@ public class UserMgrController extends BaseController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private FollowInfoService followInfoService;
 
     /**
      * 跳转到查看管理员列表的页面
@@ -300,7 +308,7 @@ public class UserMgrController extends BaseController {
      */
     @RequestMapping("/freeze")
     @BussinessLog(value = "冻结用户", key = "userId", dict = UserDict.class)
-    @Permission(Const.ADMIN_NAME)
+    @Permission({Const.BOSS_NAME,Const.ADMIN_NAME})
     @ResponseBody
     public ResponseData freeze(@RequestParam Long userId) {
         if (ToolUtil.isEmpty(userId)) {
@@ -323,7 +331,7 @@ public class UserMgrController extends BaseController {
      */
     @RequestMapping("/unfreeze")
     @BussinessLog(value = "解除冻结用户", key = "userId", dict = UserDict.class)
-    @Permission(Const.ADMIN_NAME)
+    @Permission({Const.BOSS_NAME,Const.ADMIN_NAME})
     @ResponseBody
     public ResponseData unfreeze(@RequestParam Long userId) {
         if (ToolUtil.isEmpty(userId)) {
@@ -342,7 +350,7 @@ public class UserMgrController extends BaseController {
      */
     @RequestMapping("/setRole")
     @BussinessLog(value = "分配角色", key = "userId,roleIds", dict = UserDict.class)
-    @Permission(Const.ADMIN_NAME)
+    @Permission({Const.BOSS_NAME,Const.ADMIN_NAME})
     @ResponseBody
     public ResponseData setRole(@RequestParam("userId") Long userId, @RequestParam("roleIds") String roleIds) {
         if (ToolUtil.isOneEmpty(userId, roleIds)) {
@@ -375,5 +383,24 @@ public class UserMgrController extends BaseController {
             throw new ServiceException(BizExceptionEnum.UPLOAD_ERROR);
         }
         return pictureName;
+    }
+
+    /**
+     * 查询相应用戶對應的跟进信息
+     *
+     * @author 李利光
+     * @Date 2019-07-11
+     */
+
+    @RequestMapping("/followInfoUserList")
+    public String followInfoUserList(Model model,Long  userId) {
+        QueryWrapper<FollowInfo> queryWrapper = new QueryWrapper<>();
+        queryWrapper
+                .eq("staff_id",userId).orderByDesc("create_time")
+        ;
+        List<Map<String,Object>> lists=this.followInfoService.listMaps(queryWrapper);
+
+        model.addAttribute("followInfos",lists);
+        return PREFIX + "user_info.html";
     }
 }

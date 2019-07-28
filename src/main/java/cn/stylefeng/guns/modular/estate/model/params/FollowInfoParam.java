@@ -30,6 +30,12 @@ public class FollowInfoParam implements Serializable, BaseValidatingParam {
      */
     private Long houseResourceId;
 
+
+    /**
+     *员工id
+     */
+    private Long staffId;
+
     /**
      * 员工姓名
      */

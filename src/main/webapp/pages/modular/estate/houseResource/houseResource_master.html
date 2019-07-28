@@ -1,4 +1,4 @@
-@layout("/common/_container.html",{js:["/assets/modular/estate/jqueryView/mouseRight.min.js","/assets/modular/estate/jqueryView/viewer.min.js","/assets/modular/estate/houseResource/houseResource.js"]}){
+@layout("/common/_container.html",{js:["/assets/modular/estate/jqueryView/viewer.min.js","/assets/modular/estate/houseResource/houseResource.js"]}){
 
 <div class="layui-body-header">
     <span class="layui-body-header-title">房源信息管理</span>
@@ -114,14 +114,14 @@
                             </div>
                             <div class="layui-col-sm3 layui-col-md3 layui-col-lg3">
                                 <div class="layui-form-item">
-                                    <button id="btnSearch" class="layui-btn icon-btn"><i class="layui-icon">&#xe615;</i>搜索
-                                    </button>
-                                    <button id="btnAdd" class="layui-btn icon-btn" style="margin-left: 0px;"><i class="layui-icon">&#xe654;</i>添加
-                                    </button>
-                                    <button id="btnExp" class="layui-btn icon-btn" style="margin-left: 0px;"><i class="layui-icon">&#xe67d;</i>导出
-                                    </button>
-                                    <button id="foldAll" class="layui-btn icon-btn" style="margin-left: 0px;"><i class="layui-icon"></i>展开
-                                    </button>
+                                    <span id="btnHouseSearch" class="layui-btn icon-btn"><i class="layui-icon">&#xe615;</i>搜索
+                                    </span>
+                                    <span id="btnAdd" class="layui-btn icon-btn" style="margin-left: 0px;"><i class="layui-icon">&#xe654;</i>添加
+                                    </span>
+                                    <span id="btnExp" class="layui-btn icon-btn" style="margin-left: 0px;"><i class="layui-icon">&#xe67d;</i>导出
+                                    </span>
+                                    <span id="foldAll" class="layui-btn icon-btn" style="margin-left: 0px;"><i class="layui-icon"></i>展开
+                                    </span>
                                 </div>
                             </div>
                         </div>
@@ -419,9 +419,10 @@
                             </div>
 
                         </div>
-
-
                     </form>
+                    <div class="layui-col-sm12 layui-col-md12 layui-col-lg12">
+
+                    </div>
 
                     <table class="layui-table"  id="houseResourceTable" lay-filter="houseResourceTable">
                     </table>
@@ -480,9 +481,6 @@
                                                     <img width="160" height="150" style="z-index: -1"/>
                                                     <button>ss</button>
                                                 </p>
-
-
-
 
                                             </div>
                                         </div>

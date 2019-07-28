@@ -66,7 +66,7 @@ public class LoginLogController extends BaseController {
      * @Date 2018/12/23 5:51 PM
      */
     @RequestMapping("/list")
-    @Permission(Const.ADMIN_NAME)
+    @Permission({Const.BOSS_NAME,Const.ADMIN_NAME})
     @ResponseBody
     public Object list(@RequestParam(required = false) String beginTime,
                        @RequestParam(required = false) String endTime,
@@ -74,11 +74,9 @@ public class LoginLogController extends BaseController {
 
         //获取分页参数
         Page page = LayuiPageFactory.defaultPage();
-
         //根据条件查询日志
         List<Map<String, Object>> result = loginLogService.getLoginLogs(page, beginTime, endTime, logName);
         page.setRecords(new LogWrapper(result).wrap());
-
         return LayuiPageFactory.createPageInfo(page);
     }
 

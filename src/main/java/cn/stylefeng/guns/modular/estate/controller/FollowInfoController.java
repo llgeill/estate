@@ -6,9 +6,11 @@ import cn.stylefeng.guns.core.common.page.LayuiPageFactory;
 import cn.stylefeng.guns.core.common.page.LayuiPageInfo;
 import cn.stylefeng.guns.core.shiro.ShiroKit;
 import cn.stylefeng.guns.modular.estate.entity.FollowInfo;
+import cn.stylefeng.guns.modular.estate.entity.HouseResource;
 import cn.stylefeng.guns.modular.estate.model.FollowInfoDto;
 import cn.stylefeng.guns.modular.estate.model.params.FollowInfoParam;
 import cn.stylefeng.guns.modular.estate.service.FollowInfoService;
+import cn.stylefeng.guns.modular.estate.service.HouseResourceService;
 import cn.stylefeng.guns.modular.system.entity.User;
 import cn.stylefeng.guns.modular.system.model.MenuDto;
 import cn.stylefeng.guns.modular.system.service.UserService;
@@ -46,6 +48,8 @@ public class FollowInfoController extends BaseController {
 
     @Autowired
     private FollowInfoService followInfoService;
+    @Autowired
+    private HouseResourceService houseResourceService;
 
     /**
      * 跳转到主页面
@@ -95,6 +99,14 @@ public class FollowInfoController extends BaseController {
     @RequestMapping("/addItem")
     @ResponseBody
     public ResponseData addItem(FollowInfoParam followInfoParam) {
+        Long userId = ShiroKit.getUserNotNull().getId();
+        User user = this.userService.getById(userId);
+        HouseResource detail=houseResourceService.getById(followInfoParam.getHouseResourceId());
+        Map map=BeanUtil.beanToMap(detail);
+        map.put("buildingNameNumber", ConstantFactory.me().getBuildingBlockName((Long) map.get("buildingBlockId"))+" "+detail.getRoomNumber());
+        String msg= (String) map.get("buildingNameNumber");
+        followInfoParam.setContent(msg+": "+followInfoParam.getContent());
+        followInfoParam.setStaffId(user.getUserId());
         this.followInfoService.add(followInfoParam);
         return ResponseData.success();
     }
@@ -176,7 +188,10 @@ public class FollowInfoController extends BaseController {
                 .eq("house_resource_id",followInfoParam.getHouseResourceId()).orderByDesc("create_time")
                 ;
         return this.followInfoService.list(queryWrapper);
+
     }
+
+
 }
 
 

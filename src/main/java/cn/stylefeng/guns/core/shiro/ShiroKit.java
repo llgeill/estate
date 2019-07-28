@@ -296,6 +296,20 @@ public class ShiroKit {
     }
 
     /**
+     * 判断当前用户是否是经理
+     */
+    public static boolean isBoss() {
+        List<Long> roleList = ShiroKit.getUser().getRoleList();
+        for (Long integer : roleList) {
+            String singleRoleTip = ConstantFactory.me().getSingleRoleTip(integer);
+            if (singleRoleTip.equals(Const.BOSS_NAME)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * 通过用户表的信息创建一个shiroUser对象
      */
     public static ShiroUser createShiroUser(User user) {

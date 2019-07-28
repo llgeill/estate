@@ -8,11 +8,15 @@ import cn.stylefeng.guns.core.common.constant.factory.ConstantFactory;
 import cn.stylefeng.guns.core.common.page.LayuiPageFactory;
 import cn.stylefeng.guns.core.common.page.LayuiPageInfo;
 import cn.stylefeng.guns.core.shiro.ShiroKit;
+import cn.stylefeng.guns.core.shiro.ShiroUser;
 import cn.stylefeng.guns.core.util.Contrast;
+import cn.stylefeng.guns.modular.estate.entity.BuildingBlock;
+import cn.stylefeng.guns.modular.estate.entity.FollowInfo;
 import cn.stylefeng.guns.modular.estate.entity.HouseResource;
 import cn.stylefeng.guns.modular.estate.model.HouseResourceSearchDto;
 import cn.stylefeng.guns.modular.estate.model.params.FollowInfoParam;
 import cn.stylefeng.guns.modular.estate.model.params.HouseResourceParam;
+import cn.stylefeng.guns.modular.estate.service.BuildingBlockService;
 import cn.stylefeng.guns.modular.estate.service.FollowInfoService;
 import cn.stylefeng.guns.modular.estate.service.HouseResourceService;
 import cn.stylefeng.guns.modular.system.entity.User;
@@ -23,6 +27,8 @@ import cn.stylefeng.roses.core.base.controller.BaseController;
 import cn.stylefeng.roses.core.datascope.DataScope;
 import cn.stylefeng.roses.core.reqres.response.ResponseData;
 import cn.stylefeng.roses.core.util.ToolUtil;
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,6 +37,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
 import java.util.Map;
 
 
@@ -52,6 +59,8 @@ public class HouseResourceController extends BaseController {
     private FollowInfoService followInfoService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private BuildingBlockService buildingBlockService;
 
     /**
      * 跳转到主页面
@@ -191,6 +200,7 @@ public class HouseResourceController extends BaseController {
     public LayuiPageInfo list( HouseResourceSearchDto houseResourceSearchDto) {
         //查询条件
         if (ToolUtil.isNotEmpty(houseResourceSearchDto.getCondition())) {
+            houseResourceSearchDto.setCondition(houseResourceSearchDto.getCondition().trim());
             String[] split = houseResourceSearchDto.getCondition().split("-");
             if(split.length>1){
                 houseResourceSearchDto.setBuildingBlock(split[0]);
@@ -199,6 +209,18 @@ public class HouseResourceController extends BaseController {
                 houseResourceSearchDto.setBuildingBlock(split[0]);
                 houseResourceSearchDto.setRoomNumber(split[0]);
             }
+        }
+        //查询对应的building_block_id
+        QueryWrapper<BuildingBlock> queryWrapper = new QueryWrapper<>();
+        queryWrapper
+                .eq("name",houseResourceSearchDto.getBuildingBlock());
+
+        List<BuildingBlock> buildingBlocks= buildingBlockService.list(queryWrapper);
+        if(buildingBlocks.size()>0){
+            houseResourceSearchDto.setBuildingBlockId(buildingBlocks.get(0).getBuildingBlockId());
+            houseResourceSearchDto.setRoomNumber(null);
+        }else{
+            houseResourceSearchDto.setBuildingBlock(null);
         }
         //房型
         if (ToolUtil.isNotEmpty(houseResourceSearchDto.getRoomTotal())) {
@@ -249,8 +271,16 @@ public class HouseResourceController extends BaseController {
                 houseResourceSearchDto.setEndTime(split[1]);
             }
         }
+        //加密属主问题
+        Long userId = ShiroKit.getUserNotNull().getId();
+        User user = this.userService.getById(userId);
+        houseResourceSearchDto.setStaffId(user.getUserId());
+        //如果权限过高则全部显示
+        if(ShiroKit.isBoss()){
+            houseResourceSearchDto.setStaffId(null);
+        }
+        //查询页面
         Page<Map<String, Object>> users = houseResourceService.selectHouseResources(houseResourceSearchDto);
-
         Page wrapped = new HouseResourceWrapper(users).wrap();
         return LayuiPageFactory.createPageInfo(wrapped);
 //        return LayuiPageFactory.createPageInfo(users);

@@ -34,6 +34,12 @@ public class FollowInfoDto implements Serializable {
     @TableField("house_resource_id")
     private Long houseResourceId;
 
+
+    /**
+     *员工id
+     */
+    private Long staffId;
+
     /**
      * 员工姓名
      */

@@ -9,7 +9,7 @@ var globalData=null;
 var flag=true;
 var viewer = new Viewer(document.getElementById('viewInfo'));
 
-
+var globalFlag=true;
 
 layui.use(['table','form','upload', 'admin', 'ax','laydate'], function () {
     var $ = layui.$;
@@ -114,7 +114,7 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate'], function () {
             // {field: 'manageExpense',hide: true, sort: true, title: '管理费'},
             // {field: 'remark',hide: true, sort: true, title: '备注'},
             // {field: 'nationality',hide: true, sort: true, title: '国籍'},
-           // {field: 'belongToId', sort: true, title: '属主用户id'},
+            // {field: 'belongToId', sort: true, title: '属主用户id'},
             {field: 'createTime', sort: true, title: '委托时间'},
             //{field: 'updateTime', hide: true,sort: true, title: '修改时间'},
             {align: 'center', toolbar: '#tableBar', title: '操作',fixed: 'right', width:150}
@@ -126,7 +126,7 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate'], function () {
         elem: '#entrustBetweenTime'
         ,range: true
         ,change: function(value, date, endDate){
-           getAllSearchValue(value);
+            getAllSearchValue(value);
         }
     });
 
@@ -135,10 +135,12 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate'], function () {
      * 点击查询按钮
      */
     HouseResource.search = function () {
+        // initTable(-1);
         var queryData = {};
         queryData['condition'] = $("#condition").val();
         console.log($("#condition").val());
-        table.reload(HouseResource.tableId, {where: queryData});
+         table.reload(HouseResource.tableId, {where: queryData});
+
     };
 
 
@@ -154,8 +156,7 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate'], function () {
             title: '添加房源信息',
             content: Feng.ctxPath + '/houseResource/add',
             end: function () {
-                // admin.getTempData('formOk') &&
-                table.reload(HouseResource.tableId);
+                admin.getTempData('formOk') && table.reload(HouseResource.tableId);
             }
         });
     };
@@ -211,7 +212,15 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate'], function () {
         Feng.confirm("是否删除?", operation);
     };
 
-
+    table.render({
+        elem: '#' + HouseResource.tableId,
+        url: Feng.ctxPath + '/houseResource/list',
+        page: true,
+        limit:90,
+        height: "full-158",
+        height: 472,
+        cols: HouseResource.initColumn(),
+    });
     // 渲染表格
     var tableResult = initTable(-1);
 
@@ -239,7 +248,7 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate'], function () {
                 page: true,
                 limit:90,
                 height: "full-158",
-                 height: 472,
+                height: 472,
                 cols: HouseResource.initColumn(),
             });
         }
@@ -248,8 +257,10 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate'], function () {
 
 
     // 搜索按钮点击事件
-    $('#btnSearch').click(function () {
+    $('#btnHouseSearch').click(function (event) {
+
         HouseResource.search();
+
     });
 
     // 添加按钮点击事件
@@ -569,4 +580,3 @@ layui.use(['element', 'layer'], function(){
         // layer.msg('切到到了'+ data.index + '：' + this.innerHTML);
     });
 });
-
