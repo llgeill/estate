@@ -125,14 +125,42 @@
                                 </div>
                             </div>
                         </div>
+                        <style>
+                            .layui-form-pane .layui-form-radio, .layui-form-pane .layui-form-switch {
+                                margin-top: 6px;
+                                 margin-left: 0px;
+                            }
+                            .layui-form-radio {
+                                line-height: 28px;
+                                 margin: 6px 0px 0 0;
+                                padding-right: 10px;
+                                cursor: pointer;
+                                font-size: 0;
+                            }
+                            .layui-form-radio>i {
+                                margin-right: 5px;
+                                font-size: 22px;
+                                color: #c2c2c2;
+                            }
+                            .layui-form-radio {
+                                line-height: 28px;
+                                margin: 6px 0px 0 0;
+                                padding-right: 2px;
+                                cursor: pointer;
+                                font-size: 0;
+                            }
+                            .lhh{
+                                margin-left: 10px;
+                            }
+                        </style>
                         <div id="showAndHideDiv" shval=0 hidden>
                             <div class="layui-col-sm12 layui-col-md12 layui-col-lg12">
                                 <div class="layui-col-sm6 layui-col-md6 layui-col-lg6">
                                     <div class="layui-form-item" pane="">
                                         <label class="layui-form-label">租价</label>
-                                        <div class="layui-input-block">
+                                        <div class="layui-input-block" style=" padding-left: 9px;">
                                             <input type="radio" name="rental" value="" title="全部" checked>
-                                            <div class="layui-unselect layui-form-radio layui-form-radioed"><i
+                                            <div class="layui-unselect layui-form-radio layui-form-radioed lhh" style="margin-left: 10px"><i
                                                     class="layui-anim layui-icon"></i>
                                                 <div>全部</div>
                                             </div>
@@ -162,10 +190,10 @@
                                 <div class="layui-col-sm6 layui-col-md6 layui-col-lg6">
                                     <div class="layui-form-item" pane="">
                                         <label class="layui-form-label">售价</label>
-                                        <div class="layui-input-block">
+                                        <div class="layui-input-block"  style=" padding-left: 9px;">
                                             <input type="radio" name="price" value="" title="全部" checked>
-                                            <div class="layui-unselect layui-form-radio layui-form-radioed"><i
-                                                    class="layui-anim layui-icon"></i>
+                                            <div class="layui-unselect layui-form-radio layui-form-radioed lhh" ><i
+                                                    class="layui-anim layui-icon" ></i>
                                                 <div>全部</div>
                                             </div>
                                             <input type="radio" name="price" value="0-50" title="50万以下">
@@ -197,29 +225,29 @@
                                 <div class="layui-col-sm6 layui-col-md6 layui-col-lg6">
                                     <div class="layui-form-item" pane="">
                                         <label class="layui-form-label">面积</label>
-                                        <div class="layui-input-block">
+                                        <div class="layui-input-block"  style=" padding-left: 9px;">
                                             <input type="radio" name="area" value="" title="全部" checked>
-                                            <div class="layui-unselect layui-form-radio layui-form-radioed"><i
+                                            <div class="layui-unselect layui-form-radio layui-form-radioed lhh" style="margin-left: 10px"><i
                                                     class="layui-anim layui-icon"></i>
                                                 <div>全部</div>
                                             </div>
                                             <input type="radio" name="area" value="0-50" title="50万以下">
-                                            <div class="layui-unselect layui-form-radio layui-form-radioed"><i
+                                            <div  class="layui-unselect layui-form-radio layui-form-radioed" ><i
                                                     class="layui-anim layui-icon"></i>
-                                                <div>50万以下</div>
+                                                <div>50平方以下</div>
                                             </div>
                                             <input type="radio" name="area" value="50-80" title="50-80平方">
-                                            <div class="layui-unselect layui-form-radio layui-form-radioed"><i
+                                            <div  class="layui-unselect layui-form-radio layui-form-radioed"><i
                                                     class="layui-anim layui-icon"></i>
                                                 <div>50-80平方</div>
                                             </div>
                                             <input type="radio" name="area" value="80-120" title="80-120平方">
-                                            <div class="layui-unselect layui-form-radio layui-form-radioed"><i
+                                            <div  class="layui-unselect layui-form-radio layui-form-radioed"><i
                                                     class="layui-anim layui-icon"></i>
                                                 <div>80-120平方</div>
                                             </div>
                                             <input type="radio" name="area" value="120-" title="120平方以上">
-                                            <div class="layui-unselect layui-form-radio layui-form-radioed"><i
+                                            <div  class="layui-unselect layui-form-radio layui-form-radioed"><i
                                                     class="layui-anim layui-icon"></i>
                                                 <div>120平方以上</div>
                                             </div>
