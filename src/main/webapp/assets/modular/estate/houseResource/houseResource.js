@@ -212,15 +212,15 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate'], function () {
         Feng.confirm("是否删除?", operation);
     };
 
-    table.render({
-        elem: '#' + HouseResource.tableId,
-        url: Feng.ctxPath + '/houseResource/list',
-        page: true,
-        limit:90,
-        height: "full-158",
-        height: 472,
-        cols: HouseResource.initColumn(),
-    });
+    // table.render({
+    //     elem: '#' + HouseResource.tableId,
+    //     url: Feng.ctxPath + '/houseResource/list',
+    //     page: true,
+    //     limit:90,
+    //     height: "full-158",
+    //     height: 472,
+    //     cols: HouseResource.initColumn(),
+    // });
     // 渲染表格
     var tableResult = initTable(-1);
 
@@ -232,7 +232,7 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate'], function () {
             return table.render({
                 elem: '#' + HouseResource.tableId,
                 url: Feng.ctxPath + '/houseResource/list',
-                page: true,
+                page: false,
                 height: "full-158",
                 limit:90,
                 cols: HouseResource.initColumn(),
@@ -245,7 +245,7 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate'], function () {
             return table.render({
                 elem: '#' + HouseResource.tableId,
                 url: Feng.ctxPath + '/houseResource/list',
-                page: true,
+                page: false,
                 limit:90,
                 height: "full-158",
                 height: 472,
@@ -421,17 +421,19 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate'], function () {
     }
 
     function leftInfoData(data) {
+    // #009688
+    //     f2f2f2
         var leftInfo='';
         leftInfo+=
-            '<div class="layui-card layui-tab-card" style="width: 95%;height: 362px">\n' +
-            '<div class="layui-card-header" style="background-color: #f2f2f2;height:41px;">\n' +
-            '<p  style="font-size: 16px;font-weight: bold;overflow: hidden;\n' +
+            '<div class="layui-card  layui-tab-card" style="width: 95%;height: 362px">\n' +
+            '<div class="layui-card-header " style="background-color: #f2f2f2;height:41px;">\n' +
+            '<p   style="font-size: 15px;font-weight: bold;overflow: hidden;\n' +
             'text-overflow: ellipsis;\n' +
             'white-space: nowrap;"> \n' +
             '&nbsp'+data.buildingName+' \n' +
             '&nbsp'+data.roomTotal+'房'+data.hallTotal+'厅'+data.toiletTotal+'卫\n';
         if(data.rental!=null&&data.rental!=""){
-            leftInfo+='&nbsp租'+data.rental+'月';
+            leftInfo+='&nbsp租'+data.rental+'元/月';
         }
         if(data.price!=null&&data.price!=""){
             leftInfo+='&nbsp售'+data.price+'万';

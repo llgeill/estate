@@ -167,10 +167,13 @@ layui.use(['table','form', 'admin', 'laydate', 'ax'], function () {
         //获取input输入的值
         var val=e.delegateTarget.value;
         if(val!=null){
+            console.log(val.length)
             if(val.length>=4){
+                console.log(val.substring(0,2));
                 $("#floor").val(parseInt(val.substring(0,2)));
+            }else{
+                $("#floor").val(parseInt(val.substring(0,1)));
             }
-            $("#floor").val(parseInt(val.substring(0,1)));
         }else{
             $("#floor").val();
         }
