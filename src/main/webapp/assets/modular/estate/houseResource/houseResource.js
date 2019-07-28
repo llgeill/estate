@@ -446,7 +446,7 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate'], function () {
             '                                            <p style="font-size: 15px;padding-bottom: 10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">&nbsp'+data.remark+'</p>\n' +
             '                                        </div>\n' +
             '                                        <div class="layui-card-header " style="margin-top:20px;height: 10%">\n' +
-            '                                            <p style="padding-top: 7px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">&nbsp'+data.deptName+' &nbsp'+data.staff+'&nbsp['+data.createTime+'委托]</p>\n' +
+            '                                            <p style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">&nbsp'+data.deptName+' &nbsp'+data.staff+'&nbsp['+data.createTime+'委托]</p>\n' +
             '                                        </div>';
         return  leftInfo
     }
@@ -460,7 +460,7 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate'], function () {
                     var temp='<li class="layui-timeline-item">\n' +
                         '<i class="layui-icon layui-timeline-axis">&#xe63f;</i>\n' +
                         ' <div class="layui-timeline-content layui-text">\n' +
-                        '<h3 class="layui-timeline-title">'+data[i].createTime+'&nbsp&nbsp'+data[i].staffName+'</h3>\n' +
+                        '<span style="font-size: 16px;font-weight: bolder" class="layui-timeline-title">'+data[i].createTime+'&nbsp&nbsp'+data[i].staffName+'</span>\n' +
                         '<p>'+data[i].content+'</p>' +
                         '</div>\n' +
                         '</li>\n' ;
@@ -561,8 +561,8 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate'], function () {
         top.layui.admin.open({
             type: 2,
             title: '修改城区',
-            area: ['745px', '900px'],
-            content: Feng.ctxPath + '/building/edit?buildingId=' + data.buildingId,
+            area: ['745px', '600px'],
+            content: Feng.ctxPath + '/building/info?buildingId=' + data.buildingId,
             end: function () {
                 admin.getTempData('formOk') && table.reload(Building.tableId);
             }

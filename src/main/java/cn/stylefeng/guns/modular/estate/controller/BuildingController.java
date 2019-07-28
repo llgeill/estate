@@ -69,6 +69,18 @@ public class BuildingController extends BaseController {
     }
 
     /**
+     * 编辑页面
+     *
+     * @author 李利光
+     * @Date 2019-07-11
+     */
+    @RequestMapping("/info")
+    public String info() {
+        return PREFIX + "/building_info.html";
+    }
+
+
+    /**
      * 新增接口
      *
      * @author 李利光
