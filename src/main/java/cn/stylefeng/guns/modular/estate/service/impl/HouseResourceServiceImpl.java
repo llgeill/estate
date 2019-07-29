@@ -9,12 +9,15 @@ import cn.stylefeng.guns.modular.estate.model.params.HouseResourceParam;
 import cn.stylefeng.guns.modular.estate.model.result.HouseResourceResult;
 import  cn.stylefeng.guns.modular.estate.service.HouseResourceService;
 import cn.stylefeng.roses.core.datascope.DataScope;
+import cn.stylefeng.roses.core.reqres.response.ResponseData;
 import cn.stylefeng.roses.core.util.ToolUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
 import java.util.List;
@@ -66,6 +69,20 @@ public class HouseResourceServiceImpl extends ServiceImpl<HouseResourceMapper, H
         QueryWrapper<HouseResource> objectQueryWrapper = new QueryWrapper<>();
         IPage page = this.page(pageContext, objectQueryWrapper);
         return LayuiPageFactory.createPageInfo(page);
+    }
+
+    @Transactional(isolation = Isolation.SERIALIZABLE)
+    public ResponseData addItemBeforeCheck(HouseResourceParam houseResourceParam){
+        QueryWrapper<HouseResource> queryWrapper = new QueryWrapper<>();
+        queryWrapper
+                .eq("building_block_id", houseResourceParam.getBuildingBlockId())
+                .eq("room_number", houseResourceParam.getRoomNumber());
+        List<HouseResource> buildingBlocks = this.list(queryWrapper);
+        if(buildingBlocks.size()>0){
+            return ResponseData.error("房源已经存在！");
+        }
+        this.add(houseResourceParam);
+        return ResponseData.success();
     }
 
     /**

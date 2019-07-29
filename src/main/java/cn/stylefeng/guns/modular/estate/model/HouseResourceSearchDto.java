@@ -39,12 +39,18 @@ public class HouseResourceSearchDto {
     private String endTime;
     private String purpose;
     private String hallToilet;
-    private String hallTotal;
-    private String toiletTotal;
+    private String hall;
+    private String toilet;
+    private Integer hallTotal;
+    private Integer hallToiletTotal;
+    private Integer toiletTotal;
     private String houseResourceType;
     private Integer  entrustDateScope;
 
     private Long staffId;
+    private String ownerPhone;
+    private Long belongId;
+    private String stateSlave;
 
 
  

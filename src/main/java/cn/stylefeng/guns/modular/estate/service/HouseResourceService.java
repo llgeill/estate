@@ -5,6 +5,7 @@ import cn.stylefeng.guns.modular.estate.entity.HouseResource;
 import cn.stylefeng.guns.modular.estate.model.HouseResourceSearchDto;
 import cn.stylefeng.guns.modular.estate.model.params.HouseResourceParam;
 import cn.stylefeng.guns.modular.estate.model.result.HouseResourceResult;
+import cn.stylefeng.roses.core.reqres.response.ResponseData;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -70,5 +71,7 @@ public interface HouseResourceService extends IService<HouseResource> {
      LayuiPageInfo findPageBySpec(HouseResourceParam param);
 
      Page<Map<String, Object>> selectHouseResources(HouseResourceSearchDto houseResourceSearchDto);
+
+     ResponseData addItemBeforeCheck(HouseResourceParam houseResourceParam);
 
 }

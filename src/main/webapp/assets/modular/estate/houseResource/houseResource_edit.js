@@ -235,10 +235,8 @@ layui.use(['form', 'admin','laydate', 'ax'], function () {
     form.on('submit(btnSubmit)', function (data) {
         var ajax = new $ax(Feng.ctxPath + "/houseResource/editItem", function (data) {
             Feng.success("更新成功！");
-
             //传给上个页面，刷新table用
             admin.putTempData('formOk', true);
-
             //关掉对话框
             admin.closeThisDialog();
         }, function (data) {

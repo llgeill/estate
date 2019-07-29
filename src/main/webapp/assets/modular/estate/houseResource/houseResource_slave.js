@@ -22,6 +22,7 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate'], function () {
 
 
 
+
     /**
      * 房源信息管理
      */
@@ -275,7 +276,7 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate'], function () {
             flag=true;
             return table.render({
                 elem: '#' + HouseResource.tableId,
-                url: Feng.ctxPath + '/houseResource/list',
+                url: Feng.ctxPath + '/houseResource/list?belongId='+$("#belongId").val(),
                 page: true,
                 height: "full-158",
                 limit:limit,
@@ -288,7 +289,7 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate'], function () {
 
             return table.render({
                 elem: '#' + HouseResource.tableId,
-                url: Feng.ctxPath + '/houseResource/list',
+                url: Feng.ctxPath + '/houseResource/list?belongId='+$("#belongId").val(),
                 page: true,
                 limit:limit,
                 height: "full-158",

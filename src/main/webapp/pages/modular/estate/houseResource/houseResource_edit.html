@@ -164,10 +164,12 @@
                 <div class="layui-input-block">
                     <select id="state" name="state" placeholder="请输入状态" lay-filter="simpleSelect">
                         <!--<option value=""></option>-->
-                        <option value="有效"  selected="">有效</option>
+                        <option value="有效">有效</option>
                         <option value="预定">预定</option>
-                        <option value="已售">已售</option>
+                        <option value="我租">我租</option>
+                        <option value="我售">我售</option>
                         <option value="已租">已租</option>
+                        <option value="已售">已售</option>
                         <option value="收租">收租</option>
                         <option value="租购">租购</option>
                     </select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input type="text" placeholder="请选择" value="阅读" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="" class="layui-select-tips">请选择</dd><dd lay-value="0" class="layui-this">写作</dd><dd lay-value="1" class="">阅读</dd><dd lay-value="2" class="">游戏</dd><dd lay-value="3" class="">音乐</dd><dd lay-value="4" class="">旅行</dd></dl></div>
@@ -470,7 +472,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">业主手机号<span style="color: red;">*</span></label>
                 <div class="layui-input-block">
-                    <input id="ownerPhone" name="ownerPhone" placeholder="请输入手机号" type="text" class="layui-input" lay-verify="required" required/>
+                    <input id="ownerPhone" name="ownerPhone" placeholder="请输入手机号" type="text" class="layui-input" lay-verify="phone" required/>
                 </div>
             </div>
         </div>

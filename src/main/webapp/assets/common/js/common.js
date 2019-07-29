@@ -10,13 +10,16 @@ Feng.success = function (info) {
 Feng.error = function (info) {
     top.layer.msg(info, {icon: 2});
 };
-Feng.confirm = function (tip, ensure) {
+Feng.confirm = function (tip, ensure,data,state) {
     top.layer.confirm(tip, {
         skin: 'layui-layer-admin'
     }, function () {
-        ensure();
+        ensure(data,state);
     });
 };
+
+
+
 Feng.currentDate = function () {
     // 获取当前日期
     var date = new Date();

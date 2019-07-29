@@ -75,8 +75,14 @@
         <if test="hrsDto.state != null and hrsDto.state != ''">
             and state like CONCAT('%',#{hrsDto.state},'%')
         </if>
+        <if test="hrsDto.stateSlave != null and hrsDto.stateSlave != ''">
+            and state in ("我租","我售")
+        </if>
         <if test="hrsDto.roomNumber != null and hrsDto.roomNumber != ''">
             and room_number = #{hrsDto.roomNumber}
+        </if>
+        <if test="hrsDto.ownerPhone != null and hrsDto.ownerPhone != ''">
+            and owner_phone = #{hrsDto.ownerPhone}
         </if>
         <if test="hrsDto.buildingBlock != null and hrsDto.buildingBlock != ''">
              and building_block_id = #{hrsDto.buildingBlockId}
