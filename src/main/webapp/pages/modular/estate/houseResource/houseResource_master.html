@@ -120,8 +120,10 @@
                                     </span>
                                     <span id="btnAdd" class="layui-btn icon-btn" style="margin-left: 0px;"><i class="layui-icon">&#xe654;</i>添加
                                     </span>
+                                    @if(shiro.hasPermission("/houseResource/updateState")){
                                     <span id="btnExp" class="layui-btn icon-btn" style="margin-left: 0px;"><i class="layui-icon">&#xe67d;</i>导出
                                     </span>
+                                    @}
                                     <span id="foldAll" class="layui-btn icon-btn" style="margin-left: 0px;"><i class="layui-icon"></i>展开
                                     </span>
                                 </div>

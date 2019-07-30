@@ -106,12 +106,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="layui-col-sm3 layui-col-md3 layui-col-lg3">
+                            <div class="layui-col-sm layui-col-md3 layui-col-lg3">
                                 <div class="layui-form-item">
                                     <label class="layui-form-label">智能搜索</label>
                                     <div class="layui-input-block">
                                         <input id="condition" class="layui-input" type="text"
-                                               placeholder="栋座名称/房号/栋座名称-房号"/>
+                                               placeholder="栋座名称/房号/栋座名称-房号/手机号"/>
                                     </div>
                                 </div>
                             </div>
@@ -119,12 +119,17 @@
                                 <div class="layui-form-item">
                                     <span id="btnHouseSearch" class="layui-btn icon-btn"><i class="layui-icon">&#xe615;</i>搜索
                                     </span>
-                                    <span id="btnAdd" class="layui-btn icon-btn" style="margin-left: 0px;"><i class="layui-icon">&#xe654;</i>添加
-                                    </span>
+                                    <!--<span id="btnAdd" class="layui-btn icon-btn" style="margin-left: 0px;"><i class="layui-icon">&#xe654;</i>添加-->
+                                    <!--</span>-->
+                                    @if(shiro.hasPermission("/houseResource/updateState")){
                                     <span id="btnExp" class="layui-btn icon-btn" style="margin-left: 0px;"><i class="layui-icon">&#xe67d;</i>导出
                                     </span>
+                                    @}
                                     <span id="foldAll" class="layui-btn icon-btn" style="margin-left: 0px;"><i class="layui-icon"></i>展开
                                     </span>
+                                    <span id="btnFollowInfo" class="layui-btn icon-btn" style="margin-left: 0px;"><i class="layui-icon">&#xe67d;</i>跟进
+                                    </span>
+                                    <span id="btnBack" class="layui-btn icon-btn layui-btn-warm" style="margin-left: 0px"><i class="layui-icon">ဆ</i>关闭</span>
                                 </div>
                             </div>
                         </div>

@@ -144,6 +144,28 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate'], function () {
 
     };
 
+    // 关闭页面
+    $('#btnBack').click(function () {
+        window.location.href = Feng.ctxPath + "/system/console2";
+    });
+
+    /**
+     * 弹出用户跟進對話框
+     */
+    HouseResource.openFollowInfo = function (userId) {
+        admin.putTempData('formOk', false);
+        top.layui.admin.open({
+            type: 2,
+            title: '用户跟进信息',
+            area: ['400px', '400px'],
+            content: Feng.ctxPath + '/mgr/followInfoUserList?userId='+userId,
+            end: function () {
+                admin.getTempData('formOk') && table.reload(MgrUser.tableId);
+            }
+        });
+    };
+
+
 
 
     /**
@@ -305,6 +327,13 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate'], function () {
     $('#btnHouseSearch').click(function (event) {
 
         HouseResource.search();
+
+    });
+
+    // 搜索按钮点击事件
+    $('#btnFollowInfo').click(function (event) {
+
+        HouseResource.openFollowInfo($("#belongId").val());
 
     });
 
