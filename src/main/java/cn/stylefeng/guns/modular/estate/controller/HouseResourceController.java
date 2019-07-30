@@ -135,6 +135,7 @@ public class HouseResourceController extends BaseController {
     public ResponseData addItem(HouseResourceParam houseResourceParam) {
         if(houseResourceParam.getHouseResourceType()==null||houseResourceParam.getHouseResourceType().equals(""))
             houseResourceParam.setHouseResourceType("推介房");
+        houseResourceParam.setUpdateTime(new Date());
         return houseResourceService.addItemBeforeCheck(houseResourceParam);
     }
 
@@ -256,8 +257,19 @@ public class HouseResourceController extends BaseController {
             houseResourceSearchDto.setOwnerPhone(null);
         } else {
             houseResourceSearchDto.setBuildingBlock(null);
-            if(houseResourceSearchDto.getOwnerPhone()!=null&&houseResourceSearchDto.getOwnerPhone().length()==11&&IsNumberUtil.isNumeric(houseResourceSearchDto.getOwnerPhone())){
+            boolean flag1=false;
+            boolean flag2=false;
+            boolean flag3=false;
+            flag1=houseResourceSearchDto.getOwnerPhone()!=null;
+            if(houseResourceSearchDto.getOwnerPhone()!=null){
+                flag2=houseResourceSearchDto.getOwnerPhone().length()==11;
+                flag3=IsNumberUtil.isNumeric(houseResourceSearchDto.getOwnerPhone());
+            }
+            if(flag1&&flag2&&flag3){
+
                 houseResourceSearchDto.setRoomNumber(null);
+            }else{
+                houseResourceSearchDto.setOwnerPhone(null);
             }
         }
         //房型

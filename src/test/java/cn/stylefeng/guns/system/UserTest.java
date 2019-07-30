@@ -1,6 +1,7 @@
 package cn.stylefeng.guns.system;
 
 import cn.stylefeng.guns.base.BaseJunit;
+import cn.stylefeng.guns.core.util.IsNumberUtil;
 import cn.stylefeng.guns.modular.system.mapper.UserMapper;
 import org.junit.Test;
 
@@ -44,8 +45,9 @@ public class UserTest extends BaseJunit {
 
     @Test
     public void ss(){
-        String one="12-";
-        String s[]=one.split("-");
+        String var ="13711919653";
+        boolean s1=var.length()==11;
+        boolean ss=IsNumberUtil.isNumeric(var);
     }
 
 }
