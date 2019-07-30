@@ -189,6 +189,7 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate'], function () {
      */
     HouseResource.exportExcel = function () {
         var checkRows = table.checkStatus(HouseResource.tableId);
+        console.log(checkRows);
         if (checkRows.data.length === 0) {
             Feng.error("请选择要导出的数据");
         } else {

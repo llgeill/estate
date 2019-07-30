@@ -285,7 +285,6 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate'], function () {
             if(!flag)return;
             $('#bottomInfo').show();
             flag=false;
-
             return table.render({
                 elem: '#' + HouseResource.tableId,
                 url: Feng.ctxPath + '/houseResource/list',
@@ -381,17 +380,22 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate'], function () {
 
 
     //监听行单击事件（单击事件为：rowDouble）
+    var initFlag=true;
     table.on('row(houseResourceTable)', function(obj){
-        tableResult = initTable(472,10);
+        console.log(obj);
+        if(initFlag){
+            tableResult = initTable(472,10);
+            initFlag=false;
+        }
+
         //詳細信息
         globalData=obj.data;
-        console.log(globalData);
         var data = obj.data;
         houseResourceInfo(data);
         leftInfo(data);
         followInfo(data.houseResourceId);
         viewInfo(data.houseResourceId);
-
+        $('#bottomInfo').show();
         //标注选中样式
         obj.tr.addClass('layui-table-click').siblings().removeClass('layui-table-click');
     });

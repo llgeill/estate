@@ -117,7 +117,7 @@ layui.use(['table', 'admin', 'ax'], function () {
         height: "full-158",
         cellMinWidth: 100,
         cols: Building.initColumn(),
-        toolbar:true,
+        // toolbar:true,
         // defaultToolbar:['filter']
     });
 
