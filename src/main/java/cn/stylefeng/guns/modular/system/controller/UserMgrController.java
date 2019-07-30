@@ -85,6 +85,7 @@ public class UserMgrController extends BaseController {
      * @Date 2018/12/24 22:43
      */
     @RequestMapping("")
+    @Permission({Const.BOSS_NAME,Const.ADMIN_NAME})
     public String index() {
         return PREFIX + "user.html";
     }
@@ -217,7 +218,7 @@ public class UserMgrController extends BaseController {
      */
     @RequestMapping("/add")
     @BussinessLog(value = "添加管理员", key = "account", dict = UserDict.class)
-    @Permission(Const.ADMIN_NAME)
+    @Permission({Const.ADMIN_NAME,Const.BOSS_NAME})
     @ResponseBody
     public ResponseData add(@Valid UserDto user, BindingResult result) {
         if (result.hasErrors()) {
@@ -286,7 +287,7 @@ public class UserMgrController extends BaseController {
      */
     @RequestMapping("/reset")
     @BussinessLog(value = "重置管理员密码", key = "userId", dict = UserDict.class)
-    @Permission(Const.ADMIN_NAME)
+    @Permission({Const.ADMIN_NAME,Const.BOSS_NAME})
     @ResponseBody
     public ResponseData reset(@RequestParam Long userId) {
         if (ToolUtil.isEmpty(userId)) {

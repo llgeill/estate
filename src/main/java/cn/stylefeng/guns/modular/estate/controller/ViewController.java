@@ -1,14 +1,20 @@
 package cn.stylefeng.guns.modular.estate.controller;
 
 import cn.stylefeng.guns.config.properties.GunsProperties;
+import cn.stylefeng.guns.core.common.constant.factory.ConstantFactory;
 import cn.stylefeng.guns.core.common.exception.BizExceptionEnum;
 import cn.stylefeng.guns.core.common.page.LayuiPageInfo;
+import cn.stylefeng.guns.core.shiro.ShiroKit;
 import cn.stylefeng.guns.modular.estate.entity.FollowInfo;
+import cn.stylefeng.guns.modular.estate.entity.HouseResource;
 import cn.stylefeng.guns.modular.estate.entity.View;
 import cn.stylefeng.guns.modular.estate.model.params.FollowInfoParam;
 import cn.stylefeng.guns.modular.estate.model.params.ViewParam;
+import cn.stylefeng.guns.modular.estate.service.FollowInfoService;
+import cn.stylefeng.guns.modular.estate.service.HouseResourceService;
 import cn.stylefeng.guns.modular.estate.service.ViewService;
 import cn.stylefeng.roses.core.base.controller.BaseController;
+import cn.stylefeng.roses.core.reqres.response.ErrorResponseData;
 import cn.stylefeng.roses.core.reqres.response.ResponseData;
 import cn.stylefeng.roses.core.util.ToolUtil;
 import cn.stylefeng.roses.kernel.model.exception.ServiceException;
@@ -46,6 +52,10 @@ public class    ViewController extends BaseController {
 
     @Autowired
     private ViewService viewService;
+    @Autowired
+    private FollowInfoService followInfoService;
+    @Autowired
+    private HouseResourceService houseResourceService;
 
     /**
      * 跳转到主页面
@@ -115,8 +125,26 @@ public class    ViewController extends BaseController {
     @RequestMapping("/delete")
     @ResponseBody
     public ResponseData delete(ViewParam viewParam) {
-        this.viewService.delete(viewParam);
-        return ResponseData.success();
+        View view=this.viewService.getById(viewParam.getViewId());
+        HouseResource houseResource=this.houseResourceService.getById(view.getResourceId());
+        FollowInfoParam followInfoParam = new FollowInfoParam();
+        if(view!=null){
+            followInfoParam.setHouseResourceId(view.getResourceId());
+            followInfoParam.setStaffId(ShiroKit.getUser().getId());
+            followInfoParam.setHouseResourceId(view.getResourceId());
+            followInfoParam.setDeptId(ShiroKit.getUser().getDeptId());
+            followInfoParam.setStaffName(ShiroKit.getUser().getName());
+            String buildingBlockName= ConstantFactory.me().getBuildingBlockName(houseResource.getBuildingBlockId());
+
+            followInfoParam.setContent(buildingBlockName+" "+houseResource.getRoomNumber()+"：删除图片成功！");
+        }
+        if(ShiroKit.isAdmin()||ShiroKit.isBoss()){
+            this.viewService.delete(viewParam);
+            this.followInfoService.add(followInfoParam);
+            return ResponseData.success();
+        }else{
+           return ResponseData.error("禁止删除图片，请联系店长！");
+        }
     }
 
     /**

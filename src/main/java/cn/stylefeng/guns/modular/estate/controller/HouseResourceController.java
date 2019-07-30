@@ -15,6 +15,7 @@ import cn.stylefeng.guns.core.util.IsNumberUtil;
 import cn.stylefeng.guns.modular.estate.entity.BuildingBlock;
 import cn.stylefeng.guns.modular.estate.entity.FollowInfo;
 import cn.stylefeng.guns.modular.estate.entity.HouseResource;
+import cn.stylefeng.guns.modular.estate.entity.RenderComparator;
 import cn.stylefeng.guns.modular.estate.model.HouseResourceSearchDto;
 import cn.stylefeng.guns.modular.estate.model.params.FollowInfoParam;
 import cn.stylefeng.guns.modular.estate.model.params.HouseResourceParam;
@@ -132,6 +133,8 @@ public class HouseResourceController extends BaseController {
     @RequestMapping("/addItem")
     @ResponseBody
     public ResponseData addItem(HouseResourceParam houseResourceParam) {
+        if(houseResourceParam.getHouseResourceType()==null||houseResourceParam.getHouseResourceType().equals(""))
+            houseResourceParam.setHouseResourceType("推介房");
         return houseResourceService.addItemBeforeCheck(houseResourceParam);
     }
 
@@ -216,6 +219,17 @@ public class HouseResourceController extends BaseController {
     @ResponseBody
     @RequestMapping("/list")
     public LayuiPageInfo list(HouseResourceSearchDto houseResourceSearchDto) {
+        //默认所有都是推介房
+        //高級用戶 查看所有房源  按条件查看房源
+        //普通用户 查看所有推介房源  不包含加密房源
+        if(houseResourceSearchDto.getHouseResourceType()==null||houseResourceSearchDto.getHouseResourceType().equals("")){
+            houseResourceSearchDto.setHouseResourceType("推介房");
+            //高权限用户分配所有房源(加密+推介)
+            if(ShiroKit.isAdmin()||ShiroKit.isBoss()){
+                houseResourceSearchDto.setHouseResourceType(null);
+            }
+        }
+
         //查询条件
         if (ToolUtil.isNotEmpty(houseResourceSearchDto.getCondition())) {
             houseResourceSearchDto.setCondition(houseResourceSearchDto.getCondition().trim());
@@ -311,16 +325,14 @@ public class HouseResourceController extends BaseController {
                 houseResourceSearchDto.setStateSlave("ttt");
             }
         }else{
-            Long userId = ShiroKit.getUserNotNull().getId();
-            User user = this.userService.getById(userId);
-            houseResourceSearchDto.setStaffId(user.getUserId());
-            //如果权限过高则全部显示
-            if (ShiroKit.isBoss()) {
-                houseResourceSearchDto.setStaffId(null);
-            }
+//            Long userId = ShiroKit.getUserNotNull().getId();
+//            User user = this.userService.getById(userId);
+//            houseResourceSearchDto.setStaffId(user.getUserId());
+//            //如果权限过高则全部显示
+//            if (ShiroKit.isBoss()) {
+//                houseResourceSearchDto.setStaffId(null);
+//            }
         }
-
-
 
         //查询页面
         Page<Map<String, Object>> users = houseResourceService.selectHouseResources(houseResourceSearchDto);
@@ -429,6 +441,12 @@ public class HouseResourceController extends BaseController {
             map.put("total",render+sell);
             mapList.add(map);
         }
+        Collections.sort(mapList,new Comparator<Map<Object,Object>>() {
+            @Override
+            public int compare(Map<Object, Object> o1, Map<Object, Object> o2) {
+                return (Integer)o2.get("total")-(Integer)o1.get("total");
+            }
+        });
         return mapList;
     }
 }
