@@ -55,6 +55,7 @@ public class LoginLogController extends BaseController {
      * @Date 2018/12/23 5:51 PM
      */
     @RequestMapping("")
+    @Permission({Const.BOSS_NAME,Const.ADMIN_NAME})
     public String index() {
         return PREFIX + "login_log.html";
     }

@@ -11,7 +11,7 @@ var viewer = new Viewer(document.getElementById('viewInfo'));
 
 var globalFlag=true;
 
-layui.use(['table','form','upload', 'admin', 'ax','laydate'], function () {
+layui.use(['table','form','upload', 'admin', 'ax','laydate','element'], function () {
     var $ = layui.$;
     var table = layui.table;
     var $ax = layui.ax;
@@ -19,6 +19,8 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate'], function () {
     var laydate = layui.laydate;
     var form =layui.form;
     var upload = layui.upload;
+    var element = layui.element;
+    var layer = layui.layer;
 
 
 
@@ -387,7 +389,6 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate'], function () {
             tableResult = initTable(472,10);
             initFlag=false;
         }
-
         //詳細信息
         globalData=obj.data;
         var data = obj.data;
@@ -624,15 +625,12 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate'], function () {
             }
         });
     };
-});
-
-
-layui.use(['element', 'layer'], function(){
-    var layer = layui.layer;
-    var element = layui.element;
 
     element.on('tab(testLUBOO)', function(data){
-
-        // layer.msg('切到到了'+ data.index + '：' + this.innerHTML);
+        if(data.index==0){
+            houseResourceInfo(globalData);
+        }else if(data.index==1){
+            followInfo(globalData.houseResourceId);
+        }
     });
 });

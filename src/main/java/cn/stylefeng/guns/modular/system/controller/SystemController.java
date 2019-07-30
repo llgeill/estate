@@ -19,6 +19,8 @@ import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.codec.Base64;
 import cn.hutool.core.collection.CollectionUtil;
 import cn.stylefeng.guns.config.properties.GunsProperties;
+import cn.stylefeng.guns.core.common.annotion.Permission;
+import cn.stylefeng.guns.core.common.constant.Const;
 import cn.stylefeng.guns.core.common.constant.DefaultAvatar;
 import cn.stylefeng.guns.core.common.constant.factory.ConstantFactory;
 import cn.stylefeng.guns.core.common.exception.BizExceptionEnum;
@@ -98,6 +100,7 @@ public class SystemController extends BaseController {
      * @Date 2018/12/24 22:43
      */
     @RequestMapping("/console2")
+    @Permission({Const.BOSS_NAME,Const.ADMIN_NAME})
     public String console2() {
         return "/modular/frame/console2.html";
     }

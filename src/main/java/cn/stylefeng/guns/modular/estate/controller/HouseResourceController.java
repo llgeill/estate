@@ -176,6 +176,8 @@ public class HouseResourceController extends BaseController {
         } catch (InstantiationException e) {
             e.printStackTrace();
         }
+        houseResourceParam.setStaffId(ShiroKit.getUser().getId());
+        houseResourceParam.setStaff(ShiroKit.getUser().getName());
         this.houseResourceService.update(houseResourceParam);
         return ResponseData.success();
     }
@@ -364,7 +366,7 @@ public class HouseResourceController extends BaseController {
         detail.setStaffId(ShiroKit.getUser().getId());
         //赋值新数据
         houseResourceParam.setStaff(ShiroKit.getUser().getName());
-        houseResourceParam.setStaff(ShiroKit.getUser().getName());
+        houseResourceParam.setStaffId(ShiroKit.getUser().getId());
         //修改字典
         Map map = BeanUtil.beanToMap(detail);
         map.remove("createTime");
