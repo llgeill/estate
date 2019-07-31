@@ -81,7 +81,6 @@ layui.use(['form', 'admin','laydate', 'ax'], function () {
 
         var val=e.delegateTarget.value;
         if(val!=null){
-            console.log(val.length)
             if(val.length>=4){
                 console.log(val.substring(0,2));
                 $("#floor").val(parseInt(val.substring(0,2)));
@@ -224,7 +223,7 @@ layui.use(['form', 'admin','laydate', 'ax'], function () {
     //获取详情信息，填充表单
     var ajax = new $ax(Feng.ctxPath + "/houseResource/detail?houseResourceId=" + Feng.getUrlParam("houseResourceId"));
     var result = ajax.start();
-    console.log(result.data);
+
     form.val('houseResourceForm', result.data);
     remarkData= $("#remark").val();
     transactionInfo(result.data.transaction);

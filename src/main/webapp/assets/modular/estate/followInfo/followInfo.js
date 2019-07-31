@@ -101,9 +101,11 @@ layui.use(['table', 'admin', 'ax'], function () {
     };
 
     // 渲染表格
+    console.log("staffId");
+    console.log($("#staffId").val());
     var tableResult = table.render({
         elem: '#' + FollowInfo.tableId,
-        url: Feng.ctxPath + '/followInfo/list',
+        url: Feng.ctxPath + '/followInfo/list?staffId='+$("#staffId").val(),
         page: true,
         height: "full-158",
         cellMinWidth: 100,

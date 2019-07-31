@@ -98,7 +98,6 @@ public class HouseResourceController extends BaseController {
     @RequestMapping("/slave")
     public String indexSlave(Model model, Long belongId) {
         model.addAttribute("belongId",belongId);
-
         return PREFIX + "/houseResource_slave.html";
     }
 

@@ -75,6 +75,6 @@ public interface FollowInfoService extends IService<FollowInfo> {
      * @author fengshuonan
      * @Date 2018/12/23 5:16 PM
      */
-     Page<Map<String, Object>> list(String temp);
+     Page<Map<String, Object>> list(FollowInfo followInfo);
 
 }

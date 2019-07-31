@@ -58,7 +58,8 @@ public class FollowInfoController extends BaseController {
      * @Date 2019-07-11
      */
     @RequestMapping("")
-    public String index() {
+    public String index(Model model,Long staffId) {
+        model.addAttribute("staffId",staffId);
         return PREFIX + "/followInfo.html";
     }
 
@@ -77,6 +78,23 @@ public class FollowInfoController extends BaseController {
         model.addAttribute("deptName", ConstantFactory.me().getDeptName(user.getDeptId()));
         model.addAttribute("houseResourceId",houseResourceId);
         return PREFIX + "/followInfo_add.html";
+    }
+
+    /**
+     * 新增页面
+     *
+     * @author 李利光
+     * @Date 2019-07-11
+     */
+    @RequestMapping("/forceAdd")
+    public String forceAdd(Model model,Long houseResourceId) {
+        Long userId = ShiroKit.getUserNotNull().getId();
+        User user = this.userService.getById(userId);
+        model.addAllAttributes(BeanUtil.beanToMap(user));
+        model.addAttribute("roleName", ConstantFactory.me().getRoleName(user.getRoleId()));
+        model.addAttribute("deptName", ConstantFactory.me().getDeptName(user.getDeptId()));
+        model.addAttribute("houseResourceId",houseResourceId);
+        return PREFIX + "/followInfo_force_add.html";
     }
 
     /**
@@ -164,11 +182,9 @@ public class FollowInfoController extends BaseController {
     @ResponseBody
     @RequestMapping("/list")
     public LayuiPageInfo list(FollowInfoParam followInfoParam) {
-        QueryWrapper<FollowInfo> queryWrapper = new QueryWrapper<>();
-        queryWrapper
-                .eq("house_resource_id",followInfoParam.getHouseResourceId());
-        this.followInfoService.list();
-         Page<Map<String, Object>> list = this.followInfoService.list("");
+        FollowInfo followInfo=new FollowInfo();
+        BeanUtil.copyProperties(followInfoParam,followInfo);
+        Page<Map<String, Object>> list = this.followInfoService.list(followInfo);
         Page<Map<String, Object>> wrap = new DeptIdWrapper(list).wrap();
         return LayuiPageFactory.createPageInfo(wrap);
         //return this.followInfoService.findPageBySpec(followInfoParam);

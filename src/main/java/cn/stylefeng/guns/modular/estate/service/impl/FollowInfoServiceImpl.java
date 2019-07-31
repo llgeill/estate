@@ -72,9 +72,9 @@ public class FollowInfoServiceImpl extends ServiceImpl<FollowInfoMapper, FollowI
      * @author fengshuonan
      * @Date 2018/12/23 5:16 PM
      */
-    public Page<Map<String, Object>> list(String temp) {
+    public Page<Map<String, Object>> list(FollowInfo followInfo) {
         Page page = LayuiPageFactory.defaultPage();
-        return this.baseMapper.list(page);
+        return this.baseMapper.list(page,followInfo);
     }
 
     private Serializable getKey(FollowInfoParam param){

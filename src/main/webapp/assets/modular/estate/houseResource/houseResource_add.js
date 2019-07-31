@@ -91,7 +91,7 @@ layui.use(['table','form', 'admin', 'laydate', 'ax'], function () {
     //获取当前用户数据并且初始化数据
     function getUserInfo(){
         var ajax = new $ax(Feng.ctxPath + "/system/user_info_data",function (data){
-            console.log(data);
+
             $("#staff").val(data.name);
             $("#staffId").val(data.userId);
         });
@@ -167,7 +167,6 @@ layui.use(['table','form', 'admin', 'laydate', 'ax'], function () {
         //获取input输入的值
         var val=e.delegateTarget.value;
         if(val!=null){
-            console.log(val.length)
             if(val.length>=4){
                 console.log(val.substring(0,2));
                 $("#floor").val(parseInt(val.substring(0,2)));
@@ -181,7 +180,6 @@ layui.use(['table','form', 'admin', 'laydate', 'ax'], function () {
 
     //选中交易后
     form.on('select(transaction)', function(data){
-        console.log(data.value);
         if(data.value!=null&&data.value=="出租"){
             $("#price").attr("disabled","disabled");
             $("#price").addClass("layui-disabled");

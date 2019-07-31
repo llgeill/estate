@@ -141,7 +141,7 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate','element'], function
         // initTable(-1);
         var queryData = {};
         queryData['condition'] = $("#condition").val();
-        console.log($("#condition").val());
+
          table.reload(HouseResource.tableId, {where: queryData});
 
     };
@@ -191,7 +191,7 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate','element'], function
      */
     HouseResource.exportExcel = function () {
         var checkRows = table.checkStatus(HouseResource.tableId);
-        console.log(checkRows);
+
         if (checkRows.data.length === 0) {
             Feng.error("请选择要导出的数据");
         } else {
@@ -248,7 +248,7 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate','element'], function
      * @param state
      */
     function renderAndSellState(data,state){
-        console.log(data);
+
         var ajaxX = new $ax(Feng.ctxPath + "/houseResource/updateState", function (data) {
             Feng.success("状态修改成功")
         }, function (data) {
@@ -416,7 +416,7 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate','element'], function
         tableResult = initTable(472,10);
         //詳細信息
         globalData=obj.data;
-        console.log(globalData);
+
         var data = obj.data;
         houseResourceInfo(data);
         leftInfo(data);
@@ -628,7 +628,7 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate','element'], function
     // 添加跟进点击事件
     $('#btnBuilding').click(function () {
         if(globalData==null)return;
-        console.log(globalData.buildingId);
+
         Building.openEditDlg(globalData);
     });
 

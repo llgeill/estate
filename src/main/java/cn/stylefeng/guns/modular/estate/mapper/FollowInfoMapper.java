@@ -20,5 +20,5 @@ public interface FollowInfoMapper extends BaseMapper<FollowInfo> {
     /**
      * 获取所有跟进信息列表
      */
-    Page<Map<String, Object>> list(@Param("page") Page page);
+    Page<Map<String, Object>> list(@Param("page") Page page,@Param("followInfo")FollowInfo followInfo);
 }
