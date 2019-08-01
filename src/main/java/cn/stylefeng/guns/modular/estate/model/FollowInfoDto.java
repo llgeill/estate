@@ -75,6 +75,15 @@ public class FollowInfoDto implements Serializable {
     @TableField(value = "update_time", fill = FieldFill.UPDATE)
     private Date updateTime;
 
+    //快速时间查询
+    private Integer quickTime;
+
+    //精确时间查询
+    private String entrustBetweenTime;
+
+    private String beginTime;
+    private String endTime;
+
 
 
 

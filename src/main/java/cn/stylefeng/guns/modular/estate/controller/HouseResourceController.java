@@ -303,6 +303,11 @@ public class HouseResourceController extends BaseController {
                 houseResourceSearchDto.setAreaEnd(Double.parseDouble(split[1]));
             }
         }
+        //尚未跟进
+        if (ToolUtil.isNotEmpty(houseResourceSearchDto.getQuickTime())) {
+            if(houseResourceSearchDto.getQuickTime()==0)houseResourceSearchDto.setQuickTime(null);
+            else houseResourceSearchDto.setQuickTime(houseResourceSearchDto.getQuickTime()-1);
+        }
         //查询厅卫数量
         if (ToolUtil.isNotEmpty(houseResourceSearchDto.getHallToilet())) {
             if (ToolUtil.isNotEmpty(houseResourceSearchDto.getHallToiletTotal())){
@@ -337,16 +342,7 @@ public class HouseResourceController extends BaseController {
             if(houseResourceSearchDto.getState()==null||houseResourceSearchDto.getState().equals("")){
                 houseResourceSearchDto.setStateSlave("ttt");
             }
-        }else{
-//            Long userId = ShiroKit.getUserNotNull().getId();
-//            User user = this.userService.getById(userId);
-//            houseResourceSearchDto.setStaffId(user.getUserId());
-//            //如果权限过高则全部显示
-//            if (ShiroKit.isBoss()) {
-//                houseResourceSearchDto.setStaffId(null);
-//            }
         }
-
         //查询页面
         Page<Map<String, Object>> users = houseResourceService.selectHouseResources(houseResourceSearchDto);
         Page wrapped = new HouseResourceWrapper(users).wrap();

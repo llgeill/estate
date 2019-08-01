@@ -1,8 +1,10 @@
-layui.use(['table', 'admin', 'ax'], function () {
+layui.use(['table', 'admin','laydate', 'ax','form'], function () {
     var $ = layui.$;
     var table = layui.table;
     var $ax = layui.ax;
     var admin = layui.admin;
+    var laydate=layui.laydate;
+    var form=layui.form;
 
     /**
      * 跟进信息管理
@@ -22,11 +24,36 @@ layui.use(['table', 'admin', 'ax'], function () {
             // {field: 'deptId', sort: true, title: '部门id'},
             {field: 'pName', sort: true, title: '部门'},
             {field: 'content', sort: true, title: '内容'},
-            {field: 'createTime', sort: true, title: '创建时间'},
-            {field: 'updateTime', sort: true, title: '更新时间'},
+            {field: 'createTime', sort: true, title: '跟进时间'},
+            // {field: 'updateTime', sort: true, title: '更新时间'},
             {align: 'center', toolbar: '#tableBar', title: '操作'}
         ]];
     };
+
+    //日期时间范围
+    laydate.render({
+         elem: '#entrustBetweenTime'
+        ,range: true
+        ,change: function(value, date, endDate){
+            var queryData = {};
+            queryData['staffId'] = $("#staffId").val();
+            queryData['entrustBetweenTime'] = value;
+            table.reload(FollowInfo.tableId, {where: queryData});
+        }
+    });
+
+    //下拉事件
+    form.on('select(quickTime)', function(data){
+
+        var queryData = {};
+        queryData['staffId'] = $("#staffId").val();
+        if(data.value!=""){
+            queryData['quickTime'] = data.value;
+        }
+        table.reload(FollowInfo.tableId, {where: queryData});
+        form.render();
+    });
+
 
     /**
      * 点击查询按钮
@@ -99,6 +126,11 @@ layui.use(['table', 'admin', 'ax'], function () {
         };
         Feng.confirm("是否删除?", operation);
     };
+
+    // 关闭页面
+    $('#btnBack').click(function () {
+        window.location.href = Feng.ctxPath + "/system/console2";
+    });
 
     // 渲染表格
     console.log("staffId");

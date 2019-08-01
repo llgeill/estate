@@ -18,6 +18,7 @@ import cn.stylefeng.guns.modular.system.warpper.DeptIdWrapper;
 import cn.stylefeng.guns.modular.system.warpper.DeptWrapper;
 import cn.stylefeng.roses.core.base.controller.BaseController;
 import cn.stylefeng.roses.core.reqres.response.ResponseData;
+import cn.stylefeng.roses.core.util.ToolUtil;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -117,14 +118,15 @@ public class FollowInfoController extends BaseController {
     @RequestMapping("/addItem")
     @ResponseBody
     public ResponseData addItem(FollowInfoParam followInfoParam) {
-        Long userId = ShiroKit.getUserNotNull().getId();
-        User user = this.userService.getById(userId);
+
         HouseResource detail=houseResourceService.getById(followInfoParam.getHouseResourceId());
         Map map=BeanUtil.beanToMap(detail);
         map.put("buildingNameNumber", ConstantFactory.me().getBuildingBlockName((Long) map.get("buildingBlockId"))+" "+detail.getRoomNumber());
         String msg= (String) map.get("buildingNameNumber");
+        if(ToolUtil.isEmpty(followInfoParam.getStaffName()))followInfoParam.setStaffName(ShiroKit.getUser().getName());
+        if(ToolUtil.isEmpty(followInfoParam.getDeptId()))followInfoParam.setDeptId(ShiroKit.getUser().getDeptId());
         followInfoParam.setContent(msg+": "+followInfoParam.getContent());
-        followInfoParam.setStaffId(user.getUserId());
+        followInfoParam.setStaffId(ShiroKit.getUser().getId());
         this.followInfoService.add(followInfoParam);
         return ResponseData.success();
     }
@@ -181,10 +183,16 @@ public class FollowInfoController extends BaseController {
      */
     @ResponseBody
     @RequestMapping("/list")
-    public LayuiPageInfo list(FollowInfoParam followInfoParam) {
-        FollowInfo followInfo=new FollowInfo();
-        BeanUtil.copyProperties(followInfoParam,followInfo);
-        Page<Map<String, Object>> list = this.followInfoService.list(followInfo);
+    public LayuiPageInfo list(FollowInfoDto followInfoDto) {
+        //精确范围范围
+        if (ToolUtil.isNotEmpty(followInfoDto.getEntrustBetweenTime())) {
+            String[] split = followInfoDto.getEntrustBetweenTime().split(" - ");
+            if (split.length > 1) {
+                followInfoDto.setBeginTime(split[0]);
+                followInfoDto.setEndTime(split[1]);
+            }
+        }
+        Page<Map<String, Object>> list = this.followInfoService.list(followInfoDto);
         Page<Map<String, Object>> wrap = new DeptIdWrapper(list).wrap();
         return LayuiPageFactory.createPageInfo(wrap);
         //return this.followInfoService.findPageBySpec(followInfoParam);

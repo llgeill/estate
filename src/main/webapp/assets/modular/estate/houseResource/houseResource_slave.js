@@ -119,8 +119,8 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate','element'], function
             // {field: 'nationality',hide: true, sort: true, title: '国籍'},
             // {field: 'belongToId', sort: true, title: '属主用户id'},
             {field: 'createTime', sort: true, title: '委托时间'},
-            //{field: 'updateTime', hide: true,sort: true, title: '修改时间'},
-            // {align: 'center', toolbar: '#tableBar', title: '操作',fixed: 'right', width:150}
+            {field: 'updateTime', hide: false,sort: true, title: '修改时间'},
+            {align: 'center', toolbar: '#tableBar', title: '操作',fixed: 'right', width:120}
         ]];
     };
 
@@ -227,11 +227,15 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate','element'], function
      * @param data 点击按钮时候的行数据
      */
     HouseResource.openRenderDlg = function (data) {
-        Feng.confirm('确认更改房源状态为（本人租出）?',renderAndSellState,data,'我租');
+        if(data.state=='我租'){
+            Feng.error('房源已经出租，请联系店长！')
+        }else if(data.state=='我售'){
+            Feng.error('房源已经出售，请联系店长！')
+        } else{
+            Feng.confirm('确认更改房源状态为（本人租出）?',renderAndSellState,data,'我租');
+        }
+
     };
-
-
-
 
     /**
      * 点击我售
@@ -239,8 +243,33 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate','element'], function
      * @param data 点击按钮时候的行数据
      */
     HouseResource.openSellDlg = function (data) {
-        Feng.confirm('确认更改房源状态为（本人售出）?',renderAndSellState,data,'我售');
+        if(data.state=='我售'){
+            Feng.error('房源已经出售，请联系店长！')
+        }else if(data.state=='出租'){
+            Feng.error('房源已经出租，请联系店长！')
+        }else{
+            Feng.confirm('确认更改房源状态为（本人售出）?',renderAndSellState,data,'我售');
+        }
     };
+
+
+    function initBtnPhoneEvent() {
+        $('#btnPhone').on("click",function () {
+            if(globalData==null)return;
+            var data=globalData;
+            $("#phoneValue").html('&nbsp'+data.ownerName+'&nbsp'+data.ownerPhone+'<span id="btnPhone" style="margin-left: 15px;margin-bottom: 10px" class="layui-btn layui-btn-radius layui-btn-sm"><i class="layui-icon"></i>查看号码</span>');
+            // var ajax = new $ax(Feng.ctxPath + "/followInfo/addItem", function (data) {
+            //
+            // }, function (data) {
+            //     Feng.error("添加失败！" + data.responseJSON.message)
+            // });
+            // ajax.set("content","***********正在查看业主号码***********");
+            // ajax.set("houseResourceId",data.houseResourceId);
+            // ajax.start();
+            // FollowInfo.openAddForceDlg();
+        });
+    }
+
 
     /**
      * 出租和出售
@@ -336,7 +365,7 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate','element'], function
     // 搜索按钮点击事件
     $('#btnFollowInfo').click(function (event) {
 
-        HouseResource.openFollowInfo($("#belongId").val());
+        // HouseResource.openFollowInfo($("#belongId").val());
 
     });
 
@@ -389,7 +418,7 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate','element'], function
         getAllSearchValue();
         form.render();
     });
-    function getAllSearchValue(date) {
+    function getAllSearchValue(date,height) {
         var queryData = {};
         queryData['condition'] = $("#condition").val();
         queryData['roomTotal'] = $("#roomTotal").val();
@@ -409,11 +438,17 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate','element'], function
         queryData['hallToilet'] = $("#hallToilet").val();
         queryData['hallToiletTotal'] = $("#hallToiletTotal").val();
         queryData['houseResourceType'] = $("#houseResourceType").val();
-        table.reload(HouseResource.tableId, {where: queryData});
+        if($("#quickTime").val()=="0") queryData['quickTime']=0;
+        else queryData['quickTime'] = $("#quickTime").val();
+        if(height!=null)table.reload(HouseResource.tableId, {where: queryData,height:height});
+        else table.reload(HouseResource.tableId, {where: queryData});
+        if(!flag)return;
+        $('#bottomInfo').show();
+        flag=false;
     }
     //监听行单击事件（单击事件为：rowDouble）
     table.on('row(houseResourceTable)', function(obj){
-        tableResult = initTable(472,10);
+        getAllSearchValue(null,472);
         //詳細信息
         globalData=obj.data;
 
@@ -487,6 +522,8 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate','element'], function
             var ajaxX = new $ax(Feng.ctxPath + "/houseResource/detail" ,function (data) {
                 //添加左边信息
                 $("#leftInfo").html(leftInfoData(data.data));
+                //添加号码事件
+                initBtnPhoneEvent()
             }, function (data) {
                 Feng.error("删除失败!" + data.responseJSON.message + "!");
             });
@@ -494,14 +531,33 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate','element'], function
             ajaxX.start();
         }else {
             $("#leftInfo").html(leftInfoData(data));
+            initBtnPhoneEvent()
         }
-
-
     }
 
+    /**
+     * 弹出添加对话框
+     */
+    FollowInfo.openAddForceDlg = function () {
+        admin.putTempData('formOk', false);
+        top.layui.admin.open({
+            type: 2,
+            title: '添加跟进信息',
+            area: ['400px', '500px'],
+            closeBtn :0,
+            content: Feng.ctxPath + '/followInfo/forceAdd?houseResourceId='+globalData.houseResourceId,
+            end: function () {
+                followInfo(globalData.houseResourceId);
+            }
+        });
+    };
+
+
+
     function leftInfoData(data) {
-    // #009688
-    //     f2f2f2
+        // #009688
+        //     f2f2f2
+        var numberPhone=data.ownerPhone.substring(0,3)+"****"+data.ownerPhone.substring(7,11);
         var leftInfo='';
         leftInfo+=
             '<div class="layui-card  layui-tab-card" style="width: 95%;height: 362px">\n' +
@@ -519,9 +575,10 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate','element'], function
         }
         leftInfo+='</p></div>';
         leftInfo+='<div class="layui-card-header layui-tab-card" style="margin-top:15px;height: 10%;border-style: none">\n' +
-            '                                            <p style="font-size: 15px;padding-bottom: 10px;  overflow: hidden;\n' +
+            '                                            <p id="phoneValue" style="font-size: 15px;padding-bottom: 10px;  overflow: hidden;\n' +
             '    text-overflow: ellipsis;\n' +
-            '    white-space: nowrap;">&nbsp'+data.ownerName+'&nbsp'+data.ownerPhone+'</p>\n' +
+            '    white-space: nowrap;">&nbsp'+data.ownerName+'&nbsp'+numberPhone+'<span id="btnPhone" style="margin-left: 15px;margin-bottom: 10px" class="layui-btn layui-btn-radius layui-btn-sm"><i class="layui-icon"></i>查看号码\n' +
+            '                                    </span></p>\n' +
             '                                        </div>\n' +
             '                                        <div class="layui-card-header layui-tab-card" style="margin-top:20px;height: 50%;border-style:none none ;">\n' +
             '                                            <p style="font-size: 15px;padding-bottom: 10px;overflow: hidden;text-overflow: ellipsis;">&nbsp'+data.remark+'</p>\n' +

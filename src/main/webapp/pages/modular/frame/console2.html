@@ -165,18 +165,22 @@
                     if(index<3){
                         content+="<tr>\n" +
                             "                    <td><span class=\"layui-badge layui-bg-cyan\">"+idx+"</span></td>\n" +
-                            "                    <td><a href=/houseResource/slave?belongId="+data[index].userId+">"+data[index].name+"</td>\n" +
+                            "                    <td>"+data[index].name+"</td>\n" +
                             "                    <td>租&nbsp"+data[index].render+"</td>\n" +
                             "                    <td>售&nbsp"+data[index].sell+"</td>\n" +
                             "                    <td>总&nbsp"+data[index].total+"</td>\n" +
+                            "                    <td style='padding-right: 0px'><a href=/houseResource/slave?belongId="+data[index].userId+"><span class='layui-btn layui-btn-sm layui-btn-radius '>房源详情</span></a></td>\n" +
+                            "                    <td  style='padding-left: 0px'><a href=/followInfo?staffId="+data[index].userId+"><span class='layui-btn layui-btn-sm layui-btn-radius '>跟进情况</span></a></td>\n" +
                             "                    </tr>"
                     }else{
                         content+="<tr>\n" +
                             "                    <td><span class=\"layui-badge layui-bg-gray\">"+idx+"</span></td>\n" +
-                            "                    <td><a href=/houseResource/slave?belongId="+data[index].userId+">"+data[index].name+"</td>\n" +
+                            "                    <td>"+data[index].name+"</td>\n" +
                             "                    <td>租&nbsp"+data[index].render+"</td>\n" +
                             "                    <td>售&nbsp"+data[index].sell+"</td>\n" +
                             "                    <td>总&nbsp"+data[index].total+"</td>\n" +
+                            "                    <td style='padding-right: 0px'><a href=/houseResource/slave?belongId="+data[index].userId+"><span class='layui-btn layui-btn-sm layui-btn-radius '>房源详情</span></a></td>\n" +
+                            "                    <td  style='padding-left: 0px'><a href=/followInfo?staffId="+data[index].userId+"><span class='layui-btn layui-btn-sm layui-btn-radius '>跟进情况</span></a></td>\n" +
                             "                    </tr>"
                     }
                 }

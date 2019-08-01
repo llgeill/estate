@@ -10,18 +10,69 @@
         <div class="layui-col-sm12 layui-col-md12 layui-col-lg12">
             <div class="layui-card">
                 <div class="layui-card-body">
-                    <div class="layui-form toolbar">
-                        <div class="layui-form-item">
-                            <div class="layui-inline">
-                                <input id="condition" class="layui-input" type="text" placeholder="名称"/>
+                    <form class="layui-form layui-form-pane" lay-filter="houseResource"  action="">
+                        <div class="layui-col-sm12 layui-col-md12 layui-col-lg12">
+                            <div class="layui-col-sm2 layui-col-md2 layui-col-lg2">
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">快速查询</label>
+                                    <div class="layui-input-block">
+                                        <select name="quickTime" id="quickTime" lay-filter="quickTime">
+                                            <option value="" selected="">全部</option>
+                                            <option value="1">最近一天</option>
+                                            <option value="3">最近三天</option>
+                                            <option value="7">最近一周</option>
+                                            <option value="15">最近半月</option>
+                                            <option value="30">最近一月</option>
+                                            <option value="90">最近三月</option>
+                                            <option value="180">最近半年</option>
+                                            <option value="360">最近一年</option>
+                                        </select>
+                                        <div class="layui-unselect layui-form-select">
+                                            <div class="layui-select-title"><input type="text" placeholder="请选择"
+                                                                                   value="阅读" readonly=""
+                                                                                   class="layui-input layui-unselect"><i
+                                                    class="layui-edge"></i></div>
+                                            <dl class="layui-anim layui-anim-upbit">
+                                                <dd lay-value="" class="layui-select-tips">请选择</dd>
+                                                <dd lay-value="0" class="">写作</dd>
+                                                <dd lay-value="1" class="layui-this">阅读</dd>
+                                                <dd lay-value="2" class="">游戏</dd>
+                                                <dd lay-value="3" class="">音乐</dd>
+                                                <dd lay-value="4" class="">旅行</dd>
+                                            </dl>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="layui-inline">
-                                <button id="btnSearch" class="layui-btn icon-btn"><i class="layui-icon">&#xe615;</i>搜索</button>
-                                <button id="btnAdd" class="layui-btn icon-btn"><i class="layui-icon">&#xe654;</i>添加</button>
-                                <button id="btnExp" class="layui-btn icon-btn"><i class="layui-icon">&#xe67d;</i>导出</button>
+                            <div class="layui-col-sm3 layui-col-md3 layui-col-lg3">
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">精确查询</label>
+                                    <div class="layui-input-block">
+                                        <input id="entrustBetweenTime" name="entrustBetweenTime" value=" "
+                                               placeholder="请输入时间，例如2019-02-06 - 2019-03-20" type="text"
+                                               class="layui-input" autocomplete="off" lay-key="2">
+                                    </div>
+                                </div>
                             </div>
+                            <div class="layui-col-sm2 layui-col-md2 layui-col-lg2 ">
+                                <span id="btnExp" class="layui-btn icon-btn" style="margin-left: 15px"><i class="layui-icon">&#xe67d;</i>导出</span>
+                                <span id="btnBack" class="layui-btn icon-btn layui-btn-warm " ><i class="layui-icon">ဆ</i>关闭</span>
+                            </div>
+
                         </div>
-                    </div>
+                    </form>
+                    <!--<div class="layui-form toolbar">-->
+                        <!--<div class="layui-form-item">-->
+                           <!---->
+                            <!--&lt;!&ndash;<div class="layui-inline">&ndash;&gt;-->
+                                <!--&lt;!&ndash;<input id="condition" class="layui-input" type="text" placeholder="名称"/>&ndash;&gt;-->
+                            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                            <!--<div class="layui-inline">-->
+                                <!--<button id="btnSearch" class="layui-btn icon-btn"><i class="layui-icon">&#xe615;</i>搜索</button>-->
+                                <!---->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
                     <table class="layui-table" id="followInfoTable" lay-filter="followInfoTable"></table>
                 </div>
             </div>

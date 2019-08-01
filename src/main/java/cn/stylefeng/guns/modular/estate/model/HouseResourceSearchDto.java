@@ -52,6 +52,8 @@ public class HouseResourceSearchDto {
     private Long belongId;
     private String stateSlave;
 
+    private Integer quickTime;
+
 
  
 

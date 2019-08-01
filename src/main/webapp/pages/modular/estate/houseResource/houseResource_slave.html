@@ -80,14 +80,8 @@
                                     <div class="layui-input-block">
                                         <select name="state" id="state" lay-filter="aihao">
                                             <option value="" selected="">全部</option>
-                                            <option value="有效">有效</option>
-                                            <option value="预定">预定</option>
                                             <option value="我租">我租</option>
                                             <option value="我售">我售</option>
-                                            <option value="已租">已租</option>
-                                            <option value="已售">已售</option>
-                                            <option value="收租">收租</option>
-                                            <option value="租购">租购</option>
                                         </select>
                                         <div class="layui-unselect layui-form-select">
                                             <div class="layui-select-title"><input type="text" placeholder="请选择"
@@ -128,9 +122,9 @@
                                     <span id="foldAll" class="layui-btn icon-btn" style="margin-left: 0px;"><i class="layui-icon"></i>展开
                                     </span>
                                     <!--id="btnFollowInfo"-->
-                                    <span  class="layui-btn icon-btn" style="margin-left: 0px;">
-                                        <a href="/followInfo?staffId=${belongId}"><i class="layui-icon">&#xe67d;</i>跟进</a>
-                                    </span>
+                                    <a href="/followInfo?staffId=${belongId}"><span id="btnFollowInfo"  class="layui-btn icon-btn" style="margin-left: 0px;">
+                                        <i class="layui-icon">&#xe67d;</i>跟进
+                                    </span></a>
                                     <span id="btnBack" class="layui-btn icon-btn layui-btn-warm" style="margin-left: 0px"><i class="layui-icon">ဆ</i>关闭</span>
                                 </div>
                             </div>
@@ -264,7 +258,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="layui-col-sm3 layui-col-md3 layui-col-lg3">
+                                <div class="layui-col-sm2 layui-col-md2 layui-col-lg2">
                                     <div class="layui-form-item">
                                         <label class="layui-form-label">房屋类型</label>
                                         <div class="layui-input-block">
@@ -292,7 +286,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="layui-col-sm3 layui-col-md3 layui-col-lg3">
+                                <div class="layui-col-sm2 layui-col-md2 layui-col-lg2">
                                     <div class="layui-form-item">
                                         <label class="layui-form-label">朝向</label>
                                         <div class="layui-input-block">
@@ -308,6 +302,39 @@
                                                 <option value="东南">东南</option>
                                                 <option value="东北">东北</option>
                                                 <option value="南北">南北</option>
+                                            </select>
+                                            <div class="layui-unselect layui-form-select">
+                                                <div class="layui-select-title"><input type="text" placeholder="请选择"
+                                                                                       value="阅读" readonly=""
+                                                                                       class="layui-input layui-unselect"><i
+                                                        class="layui-edge"></i></div>
+                                                <dl class="layui-anim layui-anim-upbit">
+                                                    <dd lay-value="" class="layui-select-tips">请选择</dd>
+                                                    <dd lay-value="0" class="layui-this">写作</dd>
+                                                    <dd lay-value="1" class="">阅读</dd>
+                                                    <dd lay-value="2" class="">游戏</dd>
+                                                    <dd lay-value="3" class="">音乐</dd>
+                                                    <dd lay-value="4" class="">旅行</dd>
+                                                </dl>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="layui-col-sm2 layui-col-md2 layui-col-lg2">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">尚未跟进</label>
+                                        <div class="layui-input-block">
+                                            <select name="quickTime" id="quickTime" lay-filter="quickTime">
+                                                <option value="0" selected="">全部</option>
+                                                <option value="1">最近一天</option>
+                                                <option value="3">最近三天</option>
+                                                <option value="7">最近一周</option>
+                                                <option value="15">最近半月</option>
+                                                <option value="30">最近一月</option>
+                                                <option value="90">最近三月</option>
+                                                <option value="180">最近半年</option>
+                                                <option value="360">最近一年</option>
                                             </select>
                                             <div class="layui-unselect layui-form-select">
                                                 <div class="layui-select-title"><input type="text" placeholder="请选择"

@@ -258,7 +258,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="layui-col-sm3 layui-col-md3 layui-col-lg3">
+                                <div class="layui-col-sm2 layui-col-md2 layui-col-lg2">
                                     <div class="layui-form-item">
                                         <label class="layui-form-label">房屋类型</label>
                                         <div class="layui-input-block">
@@ -286,7 +286,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="layui-col-sm3 layui-col-md3 layui-col-lg3">
+                                <div class="layui-col-sm2 layui-col-md2 layui-col-lg2">
                                     <div class="layui-form-item">
                                         <label class="layui-form-label">朝向</label>
                                         <div class="layui-input-block">
@@ -302,6 +302,39 @@
                                                 <option value="东南">东南</option>
                                                 <option value="东北">东北</option>
                                                 <option value="南北">南北</option>
+                                            </select>
+                                            <div class="layui-unselect layui-form-select">
+                                                <div class="layui-select-title"><input type="text" placeholder="请选择"
+                                                                                       value="阅读" readonly=""
+                                                                                       class="layui-input layui-unselect"><i
+                                                        class="layui-edge"></i></div>
+                                                <dl class="layui-anim layui-anim-upbit">
+                                                    <dd lay-value="" class="layui-select-tips">请选择</dd>
+                                                    <dd lay-value="0" class="layui-this">写作</dd>
+                                                    <dd lay-value="1" class="">阅读</dd>
+                                                    <dd lay-value="2" class="">游戏</dd>
+                                                    <dd lay-value="3" class="">音乐</dd>
+                                                    <dd lay-value="4" class="">旅行</dd>
+                                                </dl>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="layui-col-sm2 layui-col-md2 layui-col-lg2">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">尚未跟进</label>
+                                        <div class="layui-input-block">
+                                            <select name="quickTime" id="quickTime" lay-filter="quickTime">
+                                                <option value="0" selected="">全部</option>
+                                                <option value="1">最近一天</option>
+                                                <option value="3">最近三天</option>
+                                                <option value="7">最近一周</option>
+                                                <option value="15">最近半月</option>
+                                                <option value="30">最近一月</option>
+                                                <option value="90">最近三月</option>
+                                                <option value="180">最近半年</option>
+                                                <option value="360">最近一年</option>
                                             </select>
                                             <div class="layui-unselect layui-form-select">
                                                 <div class="layui-select-title"><input type="text" placeholder="请选择"
@@ -553,26 +586,22 @@
                                     </ul>
                                     <div class="layui-tab-content" style="height: 100%;">
                                         <div class="layui-tab-item layui-show" style="overflow: scroll; height: 300px; " id="houseResourceDetail">
+                                            <img width="350px" height="350px" src="/assets/expand/images/null.png"/>
                                         </div>
                                         <div class="layui-tab-item" style="overflow: scroll; height: 300px; ">
                                             <ul class="layui-timeline" id="followInfoDetail">
                                                 <li class="layui-timeline-item">
-                                                    <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
-                                                    <div class="layui-timeline-content layui-text">
-                                                        <h3 class="layui-timeline-title">8月16日</h3>
-                                                        <p>人最爱的</p>
-                                                    </div>
+                                                    <img width="350px" height="350px" src="/assets/expand/images/null.png"/>
                                                 </li>
                                             </ul>
                                         </div>
                                         <div class="layui-tab-item"  style="overflow: scroll; height: 300px; " >
                                             <div class="layui-row" id="viewInfo">
                                                 <div class="layui-inline" style="width: 160px"  >
-                                                    <i  id="addImage" class="layui-icon layui-icon-add-1" style="font-size:150px;line-height: 150px;color: #009688;"></i>
+                                                    <img width="350px" height="350px" src="/assets/expand/images/null.png"/>
                                                 </div>
                                                 <p>
-                                                    <img width="160" height="150" style="z-index: -1"/>
-                                                    <button>ss</button>
+
                                                 </p>
 
                                             </div>

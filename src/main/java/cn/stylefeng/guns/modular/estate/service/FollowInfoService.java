@@ -3,6 +3,7 @@ package cn.stylefeng.guns.modular.estate.service;
 import cn.stylefeng.guns.core.common.page.LayuiPageFactory;
 import cn.stylefeng.guns.core.common.page.LayuiPageInfo;
 import cn.stylefeng.guns.modular.estate.entity.FollowInfo;
+import cn.stylefeng.guns.modular.estate.model.FollowInfoDto;
 import cn.stylefeng.guns.modular.estate.model.params.FollowInfoParam;
 import cn.stylefeng.guns.modular.estate.model.result.FollowInfoResult;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -75,6 +76,6 @@ public interface FollowInfoService extends IService<FollowInfo> {
      * @author fengshuonan
      * @Date 2018/12/23 5:16 PM
      */
-     Page<Map<String, Object>> list(FollowInfo followInfo);
+     Page<Map<String, Object>> list(FollowInfoDto followInfoDto);
 
 }

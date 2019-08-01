@@ -4,6 +4,7 @@ import cn.stylefeng.guns.core.common.page.LayuiPageFactory;
 import cn.stylefeng.guns.core.common.page.LayuiPageInfo;
 import cn.stylefeng.guns.modular.estate.entity.FollowInfo;
 import cn.stylefeng.guns.modular.estate.mapper.FollowInfoMapper;
+import cn.stylefeng.guns.modular.estate.model.FollowInfoDto;
 import cn.stylefeng.guns.modular.estate.model.params.FollowInfoParam;
 import cn.stylefeng.guns.modular.estate.model.result.FollowInfoResult;
 import  cn.stylefeng.guns.modular.estate.service.FollowInfoService;
@@ -72,9 +73,9 @@ public class FollowInfoServiceImpl extends ServiceImpl<FollowInfoMapper, FollowI
      * @author fengshuonan
      * @Date 2018/12/23 5:16 PM
      */
-    public Page<Map<String, Object>> list(FollowInfo followInfo) {
+    public Page<Map<String, Object>> list(FollowInfoDto followInfoDto) {
         Page page = LayuiPageFactory.defaultPage();
-        return this.baseMapper.list(page,followInfo);
+        return this.baseMapper.list(page,followInfoDto);
     }
 
     private Serializable getKey(FollowInfoParam param){

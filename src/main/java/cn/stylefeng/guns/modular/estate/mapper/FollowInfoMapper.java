@@ -1,6 +1,7 @@
 package cn.stylefeng.guns.modular.estate.mapper;
 
 import cn.stylefeng.guns.modular.estate.entity.FollowInfo;
+import cn.stylefeng.guns.modular.estate.model.FollowInfoDto;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.apache.ibatis.annotations.Param;
@@ -20,5 +21,5 @@ public interface FollowInfoMapper extends BaseMapper<FollowInfo> {
     /**
      * 获取所有跟进信息列表
      */
-    Page<Map<String, Object>> list(@Param("page") Page page,@Param("followInfo")FollowInfo followInfo);
+    Page<Map<String, Object>> list(@Param("page") Page page,@Param("followInfo") FollowInfoDto followInfoDto);
 }

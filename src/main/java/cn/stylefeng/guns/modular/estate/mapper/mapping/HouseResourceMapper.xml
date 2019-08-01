@@ -55,83 +55,100 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        house_resource_id AS "houseResourceId", building_block_id AS "buildingBlockId", building_id AS "buildingId", room_number AS "roomNumber", floor AS "floor", room_total AS "roomTotal", hall_total AS "hallTotal", toilet_total AS "toiletTotal", balcony_total AS "balconyTotal", purpose AS "purpose", house_resource_type AS "houseResourceType", area AS "area", practical_area AS "practicalArea", orientation AS "orientation", house_type AS "houseType", building_time AS "buildingTime", transaction AS "transaction", state AS "state", price AS "price", rental AS "rental", price_floor AS "priceFloor", rental_floor AS "rentalFloor", taxes AS "taxes", resource AS "resource", status_quo AS "statusQuo", decorate AS "decorate", match_state AS "matchState", furniture_state AS "furnitureState", household_electrical_state AS "householdElectricalState", property_right AS "propertyRight", certificates AS "certificates", payment AS "payment", pay_commission AS "payCommission", house_inspection AS "houseInspection", key_number AS "keyNumber", entrust AS "entrust", staff AS "staff", staff_id AS "staffId",owner_name AS "ownerName", owner_phone AS "ownerPhone", contacts_content AS "contactsContent", manage_expense AS "manageExpense", remark AS "remark", nationality AS "nationality", belong_to_id AS "belongToId", create_time AS "createTime", update_time AS "updateTime"
+         estate_house_resource.house_resource_id AS "houseResourceId", building_block_id AS "buildingBlockId", building_id AS "buildingId", room_number AS "roomNumber", floor AS "floor", room_total AS "roomTotal", hall_total AS "hallTotal", toilet_total AS "toiletTotal", balcony_total AS "balconyTotal", purpose AS "purpose", house_resource_type AS "houseResourceType", area AS "area", practical_area AS "practicalArea", orientation AS "orientation", house_type AS "houseType", building_time AS "buildingTime", transaction AS "transaction", state AS "state", price AS "price", rental AS "rental", price_floor AS "priceFloor", rental_floor AS "rentalFloor", taxes AS "taxes", resource AS "resource", status_quo AS "statusQuo", decorate AS "decorate", match_state AS "matchState", furniture_state AS "furnitureState", household_electrical_state AS "householdElectricalState", property_right AS "propertyRight", certificates AS "certificates", payment AS "payment", pay_commission AS "payCommission", house_inspection AS "houseInspection", key_number AS "keyNumber", entrust AS "entrust", staff AS "staff", staff_id AS "staffId",owner_name AS "ownerName", owner_phone AS "ownerPhone", contacts_content AS "contactsContent", manage_expense AS "manageExpense", remark AS "remark", nationality AS "nationality", belong_to_id AS "belongToId", create_time AS "createTime", update_time AS "updateTime"
     </sql>
 
     <select id="selectHouseResources"  resultType="map">
         select
         <include refid="Base_Column_List"/>
         from estate_house_resource
-        where 1= 1
+        <choose>
+            <when test="hrsDto.quickTime != null and hrsDto.quickTime != -1">
+                ,( SELECT
+                *
+                FROM
+                ( SELECT follow_info.house_resource_id, count( * ) AS ccount, max( create_time ) AS mama FROM follow_info GROUP BY follow_info.house_resource_id ) AS temp
+                WHERE
+                temp.mama &lt;= ( SELECT DATE_SUB( curdate(), INTERVAL #{hrsDto.quickTime} DAY ))
+                ) AS tp
+                WHERE
+                estate_house_resource.house_resource_id = tp.house_resource_id
+            </when>
+            <otherwise>
+                where 1= 1
+            </otherwise>
+        </choose>
+
         <if test="hrsDto.roomTotalStart != null and hrsDto.roomTotalStart != ''">
-            and room_total &gt;= #{hrsDto.roomTotalStart}
+            and estate_house_resource.room_total &gt;= #{hrsDto.roomTotalStart}
         </if>
         <if test="hrsDto.roomTotalEnd != null and hrsDto.roomTotalEnd != ''">
-            and room_total &lt;= #{hrsDto.roomTotalEnd}
+            and estate_house_resource.room_total &lt;= #{hrsDto.roomTotalEnd}
         </if>
         <if test="hrsDto.transaction != null and hrsDto.transaction != ''">
-            and transaction = #{hrsDto.transaction}
+            and estate_house_resource.transaction = #{hrsDto.transaction}
         </if>
         <if test="hrsDto.state != null and hrsDto.state != ''">
-            and state like CONCAT('%',#{hrsDto.state},'%')
+            and estate_house_resource.state like CONCAT('%',#{hrsDto.state},'%')
         </if>
         <if test="hrsDto.stateSlave != null and hrsDto.stateSlave != ''">
-            and state in ("我租","我售")
+            and estate_house_resource.state in ("我租","我售")
         </if>
         <if test="hrsDto.roomNumber != null and hrsDto.roomNumber != ''">
-            and room_number = #{hrsDto.roomNumber}
+            and estate_house_resource.room_number = #{hrsDto.roomNumber}
         </if>
         <if test="hrsDto.ownerPhone != null and hrsDto.ownerPhone != ''">
-            and owner_phone = #{hrsDto.ownerPhone}
+            and estate_house_resource.owner_phone = #{hrsDto.ownerPhone}
         </if>
         <if test="hrsDto.buildingBlock != null and hrsDto.buildingBlock != ''">
-             and building_block_id = #{hrsDto.buildingBlockId}
+             and estate_house_resource.building_block_id = #{hrsDto.buildingBlockId}
         </if>
         <if test="hrsDto.priceStart != null and hrsDto.priceStart != ''">
-            and price &gt;= #{hrsDto.priceStart}
+            and estate_house_resource.price &gt;= #{hrsDto.priceStart}
         </if>
         <if test="hrsDto.priceEnd != null and hrsDto.priceEnd != ''">
-            and price &lt;= #{hrsDto.priceEnd}
+            and estate_house_resource.price &lt;= #{hrsDto.priceEnd}
         </if>
         <if test="hrsDto.rentalStart != null and hrsDto.rentalStart != ''">
-            and rental &gt;= #{hrsDto.rentalStart}
+            and estate_house_resource.rental &gt;= #{hrsDto.rentalStart}
         </if>
         <if test="hrsDto.rentalEnd != null and hrsDto.rentalEnd != ''">
-            and rental &lt;= #{hrsDto.rentalEnd}
+            and estate_house_resource.rental &lt;= #{hrsDto.rentalEnd}
         </if>
         <if test="hrsDto.areaStart != null and hrsDto.areaStart != ''">
-            and area &gt;= #{hrsDto.areaStart}
+            and estate_house_resource.area &gt;= #{hrsDto.areaStart}
         </if>
         <if test="hrsDto.areaEnd != null and hrsDto.areaEnd != ''">
-            and area &lt;= #{hrsDto.areaEnd}
+            and estate_house_resource.area &lt;= #{hrsDto.areaEnd}
         </if>
         <if test="hrsDto.houseType != null and hrsDto.houseType != ''">
-            and house_type= #{hrsDto.houseType}
+            and estate_house_resource.house_type= #{hrsDto.houseType}
         </if>
         <if test="hrsDto.orientation != null and hrsDto.orientation != ''">
-            and orientation = #{hrsDto.orientation}
+            and estate_house_resource.orientation = #{hrsDto.orientation}
         </if>
         <if test="hrsDto.entrustDateScope != null and hrsDto.entrustDateScope != ''">
-        and (create_time between (select DATE_SUB(curdate(), interval #{hrsDto.entrustDateScope} DAY)) and (select DATE_SUB(curdate(), interval 0 DAY)))
+        and (estate_house_resource.create_time between (select DATE_SUB(curdate(), interval #{hrsDto.entrustDateScope} DAY)) and (select DATE_SUB(curdate(), interval 0 DAY)))
         </if>
         <if test="hrsDto.beginTime != null and hrsDto.beginTime != '' and hrsDto.endTime != null and hrsDto.endTime != ''">
-            and (create_time between CONCAT(#{hrsDto.beginTime},' 00:00:00') and CONCAT(#{hrsDto.endTime},' 23:59:59'))
+            and (estate_house_resource.create_time between CONCAT(#{hrsDto.beginTime},' 00:00:00') and CONCAT(#{hrsDto.endTime},' 23:59:59'))
         </if>
         <if test="hrsDto.purpose != null and hrsDto.purpose != ''">
-            and purpose = #{hrsDto.purpose}
+            and estate_house_resource.purpose = #{hrsDto.purpose}
         </if>
         <if test="hrsDto.hallTotal != null and hrsDto.hallTotal != ''">
-            and hall_total = #{hrsDto.hallTotal}
+            and estate_house_resource.hall_total = #{hrsDto.hallTotal}
         </if>
         <if test="hrsDto.toiletTotal != null and hrsDto.toiletTotal != ''">
-            and toilet_total = #{hrsDto.toiletTotal}
+            and estate_house_resource.toilet_total = #{hrsDto.toiletTotal}
         </if>
         <if test="hrsDto.houseResourceType != null and hrsDto.houseResourceType != ''">
-            and house_resource_type = #{hrsDto.houseResourceType}
+            and estate_house_resource.house_resource_type = #{hrsDto.houseResourceType}
         </if>
         <if test="hrsDto.staffId != null and hrsDto.staffId != ''">
-            and staff_id = #{hrsDto.staffId}
+            and estate_house_resource.staff_id = #{hrsDto.staffId}
         </if>
+        order by estate_house_resource.update_time DESC
     </select>
 
 </mapper>

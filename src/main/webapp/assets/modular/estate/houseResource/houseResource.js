@@ -11,6 +11,8 @@ var viewer = new Viewer(document.getElementById('viewInfo'));
 
 var globalFlag=true;
 
+var initFlag=true;
+
 layui.use(['table','form','upload', 'admin', 'ax','laydate','element'], function () {
     var $ = layui.$;
     var table = layui.table;
@@ -110,6 +112,11 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate','element'], function
             // {field: 'entrust',hide: true, sort: true, title: '委托方式'},
             // {field: 'staff_id', hide: true, sort: true, title: '员工id'},
             {field: 'staff', sort: true, title: '员工'},
+            // {
+            //     field: 'staff', sort: true, title: '员工', templet: function (d) {
+            //         return d.roomTotal+"-"+d.hallTotal+"-"+d.toiletTotal+"-"+d.balconyTotal;
+            //     }
+            // },
             // {field: 'ownerName', hide: true,sort: true, title: '业主姓名'},
             // {field: 'ownerPhone',hide: true, sort: true, title: '业主手机号'},
             // {field: 'contactsContent',hide: true, sort: true, title: '联系人内容'},
@@ -118,8 +125,8 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate','element'], function
             // {field: 'nationality',hide: true, sort: true, title: '国籍'},
             // {field: 'belongToId', sort: true, title: '属主用户id'},
             {field: 'createTime', sort: true, title: '委托时间'},
-            //{field: 'updateTime', hide: true,sort: true, title: '修改时间'},
-            {align: 'center', toolbar: '#tableBar', title: '操作',fixed: 'right', width:150}
+            {field: 'updateTime', hide: false,sort: true, title: '修改时间'},
+            {align: 'center', toolbar: '#tableBar', title: '操作',fixed: 'right', width:120}
         ]];
     };
 
@@ -137,7 +144,6 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate','element'], function
      * 点击查询按钮
      */
     HouseResource.search = function () {
-        // initTable(-1);
         var queryData = {};
         queryData['condition'] = $("#condition").val();
          table.reload(HouseResource.tableId, {where: queryData});
@@ -202,11 +208,15 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate','element'], function
      * @param data 点击按钮时候的行数据
      */
     HouseResource.openRenderDlg = function (data) {
-        Feng.confirm('确认更改房源状态为（本人租出）?',renderAndSellState,data,'我租');
+        if(data.state=='我租'){
+            Feng.error('房源已经出租，请联系店长！')
+        }else if(data.state=='我售'){
+            Feng.error('房源已经出售，请联系店长！')
+        } else{
+            Feng.confirm('确认更改房源状态为（本人租出）?',renderAndSellState,data,'我租');
+        }
+
     };
-
-
-
 
     /**
      * 点击我售
@@ -214,7 +224,13 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate','element'], function
      * @param data 点击按钮时候的行数据
      */
     HouseResource.openSellDlg = function (data) {
-        Feng.confirm('确认更改房源状态为（本人售出）?',renderAndSellState,data,'我售');
+        if(data.state=='我售'){
+            Feng.error('房源已经出售，请联系店长！')
+        }else if(data.state=='我租'){
+            Feng.error('房源已经出租，请联系店长！')
+        }else{
+            Feng.confirm('确认更改房源状态为（本人售出）?',renderAndSellState,data,'我售');
+        }
     };
 
     /**
@@ -355,7 +371,9 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate','element'], function
         getAllSearchValue();
         form.render();
     });
-    function getAllSearchValue(date) {
+
+    function getAllSearchValue(date,height) {
+
         var queryData = {};
         queryData['condition'] = $("#condition").val();
         queryData['roomTotal'] = $("#roomTotal").val();
@@ -375,18 +393,21 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate','element'], function
         queryData['hallToilet'] = $("#hallToilet").val();
         queryData['hallToiletTotal'] = $("#hallToiletTotal").val();
         queryData['houseResourceType'] = $("#houseResourceType").val();
-        table.reload(HouseResource.tableId, {where: queryData});
+        if($("#quickTime").val()=="0") queryData['quickTime']=0;
+        else queryData['quickTime'] = $("#quickTime").val();
+        if(height!=null)table.reload(HouseResource.tableId, {where: queryData,height:height});
+        else table.reload(HouseResource.tableId, {where: queryData});
+        if(!flag)return;
+        $('#bottomInfo').show();
+        flag=false;
     }
 
 
     //监听行单击事件（单击事件为：rowDouble）
-    var initFlag=true;
+
     table.on('row(houseResourceTable)', function(obj){
 
-        if(initFlag){
-            tableResult = initTable(472,10);
-            initFlag=false;
-        }
+        getAllSearchValue(null,472);
         //詳細信息
         globalData=obj.data;
         var data = obj.data;
@@ -447,7 +468,8 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate','element'], function
         }
         houseResourceInfo+='<td>'+data.entrust+'</td>\n' +
             '</tr>\n' +
-            '<tr><td>'+data.decorate+'</td></tr>'+
+            '<tr><td>'+data.decorate+'</td>'+
+            '<td>'+data.contactsContent+'</td></tr>'+
             '</tbody>\n' +
             '</table>\n'
         $("#houseResourceDetail").html(houseResourceInfo);
@@ -482,6 +504,14 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate','element'], function
             var data=globalData;
             console.log(data);
             $("#phoneValue").html('&nbsp'+data.ownerName+'&nbsp'+data.ownerPhone+'<span id="btnPhone" style="margin-left: 15px;margin-bottom: 10px" class="layui-btn layui-btn-radius layui-btn-sm"><i class="layui-icon"></i>查看号码</span>');
+            var ajax = new $ax(Feng.ctxPath + "/followInfo/addItem", function (data) {
+
+            }, function (data) {
+                Feng.error("添加失败！" + data.responseJSON.message)
+            });
+            ajax.set("content","***********正在查看业主号码***********");
+            ajax.set("houseResourceId",data.houseResourceId);
+            ajax.start();
             FollowInfo.openAddForceDlg();
         });
     }
