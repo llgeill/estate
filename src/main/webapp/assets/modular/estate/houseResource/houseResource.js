@@ -373,7 +373,6 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate','element'], function
     });
 
     function getAllSearchValue(date,height) {
-
         var queryData = {};
         queryData['condition'] = $("#condition").val();
         queryData['roomTotal'] = $("#roomTotal").val();

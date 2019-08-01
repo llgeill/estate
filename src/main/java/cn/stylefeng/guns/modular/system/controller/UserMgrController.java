@@ -67,7 +67,7 @@ import java.util.UUID;
 @RequestMapping("/mgr")
 public class UserMgrController extends BaseController {
 
-    private static String PREFIX = "/modular/system/user/";
+    private static String PREFIX = "modular/system/user/";
 
     @Autowired
     private GunsProperties gunsProperties;
@@ -394,7 +394,7 @@ public class UserMgrController extends BaseController {
      */
 
     @RequestMapping("/followInfoUserList")
-    public String followInfoUserList(Model model,Long  userId) {
+    public String followInfoUserList(Model model,@RequestParam(required = false) Long  userId) {
         QueryWrapper<FollowInfo> queryWrapper = new QueryWrapper<>();
         queryWrapper
                 .eq("staff_id",userId).orderByDesc("create_time")
@@ -402,6 +402,8 @@ public class UserMgrController extends BaseController {
         List<Map<String,Object>> lists=this.followInfoService.listMaps(queryWrapper);
 
         model.addAttribute("followInfos",lists);
-        return PREFIX + "user_info.html";
+        return PREFIX + "user_info_llg.html";
     }
+
+
 }
