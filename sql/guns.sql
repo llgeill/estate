@@ -11,7 +11,7 @@
  Target Server Version : 80013
  File Encoding         : 65001
 
- Date: 01/08/2019 20:18:01
+ Date: 01/08/2019 21:45:52
 */
 
 SET NAMES utf8mb4;
@@ -45,6 +45,7 @@ INSERT INTO `estate_building` VALUES (1152500640581279746, '合景天骏', 'hjtj
 INSERT INTO `estate_building` VALUES (1152785073137876993, '绿地城', 'ldc', '住宅小区', '多层', 2019, '广东省-广州-黄埔区', '九龙镇九龙大道西南', 100.0, 12, '无', '2019-07-21 00:00:00', '2019-07-31 00:00:00');
 INSERT INTO `estate_building` VALUES (1152785383747059713, '万科', 'wk', '住宅小区', '多层', 2019, '广东省-广州-黄埔区', '凤湖四路', 100.0, 11, '无', '2019-07-21 00:00:00', '2019-07-21 00:00:00');
 INSERT INTO `estate_building` VALUES (1152785951567740929, '时代天韵', 'sdty', '住宅小区', '多层', 2019, '广东省-广州-黄埔区', '时代天韵', 100.0, 25, '无', '2019-07-21 00:00:00', '2019-07-31 00:00:00');
+INSERT INTO `estate_building` VALUES (1156909768045031426, '君合谷', 'whna', '住宅小区', '多层', 2018, '广东省-广州-黄埔区', '广州商学院', 2000.0, 1200, '广州商学院', '2019-08-05 00:00:00', NULL);
 
 -- ----------------------------
 -- Table structure for estate_building_block
@@ -156,6 +157,7 @@ INSERT INTO `estate_house_resource` VALUES (1156764392885329921, 115250064058127
 INSERT INTO `estate_house_resource` VALUES (1156764479963275265, 1152500640581279746, 1152769933717860353, 7, 7, 2, 1, 1, '1', '住宅小区', '推介房', 7, 7, '东', '多层', 2019, '出租', '有效', NULL, 7, NULL, 7, '各付', '来电', '空房', '毛坯', '地板', '配套', '配套', '商品房', '房地产证', '一次付清', '商议', '预约', NULL, '各付', 1153515729740365826, '李利光', '林海宏', '18925623775', '7', '7', '7', '中国', NULL, '2019-08-01 11:11:45', '2019-08-01 11:11:58');
 INSERT INTO `estate_house_resource` VALUES (1156764537928556546, 1152500640581279746, 1152769933717860353, 8, 8, 2, 1, 1, '1', '住宅小区', '推介房', 8, 8, '东', '多层', 2019, '出租', '有效', NULL, 8, NULL, 8, '各付', '来电', '空房', '毛坯', '地板', '配套', '配套', '商品房', '房地产证', '一次付清', '商议', '预约', NULL, '各付', 1153515729740365826, '李利光', '林海宏', '18925623775', '8', '8', '8', '中国', NULL, '2019-08-01 11:12:00', '2019-08-01 11:12:12');
 INSERT INTO `estate_house_resource` VALUES (1156869185700163586, 1152500640581279746, 1152769933717860353, 54, 5, 2, 1, 1, '1', '住宅小区', '推介房', 464554454545454500000000000, 54545454545, '东', '多层', 2019, '出租', '有效', NULL, NULL, NULL, NULL, '实得', '来电', '空房', '毛坯', '地板', '配套', '配套', '商品房', '房地产证', '一次付清', '商议', '预约', NULL, '各付', 1153515729740365826, '李利光', 'g', '18925623775', 'dsfsdf', '5656', 'ertret', '中国', NULL, '2019-08-01 18:07:24', '2019-08-01 18:08:02');
+INSERT INTO `estate_house_resource` VALUES (1156908818471383041, 1152500640581279746, 1152770439441870849, 222, 2, 2, 1, 1, '1', '住宅小区', '推介房', 290, 120, '东', '多层', 2019, '租售', '有效', 300, 2333, 200, 1400, '各付', '来电', '空房', '毛坯', '地板', '配套', '配套', '商品房', '房地产证', '一次付清', '商议', '预约', NULL, '各付', 1153515729740365826, '廖超凡', '廖超凡', '18923523775', '林寻：18923623775', '300', '煤气炉  ', '中国', NULL, '2019-08-01 20:43:40', '2019-08-01 20:45:31');
 
 -- ----------------------------
 -- Table structure for estate_view
@@ -237,6 +239,10 @@ INSERT INTO `follow_info` VALUES (1156814544681578498, 1156120302502137858, 1153
 INSERT INTO `follow_info` VALUES (1156852282613096450, 1156764537928556546, 1153515729740365826, '李利光', 1151369744947924994, 'A1 8：删除图片成功！', '2019-08-01 17:00:52', NULL);
 INSERT INTO `follow_info` VALUES (1156869282383065090, 1156869185700163586, 1153515729740365826, '李利光', 1151369744947924994, 'A1 54: s', '2019-08-01 18:08:21', NULL);
 INSERT INTO `follow_info` VALUES (1156869473077096450, 1156869185700163586, 1153515729740365826, '李利光', 27, 'A1 54: sdfadf', '2019-08-01 18:08:27', NULL);
+INSERT INTO `follow_info` VALUES (1156910391427657730, 1156869185700163586, 1153515729740365826, '李利光', 1151369744947924994, 'A1 54: ***********正在查看业主号码***********', '2019-08-01 20:51:46', NULL);
+INSERT INTO `follow_info` VALUES (1156910437942489090, 1156869185700163586, 1153515729740365826, '李利光', 1151369744947924994, 'A1 54: 查看多少钱\n', '2019-08-01 20:51:46', NULL);
+INSERT INTO `follow_info` VALUES (1156911023559602177, 1156157911429373954, 1155325978646413313, '黄扬帆', 1151369744947924994, 'A3 333: ***********正在查看业主号码***********', '2019-08-01 20:54:17', NULL);
+INSERT INTO `follow_info` VALUES (1156911351403180034, 1156908818471383041, 1155325978646413313, '黄扬帆', 1151369744947924994, 'A3 222: ***********正在查看业主号码***********', '2019-08-01 20:55:35', NULL);
 
 -- ----------------------------
 -- Table structure for sys_dept
@@ -639,6 +645,35 @@ INSERT INTO `sys_login_log` VALUES (1156893878285029378, '登录日志', 1153515
 INSERT INTO `sys_login_log` VALUES (1156894385095364610, '退出日志', 1153515729740365826, '2019-08-01 19:48:10', '成功', NULL, '0:0:0:0:0:0:0:1');
 INSERT INTO `sys_login_log` VALUES (1156897969706954754, '登录日志', 1153515729740365826, '2019-08-01 20:02:24', '成功', NULL, '0:0:0:0:0:0:0:1');
 INSERT INTO `sys_login_log` VALUES (1156899339679887362, '登录日志', 1153515729740365826, '2019-08-01 20:07:51', '成功', NULL, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES (1156908314731278337, '登录日志', 1153515729740365826, '2019-08-01 20:43:31', '成功', NULL, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES (1156910858308218882, '退出日志', 1153515729740365826, '2019-08-01 20:53:38', '成功', NULL, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES (1156910874544369665, '登录日志', 1155325978646413313, '2019-08-01 20:53:42', '成功', NULL, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES (1156912015944511489, '退出日志', 1155325978646413313, '2019-08-01 20:58:14', '成功', NULL, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES (1156912026182807554, '登录日志', 1153515729740365826, '2019-08-01 20:58:16', '成功', NULL, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES (1156913076566568962, '登录日志', 1153515729740365826, '2019-08-01 21:02:26', '成功', NULL, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES (1156913173362716674, '退出日志', 1153515729740365826, '2019-08-01 21:02:50', '成功', NULL, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES (1156913192656515073, '登录日志', 1, '2019-08-01 21:02:54', '成功', NULL, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES (1156913757406965761, '退出日志', 1, '2019-08-01 21:05:09', '成功', NULL, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES (1156913770598051842, '登录日志', 1, '2019-08-01 21:05:12', '成功', NULL, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES (1156913783948521473, '退出日志', 1, '2019-08-01 21:05:15', '成功', NULL, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES (1156913792244854786, '登录日志', 1153515729740365826, '2019-08-01 21:05:17', '成功', NULL, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES (1156914007630753793, '退出日志', 1153515729740365826, '2019-08-01 21:06:09', '成功', NULL, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES (1156914016153579521, '登录日志', 1, '2019-08-01 21:06:11', '成功', NULL, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES (1156915323652349954, '登录日志', 1, '2019-08-01 21:11:22', '成功', NULL, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES (1156915350089048066, '退出日志', 1, '2019-08-01 21:11:29', '成功', NULL, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES (1156915362470633474, '登录日志', 1153515729740365826, '2019-08-01 21:11:32', '成功', NULL, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES (1156915617660456961, '登录日志', 1153515729740365826, '2019-08-01 21:12:32', '成功', NULL, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES (1156916026944794625, '登录日志', 1153515729740365826, '2019-08-01 21:14:10', '成功', NULL, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES (1156916800101879809, '登录日志', 1153515729740365826, '2019-08-01 21:17:14', '成功', NULL, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES (1156917019015196674, '登录日志', 1153515729740365826, '2019-08-01 21:18:06', '成功', NULL, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES (1156918035399839745, '登录日志', 1153515729740365826, '2019-08-01 21:22:08', '成功', NULL, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES (1156918184217939969, '登录日志', 1153515729740365826, '2019-08-01 21:22:44', '成功', NULL, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES (1156919945959849986, '登录日志', 1153515729740365826, '2019-08-01 21:29:44', '成功', NULL, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES (1156920243566710785, '登录日志', 1153515729740365826, '2019-08-01 21:30:55', '成功', NULL, '127.0.0.1');
+INSERT INTO `sys_login_log` VALUES (1156920737743884289, '登录日志', 1153515729740365826, '2019-08-01 21:32:53', '成功', NULL, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES (1156921046394228737, '登录日志', 1153515729740365826, '2019-08-01 21:34:06', '成功', NULL, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES (1156922475599122434, '登录日志', 1153515729740365826, '2019-08-01 21:39:47', '成功', NULL, '0:0:0:0:0:0:0:1');
+INSERT INTO `sys_login_log` VALUES (1156923300081872898, '登录日志', 1153515729740365826, '2019-08-01 21:43:04', '成功', NULL, '0:0:0:0:0:0:0:1');
 
 -- ----------------------------
 -- Table structure for sys_menu
@@ -763,6 +798,9 @@ INSERT INTO `sys_menu` VALUES (1156075930595135489, 'update_state', 'estate_mast
 INSERT INTO `sys_menu` VALUES (1156076199236112386, 'HOUSE_RESOURCE_ADD_TEMP', 'estate_master', '[0],[estate_master],', '房源添加', '', '/houseResource/add', 2, 2, 'N', NULL, 'ENABLE', NULL, NULL, '2019-07-30 13:36:59', '2019-07-30 13:51:02', 1, 1);
 INSERT INTO `sys_menu` VALUES (1156076335945256962, 'HOUSE_RESOURCE_EDIT_TEMP', 'estate_master', '[0],[estate_master],', '房源修改', '', '/houseResource/edit', 3, 2, 'N', NULL, 'ENABLE', NULL, NULL, '2019-07-30 13:37:32', NULL, 1, NULL);
 INSERT INTO `sys_menu` VALUES (1156076636634910722, 'HOUSE_RESOURCE_DELETE_TEMP', 'estate_master', '[0],[estate_master],', '房源删除', '', '/houseResource/delete', 4, 2, 'N', NULL, 'ENABLE', NULL, NULL, '2019-07-30 13:38:44', NULL, 1, NULL);
+INSERT INTO `sys_menu` VALUES (1156914445650309122, 'person_state', '0', '[0],', '个人情况', 'layui-icon layui-icon-component', '#', 3, 1, 'Y', NULL, 'ENABLE', NULL, NULL, '2019-08-01 21:07:53', NULL, 1, NULL);
+INSERT INTO `sys_menu` VALUES (1156914627502747650, 'my_render_sell', 'person_state', '[0],[person_state],', '我的租售', 'layui-icon layui-icon-snowflake', '/houseResource/slave', 1, 2, 'Y', NULL, 'ENABLE', NULL, NULL, '2019-08-01 21:08:36', NULL, 1, NULL);
+INSERT INTO `sys_menu` VALUES (1156915095972950018, 'my_followInfo', 'person_state', '[0],[person_state],', '我的跟进', 'layui-icon layui-icon-snowflake', '/followInfo', 2, 2, 'Y', NULL, 'ENABLE', NULL, NULL, '2019-08-01 21:10:28', NULL, 1, NULL);
 
 -- ----------------------------
 -- Table structure for sys_notice
@@ -923,6 +961,13 @@ INSERT INTO `sys_operation_log` VALUES (1156581319447244802, '异常日志', '',
 INSERT INTO `sys_operation_log` VALUES (1156870181184663554, '业务日志', '冻结用户', 1153515729740365826, 'cn.stylefeng.guns.modular.system.controller.UserMgrController', 'freeze', '2019-08-01 18:11:59', '成功', '账号=201606110064');
 INSERT INTO `sys_operation_log` VALUES (1156870190131113986, '业务日志', '解除冻结用户', 1153515729740365826, 'cn.stylefeng.guns.modular.system.controller.UserMgrController', 'unfreeze', '2019-08-01 18:12:02', '成功', '账号=201606110064');
 INSERT INTO `sys_operation_log` VALUES (1156892781726142466, '业务日志', '分配角色', 1153515729740365826, 'cn.stylefeng.guns.modular.system.controller.UserMgrController', 'setRole', '2019-08-01 19:41:48', '成功', '账号=201606110066,角色名称集合=超级管理员,总经理,店长,员工');
+INSERT INTO `sys_operation_log` VALUES (1156914279748808705, '异常日志', '', 1, NULL, NULL, '2019-08-01 21:07:13', '失败', 'cn.stylefeng.roses.kernel.model.exception.ServiceException: 菜单编号重复，不能添加\r\n	at cn.stylefeng.guns.modular.system.service.MenuService.addMenu(MenuService.java:59)\r\n	at cn.stylefeng.guns.modular.system.service.MenuServiceTTFastClassBySpringCGLIBTTafc31a75.invoke(<generated>)\r\n	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)\r\n	at org.springframework.aop.framework.CglibAopProxyTCglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:749)\r\n	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)\r\n	at com.alibaba.druid.support.spring.stat.DruidStatInterceptor.invoke(DruidStatInterceptor.java:72)\r\n	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)\r\n	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:294)\r\n	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:98)\r\n	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)\r\n	at org.springframework.aop.framework.CglibAopProxyTDynamicAdvisedInterceptor.intercept(CglibAopProxy.java:688)\r\n	at cn.stylefeng.guns.modular.system.service.MenuServiceTTEnhancerBySpringCGLIBTTc97abd0e.addMenu(<generated>)\r\n	at cn.stylefeng.guns.modular.system.controller.MenuController.add(MenuController.java:178)\r\n	at cn.stylefeng.guns.modular.system.controller.MenuControllerTTFastClassBySpringCGLIBTT3bdef105.invoke(<generated>)\r\n	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)\r\n	at org.springframework.aop.framework.CglibAopProxyTCglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:749)\r\n	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)\r\n	at org.springframework.aop.aspectj.MethodInvocationProceedingJoinPoint.proceed(MethodInvocationProceedingJoinPoint.java:88)\r\n	at cn.stylefeng.guns.core.interceptor.SessionHolderInterceptor.sessionKit(SessionHolderInterceptor.java:44)\r\n	at sun.reflect.GeneratedMethodAccessor169.invoke(Unknown Source)\r\n	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\r\n	at java.lang.reflect.Method.invoke(Method.java:498)\r\n	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethodWithGivenArgs(AbstractAspectJAdvice.java:644)\r\n	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethod(AbstractAspectJAdvice.java:633)\r\n	at org.springframework.aop.aspectj.AspectJAroundAdvice.invoke(AspectJAroundAdvice.java:70)\r\n	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)\r\n	at org.springframework.aop.aspectj.MethodInvocationProceedingJoinPoint.proceed(MethodInvocationProceedingJoinPoint.java:88)\r\n	at cn.stylefeng.guns.core.aop.LogAop.recordSysLog(LogAop.java:60)\r\n	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\r\n	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\r\n	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\r\n	at java.lang.reflect.Method.invoke(Method.java:498)\r\n	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethodWithGivenArgs(AbstractAspectJAdvice.java:644)\r\n	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethod(AbstractAspectJAdvice.java:633)\r\n	at org.springframework.aop.aspectj.AspectJAroundAdvice.invoke(AspectJAroundAdvice.java:70)\r\n	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:175)\r\n	at org.springframework.aop.aspectj.MethodInvocationProceedingJoinPoint.proceed(MethodInvocationProceedingJoinPoint.java:88)\r\n	at cn.stylefeng.guns.core.aop.PermissionAop.doPermission(PermissionAop.java:72)\r\n	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\r\n	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\r\n	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\r\n	at java.lang.reflect.Method.invoke(Method.java:498)\r\n	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethodWithGivenArgs(AbstractAspectJAdvice.java:644)\r\n	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethod(AbstractAspectJAdvice.java:633)\r\n	at org.springframework.aop.aspectj.AspectJAroundAdvice.invoke(AspectJAroundAdvice.java:70)\r\n	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:175)\r\n	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:93)\r\n	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)\r\n	at org.springframework.aop.framework.CglibAopProxyTDynamicAdvisedInterceptor.intercept(CglibAopProxy.java:688)\r\n	at cn.stylefeng.guns.modular.system.controller.MenuControllerTTEnhancerBySpringCGLIBTT7d84bffd.add(<generated>)\r\n	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\r\n	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\r\n	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\r\n	at java.lang.reflect.Method.invoke(Method.java:498)\r\n	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:189)\r\n	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138)\r\n	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:102)\r\n	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)\r\n	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:800)\r\n	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)\r\n	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1038)\r\n	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:942)\r\n	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1005)\r\n	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:908)\r\n	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660)\r\n	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:882)\r\n	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)\r\n	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)\r\n	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\r\n	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)\r\n	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)\r\n	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\r\n	at org.apache.shiro.web.servlet.ProxiedFilterChain.doFilter(ProxiedFilterChain.java:61)\r\n	at org.apache.shiro.web.servlet.AdviceFilter.executeChain(AdviceFilter.java:108)\r\n	at org.apache.shiro.web.servlet.AdviceFilter.doFilterInternal(AdviceFilter.java:137)\r\n	at org.apache.shiro.web.servlet.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:125)\r\n	at org.apache.shiro.web.servlet.ProxiedFilterChain.doFilter(ProxiedFilterChain.java:66)\r\n	at org.apache.shiro.web.servlet.AbstractShiroFilter.executeChain(AbstractShiroFilter.java:449)\r\n	at org.apache.shiro.web.servlet.AbstractShiroFilterT1.call(AbstractShiroFilter.java:365)\r\n	at org.apache.shiro.subject.support.SubjectCallable.doCall(SubjectCallable.java:90)\r\n	at org.apache.shiro.subject.support.SubjectCallable.call(SubjectCallable.java:83)\r\n	at org.apache.shiro.subject.support.DelegatingSubject.execute(DelegatingSubject.java:387)\r\n	at org.apache.shiro.web.servlet.AbstractShiroFilter.doFilterInternal(AbstractShiroFilter.java:362)\r\n	at org.apache.shiro.web.servlet.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:125)\r\n	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)\r\n	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\r\n	at cn.stylefeng.roses.core.xss.XssFilter.doFilter(XssFilter.java:31)\r\n	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)\r\n	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\r\n	at com.alibaba.druid.support.http.WebStatFilter.doFilter(WebStatFilter.java:123)\r\n	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)\r\n	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\r\n	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99)\r\n	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)\r\n	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)\r\n	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\r\n	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:92)\r\n	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)\r\n	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)\r\n	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\r\n	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:93)\r\n	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)\r\n	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)\r\n	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\r\n	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200)\r\n	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)\r\n	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)\r\n	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\r\n	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:199)\r\n	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)\r\n	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)\r\n	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)\r\n	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)\r\n	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)\r\n	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)\r\n	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)\r\n	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)\r\n	at org.apache.coyote.AbstractProtocolTConnectionHandler.process(AbstractProtocol.java:791)\r\n	at org.apache.tomcat.util.net.NioEndpointTSocketProcessor.doRun(NioEndpoint.java:1417)\r\n	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)\r\n	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)\r\n	at java.util.concurrent.ThreadPoolExecutorTWorker.run(ThreadPoolExecutor.java:624)\r\n	at org.apache.tomcat.util.threads.TaskThreadTWrappingRunnable.run(TaskThread.java:61)\r\n	at java.lang.Thread.run(Thread.java:748)\r\n');
+INSERT INTO `sys_operation_log` VALUES (1156914446392700930, '业务日志', '菜单新增', 1, 'cn.stylefeng.guns.modular.system.controller.MenuController', 'add', '2019-08-01 21:07:53', '成功', '菜单名称=个人情况');
+INSERT INTO `sys_operation_log` VALUES (1156914627842486274, '业务日志', '菜单新增', 1, 'cn.stylefeng.guns.modular.system.controller.MenuController', 'add', '2019-08-01 21:08:36', '成功', '菜单名称=我的租售');
+INSERT INTO `sys_operation_log` VALUES (1156915097424179202, '业务日志', '菜单新增', 1, 'cn.stylefeng.guns.modular.system.controller.MenuController', 'add', '2019-08-01 21:10:28', '成功', '菜单名称=我的跟进');
+INSERT INTO `sys_operation_log` VALUES (1156915138905845761, '业务日志', '配置权限', 1, 'cn.stylefeng.guns.modular.system.controller.RoleController', 'setAuthority', '2019-08-01 21:10:38', '成功', '角色名称=总经理,资源名称=系统管理,用户管理,添加用户,修改用户,删除用户,重置密码,冻结用户,解除冻结用户,分配角色,分配角色跳转,编辑用户跳转,用户列表,业务日志,清空日志,日志列表,日志详情,登录日志,清空登录日志,登录日志列表,销售业绩,康敏地产,城区信息,城区添加,城区修改,城区删除,楼盘信息,楼盘添加,楼盘修改,楼盘删除,房源信息,房源信息添加,房源信息修改,房源信息删除,个人情况,我的租售,我的跟进');
+INSERT INTO `sys_operation_log` VALUES (1156915150100443137, '业务日志', '配置权限', 1, 'cn.stylefeng.guns.modular.system.controller.RoleController', 'setAuthority', '2019-08-01 21:10:41', '成功', '角色名称=店长,资源名称=系统管理,用户管理,添加用户,修改用户,删除用户,重置密码,冻结用户,解除冻结用户,分配角色,分配角色跳转,编辑用户跳转,用户列表,业务日志,清空日志,日志列表,日志详情,登录日志,清空登录日志,登录日志列表,销售业绩,康敏地产,城区信息,城区添加,城区修改,城区删除,楼盘信息,楼盘添加,楼盘修改,楼盘删除,房源信息,房源信息添加,房源信息修改,房源信息删除,个人情况,我的租售,我的跟进');
+INSERT INTO `sys_operation_log` VALUES (1156915162565914626, '业务日志', '配置权限', 1, 'cn.stylefeng.guns.modular.system.controller.RoleController', 'setAuthority', '2019-08-01 21:10:44', '成功', '角色名称=员工,资源名称=房源管理,更新状态,房源添加,个人情况,我的租售,我的跟进');
 
 -- ----------------------------
 -- Table structure for sys_relation
@@ -1026,75 +1071,84 @@ INSERT INTO `sys_relation` VALUES (1153518854169776145, 1149324147562749954, 1);
 INSERT INTO `sys_relation` VALUES (1153518854169776146, 1149324147562749955, 1);
 INSERT INTO `sys_relation` VALUES (1153518854169776147, 1149324147562749956, 1);
 INSERT INTO `sys_relation` VALUES (1153518854270439425, 1149324147562749957, 1);
-INSERT INTO `sys_relation` VALUES (1156044266523414530, 105, 1153514705621352449);
-INSERT INTO `sys_relation` VALUES (1156044266573746177, 106, 1153514705621352449);
-INSERT INTO `sys_relation` VALUES (1156044266582134786, 107, 1153514705621352449);
-INSERT INTO `sys_relation` VALUES (1156044266586329090, 108, 1153514705621352449);
-INSERT INTO `sys_relation` VALUES (1156044266586329091, 109, 1153514705621352449);
-INSERT INTO `sys_relation` VALUES (1156044266594717698, 110, 1153514705621352449);
-INSERT INTO `sys_relation` VALUES (1156044266594717699, 111, 1153514705621352449);
-INSERT INTO `sys_relation` VALUES (1156044266603106306, 112, 1153514705621352449);
-INSERT INTO `sys_relation` VALUES (1156044266611494913, 113, 1153514705621352449);
-INSERT INTO `sys_relation` VALUES (1156044266611494914, 165, 1153514705621352449);
-INSERT INTO `sys_relation` VALUES (1156044266619883521, 166, 1153514705621352449);
-INSERT INTO `sys_relation` VALUES (1156044266628272130, 167, 1153514705621352449);
-INSERT INTO `sys_relation` VALUES (1156044266628272131, 128, 1153514705621352449);
-INSERT INTO `sys_relation` VALUES (1156044266636660738, 134, 1153514705621352449);
-INSERT INTO `sys_relation` VALUES (1156044266636660739, 158, 1153514705621352449);
-INSERT INTO `sys_relation` VALUES (1156044266645049345, 159, 1153514705621352449);
-INSERT INTO `sys_relation` VALUES (1156044266653437953, 133, 1153514705621352449);
-INSERT INTO `sys_relation` VALUES (1156044266661826562, 160, 1153514705621352449);
-INSERT INTO `sys_relation` VALUES (1156044266670215170, 161, 1153514705621352449);
-INSERT INTO `sys_relation` VALUES (1156044266678603778, 1111546189892870145, 1153514705621352449);
-INSERT INTO `sys_relation` VALUES (1156044266686992386, 1153518340484976642, 1153514705621352449);
-INSERT INTO `sys_relation` VALUES (1156044266686992387, 1149190344059990018, 1153514705621352449);
-INSERT INTO `sys_relation` VALUES (1156044266695380994, 1149190344059990019, 1153514705621352449);
-INSERT INTO `sys_relation` VALUES (1156044266695380995, 1149190344059990020, 1153514705621352449);
-INSERT INTO `sys_relation` VALUES (1156044266707963906, 1149190344059990021, 1153514705621352449);
-INSERT INTO `sys_relation` VALUES (1156044266707963907, 1149324147281731586, 1153514705621352449);
-INSERT INTO `sys_relation` VALUES (1156044266716352514, 1149324147281731587, 1153514705621352449);
-INSERT INTO `sys_relation` VALUES (1156044266724741122, 1149324147281731588, 1153514705621352449);
-INSERT INTO `sys_relation` VALUES (1156044266733129729, 1149324147281731589, 1153514705621352449);
-INSERT INTO `sys_relation` VALUES (1156044266733129730, 1149324147382394881, 1153514705621352449);
-INSERT INTO `sys_relation` VALUES (1156044266741518338, 1149324147382394882, 1153514705621352449);
-INSERT INTO `sys_relation` VALUES (1156044266749906946, 1149324147382394883, 1153514705621352449);
-INSERT INTO `sys_relation` VALUES (1156044266754101249, 1149324147382394884, 1153514705621352449);
-INSERT INTO `sys_relation` VALUES (1156044285997568001, 105, 1155485836557447170);
-INSERT INTO `sys_relation` VALUES (1156044286014345217, 106, 1155485836557447170);
-INSERT INTO `sys_relation` VALUES (1156044286014345218, 107, 1155485836557447170);
-INSERT INTO `sys_relation` VALUES (1156044286022733825, 108, 1155485836557447170);
-INSERT INTO `sys_relation` VALUES (1156044286022733826, 109, 1155485836557447170);
-INSERT INTO `sys_relation` VALUES (1156044286031122434, 110, 1155485836557447170);
-INSERT INTO `sys_relation` VALUES (1156044286031122435, 111, 1155485836557447170);
-INSERT INTO `sys_relation` VALUES (1156044286039511042, 112, 1155485836557447170);
-INSERT INTO `sys_relation` VALUES (1156044286039511043, 113, 1155485836557447170);
-INSERT INTO `sys_relation` VALUES (1156044286047899649, 165, 1155485836557447170);
-INSERT INTO `sys_relation` VALUES (1156044286056288257, 166, 1155485836557447170);
-INSERT INTO `sys_relation` VALUES (1156044286056288258, 167, 1155485836557447170);
-INSERT INTO `sys_relation` VALUES (1156044286064676865, 128, 1155485836557447170);
-INSERT INTO `sys_relation` VALUES (1156044286073065474, 134, 1155485836557447170);
-INSERT INTO `sys_relation` VALUES (1156044286073065475, 158, 1155485836557447170);
-INSERT INTO `sys_relation` VALUES (1156044286081454081, 159, 1155485836557447170);
-INSERT INTO `sys_relation` VALUES (1156044286089842689, 133, 1155485836557447170);
-INSERT INTO `sys_relation` VALUES (1156044286089842690, 160, 1155485836557447170);
-INSERT INTO `sys_relation` VALUES (1156044286098231297, 161, 1155485836557447170);
-INSERT INTO `sys_relation` VALUES (1156044286098231298, 1111546189892870145, 1155485836557447170);
-INSERT INTO `sys_relation` VALUES (1156044286106619905, 1153518340484976642, 1155485836557447170);
-INSERT INTO `sys_relation` VALUES (1156044286106619906, 1149190344059990018, 1155485836557447170);
-INSERT INTO `sys_relation` VALUES (1156044286115008513, 1149190344059990019, 1155485836557447170);
-INSERT INTO `sys_relation` VALUES (1156044286119202818, 1149190344059990020, 1155485836557447170);
-INSERT INTO `sys_relation` VALUES (1156044286127591426, 1149190344059990021, 1155485836557447170);
-INSERT INTO `sys_relation` VALUES (1156044286127591427, 1149324147281731586, 1155485836557447170);
-INSERT INTO `sys_relation` VALUES (1156044286135980033, 1149324147281731587, 1155485836557447170);
-INSERT INTO `sys_relation` VALUES (1156044286135980034, 1149324147281731588, 1155485836557447170);
-INSERT INTO `sys_relation` VALUES (1156044286144368642, 1149324147281731589, 1155485836557447170);
-INSERT INTO `sys_relation` VALUES (1156044286144368643, 1149324147382394881, 1155485836557447170);
-INSERT INTO `sys_relation` VALUES (1156044286152757250, 1149324147382394882, 1155485836557447170);
-INSERT INTO `sys_relation` VALUES (1156044286152757251, 1149324147382394883, 1155485836557447170);
-INSERT INTO `sys_relation` VALUES (1156044286161145858, 1149324147382394884, 1155485836557447170);
-INSERT INTO `sys_relation` VALUES (1156080261025271810, 1156042711548121090, 1153514828988416001);
-INSERT INTO `sys_relation` VALUES (1156080261054631937, 1156075930595135489, 1153514828988416001);
-INSERT INTO `sys_relation` VALUES (1156080261063020546, 1156076199236112386, 1153514828988416001);
+INSERT INTO `sys_relation` VALUES (1156915137874046977, 105, 1153514705621352449);
+INSERT INTO `sys_relation` VALUES (1156915137974710273, 106, 1153514705621352449);
+INSERT INTO `sys_relation` VALUES (1156915137974710274, 107, 1153514705621352449);
+INSERT INTO `sys_relation` VALUES (1156915137983098882, 108, 1153514705621352449);
+INSERT INTO `sys_relation` VALUES (1156915137991487489, 109, 1153514705621352449);
+INSERT INTO `sys_relation` VALUES (1156915137999876097, 110, 1153514705621352449);
+INSERT INTO `sys_relation` VALUES (1156915138008264706, 111, 1153514705621352449);
+INSERT INTO `sys_relation` VALUES (1156915138016653314, 112, 1153514705621352449);
+INSERT INTO `sys_relation` VALUES (1156915138020847618, 113, 1153514705621352449);
+INSERT INTO `sys_relation` VALUES (1156915138029236225, 165, 1153514705621352449);
+INSERT INTO `sys_relation` VALUES (1156915138033430529, 166, 1153514705621352449);
+INSERT INTO `sys_relation` VALUES (1156915138041819138, 167, 1153514705621352449);
+INSERT INTO `sys_relation` VALUES (1156915138050207745, 128, 1153514705621352449);
+INSERT INTO `sys_relation` VALUES (1156915138050207746, 134, 1153514705621352449);
+INSERT INTO `sys_relation` VALUES (1156915138058596354, 158, 1153514705621352449);
+INSERT INTO `sys_relation` VALUES (1156915138066984961, 159, 1153514705621352449);
+INSERT INTO `sys_relation` VALUES (1156915138075373570, 133, 1153514705621352449);
+INSERT INTO `sys_relation` VALUES (1156915138083762178, 160, 1153514705621352449);
+INSERT INTO `sys_relation` VALUES (1156915138087956482, 161, 1153514705621352449);
+INSERT INTO `sys_relation` VALUES (1156915138096345089, 1111546189892870145, 1153514705621352449);
+INSERT INTO `sys_relation` VALUES (1156915138100539393, 1153518340484976642, 1153514705621352449);
+INSERT INTO `sys_relation` VALUES (1156915138108928001, 1149190344059990018, 1153514705621352449);
+INSERT INTO `sys_relation` VALUES (1156915138113122306, 1149190344059990019, 1153514705621352449);
+INSERT INTO `sys_relation` VALUES (1156915138121510914, 1149190344059990020, 1153514705621352449);
+INSERT INTO `sys_relation` VALUES (1156915138129899521, 1149190344059990021, 1153514705621352449);
+INSERT INTO `sys_relation` VALUES (1156915138134093825, 1149324147281731586, 1153514705621352449);
+INSERT INTO `sys_relation` VALUES (1156915138142482434, 1149324147281731587, 1153514705621352449);
+INSERT INTO `sys_relation` VALUES (1156915138150871041, 1149324147281731588, 1153514705621352449);
+INSERT INTO `sys_relation` VALUES (1156915138150871042, 1149324147281731589, 1153514705621352449);
+INSERT INTO `sys_relation` VALUES (1156915138159259649, 1149324147382394881, 1153514705621352449);
+INSERT INTO `sys_relation` VALUES (1156915138167648258, 1149324147382394882, 1153514705621352449);
+INSERT INTO `sys_relation` VALUES (1156915138167648259, 1149324147382394883, 1153514705621352449);
+INSERT INTO `sys_relation` VALUES (1156915138176036866, 1149324147382394884, 1153514705621352449);
+INSERT INTO `sys_relation` VALUES (1156915138184425474, 1156914445650309122, 1153514705621352449);
+INSERT INTO `sys_relation` VALUES (1156915138188619777, 1156914627502747650, 1153514705621352449);
+INSERT INTO `sys_relation` VALUES (1156915138197008385, 1156915095972950018, 1153514705621352449);
+INSERT INTO `sys_relation` VALUES (1156915149056061442, 105, 1155485836557447170);
+INSERT INTO `sys_relation` VALUES (1156915149081227265, 106, 1155485836557447170);
+INSERT INTO `sys_relation` VALUES (1156915149093810177, 107, 1155485836557447170);
+INSERT INTO `sys_relation` VALUES (1156915149098004482, 108, 1155485836557447170);
+INSERT INTO `sys_relation` VALUES (1156915149098004483, 109, 1155485836557447170);
+INSERT INTO `sys_relation` VALUES (1156915149110587394, 110, 1155485836557447170);
+INSERT INTO `sys_relation` VALUES (1156915149114781697, 111, 1155485836557447170);
+INSERT INTO `sys_relation` VALUES (1156915149123170306, 112, 1155485836557447170);
+INSERT INTO `sys_relation` VALUES (1156915149123170307, 113, 1155485836557447170);
+INSERT INTO `sys_relation` VALUES (1156915149131558913, 165, 1155485836557447170);
+INSERT INTO `sys_relation` VALUES (1156915149131558914, 166, 1155485836557447170);
+INSERT INTO `sys_relation` VALUES (1156915149135753218, 167, 1155485836557447170);
+INSERT INTO `sys_relation` VALUES (1156915149144141826, 128, 1155485836557447170);
+INSERT INTO `sys_relation` VALUES (1156915149148336130, 134, 1155485836557447170);
+INSERT INTO `sys_relation` VALUES (1156915149152530434, 158, 1155485836557447170);
+INSERT INTO `sys_relation` VALUES (1156915149152530435, 159, 1155485836557447170);
+INSERT INTO `sys_relation` VALUES (1156915149160919042, 133, 1155485836557447170);
+INSERT INTO `sys_relation` VALUES (1156915149169307649, 160, 1155485836557447170);
+INSERT INTO `sys_relation` VALUES (1156915149169307650, 161, 1155485836557447170);
+INSERT INTO `sys_relation` VALUES (1156915149177696257, 1111546189892870145, 1155485836557447170);
+INSERT INTO `sys_relation` VALUES (1156915149186084865, 1153518340484976642, 1155485836557447170);
+INSERT INTO `sys_relation` VALUES (1156915149186084866, 1149190344059990018, 1155485836557447170);
+INSERT INTO `sys_relation` VALUES (1156915149194473473, 1149190344059990019, 1155485836557447170);
+INSERT INTO `sys_relation` VALUES (1156915149194473474, 1149190344059990020, 1155485836557447170);
+INSERT INTO `sys_relation` VALUES (1156915149202862081, 1149190344059990021, 1155485836557447170);
+INSERT INTO `sys_relation` VALUES (1156915149211250690, 1149324147281731586, 1155485836557447170);
+INSERT INTO `sys_relation` VALUES (1156915149215444994, 1149324147281731587, 1155485836557447170);
+INSERT INTO `sys_relation` VALUES (1156915149223833601, 1149324147281731588, 1155485836557447170);
+INSERT INTO `sys_relation` VALUES (1156915149228027906, 1149324147281731589, 1155485836557447170);
+INSERT INTO `sys_relation` VALUES (1156915149228027907, 1149324147382394881, 1155485836557447170);
+INSERT INTO `sys_relation` VALUES (1156915149236416513, 1149324147382394882, 1155485836557447170);
+INSERT INTO `sys_relation` VALUES (1156915149244805121, 1149324147382394883, 1155485836557447170);
+INSERT INTO `sys_relation` VALUES (1156915149244805122, 1149324147382394884, 1155485836557447170);
+INSERT INTO `sys_relation` VALUES (1156915149253193729, 1156914445650309122, 1155485836557447170);
+INSERT INTO `sys_relation` VALUES (1156915149261582338, 1156914627502747650, 1155485836557447170);
+INSERT INTO `sys_relation` VALUES (1156915149261582339, 1156915095972950018, 1155485836557447170);
+INSERT INTO `sys_relation` VALUES (1156915161982906370, 1156042711548121090, 1153514828988416001);
+INSERT INTO `sys_relation` VALUES (1156915162012266497, 1156075930595135489, 1153514828988416001);
+INSERT INTO `sys_relation` VALUES (1156915162020655106, 1156076199236112386, 1153514828988416001);
+INSERT INTO `sys_relation` VALUES (1156915162020655107, 1156914445650309122, 1153514828988416001);
+INSERT INTO `sys_relation` VALUES (1156915162029043714, 1156914627502747650, 1153514828988416001);
+INSERT INTO `sys_relation` VALUES (1156915162037432322, 1156915095972950018, 1153514828988416001);
 
 -- ----------------------------
 -- Table structure for sys_role
