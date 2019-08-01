@@ -26,7 +26,7 @@
             and staff_id = #{followInfo.staffId}
         </if>
         <if test="followInfo.quickTime != null and followInfo.quickTime != ''">
-            and (create_time between (select DATE_SUB(curdate(), interval #{followInfo.quickTime} DAY)) and (select DATE_SUB(curdate(), interval 0 DAY)))
+            and (create_time between (select DATE_SUB(curdate(), interval #{followInfo.quickTime} DAY)) and (select DATE_SUB(curdate(), interval -1 DAY)))
         </if>
         <if test="followInfo.beginTime != null and followInfo.beginTime != '' and followInfo.endTime != null and followInfo.endTime != ''">
             and (create_time between CONCAT(#{followInfo.beginTime},' 00:00:00') and CONCAT(#{followInfo.endTime},' 23:59:59'))

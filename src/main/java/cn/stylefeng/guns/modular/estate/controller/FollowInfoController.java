@@ -196,6 +196,8 @@ public class FollowInfoController extends BaseController {
         }
         if(ToolUtil.isNotEmpty(followInfoDto.getQuickTime())){
             if(followInfoDto.getQuickTime()==0)followInfoDto.setQuickTime(null);
+            else if(followInfoDto.getQuickTime()==1)followInfoDto.setQuickTime(1);
+            else followInfoDto.setQuickTime(followInfoDto.getQuickTime()-1);
         }
         Page<Map<String, Object>> list = this.followInfoService.list(followInfoDto);
         Page<Map<String, Object>> wrap = new DeptIdWrapper(list).wrap();
