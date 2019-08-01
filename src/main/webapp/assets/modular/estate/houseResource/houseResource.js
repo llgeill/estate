@@ -395,7 +395,7 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate','element'], function
         queryData['houseResourceType'] = $("#houseResourceType").val();
         if($("#quickTime").val()=="0") queryData['quickTime']=0;
         else queryData['quickTime'] = $("#quickTime").val();
-        if(height!=null)table.reload(HouseResource.tableId, {where: queryData,height:height});
+        if(height!=null)table.reload(HouseResource.tableId, {where: queryData,page: true,limit:10,height:height});
         else table.reload(HouseResource.tableId, {where: queryData});
         if(!flag)return;
         $('#bottomInfo').show();
@@ -404,10 +404,10 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate','element'], function
 
 
     //监听行单击事件（单击事件为：rowDouble）
-
+    var ttFlag=true;
     table.on('row(houseResourceTable)', function(obj){
-
-        getAllSearchValue(null,472);
+        if(ttFlag) getAllSearchValue(null,472);
+        ttFlag=false;
         //詳細信息
         globalData=obj.data;
         var data = obj.data;

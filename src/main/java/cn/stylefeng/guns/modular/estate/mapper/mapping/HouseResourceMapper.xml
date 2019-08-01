@@ -63,6 +63,9 @@
         <include refid="Base_Column_List"/>
         from estate_house_resource
         <choose>
+            <when test="hrsDto.quickTime != null and hrsDto.quickTime == -2">
+                where estate_house_resource.house_resource_id not in ( SELECT follow_info.house_resource_id FROM follow_info GROUP BY follow_info.house_resource_id )
+            </when>
             <when test="hrsDto.quickTime != null and hrsDto.quickTime != -1">
                 ,( SELECT
                 *
