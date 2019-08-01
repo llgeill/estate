@@ -16,6 +16,8 @@ beetl:
 spring:
   profiles:
     active: @spring.active@
+
+
   mvc:
     view:
       prefix: /pages
@@ -33,11 +35,14 @@ spring:
       max-file-size: 100MB
 
 
+
+
 mybatis-plus:
   typeAliasesPackage: cn.stylefeng.guns.modular.system.model
   mapper-locations: classpath:cn/stylefeng/guns/modular/**/mapping/*.xml
 
 log:
   path: guns-logs
+
 
 

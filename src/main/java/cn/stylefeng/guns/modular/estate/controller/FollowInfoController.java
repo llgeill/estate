@@ -61,6 +61,7 @@ public class FollowInfoController extends BaseController {
      */
     @RequestMapping("")
     public String index(Model model,Long staffId) {
+        if(staffId==null)staffId=ShiroKit.getUser().getId();
         model.addAttribute("staffId",staffId);
         return PREFIX + "/followInfo.html";
     }
@@ -192,6 +193,9 @@ public class FollowInfoController extends BaseController {
                 followInfoDto.setBeginTime(split[0]);
                 followInfoDto.setEndTime(split[1]);
             }
+        }
+        if(ToolUtil.isNotEmpty(followInfoDto.getQuickTime())){
+            if(followInfoDto.getQuickTime()==0)followInfoDto.setQuickTime(null);
         }
         Page<Map<String, Object>> list = this.followInfoService.list(followInfoDto);
         Page<Map<String, Object>> wrap = new DeptIdWrapper(list).wrap();

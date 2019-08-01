@@ -97,6 +97,7 @@ public class HouseResourceController extends BaseController {
      */
     @RequestMapping("/slave")
     public String indexSlave(Model model, Long belongId) {
+        if(belongId==null)belongId=ShiroKit.getUser().getId();
         model.addAttribute("belongId",belongId);
         return PREFIX + "/houseResource_slave.html";
     }

@@ -35,6 +35,7 @@ layui.use(['table', 'admin','laydate', 'ax','form'], function () {
          elem: '#entrustBetweenTime'
         ,range: true
         ,change: function(value, date, endDate){
+             console.log("1");
             var queryData = {};
             queryData['staffId'] = $("#staffId").val();
             queryData['entrustBetweenTime'] = value;
