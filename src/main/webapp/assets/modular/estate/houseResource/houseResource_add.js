@@ -85,7 +85,6 @@ layui.use(['table','form', 'admin', 'laydate', 'ax'], function () {
     // 渲染时间选择框
     laydate.render({
         elem: '#updateTime',min: 0
-
     });
 
     //获取当前用户数据并且初始化数据

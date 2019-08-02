@@ -194,7 +194,8 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate','element'], function
         top.layui.admin.open({
             type: 2,
             area: ['950px', '700px'],
-            title: '添加房源信息',
+            moveOut:true,
+            title: '康敏地产房源采集',
             content: Feng.ctxPath + '/houseResource/add',
             end: function () {
                 admin.getTempData('formOk') && table.reload(HouseResource.tableId);
@@ -427,6 +428,7 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate','element'], function
         queryData['hallToiletTotal'] = $("#hallToiletTotal").val();
         queryData['houseResourceType'] = $("#houseResourceType").val();
         queryData['myFollowInfoHouseResource'] = $("#myFollowInfoHouseResource").val();
+        queryData['buildingBlockId'] = $("#buildingBlockId").val();
         if($("#quickTime").val()=="0") queryData['quickTime']=0;
         else queryData['quickTime'] = $("#quickTime").val();
         if(height!=null)table.reload(HouseResource.tableId, {where: queryData,page: true,limit:10,height:height});
@@ -621,7 +623,7 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate','element'], function
                 "                                                </div>";
             if(data!=null&&data.length>0){
                 for(var i=0;i<data.length;i++){
-                    var temp='<img width="160px" height="140px" id='+data[i].viewId+' class="layui-upload-img" src=http://localhost/'+data[i].viewPath+' ">\n';
+                    var temp='<img width="160px" height="140px" id='+data[i].viewId+' class="layui-upload-img" src=http://192.168.0.13/'+data[i].viewPath+' ">\n';
                     content+=temp;
                 }
                 $("#viewInfo").html(content);

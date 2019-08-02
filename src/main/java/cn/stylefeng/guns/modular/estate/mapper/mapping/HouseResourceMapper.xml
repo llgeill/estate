@@ -119,6 +119,9 @@
         <if test="hrsDto.buildingBlock != null and hrsDto.buildingBlock != ''">
              and estate_house_resource.building_block_id = #{hrsDto.buildingBlockId}
         </if>
+        <if test="hrsDto.buildingBlockId != null and hrsDto.buildingBlockId != ''">
+            and estate_house_resource.building_block_id = #{hrsDto.buildingBlockId}
+        </if>
         <if test="hrsDto.priceStart != null and hrsDto.priceStart != ''">
             and estate_house_resource.price &gt;= #{hrsDto.priceStart}
         </if>
@@ -164,7 +167,7 @@
         <if test="hrsDto.staffId != null and hrsDto.staffId != ''">
             and estate_house_resource.staff_id = #{hrsDto.staffId}
         </if>
-        order by estate_house_resource.update_time and estate_house_resource.create_time DESC
+        order by estate_house_resource.create_time DESC
     </select>
 
 </mapper>

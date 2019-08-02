@@ -85,7 +85,8 @@ public class HouseResourceController extends BaseController {
      * @Date 2019-07-11
      */
     @RequestMapping("/master")
-    public String indexMaster() {
+    public String indexMaster(Model model) {
+        model.addAttribute("buildingBlockList",buildingBlockService.list());
         return PREFIX + "/houseResource_master.html";
     }
 
@@ -99,6 +100,7 @@ public class HouseResourceController extends BaseController {
     public String indexSlave(Model model, Long belongId) {
         if(belongId==null)belongId=ShiroKit.getUser().getId();
         model.addAttribute("belongId",belongId);
+        model.addAttribute("buildingBlockList",buildingBlockService.list());
         return PREFIX + "/houseResource_slave.html";
     }
 
@@ -233,9 +235,12 @@ public class HouseResourceController extends BaseController {
             }
         }
 
+
+
         //查询条件
         if (ToolUtil.isNotEmpty(houseResourceSearchDto.getCondition())) {
             houseResourceSearchDto.setCondition(houseResourceSearchDto.getCondition().trim());
+            houseResourceSearchDto.setBuildingBlockId(null);
             String[] split = houseResourceSearchDto.getCondition().split("-");
             if (split.length > 1) {
                 houseResourceSearchDto.setBuildingBlock(split[0]);
@@ -272,6 +277,7 @@ public class HouseResourceController extends BaseController {
                 houseResourceSearchDto.setOwnerPhone(null);
             }
         }
+
         //房型
         if (ToolUtil.isNotEmpty(houseResourceSearchDto.getRoomTotal())) {
             String[] split = houseResourceSearchDto.getRoomTotal().split("-");

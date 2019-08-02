@@ -61,6 +61,8 @@ public class HouseResourceSearchDto {
     private Long myId;
 
 
+
+
  
 
 }
