@@ -122,10 +122,13 @@
                                     <span id="foldAll" class="layui-btn icon-btn" style="margin-left: 0px;"><i class="layui-icon"></i>展开
                                     </span>
                                     <!--id="btnFollowInfo"-->
-                                    <a href="/followInfo?staffId=${belongId}"><span id="btnFollowInfo"  class="layui-btn icon-btn" style="margin-left: 0px;">
-                                        <i class="layui-icon">&#xe67d;</i>跟进
-                                    </span></a>
+                                    <!--<a href="/followInfo?staffId=${belongId}"><span id="btnFollowInfo"  class="layui-btn icon-btn" style="margin-left: 0px;">-->
+                                        <!--<i class="layui-icon">&#xe67d;</i>跟进-->
+                                    <!--</span></a>-->
+                                    @if(!shiro.hasPermission("/houseResource/updateState")){
                                     <span id="btnBack" class="layui-btn icon-btn layui-btn-warm" style="margin-left: 0px"><i class="layui-icon">ဆ</i>关闭</span>
+                                    @}
+
                                 </div>
                             </div>
                         </div>
@@ -235,7 +238,7 @@
                                                     class="layui-anim layui-icon"></i>
                                                 <div>全部</div>
                                             </div>
-                                            <input type="radio" name="area" value="0-50" title="50万以下">
+                                            <input type="radio" name="area" value="0-50" title="50平方以下">
                                             <div  class="layui-unselect layui-form-radio layui-form-radioed" ><i
                                                     class="layui-anim layui-icon"></i>
                                                 <div>50平方以下</div>
@@ -359,7 +362,7 @@
                             </div>
 
                             <div class="layui-col-sm12 layui-col-md12 layui-col-lg12">
-                                <div class="layui-col-sm3 layui-col-md3 layui-col-lg3">
+                                <div class="layui-col-sm2 layui-col-md2 layui-col-lg2">
                                     <div class="layui-form-item">
                                         <label class="layui-form-label">委托时间</label>
                                         <div class="layui-input-block">
@@ -369,7 +372,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="layui-col-sm3 layui-col-md3 layui-col-lg3">
+                                <div class="layui-col-sm2 layui-col-md2 layui-col-lg2">
                                     <div class="layui-form-item">
                                         <label class="layui-form-label">房源类型</label>
                                         <div class="layui-input-block">
@@ -380,6 +383,33 @@
                                                 <option value="商业用房">商业用房</option>
                                                 <option value="教育用房">教育用房</option>
                                                 <option value="教育用房">其他</option>
+                                            </select>
+                                            <div class="layui-unselect layui-form-select">
+                                                <div class="layui-select-title"><input type="text" placeholder="请选择"
+                                                                                       value="阅读" readonly=""
+                                                                                       class="layui-input layui-unselect"><i
+                                                        class="layui-edge"></i></div>
+                                                <dl class="layui-anim layui-anim-upbit">
+                                                    <dd lay-value="" class="layui-select-tips">请选择</dd>
+                                                    <dd lay-value="0" class="layui-this">写作</dd>
+                                                    <dd lay-value="1" class="">阅读</dd>
+                                                    <dd lay-value="2" class="">游戏</dd>
+                                                    <dd lay-value="3" class="">音乐</dd>
+                                                    <dd lay-value="4" class="">旅行</dd>
+                                                </dl>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="layui-col-sm2 layui-col-md2 layui-col-lg2">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">跟进房源</label>
+                                        <div class="layui-input-block">
+                                            <select id="myFollowInfoHouseResource" name="myFollowInfoHouseResource" placeholder="请输入用途"
+                                                    lay-filter="simpleSelect">
+                                                <option value="" selected="">全部</option>
+                                                <option value="跟进房源">跟进房源</option>
                                             </select>
                                             <div class="layui-unselect layui-form-select">
                                                 <div class="layui-select-title"><input type="text" placeholder="请选择"

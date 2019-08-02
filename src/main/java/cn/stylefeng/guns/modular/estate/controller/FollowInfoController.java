@@ -1,6 +1,8 @@
 package cn.stylefeng.guns.modular.estate.controller;
 
 import cn.hutool.core.bean.BeanUtil;
+import cn.stylefeng.guns.core.common.annotion.Permission;
+import cn.stylefeng.guns.core.common.constant.Const;
 import cn.stylefeng.guns.core.common.constant.factory.ConstantFactory;
 import cn.stylefeng.guns.core.common.page.LayuiPageFactory;
 import cn.stylefeng.guns.core.common.page.LayuiPageInfo;
@@ -60,10 +62,24 @@ public class FollowInfoController extends BaseController {
      * @Date 2019-07-11
      */
     @RequestMapping("")
+    @Permission({Const.BOSS_NAME,Const.ADMIN_NAME})
     public String index(Model model,Long staffId) {
         if(staffId==null)staffId=ShiroKit.getUser().getId();
         model.addAttribute("staffId",staffId);
         return PREFIX + "/followInfo.html";
+    }
+
+    /**
+     * 跳转到slave主页面
+     *
+     * @author 李利光
+     * @Date 2019-07-11
+     */
+    @RequestMapping("/slave")
+    public String indexSlave(Model model,Long staffId) {
+        if(staffId==null)staffId=ShiroKit.getUser().getId();
+        model.addAttribute("staffId",staffId);
+        return PREFIX + "/followInfo_slave.html";
     }
 
     /**
@@ -107,6 +123,7 @@ public class FollowInfoController extends BaseController {
      * @Date 2019-07-11
      */
     @RequestMapping("/edit")
+    @Permission({Const.BOSS_NAME,Const.ADMIN_NAME})
     public String edit() {
         return PREFIX + "/followInfo_edit.html";
     }
@@ -141,6 +158,7 @@ public class FollowInfoController extends BaseController {
      */
     @RequestMapping("/editItem")
     @ResponseBody
+    @Permission({Const.BOSS_NAME,Const.ADMIN_NAME})
     public ResponseData editItem(FollowInfoParam followInfoParam) {
         this.followInfoService.update(followInfoParam);
         return ResponseData.success();
@@ -154,6 +172,7 @@ public class FollowInfoController extends BaseController {
      */
     @RequestMapping("/delete")
     @ResponseBody
+    @Permission({Const.BOSS_NAME,Const.ADMIN_NAME})
     public ResponseData delete(FollowInfoParam followInfoParam) {
         this.followInfoService.delete(followInfoParam);
         return ResponseData.success();

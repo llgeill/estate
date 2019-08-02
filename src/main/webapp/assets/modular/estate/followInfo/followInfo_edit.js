@@ -25,7 +25,12 @@ layui.use(['form', 'admin', 'laydate', 'ax'], function () {
 
     // 渲染时间选择框
     laydate.render({
-        elem: '#createTime'
+        elem: '#createTime',
+        type: 'datetime',
+        value: new Date()
+        ,min: 0 //7天前
+        ,max: 0 //7天后
+
     });
 
     // 渲染时间选择框

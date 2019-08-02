@@ -26,7 +26,7 @@ layui.use(['table', 'admin','laydate', 'ax','form'], function () {
             {field: 'content', sort: true, title: '内容'},
             {field: 'createTime', sort: true, title: '跟进时间'},
             // {field: 'updateTime', sort: true, title: '更新时间'},
-             {align: 'center', toolbar: '#tableBar', title: '操作'}
+            // {align: 'center', toolbar: '#tableBar', title: '操作'}
         ]];
     };
 

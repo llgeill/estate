@@ -16,6 +16,7 @@
 package cn.stylefeng.guns.modular.system.warpper;
 
 import cn.stylefeng.guns.core.common.constant.factory.ConstantFactory;
+import cn.stylefeng.guns.core.shiro.ShiroKit;
 import cn.stylefeng.guns.core.util.DecimalUtil;
 import cn.stylefeng.guns.modular.system.entity.User;
 import cn.stylefeng.roses.core.base.warpper.BaseControllerWrapper;
@@ -54,6 +55,7 @@ public class HouseResourceWrapper extends BaseControllerWrapper {
         map.put("buildingBlockName", ConstantFactory.me().getBuildingBlockName((Long) map.get("buildingBlockId")));
         map.put("buildingName", ConstantFactory.me().getBuildingName((Long) map.get("buildingId")));
         map.put("deptName",ConstantFactory.me().getDeptNameByUserId((Long)map.get("staffId")));
+        map.put("myId", ShiroKit.getUser().getId());
     }
 
 }

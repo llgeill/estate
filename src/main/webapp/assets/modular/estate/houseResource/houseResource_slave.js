@@ -66,7 +66,28 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate','element'], function
                     }
                 }
             },
-            {field: 'state', sort: true, title: '状态'},
+            // {field: 'state', sort: true, title: '状态'},
+            {
+                field: 'state', sort: true, title: '状态',templet: function (d) {
+                    if (d.staffId == d.myId) {
+                        if(d.state=='我租'){
+                            return  "<span style='color: red;font-weight: bold''>我租</span>";
+                        }else if(d.state=="我售"){
+                            return "<span style='color: green;font-weight: bold''>我售</span>";
+                        }else{
+                            return d.state;
+                        }
+                    }else{
+                        if(d.state=='我租'){
+                            return "已租"
+                        }else if(d.state=="我售"){
+                            return "已售"
+                        }else{
+                            return d.state;
+                        }
+                    }
+                }
+            },
             {field: 'buildingBlockName', sort: true, title: '栋座'},
             {field: 'roomNumber', sort: true, title: '房号'},
             {field: 'floor', sort: true, title: '楼层'},
@@ -128,7 +149,7 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate','element'], function
     laydate.render({
         elem: '#entrustBetweenTime'
         ,range: true
-        ,change: function(value, date, endDate){
+        ,done: function(value, date, endDate){
             getAllSearchValue(value);
         }
     });
@@ -438,6 +459,7 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate','element'], function
         queryData['hallToilet'] = $("#hallToilet").val();
         queryData['hallToiletTotal'] = $("#hallToiletTotal").val();
         queryData['houseResourceType'] = $("#houseResourceType").val();
+        queryData['myFollowInfoHouseResource'] = $("#myFollowInfoHouseResource").val();
         if($("#quickTime").val()=="0") queryData['quickTime']=0;
         else queryData['quickTime'] = $("#quickTime").val();
         if(height!=null)table.reload(HouseResource.tableId, {where: queryData,page: true,limit:10,height:height});
@@ -699,7 +721,7 @@ layui.use(['table','form','upload', 'admin', 'ax','laydate','element'], function
         admin.putTempData('formOk', false);
         top.layui.admin.open({
             type: 2,
-            title: '修改城区',
+            title: '查看城区',
             area: ['745px', '600px'],
             content: Feng.ctxPath + '/building/info?buildingId=' + data.buildingId,
             end: function () {

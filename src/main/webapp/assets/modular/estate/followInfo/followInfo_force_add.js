@@ -28,6 +28,8 @@ layui.use(['form', 'admin', 'laydate', 'ax'], function () {
         elem: '#createTime',
         type: 'datetime',
         value: new Date()
+        ,min: 0 //7天前
+        ,max: 0 //7天后
 
     });
 

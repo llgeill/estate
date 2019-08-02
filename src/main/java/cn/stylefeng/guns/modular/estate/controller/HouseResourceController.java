@@ -337,6 +337,23 @@ public class HouseResourceController extends BaseController {
                 houseResourceSearchDto.setEndTime(split[1]);
             }
         }
+
+        if(ToolUtil.isNotEmpty(houseResourceSearchDto.getState())){
+            if(houseResourceSearchDto.getState().equals("我租")||houseResourceSearchDto.getState().equals("我售")){
+                houseResourceSearchDto.setStaffId(ShiroKit.getUser().getId());
+            }
+            else if(houseResourceSearchDto.getState().equals("已租")){
+                houseResourceSearchDto.setAllRender("ttt");
+                houseResourceSearchDto.setState(null);
+                houseResourceSearchDto.setStaffId(null);
+            }else if(houseResourceSearchDto.getState().equals("已售")){
+                houseResourceSearchDto.setAllSell("ttt");
+                houseResourceSearchDto.setState(null);
+                houseResourceSearchDto.setStaffId(null);
+            }
+
+        }
+
         //加密属主问题
         if(houseResourceSearchDto.getBelongId()!=null&&!houseResourceSearchDto.getBelongId().equals("")){
             houseResourceSearchDto.setStaffId(houseResourceSearchDto.getBelongId());
@@ -344,6 +361,8 @@ public class HouseResourceController extends BaseController {
                 houseResourceSearchDto.setStateSlave("ttt");
             }
         }
+        //当前用户id
+        houseResourceSearchDto.setMyId(ShiroKit.getUser().getId());
         //查询页面
         Page<Map<String, Object>> users = houseResourceService.selectHouseResources(houseResourceSearchDto);
         Page wrapped = new HouseResourceWrapper(users).wrap();

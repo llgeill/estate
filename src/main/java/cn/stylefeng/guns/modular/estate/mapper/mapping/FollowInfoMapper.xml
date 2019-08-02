@@ -31,7 +31,7 @@
         <if test="followInfo.beginTime != null and followInfo.beginTime != '' and followInfo.endTime != null and followInfo.endTime != ''">
             and (create_time between CONCAT(#{followInfo.beginTime},' 00:00:00') and CONCAT(#{followInfo.endTime},' 23:59:59'))
         </if>
-        order by create_time DESC
+        order by follow_info.update_time and follow_info.create_time DESC
     </select>
 
 </mapper>

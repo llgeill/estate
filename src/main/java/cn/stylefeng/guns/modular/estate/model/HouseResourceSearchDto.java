@@ -18,6 +18,9 @@ public class HouseResourceSearchDto {
 
     private String transaction;
     private String state;
+    private String allState;
+    private String allRender;
+    private String allSell;
 
     private String rental;
     private Double rentalStart;
@@ -53,6 +56,9 @@ public class HouseResourceSearchDto {
     private String stateSlave;
 
     private Integer quickTime;
+
+    private String myFollowInfoHouseResource;
+    private Long myId;
 
 
  

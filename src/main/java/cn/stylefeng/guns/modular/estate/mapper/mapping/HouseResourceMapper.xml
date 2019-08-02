@@ -82,6 +82,13 @@
             </otherwise>
         </choose>
 
+        <if test="hrsDto.myFollowInfoHouseResource != null and hrsDto.myFollowInfoHouseResource != ''">
+            and estate_house_resource.house_resource_id in
+            (select follow_info.house_resource_id from follow_info where staff_id = #{hrsDto.myId} group by follow_info.house_resource_id )
+        </if>
+        <if test="hrsDto.roomTotalStart != null and hrsDto.roomTotalStart != ''">
+            and estate_house_resource.room_total &gt;= #{hrsDto.roomTotalStart}
+        </if>
         <if test="hrsDto.roomTotalStart != null and hrsDto.roomTotalStart != ''">
             and estate_house_resource.room_total &gt;= #{hrsDto.roomTotalStart}
         </if>
@@ -92,7 +99,13 @@
             and estate_house_resource.transaction = #{hrsDto.transaction}
         </if>
         <if test="hrsDto.state != null and hrsDto.state != ''">
-            and estate_house_resource.state like CONCAT('%',#{hrsDto.state},'%')
+            and estate_house_resource.state = #{hrsDto.state}
+        </if>
+        <if test="hrsDto.allRender != null and hrsDto.allRender != ''">
+            and estate_house_resource.state in ("我租","已租")
+        </if>
+        <if test="hrsDto.allSell != null and hrsDto.allSell != ''">
+            and estate_house_resource.state in ("我售","已售")
         </if>
         <if test="hrsDto.stateSlave != null and hrsDto.stateSlave != ''">
             and estate_house_resource.state in ("我租","我售")
@@ -151,7 +164,7 @@
         <if test="hrsDto.staffId != null and hrsDto.staffId != ''">
             and estate_house_resource.staff_id = #{hrsDto.staffId}
         </if>
-        order by estate_house_resource.update_time DESC
+        order by estate_house_resource.update_time and estate_house_resource.create_time DESC
     </select>
 
 </mapper>
