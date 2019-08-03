@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.stylefeng.guns.modular.estate.mapper.CustomerMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.stylefeng.guns.modular.estate.entity.Customer">
+        <id column="customer_id" property="customerId" />
+        <result column="name" property="name" />
+        <result column="phone" property="phone" />
+        <result column="rental" property="rental" />
+        <result column="price" property="price" />
+        <result column="price_start" property="priceStart" />
+        <result column="rental_start" property="rentalStart" />
+        <result column="rental_end" property="rentalEnd" />
+        <result column="price_tax" property="priceTax" />
+        <result column="house_type" property="houseType" />
+        <result column="direction" property="direction" />
+        <result column="building_block" property="buildingBlock" />
+        <result column="floor" property="floor" />
+        <result column="room_number" property="roomNumber" />
+        <result column="remark" property="remark" />
+        <result column="customer_type" property="customerType" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        customer_id AS "customerId", name AS "name", phone AS "phone", rental AS "rental", price AS "price", price_start AS "priceStart", rental_start AS "rentalStart", rental_end AS "rentalEnd", price_tax AS "priceTax", house_type AS "houseType", direction AS "direction", building_block AS "buildingBlock", floor AS "floor", room_number AS "roomNumber", remark AS "remark", customer_type AS "customerType", create_time AS "createTime", update_time AS "updateTime"
+    </sql>
+
+    <select id="list" resultType="map">
+        select
+        <include refid="Base_Column_List"/>
+        from estate_customer where 1 = 1
+        <if test="customer.phone != null and customer.phone != ''">
+            and phone = #{customer.phone}
+        </if>
+        <if test="customer.name != null and customer.name != ''">
+            and name = #{customer.name}
+        </if>
+        <if test="customer.customerType != null and customer.customerType != ''">
+            and customer_type = #{customer.customerType}
+        </if>
+        order by estate_customer.create_time DESC
+    </select>
+
+</mapper>

@@ -1,0 +1,75 @@
+@layout("/common/_container.html",{js:["/assets/modular/estate/customer/customer.js"]}){
+
+<div class="layui-body-header">
+    <span class="layui-body-header-title">客户信息管理</span>
+</div>
+
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-sm12 layui-col-md12 layui-col-lg12">
+            <div class="layui-card">
+                <div class="layui-card-body">
+                    <form class="layui-form layui-form-pane" lay-filter="Customer"  action="">
+                        <div class="layui-col-sm12 layui-col-md12 layui-col-lg12">
+                            <div class="layui-col-sm2 layui-col-md2 layui-col-lg2 layui-" style="margin-right: 10px">
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">客户类型</label>
+                                    <div class="layui-input-block">
+                                        <select name="customer_type" id="customer_type" lay-filter="customer_type">
+                                            <option value="" selected="">全部</option>
+                                            <option value="潜在客户">潜在客户</option>
+                                            <option value="目标客户">目标客户</option>
+                                        </select>
+                                        <div class="layui-unselect layui-form-select">
+                                            <div class="layui-select-title"><input type="text" placeholder="请选择"
+                                                                                   value="阅读" readonly=""
+                                                                                   class="layui-input layui-unselect"><i
+                                                    class="layui-edge"></i></div>
+                                            <dl class="layui-anim layui-anim-upbit">
+                                                <dd lay-value="" class="layui-select-tips">请选择</dd>
+                                                <dd lay-value="0" class="">写作</dd>
+                                                <dd lay-value="1" class="layui-this">阅读</dd>
+                                                <dd lay-value="2" class="">游戏</dd>
+                                                <dd lay-value="3" class="">音乐</dd>
+                                                <dd lay-value="4" class="">旅行</dd>
+                                            </dl>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="layui-col-sm6 layui-col-md6 layui-col-lg6 " >
+                                <div class="layui-form-item">
+                                    <div class="layui-inline">
+                                        <input id="condition" class="layui-input" type="text" placeholder="名称"/>
+                                    </div>
+                                    <div class="layui-inline">
+                                        <span id="btnSearch" class="layui-btn icon-btn"><i class="layui-icon">&#xe615;</i>搜索</span>
+                                        <span id="btnAdd" class="layui-btn icon-btn"><i class="layui-icon">&#xe654;</i>添加</span>
+                                        @if(shiro.hasPermission("/customer/edit")){
+                                        <span id="btnExp" class="layui-btn icon-btn"><i class="layui-icon">&#xe67d;</i>导出</span>
+                                        @}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                    <table class="layui-table" id="customerTable" lay-filter="customerTable"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/html" id="tableBar">
+    @if(shiro.hasPermission("/customer/detailTemp")){
+    <a class="layui-btn layui-btn layui-btn-xs" lay-event="detail">查看</a>
+    @}
+    @if(shiro.hasPermission("/customer/edit")){
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="edit">修改</a>
+    @}
+    @if(shiro.hasPermission("/customer/delete")){
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delete">删除</a>
+    @}
+</script>
+@}

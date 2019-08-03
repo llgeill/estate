@@ -81,12 +81,17 @@ layui.use(['table','form', 'admin', 'laydate', 'ax'], function () {
         type: 'datetime',
         value: new Date()
     });
+    //年选择器
+    laydate.render({
+        elem: '#buildingTime'
+        ,type: 'year'
+        ,value: new Date()
+    });
 
     // 渲染时间选择框
     laydate.render({
         elem: '#updateTime',min: 0
     });
-
     //获取当前用户数据并且初始化数据
     function getUserInfo(){
         var ajax = new $ax(Feng.ctxPath + "/system/user_info_data",function (data){
@@ -97,7 +102,6 @@ layui.use(['table','form', 'admin', 'laydate', 'ax'], function () {
         ajax.start();
         form.render();
     }
-
     //获取楼盘列表
     function getbulidingBlockList(vals){
         //获取下拉框选值
