@@ -1,5 +1,5 @@
 server:
-  port: 9090
+  port: 80
   max-http-header-size: 10240
 
 guns:
@@ -15,7 +15,8 @@ beetl:
 
 spring:
   profiles:
-    active: @spring.active@
+    active: local
+#    @spring.active@
 
 
   mvc:
