@@ -2,13 +2,17 @@ package cn.stylefeng.guns.system;
 
 import cn.stylefeng.guns.base.BaseJunit;
 import cn.stylefeng.guns.core.util.IsNumberUtil;
+import cn.stylefeng.guns.modular.estate.entity.City;
+import cn.stylefeng.guns.modular.estate.mapper.CityMapper;
 import cn.stylefeng.guns.modular.system.mapper.UserMapper;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.Resource;
 import javax.script.*;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -21,6 +25,9 @@ public class UserTest extends BaseJunit {
 
     @Resource
     UserMapper userMapper;
+
+    @Resource
+    CityMapper cityMapper;
 
     @Test
     public void userTest() throws Exception {
@@ -48,6 +55,7 @@ public class UserTest extends BaseJunit {
         String var ="13711919653";
         boolean s1=var.length()==11;
         boolean ss=IsNumberUtil.isNumeric(var);
+         List<City> cities = cityMapper.selectList(null);
     }
 
 }
